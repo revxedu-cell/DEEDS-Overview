@@ -1,418 +1,1001 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DEEDS — A Framework for Learning That Matters</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEEDS — Rigorous Learning Through Real-World Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root{
-  /* Phase colors */
-  --discover:#e69138;
-  --examine:#0a9b19;
-  --engineer:#003da6;
-  --do:#ffb600;
-  --share:#ab0a3d;
+    :root {
+      --ink: #1f2937;
+      --ink-soft: #667085;
+      --ink-faint: #98a2b3;
+      --paper: #f5f1ea;
+      --surface: #ffffff;
+      --surface-soft: #fbf8f3;
+      --line: rgba(31, 41, 55, 0.10);
+      --line-strong: rgba(31, 41, 55, 0.16);
+      --shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
 
-  /* Additional palette */
-  --accent-red:#e7004d;
-  --accent-cyan:#00aac8;
-  --accent-yellow:#ffd100;
-  --accent-blue-mid:#416ba9;
-  --accent-blue-deep:#194f90;
-  --accent-navy:#001f61;
-  --accent-teal:#007197;
-  --accent-green:#46c850;
+      --accent-blue: #5876a8;
+      --accent-gold: #c69a2c;
+      --accent-plum: #8c5a79;
+      --accent-sage: #7f9179;
 
-  /* Neutrals / UI */
-  --bg:#fff9f4;
-  --surface:#fff;
-  --border:rgba(0,31,97,.1);
-  --text:#1a1a2e;
-  --text-muted:#5a5a7a;
-  --radius:12px;
-}
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
 
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
-.dm{font-family:'DM Serif Display',serif}
+      --max: 1180px;
+    }
 
+    html { scroll-behavior: smooth; }
 
-/* ── Nav ── */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,249,244,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 24px;
-}
-.nav-in{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;gap:4px;
-  overflow-x:auto;scrollbar-width:none;
-  padding:9px 0;
-}
-.nav-in::-webkit-scrollbar{display:none}
-.nb{
-  white-space:nowrap;
-  padding:9px 18px;border-radius:8px;
-  border:none;background:none;
-  font-family:inherit;font-size:13px;font-weight:600;
-  color:var(--text-muted);
-  cursor:pointer;transition:all .2s;
-  text-decoration:none;display:inline-block;
-}
-.nb:hover{background:rgba(0,31,97,.06);color:var(--text)}
-.nb.active{background:var(--accent-navy);color:#fff}
-.nb.disabled{
-  color:var(--text-muted);opacity:.45;
-  cursor:not-allowed;pointer-events:none;
-}
-.nb-phase{
-  display:inline-flex;align-items:center;gap:6px;
-}
-.nb-dot{
-  width:7px;height:7px;border-radius:50%;flex-shrink:0;
-}
-.nb-soon{
-  font-size:9px;font-weight:700;letter-spacing:.5px;
-  text-transform:uppercase;
-  background:rgba(0,31,97,.07);
-  color:var(--text-muted);
-  border-radius:4px;padding:1px 5px;
-  vertical-align:middle;
-}
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
+    h1, h2, h3, .serif {
+      font-family: 'DM Serif Display', serif;
+      letter-spacing: -0.025em;
+    }
 
-/* ── Hero ── */
-#hero{
-  background:linear-gradient(160deg,var(--accent-navy) 0%,#0a2a6e 60%,#163580 100%);
-  color:#fff;
-  padding:80px 24px 88px;
-  position:relative;
-  overflow:hidden;
-}
-#hero::before{
-  content:'';
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 60% at 80% 20%,rgba(230,145,56,.18),transparent),
-    radial-gradient(ellipse 40% 50% at 10% 80%,rgba(0,170,200,.12),transparent);
-  pointer-events:none;
-}
-.hero-in{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;
-  position:relative;z-index:1;
-}
-.hero-kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--discover);
-  margin-bottom:22px;
-}
-.hero-kicker-bar{
-  display:flex;gap:4px;
-}
-.hero-kicker-bar span{
-  width:18px;height:4px;border-radius:2px;
-}
-#hero h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(38px,5.5vw,62px);
-  line-height:1.06;
-  margin-bottom:24px;
-  letter-spacing:-.5px;
-}
-#hero h1 em{
-  font-style:italic;
-  color:var(--discover);
-}
-#hero .hero-body{
-  font-size:17px;line-height:1.75;
-  color:rgba(255,255,255,.78);
-  max-width:520px;
-}
-#hero .hero-body strong{
-  color:#fff;font-weight:600;
-}
-.hero-cta{
-  display:flex;gap:12px;flex-wrap:wrap;
-  margin-top:36px;
-}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--discover);color:#fff;
-  font-family:inherit;font-size:14px;font-weight:700;
-  padding:13px 26px;border-radius:10px;border:none;
-  cursor:pointer;text-decoration:none;
-  transition:opacity .2s,transform .15s;
-}
-.btn-primary:hover{opacity:.88;transform:translateY(-1px)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.1);color:#fff;
-  font-family:inherit;font-size:14px;font-weight:600;
-  padding:13px 26px;border-radius:10px;
-  border:1.5px solid rgba(255,255,255,.2);
-  cursor:pointer;text-decoration:none;
-  transition:background .2s;
-}
-.btn-ghost:hover{background:rgba(255,255,255,.18)}
-.hero-visual{
-  display:flex;flex-direction:column;gap:12px;
-  position:relative;
-}
-.hero-phase-strip{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;
-  padding:16px 20px;
-  display:flex;align-items:center;gap:14px;
-}
-.hero-phase-strip:first-child{border-left:4px solid var(--discover)}
-.hero-phase-strip:nth-child(2){border-left:4px solid var(--examine)}
-.hero-phase-strip:nth-child(3){border-left:4px solid var(--engineer)}
-.hero-phase-strip:nth-child(4){border-left:4px solid var(--do)}
-.hero-phase-strip:nth-child(5){border-left:4px solid var(--share)}
-.hps-num{
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  color:rgba(255,255,255,.4);flex-shrink:0;width:18px;
-}
-.hps-name{
-  font-size:14px;font-weight:700;color:#fff;flex:1;
-}
-.hps-desc{
-  font-size:12px;color:rgba(255,255,255,.5);
-}
-@media(max-width:860px){
-  .hero-in{grid-template-columns:1fr}
-  .hero-visual{display:none}
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-/* ── Phase Pentagon ── */
-#pentagon{
-  padding:72px 24px 80px;
-  text-align:center;
-}
-.pent-kicker{
-  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--text-muted);margin-bottom:10px;
-}
-#pentagon h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(26px,3.5vw,38px);
-  color:var(--text);margin-bottom:8px;
-}
-#pentagon .pent-sub{
-  font-size:15px;color:var(--text-muted);margin-bottom:48px;
-}
-.pent-wrap{
-  display:inline-block;position:relative;
-}
-.pent-svg .wedge{
-  cursor:pointer;
-  transition:opacity .18s,filter .18s;
-}
-.pent-svg .wedge:hover{
-  opacity:.85;filter:brightness(1.08);
-}
-.pent-svg .wedge.disabled{cursor:default;}
-.pent-svg .wedge-label{
-  font-family:'DM Sans',sans-serif;
-  font-size:13px;font-weight:700;
-  fill:#fff;pointer-events:none;
-}
-.pent-svg .center-label{
-  font-family:'DM Sans',sans-serif;
-  font-size:10.5px;font-weight:600;
-  fill:var(--accent-navy);
-  text-anchor:middle;
-  pointer-events:none;
-}
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.9px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
 
-/* ── Community Challenge ── */
-#community-challenge{}
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-gold);
+      flex: 0 0 auto;
+    }
 
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245, 241, 234, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+    }
 
-/* ── Challenge Question ── */
-#challenge-question{}
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
+    .brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
 
-/* ── Get Started ── */
-#get-started{}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-</style>
+    .nav-link {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      transition: .2s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(31, 41, 55, 0.05);
+      color: var(--ink);
+    }
+
+    .nav-link.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 58px 0 38px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      padding: 10px 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.95;
+      color: var(--ink);
+      margin-bottom: 20px;
+      max-width: 8.5ch;
+    }
+
+    .hero h1 em {
+      color: var(--accent-blue);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 44ch;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pentagon-stage {
+      position: relative;
+      width: min(100%, 720px);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pentagon-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(15, 23, 42, 0.10));
+    }
+
+    .phase-hotspot {
+      position: absolute;
+      display: block;
+      border-radius: 18px;
+      z-index: 2;
+      cursor: pointer;
+      transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .phase-hotspot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid transparent;
+      transition: border-color .18s ease, background .18s ease;
+    }
+
+    .phase-hotspot:hover::after,
+    .phase-hotspot:focus-visible::after {
+      border-color: rgba(88, 118, 168, 0.40);
+      background: rgba(88, 118, 168, 0.06);
+    }
+
+    .phase-hotspot:hover,
+    .phase-hotspot:focus-visible {
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    .phase-hotspot span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(31, 41, 55, 0.94);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+    }
+
+    .phase-hotspot:hover span,
+    .phase-hotspot:focus-visible span {
+      opacity: 1;
+      transform: translate(-50%, calc(-50% - 2px));
+    }
+
+    .hotspot-discover {
+      width: 28%;
+      height: 17%;
+      top: 8%;
+      left: 11%;
+      transform: rotate(-17deg);
+    }
+
+    .hotspot-examine {
+      width: 28%;
+      height: 17%;
+      top: 8%;
+      right: 11%;
+      transform: rotate(16deg);
+    }
+
+    .hotspot-engineer {
+      width: 17%;
+      height: 28%;
+      top: 34%;
+      right: 8%;
+      transform: rotate(16deg);
+      border-radius: 24px;
+    }
+
+    .hotspot-do {
+      width: 22%;
+      height: 12%;
+      bottom: 8%;
+      left: 39%;
+      border-radius: 18px;
+    }
+
+    .hotspot-share {
+      width: 17%;
+      height: 28%;
+      top: 34%;
+      left: 8%;
+      transform: rotate(-16deg);
+      border-radius: 24px;
+    }
+
+    /* Sections */
+    .section {
+      padding: 42px 0 0;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .section-panel {
+      padding: 38px;
+    }
+
+    .section-panel.visual {
+      background:
+        radial-gradient(circle at 16% 18%, rgba(88, 118, 168, 0.08), transparent 26%),
+        linear-gradient(180deg, #fcfbf8 0%, #f8f4ee 100%);
+      border-left: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+    }
+
+    .section h2 {
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 18px;
+      max-width: 12ch;
+    }
+
+    .section-lead {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin-bottom: 28px;
+    }
+
+    /* Challenge framework */
+    .challenge-framework {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .challenge-point {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .challenge-point:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .challenge-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--accent-blue);
+      flex: 0 0 auto;
+    }
+
+    .challenge-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+    }
+
+    .challenge-point strong {
+      display: block;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .challenge-point span {
+      display: block;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .starting-points {
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .starting-points h3 {
+      font-size: 28px;
+      line-height: 1.02;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .starting-points p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+      max-width: 58ch;
+    }
+
+    .starting-points-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .starting-point {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 17px;
+    }
+
+    .starting-point strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-weight: 800;
+    }
+
+    .starting-point span {
+      display: block;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    /* Partners */
+    .partner-cards {
+      width: 100%;
+      display: grid;
+      gap: 14px;
+    }
+
+    .partner-card {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .partner-card .tag {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+    }
+
+    .partner-card h3 {
+      font-size: 24px;
+      line-height: 1.02;
+      color: var(--ink);
+      margin-bottom: 9px;
+    }
+
+    .partner-card p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .partner-question {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      color: var(--accent-plum);
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .partner-intro-note {
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 15px 16px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    /* Challenge question */
+    .challenge-question-shell {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .challenge-question-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 0;
+    }
+
+    .challenge-question-left {
+      padding: 38px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(88, 118, 168, 0.08), transparent 28%),
+        linear-gradient(180deg, #fbfaf7 0%, #f7f4ef 100%);
+      border-right: 1px solid var(--line);
+    }
+
+    .challenge-question-left h2 {
+      color: var(--ink);
+      max-width: 10ch;
+      margin-bottom: 16px;
+    }
+
+    .challenge-question-left p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      max-width: 44ch;
+      margin-bottom: 16px;
+    }
+
+    .challenge-question-note {
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .challenge-question-note strong {
+      color: var(--ink);
+    }
+
+    .challenge-question-right {
+      background: rgba(255,255,255,.98);
+      padding: 38px;
+    }
+
+    .formula-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 14px;
+    }
+
+    .formula-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .formula-text em {
+      color: var(--accent-plum);
+      font-style: italic;
+    }
+
+    .formula-note {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 22px;
+      max-width: 58ch;
+    }
+
+    .principles-mini {
+      display: grid;
+      gap: 12px;
+    }
+
+    .principles-mini .mini {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 15px 16px;
+    }
+
+    .principles-mini .mini strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-weight: 800;
+    }
+
+    .principles-mini .mini span {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 58px;
+      border-top: 1px solid rgba(31, 41, 55, 0.08);
+      padding: 24px 0 34px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    /* Responsive */
+    @media (max-width: 1040px) {
+      .hero-inner,
+      .section-grid,
+      .challenge-question-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-panel.visual {
+        border-left: none;
+        border-top: 1px solid var(--line);
+      }
+
+      .challenge-question-left {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container,
+      .nav-inner {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero p,
+      .section-lead,
+      .challenge-question-left p,
+      .formula-note {
+        font-size: 15px;
+      }
+
+      .section-panel,
+      .challenge-question-left,
+      .challenge-question-right {
+        padding: 24px;
+      }
+
+      .challenge-point {
+        grid-template-columns: 48px 1fr;
+      }
+
+      .challenge-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+      }
+
+      .challenge-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .pentagon-stage {
+        width: min(100%, 560px);
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Nav -->
-<nav class="nav">
-  <div class="nav-in">
-    <a href="index.html" class="nb active">Home</a>
-    <a href="plan.html" class="nb">Plan Your Unit</a>
-    <a href="discover.html" class="nb nb-phase">
-      <span class="nb-dot" style="background:var(--discover)"></span>Discover
-    </a>
-    <span class="nb nb-phase disabled">
-      <span class="nb-dot" style="background:var(--examine)"></span>Examine
-      <span class="nb-soon">Soon</span>
-    </span>
-    <span class="nb nb-phase disabled">
-      <span class="nb-dot" style="background:var(--engineer)"></span>Engineer
-      <span class="nb-soon">Soon</span>
-    </span>
-    <span class="nb nb-phase disabled">
-      <span class="nb-dot" style="background:var(--do)"></span>Do
-      <span class="nb-soon">Soon</span>
-    </span>
-    <span class="nb nb-phase disabled">
-      <span class="nb-dot" style="background:var(--share)"></span>Share
-      <span class="nb-soon">Soon</span>
-    </span>
-  </div>
-</nav>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">DEEDS</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="discover.html" class="nav-link">Discover</a>
+        <a href="examine.html" class="nav-link">Examine</a>
+        <a href="engineer.html" class="nav-link">Engineer</a>
+        <a href="do.html" class="nav-link">Do</a>
+        <a href="share.html" class="nav-link">Share</a>
+      </div>
+    </div>
+  </nav>
 
-<!-- Hero -->
-<section id="hero">
-  <div class="hero-in">
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">DEEDS Framework</div>
+        <h1>Rigorous learning <em>through real-world impact</em></h1>
+        <p>
+          DEEDS organizes learning around real community challenges, standards-aligned learning, and authentic partners. Explore the interactive graphic to learn more about each phase in the learning cycle.
+        </p>
+      </div>
 
-    <div class="hero-text">
-      <div class="hero-kicker">
-        <div class="hero-kicker-bar">
-          <span style="background:var(--discover)"></span>
-          <span style="background:var(--examine)"></span>
-          <span style="background:var(--engineer)"></span>
-          <span style="background:var(--do)"></span>
-          <span style="background:var(--share)"></span>
+      <div class="hero-visual">
+        <div class="pentagon-stage">
+          <img src="Full Pentagon.png" alt="DEEDS pentagon logo" class="pentagon-image">
+
+          <a href="discover.html" class="phase-hotspot hotspot-discover" aria-label="Go to Discover">
+            <span>Discover</span>
+          </a>
+
+          <a href="examine.html" class="phase-hotspot hotspot-examine" aria-label="Go to Examine">
+            <span>Examine</span>
+          </a>
+
+          <a href="engineer.html" class="phase-hotspot hotspot-engineer" aria-label="Go to Engineer">
+            <span>Engineer</span>
+          </a>
+
+          <a href="do.html" class="phase-hotspot hotspot-do" aria-label="Go to Do">
+            <span>Do</span>
+          </a>
+
+          <a href="share.html" class="phase-hotspot hotspot-share" aria-label="Go to Share">
+            <span>Share</span>
+          </a>
         </div>
-        A Project-Based Learning Framework
-      </div>
-
-      <h1>DEEDS: A Framework for Learning<br><em>That Matters</em></h1>
-
-      <p class="hero-body">
-        What if your students spent the school year solving <strong>real, critical problems</strong> in their community — and mastered core content in the process?
-        <br><br>
-        DEEDS is a project-based learning framework that guides students through repeated cycles of investigation, design, and action, each anchored in a genuine community challenge.
-      </p>
-
-      <div class="hero-cta">
-        <a href="plan.html" class="btn-primary">Plan Your Unit →</a>
-        <a href="discover.html" class="btn-ghost">Explore Discover</a>
       </div>
     </div>
+  </section>
 
-    <div class="hero-visual">
-      <div class="hero-phase-strip">
-        <span class="hps-num">01</span>
-        <span class="hps-name">Discover</span>
-        <span class="hps-desc">Investigate the challenge</span>
-      </div>
-      <div class="hero-phase-strip">
-        <span class="hps-num">02</span>
-        <span class="hps-name">Examine</span>
-        <span class="hps-desc">Analyze root causes</span>
-      </div>
-      <div class="hero-phase-strip">
-        <span class="hps-num">03</span>
-        <span class="hps-name">Engineer</span>
-        <span class="hps-desc">Design solutions</span>
-      </div>
-      <div class="hero-phase-strip">
-        <span class="hps-num">04</span>
-        <span class="hps-name">Do</span>
-        <span class="hps-desc">Take action</span>
-      </div>
-      <div class="hero-phase-strip">
-        <span class="hps-num">05</span>
-        <span class="hps-name">Share</span>
-        <span class="hps-desc">Reflect &amp; present</span>
+  <section class="section">
+    <div class="container">
+      <div class="section-card">
+        <div class="section-grid">
+          <div class="section-panel">
+            <div class="eyebrow">Challenge Design</div>
+            <h2>Identify a relevant challenge</h2>
+            <p class="section-lead">
+              A strong DEEDS project starts with a challenge that is real, relevant, and actionable, but it also needs to hold the learning teachers are responsible for. Sometimes that means beginning with the standards or core content and looking for a challenge that gives that learning purpose.
+            </p>
+
+            <div class="challenge-framework">
+              <div class="challenge-point">
+                <div class="challenge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                    <path d="M12 21s7-4.35 7-10a7 7 0 1 0-14 0c0 5.65 7 10 7 10Z"/>
+                    <circle cx="12" cy="11" r="2.8"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Ground the work in an actual need, tension, problem, or opportunity.</strong>
+                  <span>The challenge should exist beyond school and matter to people in a real context.</span>
+                </div>
+              </div>
+
+              <div class="challenge-point">
+                <div class="challenge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                    <path d="M12 20c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7 3.582 7 8 7Z"/>
+                    <path d="M8.5 11.2c1.2 1.3 2.4 2 3.5 2s2.3-.7 3.5-2"/>
+                    <path d="M9 9.2h.01M15 9.2h.01"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Choose something close enough for students to care about.</strong>
+                  <span>The challenge should connect to students’ lives, communities, futures, or sense of responsibility.</span>
+                </div>
+              </div>
+
+              <div class="challenge-point">
+                <div class="challenge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                    <path d="M6 4.5h12v15H6z"/>
+                    <path d="M9 8h6M9 12h6M9 16h4"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Make sure the challenge requires students to learn what the standards demand.</strong>
+                  <span>Students should need to build disciplinary knowledge, use important concepts, and apply core skills in order to respond well.</span>
+                </div>
+              </div>
+
+              <div class="challenge-point">
+                <div class="challenge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+                    <path d="M5 12h8"/>
+                    <path d="M10 7l5 5-5 5"/>
+                    <path d="M19 5v14"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Choose a challenge that can lead to meaningful action.</strong>
+                  <span>The work should point toward designing, improving, informing, advocating, building, or testing something real.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-panel visual">
+            <div class="starting-points">
+              <h3>Teachers can start in more than one place</h3>
+              <p>
+                In practice, challenge design often moves in both directions. A teacher may begin with standards and content that must be taught, or begin with a real community issue and then map the learning students will need.
+              </p>
+
+              <div class="starting-points-grid">
+                <div class="starting-point">
+                  <strong>Start with the standards or content.</strong>
+                  <span>Identify the core ideas, skills, and disciplinary practices students need to learn, then look for a real challenge that makes that learning necessary.</span>
+                </div>
+
+                <div class="starting-point">
+                  <strong>Start with the challenge.</strong>
+                  <span>Identify a real issue students care about, then determine what standards-aligned learning students will need in order to understand it and respond credibly.</span>
+                </div>
+
+                <div class="starting-point">
+                  <strong>Move back and forth until the fit is strong.</strong>
+                  <span>The best DEEDS challenges sit at the intersection of real need, student relevance, rigorous content, and meaningful action.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="section">
+    <div class="container">
+      <div class="section-card">
+        <div class="section-grid">
+          <div class="section-panel">
+            <div class="eyebrow">Partnership</div>
+            <h2>Work with real partners</h2>
+            <p class="section-lead">
+              Partners might include people experiencing the challenge, organizations already working on the issue, or professionals with relevant expertise. Strong partners make the work more accurate, more grounded, and more accountable to the real world.
+            </p>
+          </div>
 
-<!-- Phase Pentagon -->
-<section id="pentagon">
-  <p class="pent-kicker">The Framework</p>
-  <h2>Five Phases. One Community Challenge.</h2>
-  <p class="pent-sub">Each phase builds on the last — from investigation to action.</p>
+          <div class="section-panel visual">
+            <div class="partner-cards">
+              <div class="partner-intro-note">
+                These are examples of the kinds of partners you might seek out as you shape the work.
+              </div>
 
-  <div class="pent-wrap">
-    <!--
-      Regular pentagon, cx=250 cy=248 R=168
-      Vertices (angle starts at -90°, clockwise every 72°):
-        V0 top:         (250, 80)
-        V1 upper-right: (409.8, 190.1)
-        V2 lower-right: (350.4, 379.9)
-        V3 lower-left:  (149.6, 379.9)
-        V4 upper-left:  (90.2, 190.1)
-    -->
-    <svg class="pent-svg" viewBox="0 0 500 500" width="400" height="400" role="img" aria-label="DEEDS five-phase pentagon">
+              <div class="partner-card">
+                <span class="tag">Partner type</span>
+                <h3>Client experiencing the challenge</h3>
+                <p>
+                  People living with the problem can help students understand what the challenge feels like, what is at stake, and what would actually be useful.
+                </p>
+                <div class="partner-question">
+                  What does this person need students to understand before they try to help?
+                </div>
+              </div>
 
-      <!-- Wedge: Discover (top → upper-right) -->
-      <g class="wedge" onclick="location.href='discover.html'" role="link" aria-label="Go to Discover phase">
-        <polygon points="250,248 250,80 409.8,190.1" fill="#e69138"/>
-        <text class="wedge-label" x="311" y="165" text-anchor="middle">Discover</text>
-      </g>
+              <div class="partner-card">
+                <span class="tag">Partner type</span>
+                <h3>Organization already working on the issue</h3>
+                <p>
+                  Community groups, nonprofits, agencies, or local institutions can help students understand what is already being tried, what constraints exist, and where there may be room to contribute.
+                </p>
+                <div class="partner-question">
+                  What can this organization help students see about the real conditions, gaps, or opportunities?
+                </div>
+              </div>
 
-      <!-- Wedge: Examine (upper-right → lower-right) -->
-      <g class="wedge disabled" onclick="alert('Examine — Coming Soon')" role="button" aria-label="Examine — Coming Soon">
-        <polygon points="250,248 409.8,190.1 350.4,379.9" fill="#0a9b19"/>
-        <text class="wedge-label" x="360" y="292" text-anchor="middle">Examine</text>
-      </g>
+              <div class="partner-card">
+                <span class="tag">Partner type</span>
+                <h3>Professional or expert perspective</h3>
+                <p>
+                  Professionals bring disciplinary knowledge, criteria, tools, and feedback that help students do more credible work and understand how this kind of problem is approached beyond school.
+                </p>
+                <div class="partner-question">
+                  What expertise, standards, or feedback can this person offer that will strengthen the work?
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Wedge: Engineer (lower-right → lower-left) -->
-      <g class="wedge disabled" onclick="alert('Engineer — Coming Soon')" role="button" aria-label="Engineer — Coming Soon">
-        <polygon points="250,248 350.4,379.9 149.6,379.9" fill="#003da6"/>
-        <text class="wedge-label" x="250" y="368" text-anchor="middle">Engineer</text>
-      </g>
+  <section class="section">
+    <div class="container">
+      <div class="challenge-question-shell">
+        <div class="challenge-question-grid">
+          <div class="challenge-question-left">
+            <div class="eyebrow">Challenge Question</div>
+            <h2>Write a strong challenge question</h2>
+            <p>
+              A DEEDS challenge question should name a real challenge, point toward action, and keep the people served visible throughout the learning.
+            </p>
+            <p>
+              In some projects, the teacher begins with a draft question. In others, the question is refined or co-crafted with students as they learn more during Discover. Both can be part of strong design.
+            </p>
 
-      <!-- Wedge: Do (lower-left → upper-left) -->
-      <g class="wedge disabled" onclick="alert('Do — Coming Soon')" role="button" aria-label="Do — Coming Soon">
-        <polygon points="250,248 149.6,379.9 90.2,190.1" fill="#ffb600"/>
-        <text class="wedge-label" x="140" y="292" text-anchor="middle" fill="#5a3d00">Do</text>
-      </g>
+            <div class="challenge-question-note">
+              <strong>Design move:</strong> Start with a question sturdy enough to launch the work, then refine it as students deepen their understanding of the challenge, the context, and the people affected.
+            </div>
+          </div>
 
-      <!-- Wedge: Share (upper-left → top) -->
-      <g class="wedge disabled" onclick="alert('Share — Coming Soon')" role="button" aria-label="Share — Coming Soon">
-        <polygon points="250,248 90.2,190.1 250,80" fill="#ab0a3d"/>
-        <text class="wedge-label" x="189" y="165" text-anchor="middle">Share</text>
-      </g>
+          <div class="challenge-question-right">
+            <div class="formula-label">Challenge question frame</div>
+            <div class="formula-text">
+              How might we address <em>[a real challenge]</em> so that <em>[a specific community]</em> can <em>[experience meaningful improvement]</em>?
+            </div>
+            <div class="formula-note">
+              The strongest questions are grounded in a real context, open enough to require investigation, and focused enough to guide a coherent project.
+            </div>
 
-      <!-- White gaps between wedges -->
-      <polygon points="250,248 250,80 409.8,190.1 350.4,379.9 149.6,379.9 90.2,190.1"
-               fill="none" stroke="#fff" stroke-width="3"/>
-      <line x1="250" y1="248" x2="250" y2="80"       stroke="#fff" stroke-width="3"/>
-      <line x1="250" y1="248" x2="409.8" y2="190.1"  stroke="#fff" stroke-width="3"/>
-      <line x1="250" y1="248" x2="350.4" y2="379.9"  stroke="#fff" stroke-width="3"/>
-      <line x1="250" y1="248" x2="149.6" y2="379.9"  stroke="#fff" stroke-width="3"/>
-      <line x1="250" y1="248" x2="90.2" y2="190.1"   stroke="#fff" stroke-width="3"/>
+            <div class="principles-mini">
+              <div class="mini">
+                <strong>Make it real</strong>
+                <span>Ground the question in an actual place, partner, need, or condition.</span>
+              </div>
 
-      <!-- Center circle -->
-      <circle cx="250" cy="248" r="62" fill="#fff" stroke="rgba(0,31,97,.1)" stroke-width="1"/>
-      <text class="center-label" x="250" y="236">A Relevant</text>
-      <text class="center-label" x="250" y="251">Community</text>
-      <text class="center-label" x="250" y="266">Challenge</text>
+              <div class="mini">
+                <strong>Keep it open</strong>
+                <span>Students should need to learn, analyze, and investigate before they can respond well.</span>
+              </div>
 
-    </svg>
-  </div>
-</section>
+              <div class="mini">
+                <strong>Point toward action</strong>
+                <span>The question should lead naturally to designing, improving, building, informing, or advocating.</span>
+              </div>
 
-<!-- Finding Your Community Challenge -->
-<section id="community-challenge"></section>
+              <div class="mini">
+                <strong>Name who it serves</strong>
+                <span>Keep the people most affected visible throughout the learning journey.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Crafting Your Challenge Question -->
-<section id="challenge-question"></section>
-
-<!-- Get Started -->
-<section id="get-started"></section>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">DEEDS</div>
+      <div class="footer-links">
+        <a href="discover.html">Discover</a>
+        <a href="examine.html">Examine</a>
+        <a href="engineer.html">Engineer</a>
+        <a href="do.html">Do</a>
+        <a href="share.html">Share</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
