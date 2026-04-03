@@ -41,7 +41,49 @@ body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);lin
 
 
 /* ── Nav ── */
-nav{}
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,249,244,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+}
+.nav-in{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;gap:4px;
+  overflow-x:auto;scrollbar-width:none;
+  padding:9px 0;
+}
+.nav-in::-webkit-scrollbar{display:none}
+.nb{
+  white-space:nowrap;
+  padding:9px 18px;border-radius:8px;
+  border:none;background:none;
+  font-family:inherit;font-size:13px;font-weight:600;
+  color:var(--text-muted);
+  cursor:pointer;transition:all .2s;
+  text-decoration:none;display:inline-block;
+}
+.nb:hover{background:rgba(0,31,97,.06);color:var(--text)}
+.nb.active{background:var(--accent-navy);color:#fff}
+.nb.disabled{
+  color:var(--text-muted);opacity:.45;
+  cursor:not-allowed;pointer-events:none;
+}
+.nb-phase{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.nb-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0;
+}
+.nb-soon{
+  font-size:9px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;
+  background:rgba(0,31,97,.07);
+  color:var(--text-muted);
+  border-radius:4px;padding:1px 5px;
+  vertical-align:middle;
+}
 
 
 /* ── Hero ── */
@@ -68,16 +110,30 @@ nav{}
 <body>
 
 <!-- Nav -->
-<nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="plan.html">Plan Your Unit</a></li>
-    <li><a href="discover.html">Discover</a></li>
-    <li><span>Examine</span></li>
-    <li><span>Engineer</span></li>
-    <li><span>Do</span></li>
-    <li><span>Share</span></li>
-  </ul>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nb active">Home</a>
+    <a href="plan.html" class="nb">Plan Your Unit</a>
+    <a href="discover.html" class="nb nb-phase">
+      <span class="nb-dot" style="background:var(--discover)"></span>Discover
+    </a>
+    <span class="nb nb-phase disabled">
+      <span class="nb-dot" style="background:var(--examine)"></span>Examine
+      <span class="nb-soon">Soon</span>
+    </span>
+    <span class="nb nb-phase disabled">
+      <span class="nb-dot" style="background:var(--engineer)"></span>Engineer
+      <span class="nb-soon">Soon</span>
+    </span>
+    <span class="nb nb-phase disabled">
+      <span class="nb-dot" style="background:var(--do)"></span>Do
+      <span class="nb-soon">Soon</span>
+    </span>
+    <span class="nb nb-phase disabled">
+      <span class="nb-dot" style="background:var(--share)"></span>Share
+      <span class="nb-soon">Soon</span>
+    </span>
+  </div>
 </nav>
 
 <!-- Hero -->
