@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Do is Phase 4 of DEEDS — students put their solution into action in the real world, collect evidence, and use data to honestly evaluate impact and effectiveness.">
+<meta name="theme-color" content="#FFFDF0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Do — Phase 4 of DEEDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -107,13 +111,41 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .gc{grid-template-columns:1fr}.gi{display:none}
 }
 @media print{.nav,.hero{display:none!important}body{background:#fff}}
+/* ── Skip link ── */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;top:16px;left:16px;width:auto;height:auto;padding:10px 18px;background:var(--b);color:#fff;border-radius:10px;font-weight:700;font-size:14px;z-index:9999;text-decoration:none;outline:3px solid var(--g);outline-offset:2px}
+
+/* ── Touch targets ── */
+.gb,.tkt,.nb{min-height:44px}
+
+/* ── Phase navigation strip ── */
+.phase-nav-strip{max-width:1200px;margin:0 auto;padding:28px 24px 8px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pns-back{font-size:13px;font-weight:700;color:var(--w);text-decoration:none;padding:10px 16px;border:1.5px solid rgba(61,30,0,.12);border-radius:999px;background:var(--W);transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
+.pns-back:hover,.pns-back:focus-visible{border-color:var(--f);color:var(--f)}
+.pns-back:focus-visible{outline:2px solid var(--f);outline-offset:2px}
+.pns-phases{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pns-current{padding:10px 18px;border-radius:999px;font-size:13px;font-weight:800;min-height:44px;display:inline-flex;align-items:center}
+.pns-next{padding:10px 18px;border-radius:999px;background:var(--nc,#1f2937);color:var(--nct,#fff);font-size:13px;font-weight:800;text-decoration:none;transition:filter .18s;min-height:44px;display:inline-flex;align-items:center}
+.pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
+.pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
+
+/* ── Site footer ── */
+.site-footer{text-align:center;padding:28px 24px 32px;border-top:1px solid rgba(61,30,0,.06)}
+.site-footer-brand{font-family:'DM Serif Display',serif;font-size:17px;font-weight:700;color:var(--b);text-decoration:none;display:inline-block;margin-bottom:12px}
+.site-footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.site-footer-nav a{font-size:12px;font-weight:700;color:var(--w);text-decoration:none;transition:color .15s}
+.site-footer-nav a:hover{color:var(--f)}
+.site-footer-credit{font-size:11px;color:var(--w);opacity:.55}
+
 </style>
 </head>
 <body>
 
-<header class="hero" id="top">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="hero" id="top" aria-label="Page header">
   <div>
-    <div class="badge"><span>🚀</span> Phase 4 of DEEDS</div>
+    <div class="badge"><span aria-hidden="true">🚀</span> Phase 4 of DEEDS</div>
     <h1 class="dm">Where solutions meet <em>reality.</em></h1>
     <p>Scholars put their solution into action in the real world, collect evidence of what happens, and use data to honestly evaluate impact, effectiveness, and what comes next.</p>
   </div>
@@ -124,11 +156,13 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </header>
 
-<nav class="nav"><div class="nav-in">
+<nav class="nav" aria-label="Page sections"><div class="nav-in">
   <button class="nb on" data-t="success">Success Criteria</button>
   <button class="nb" data-t="how">See How It Works</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
+
+<main id="main-content">
 
 <!-- SUCCESS CRITERIA -->
 <section id="success" class="full">
@@ -196,38 +230,38 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   <div class="st dm">See How It Works</div>
   <p class="sd">Do mirrors the scientific and professional process of real-world testing: plan carefully, implement with fidelity, gather evidence, analyze what happened, and decide what should change.</p>
   <div class="flow">
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fff8e0,#ffe8a0)">📋</div><h4>Plan Your Implementation</h4><p>Define how and where the solution will be enacted and how evidence will be collected.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffe8a0,#ffd060)">🚀</div><h4>Enact the Solution</h4><p>Put the solution into action with real users, systems, or environments.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffd060,#ffb600)">📊</div><h4>Document Evidence</h4><p>Collect data, observations, and user feedback using the planned methods.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffb600,#e09b00)">🔍</div><h4>Analyze Impact</h4><p>Examine what the evidence shows about effectiveness and real-world results.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--f))">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fff8e0,#ffe8a0)" aria-hidden="true" aria-hidden="true">📋</div><h4>Plan Your Implementation</h4><p>Define how and where the solution will be enacted and how evidence will be collected.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffe8a0,#ffd060)" aria-hidden="true" aria-hidden="true">🚀</div><h4>Enact the Solution</h4><p>Put the solution into action with real users, systems, or environments.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffd060,#ffb600)" aria-hidden="true" aria-hidden="true" aria-hidden="true">📊</div><h4>Document Evidence</h4><p>Collect data, observations, and user feedback using the planned methods.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffb600,#e09b00)" aria-hidden="true">🔍</div><h4>Analyze Impact</h4><p>Examine what the evidence shows about effectiveness and real-world results.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--f))" aria-hidden="true" aria-hidden="true">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
   </div>
   <div class="two">
     <div class="crd">
-      <h3 class="dm">💡 The Teacher Mindset</h3>
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
       <p>Imperfect results are expected — and that's the point. <strong>Design a safe-to-fail environment</strong> where students can put their ideas to the test and use evidence to honestly evaluate what actually happened.</p>
       <p style="margin-top:8px">The goal isn't a flawless outcome. It's building the habit of learning from evidence — which is what real changemakers do.</p>
     </div>
     <div class="wcrd">
       <h4>What Scholars Do</h4>
-      <div class="sr"><span>🚀</span><div><strong>Implement</strong><p>Enact the solution in a real or realistic context</p></div></div>
-      <div class="sr"><span>📋</span><div><strong>Document</strong><p>Record observations, measurements, and feedback</p></div></div>
-      <div class="sr"><span>📊</span><div><strong>Analyze</strong><p>Identify patterns, results, and unexpected outcomes</p></div></div>
-      <div class="sr"><span>⚖️</span><div><strong>Evaluate</strong><p>Weigh effectiveness, limitations, and next steps</p></div></div>
+      <div class="sr"><span aria-hidden="true">🚀</span><div><strong>Implement</strong><p>Enact the solution in a real or realistic context</p></div></div>
+      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Document</strong><p>Record observations, measurements, and feedback</p></div></div>
+      <div class="sr"><span aria-hidden="true">📊</span><div><strong>Analyze</strong><p>Identify patterns, results, and unexpected outcomes</p></div></div>
+      <div class="sr"><span aria-hidden="true">⚖️</span><div><strong>Evaluate</strong><p>Weigh effectiveness, limitations, and next steps</p></div></div>
     </div>
   </div>
   <div class="partners-card">
-    <h3 class="dm">🤝 Community Partners</h3>
+    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
     <p>During Do, community partners are the real-world recipients and evaluators of the solution. Their engagement makes the implementation authentic and the evidence meaningful. Partners may engage in several ways:</p>
     <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon">👥</span><div class="pl-text"><strong>Real users of the solution</strong>who interact with what students built and provide honest feedback on whether it actually helps.</div></div>
-      <div class="pl-item"><span class="pl-icon">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who host or facilitate the implementation, giving students access to a real context and real conditions.</div></div>
-      <div class="pl-item"><span class="pl-icon">📊</span><div class="pl-text"><strong>Data collaborators</strong>who help students understand what evidence to collect, how to collect it honestly, and what it actually means.</div></div>
-      <div class="pl-item"><span class="pl-icon">🔬</span><div class="pl-text"><strong>Practitioners or advisors</strong>who help students interpret unexpected outcomes and connect their findings to real-world standards of effectiveness.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👥</span><div class="pl-text"><strong>Real users of the solution</strong>who interact with what students built and provide honest feedback on whether it actually helps.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who host or facilitate the implementation, giving students access to a real context and real conditions.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">📊</span><div class="pl-text"><strong>Data collaborators</strong>who help students understand what evidence to collect, how to collect it honestly, and what it actually means.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🔬</span><div class="pl-text"><strong>Practitioners or advisors</strong>who help students interpret unexpected outcomes and connect their findings to real-world standards of effectiveness.</div></div>
     </div>
     <p class="partners-footer">Authentic partner feedback during Do is what separates evidence-based evaluation from guessing. It pushes students to engage honestly with results rather than just describing what they hoped would happen.</p>
   </div>
@@ -259,7 +293,28 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<footer><p>Do — Phase 4 of DEEDS · RevX × Transcend</p></footer>
+
+</main>
+
+<nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
+  <a href="engineer.html" class="pns-back">← Engineer</a>
+  <div class="pns-phases">
+    <span class="pns-current" style="background:#ffb600;color:#1f2937;">4 · Do</span>
+    <a href="share.html" class="pns-next" style="--nc:#ab0a3d;">5 · Share →</a>
+  </div>
+</nav>
+
+<footer class="site-footer">
+  <a href="index.html" class="site-footer-brand">DEEDS</a>
+  <nav class="site-footer-nav" aria-label="All phases">
+    <a href="discover.html">Discover</a>
+    <a href="examine.html">Examine</a>
+    <a href="engineer.html">Engineer</a>
+    <a href="do.html">Do</a>
+    <a href="share.html">Share</a>
+  </nav>
+  <div class="site-footer-credit">RevX × Transcend</div>
+</footer>
 
 <script>
 // NAV

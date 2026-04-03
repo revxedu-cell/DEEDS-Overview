@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Share is Phase 5 of DEEDS — students make their learning visible, explaining what they investigated, built, and changed to a real audience beyond the classroom.">
+<meta name="theme-color" content="#FFF0F4">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Share — Phase 5 of DEEDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -107,13 +111,41 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .gc{grid-template-columns:1fr}.gi{display:none}
 }
 @media print{.nav,.hero{display:none!important}body{background:#fff}}
+/* ── Skip link ── */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;top:16px;left:16px;width:auto;height:auto;padding:10px 18px;background:var(--b);color:#fff;border-radius:10px;font-weight:700;font-size:14px;z-index:9999;text-decoration:none;outline:3px solid var(--g);outline-offset:2px}
+
+/* ── Touch targets ── */
+.gb,.tkt,.nb{min-height:44px}
+
+/* ── Phase navigation strip ── */
+.phase-nav-strip{max-width:1200px;margin:0 auto;padding:28px 24px 8px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pns-back{font-size:13px;font-weight:700;color:var(--w);text-decoration:none;padding:10px 16px;border:1.5px solid rgba(61,30,0,.12);border-radius:999px;background:var(--W);transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
+.pns-back:hover,.pns-back:focus-visible{border-color:var(--f);color:var(--f)}
+.pns-back:focus-visible{outline:2px solid var(--f);outline-offset:2px}
+.pns-phases{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pns-current{padding:10px 18px;border-radius:999px;font-size:13px;font-weight:800;min-height:44px;display:inline-flex;align-items:center}
+.pns-next{padding:10px 18px;border-radius:999px;background:var(--nc,#1f2937);color:var(--nct,#fff);font-size:13px;font-weight:800;text-decoration:none;transition:filter .18s;min-height:44px;display:inline-flex;align-items:center}
+.pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
+.pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
+
+/* ── Site footer ── */
+.site-footer{text-align:center;padding:28px 24px 32px;border-top:1px solid rgba(61,30,0,.06)}
+.site-footer-brand{font-family:'DM Serif Display',serif;font-size:17px;font-weight:700;color:var(--b);text-decoration:none;display:inline-block;margin-bottom:12px}
+.site-footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.site-footer-nav a{font-size:12px;font-weight:700;color:var(--w);text-decoration:none;transition:color .15s}
+.site-footer-nav a:hover{color:var(--f)}
+.site-footer-credit{font-size:11px;color:var(--w);opacity:.55}
+
 </style>
 </head>
 <body>
 
-<header class="hero" id="top">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="hero" id="top" aria-label="Page header">
   <div>
-    <div class="badge"><span>📢</span> Phase 5 of DEEDS</div>
+    <div class="badge"><span aria-hidden="true">📢</span> Phase 5 of DEEDS</div>
     <h1 class="dm">Where learning goes <em>public.</em></h1>
     <p>Scholars make their learning visible — explaining what they investigated, what they built, and what they changed, to a real audience beyond the classroom. Share is a moment of visibility, accountability, and celebration.</p>
   </div>
@@ -124,11 +156,13 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </header>
 
-<nav class="nav"><div class="nav-in">
+<nav class="nav" aria-label="Page sections"><div class="nav-in">
   <button class="nb on" data-t="success">Success Criteria</button>
   <button class="nb" data-t="how">See How It Works</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
+
+<main id="main-content">
 
 <!-- SUCCESS CRITERIA -->
 <section id="success" class="full">
@@ -196,38 +230,38 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   <div class="st dm">See How It Works</div>
   <p class="sd">Share is built toward across every phase of the project. The final phase creates the conditions for students to explain, defend, and celebrate what they've learned with a real audience.</p>
   <div class="flow">
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fce8ee,#f5c2d0)">⏮️</div><h4>Project Rewind</h4><p>Revisit the full arc — challenge, investigation, solution, and impact.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#f5c2d0,#e8a0b8)">✍️</div><h4>Prepare Your Explanation</h4><p>Draft and refine what you'll say: your learning, evidence, decisions, and growth.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e8a0b8,#d870900)">🎯</div><h4>Rehearse &amp; Get Feedback</h4><p>Practice with peers and use TAG feedback to sharpen your explanation.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#d87090,#c21048)">📢</div><h4>Share with an Audience</h4><p>Present to a real audience, answer questions, and defend your thinking.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c21048,var(--f))">🌱</div><h4>Reflect on Growth</h4><p>Name how you've grown as a thinker, collaborator, and changemaker.</p></div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fce8ee,#f5c2d0)" aria-hidden="true">⏮️</div><h4>Project Rewind</h4><p>Revisit the full arc — challenge, investigation, solution, and impact.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#f5c2d0,#e8a0b8)" aria-hidden="true">✍️</div><h4>Prepare Your Explanation</h4><p>Draft and refine what you'll say: your learning, evidence, decisions, and growth.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e8a0b8,#d870900)" aria-hidden="true" aria-hidden="true">🎯</div><h4>Rehearse &amp; Get Feedback</h4><p>Practice with peers and use TAG feedback to sharpen your explanation.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#d87090,#c21048)" aria-hidden="true" aria-hidden="true">📢</div><h4>Share with an Audience</h4><p>Present to a real audience, answer questions, and defend your thinking.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c21048,var(--f))" aria-hidden="true" aria-hidden="true">🌱</div><h4>Reflect on Growth</h4><p>Name how you've grown as a thinker, collaborator, and changemaker.</p></div>
   </div>
   <div class="two">
     <div class="crd">
-      <h3 class="dm">💡 The Teacher Mindset</h3>
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
       <p>This is not a performance — it's a <strong>conversation.</strong> Design a Share experience where students practice explaining their thinking, not just presenting it, and engage authentically with the people their work was meant to serve.</p>
       <p style="margin-top:8px">Visibility and accountability are built throughout the project. Share is when students experience what it means to stand behind their work.</p>
     </div>
     <div class="wcrd">
       <h4>What Scholars Do</h4>
-      <div class="sr"><span>📋</span><div><strong>Prepare</strong><p>Curate evidence and craft an explanation of learning</p></div></div>
-      <div class="sr"><span>🎯</span><div><strong>Practice</strong><p>Rehearse and revise using peer feedback</p></div></div>
-      <div class="sr"><span>📢</span><div><strong>Present</strong><p>Explain and defend their work to a real audience</p></div></div>
-      <div class="sr"><span>🌱</span><div><strong>Reflect</strong><p>Name growth in learning, collaboration, and identity</p></div></div>
+      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Prepare</strong><p>Curate evidence and craft an explanation of learning</p></div></div>
+      <div class="sr"><span aria-hidden="true">🎯</span><div><strong>Practice</strong><p>Rehearse and revise using peer feedback</p></div></div>
+      <div class="sr"><span aria-hidden="true">📢</span><div><strong>Present</strong><p>Explain and defend their work to a real audience</p></div></div>
+      <div class="sr"><span aria-hidden="true">🌱</span><div><strong>Reflect</strong><p>Name growth in learning, collaboration, and identity</p></div></div>
     </div>
   </div>
   <div class="partners-card">
-    <h3 class="dm">🤝 Community Partners</h3>
+    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
     <p>During Share, community partners serve as the authentic audience that makes the experience real. Their presence — and their questions — signal to students that their work has consequence beyond the classroom. Partners may engage in several ways:</p>
     <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon">👨‍👩‍👧</span><div class="pl-text"><strong>Families and community members</strong>who witness students' growth and affirm their identity as learners and changemakers.</div></div>
-      <div class="pl-item"><span class="pl-icon">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who originally posed the challenge — receiving students' work and responding as genuine stakeholders.</div></div>
-      <div class="pl-item"><span class="pl-icon">🏛️</span><div class="pl-text"><strong>Policymakers, professionals, or decision-makers</strong>who engage with students' evidence-based recommendations and provide feedback that matters.</div></div>
-      <div class="pl-item"><span class="pl-icon">🎓</span><div class="pl-text"><strong>Mentors, experts, or former students</strong>who can speak to the quality of the work and push students' thinking with real-world expertise.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👨‍👩‍👧</span><div class="pl-text"><strong>Families and community members</strong>who witness students' growth and affirm their identity as learners and changemakers.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who originally posed the challenge — receiving students' work and responding as genuine stakeholders.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏛️</span><div class="pl-text"><strong>Policymakers, professionals, or decision-makers</strong>who engage with students' evidence-based recommendations and provide feedback that matters.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🎓</span><div class="pl-text"><strong>Mentors, experts, or former students</strong>who can speak to the quality of the work and push students' thinking with real-world expertise.</div></div>
     </div>
     <p class="partners-footer">The right audience elevates Share from a class presentation to a genuine act of public communication — and helps students begin to see themselves as people whose thinking is worth hearing.</p>
   </div>
@@ -259,7 +293,28 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<footer><p>Share — Phase 5 of DEEDS · RevX × Transcend</p></footer>
+
+</main>
+
+<nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
+  <a href="do.html" class="pns-back">← Do</a>
+  <div class="pns-phases">
+    <span class="pns-current" style="background:#ab0a3d;color:#fff;">5 · Share</span>
+    <a href="index.html" class="pns-next" style="--nc:#1f2937;">← Back to Overview</a>
+  </div>
+</nav>
+
+<footer class="site-footer">
+  <a href="index.html" class="site-footer-brand">DEEDS</a>
+  <nav class="site-footer-nav" aria-label="All phases">
+    <a href="discover.html">Discover</a>
+    <a href="examine.html">Examine</a>
+    <a href="engineer.html">Engineer</a>
+    <a href="do.html">Do</a>
+    <a href="share.html">Share</a>
+  </nav>
+  <div class="site-footer-credit">RevX × Transcend</div>
+</footer>
 
 <script>
 // NAV

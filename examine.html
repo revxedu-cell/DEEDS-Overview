@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Examine is Phase 2 of DEEDS — students investigate root causes through disciplinary inquiry, building the evidence base needed to propose and defend a solution direction.">
+<meta name="theme-color" content="#F0FFF2">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Examine — Phase 2 of DEEDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -107,13 +111,41 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .gc{grid-template-columns:1fr}.gi{display:none}
 }
 @media print{.nav,.hero{display:none!important}body{background:#fff}}
+/* ── Skip link ── */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;top:16px;left:16px;width:auto;height:auto;padding:10px 18px;background:var(--b);color:#fff;border-radius:10px;font-weight:700;font-size:14px;z-index:9999;text-decoration:none;outline:3px solid var(--g);outline-offset:2px}
+
+/* ── Touch targets ── */
+.gb,.tkt,.nb{min-height:44px}
+
+/* ── Phase navigation strip ── */
+.phase-nav-strip{max-width:1200px;margin:0 auto;padding:28px 24px 8px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pns-back{font-size:13px;font-weight:700;color:var(--w);text-decoration:none;padding:10px 16px;border:1.5px solid rgba(61,30,0,.12);border-radius:999px;background:var(--W);transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
+.pns-back:hover,.pns-back:focus-visible{border-color:var(--f);color:var(--f)}
+.pns-back:focus-visible{outline:2px solid var(--f);outline-offset:2px}
+.pns-phases{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pns-current{padding:10px 18px;border-radius:999px;font-size:13px;font-weight:800;min-height:44px;display:inline-flex;align-items:center}
+.pns-next{padding:10px 18px;border-radius:999px;background:var(--nc,#1f2937);color:var(--nct,#fff);font-size:13px;font-weight:800;text-decoration:none;transition:filter .18s;min-height:44px;display:inline-flex;align-items:center}
+.pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
+.pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
+
+/* ── Site footer ── */
+.site-footer{text-align:center;padding:28px 24px 32px;border-top:1px solid rgba(61,30,0,.06)}
+.site-footer-brand{font-family:'DM Serif Display',serif;font-size:17px;font-weight:700;color:var(--b);text-decoration:none;display:inline-block;margin-bottom:12px}
+.site-footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.site-footer-nav a{font-size:12px;font-weight:700;color:var(--w);text-decoration:none;transition:color .15s}
+.site-footer-nav a:hover{color:var(--f)}
+.site-footer-credit{font-size:11px;color:var(--w);opacity:.55}
+
 </style>
 </head>
 <body>
 
-<header class="hero" id="top">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="hero" id="top" aria-label="Page header">
   <div>
-    <div class="badge"><span>🔬</span> Phase 2 of DEEDS</div>
+    <div class="badge"><span aria-hidden="true">🔬</span> Phase 2 of DEEDS</div>
     <h1 class="dm">Where questions meet <em>evidence.</em></h1>
     <p>Scholars investigate the root causes of the challenge through disciplinary inquiry, building the content knowledge and evidence base needed to propose and defend a solution direction.</p>
   </div>
@@ -124,11 +156,13 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </header>
 
-<nav class="nav"><div class="nav-in">
+<nav class="nav" aria-label="Page sections"><div class="nav-in">
   <button class="nb on" data-t="success">Success Criteria</button>
   <button class="nb" data-t="how">See How It Works</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
+
+<main id="main-content">
 
 <!-- SUCCESS CRITERIA -->
 <section id="success" class="full">
@@ -196,38 +230,38 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   <div class="st dm">See How It Works</div>
   <p class="sd">Examine mirrors the process of disciplinary investigation: generating questions, building knowledge, analyzing evidence, and arriving at a defensible, evidence-based position.</p>
   <div class="flow">
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c8f0cc,#a0e4a6)">❓</div><h4>Frame Your Questions</h4><p>Generate investigable questions about root causes and potential solutions.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#a0e4a6,#6dd47a)">📚</div><h4>Investigate Each Standard</h4><p>Use texts, labs, and data to build disciplinary knowledge across standards-aligned cycles.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#6dd47a,#3cbe4e)">🔎</div><h4>Apply Evidence to the Challenge</h4><p>Connect what you're learning to the root causes and potential solutions.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#3cbe4e,#1aaa30)">⚖️</div><h4>Evaluate Solution Pathways</h4><p>Compare competing solutions using evidence and defined criteria.</p></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#1aaa30,var(--f))">🎤</div><h4>Defend a Direction</h4><p>Synthesize learning in a Socratic Seminar and justify the most defensible solution.</p></div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c8f0cc,#a0e4a6)" aria-hidden="true">❓</div><h4>Frame Your Questions</h4><p>Generate investigable questions about root causes and potential solutions.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#a0e4a6,#6dd47a)" aria-hidden="true">📚</div><h4>Investigate Each Standard</h4><p>Use texts, labs, and data to build disciplinary knowledge across standards-aligned cycles.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#6dd47a,#3cbe4e)" aria-hidden="true">🔎</div><h4>Apply Evidence to the Challenge</h4><p>Connect what you're learning to the root causes and potential solutions.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#3cbe4e,#1aaa30)" aria-hidden="true">⚖️</div><h4>Evaluate Solution Pathways</h4><p>Compare competing solutions using evidence and defined criteria.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#1aaa30,var(--f))" aria-hidden="true">🎤</div><h4>Defend a Direction</h4><p>Synthesize learning in a Socratic Seminar and justify the most defensible solution.</p></div>
   </div>
   <div class="two">
     <div class="crd">
-      <h3 class="dm">💡 The Teacher Mindset</h3>
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
       <p>You're not delivering content — you're building a case. Design instructional cycles that push students to connect disciplinary knowledge to the question of <strong>what causes this challenge and what could actually fix it.</strong></p>
       <p style="margin-top:8px">Each standard you teach should answer a question students already have about root causes or solutions.</p>
     </div>
     <div class="wcrd">
       <h4>What Scholars Do</h4>
-      <div class="sr"><span>🔍</span><div><strong>Investigate</strong><p>Texts, labs, data, and expert sources</p></div></div>
-      <div class="sr"><span>📋</span><div><strong>Track Evidence</strong><p>Maintain an Evidence Log across cycles</p></div></div>
-      <div class="sr"><span>⚔️</span><div><strong>Debate</strong><p>Argue competing causes and solutions</p></div></div>
-      <div class="sr"><span>🎯</span><div><strong>Defend</strong><p>Justify a solution direction under scrutiny</p></div></div>
+      <div class="sr"><span aria-hidden="true">🔍</span><div><strong>Investigate</strong><p>Texts, labs, data, and expert sources</p></div></div>
+      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Track Evidence</strong><p>Maintain an Evidence Log across cycles</p></div></div>
+      <div class="sr"><span aria-hidden="true">⚔️</span><div><strong>Debate</strong><p>Argue competing causes and solutions</p></div></div>
+      <div class="sr"><span aria-hidden="true">🎯</span><div><strong>Defend</strong><p>Justify a solution direction under scrutiny</p></div></div>
     </div>
   </div>
   <div class="partners-card">
-    <h3 class="dm">🤝 Community Partners</h3>
+    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
     <p>During Examine, community partners deepen students' understanding of root causes by bringing real-world expertise into the investigation. Partners may engage in several ways:</p>
     <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon">🔬</span><div class="pl-text"><strong>Practitioners and subject matter experts</strong>sharing technical knowledge that helps students understand the systems driving the challenge.</div></div>
-      <div class="pl-item"><span class="pl-icon">🏢</span><div class="pl-text"><strong>Organizations already working on the problem</strong>revealing what solutions have been tried, what constraints exist, and where the field disagrees.</div></div>
-      <div class="pl-item"><span class="pl-icon">📊</span><div class="pl-text"><strong>Data providers and researchers</strong>supplying evidence that students can analyze to test their causal reasoning.</div></div>
-      <div class="pl-item"><span class="pl-icon">👥</span><div class="pl-text"><strong>People closest to the challenge</strong>grounding abstract disciplinary content in lived experience and keeping inquiry connected to human impact.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🔬</span><div class="pl-text"><strong>Practitioners and subject matter experts</strong>sharing technical knowledge that helps students understand the systems driving the challenge.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Organizations already working on the problem</strong>revealing what solutions have been tried, what constraints exist, and where the field disagrees.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">📊</span><div class="pl-text"><strong>Data providers and researchers</strong>supplying evidence that students can analyze to test their causal reasoning.</div></div>
+      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👥</span><div class="pl-text"><strong>People closest to the challenge</strong>grounding abstract disciplinary content in lived experience and keeping inquiry connected to human impact.</div></div>
     </div>
     <p class="partners-footer">Effective partner involvement during Examine pushes students beyond surface-level explanations and builds the evidence base they'll need to justify a real solution.</p>
   </div>
@@ -259,7 +293,28 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<footer><p>Examine — Phase 2 of DEEDS · RevX × Transcend</p></footer>
+
+</main>
+
+<nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
+  <a href="discover.html" class="pns-back">← Discover</a>
+  <div class="pns-phases">
+    <span class="pns-current" style="background:#0a9b19;color:#fff;">2 · Examine</span>
+    <a href="engineer.html" class="pns-next" style="--nc:#003da6;">3 · Engineer →</a>
+  </div>
+</nav>
+
+<footer class="site-footer">
+  <a href="index.html" class="site-footer-brand">DEEDS</a>
+  <nav class="site-footer-nav" aria-label="All phases">
+    <a href="discover.html">Discover</a>
+    <a href="examine.html">Examine</a>
+    <a href="engineer.html">Engineer</a>
+    <a href="do.html">Do</a>
+    <a href="share.html">Share</a>
+  </nav>
+  <div class="site-footer-credit">RevX × Transcend</div>
+</footer>
 
 <script>
 // NAV
