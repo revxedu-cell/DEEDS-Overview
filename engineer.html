@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engineer — Phase 3 of DEEDS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--f:#0031a0;--a:#003da6;--g:#1a52c2;--c:#f0f4ff;--b:#00112e;--w:#3d4f7c;--l:#e8eeff;--W:#fff;--r:12px}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--b);background:var(--c);line-height:1.6;overflow-x:hidden}
+.dm{font-family:'DM Serif Display',serif}
+
+.hero{max-width:1200px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--f);color:#fff;padding:5px 16px 5px 10px;border-radius:24px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
+.badge span{width:22px;height:22px;background:rgba(255,255,255,.25);border-radius:50%;display:grid;place-items:center;font-size:13px}
+.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--f);text-decoration:underline;text-decoration-color:var(--g);text-underline-offset:4px}
+.hero p{font-size:16px;color:var(--w);max-width:500px}
+.vid{background:linear-gradient(135deg,var(--f),var(--g));border-radius:16px;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .3s;position:relative;overflow:hidden}
+.vid:hover{transform:scale(1.02)}
+.vid::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.12),transparent 60%)}
+.pbtn{width:52px;height:52px;background:#fff;border-radius:50%;display:grid;place-items:center;margin-bottom:10px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.pbtn svg{margin-left:2px}
+.vid span{color:#fff;font-weight:600;font-size:13px}
+.vid small{color:rgba(255,255,255,.8);font-size:11px}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(240,244,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,17,46,.08);padding:0 24px}
+.nav-in{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px 0}
+.nav-in::-webkit-scrollbar{display:none}
+.nb{white-space:nowrap;padding:9px 18px;border-radius:8px;border:none;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--w);cursor:pointer;transition:all .2s}
+.nb:hover{background:rgba(0,49,160,.08);color:var(--f)}
+.nb.on{background:var(--f);color:#fff}
+
+section{max-width:1200px;margin:0 auto;padding:48px 24px}
+.sl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--a);margin-bottom:6px}
+.st{font-size:clamp(24px,3.5vw,36px);margin-bottom:10px}
+.sd{color:var(--w);max-width:640px;margin-bottom:28px;font-size:14px}
+.full{background:var(--W);max-width:100%;padding:48px 24px}
+.inn{max-width:1200px;margin:0 auto}
+
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.sc-card{background:var(--W);border-radius:16px;border:1px solid rgba(0,17,46,.07);padding:22px;display:flex;flex-direction:column;gap:8px}
+.sc-num{width:28px;height:28px;border-radius:50%;background:var(--f);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;flex-shrink:0}
+.sc-card h4{font-size:15px;font-weight:700;color:var(--b);margin-bottom:2px}
+.sc-card p{font-size:12px;color:var(--w);line-height:1.6;flex:1}
+.sc-align{font-size:10px;font-weight:700;color:var(--a);background:rgba(0,49,160,.06);border-radius:6px;padding:5px 9px;display:inline-block;margin-top:4px;letter-spacing:.3px}
+.tr{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.tk{border-radius:var(--r);border:1.5px solid rgba(0,17,46,.08);padding:20px 20px 18px;background:var(--W);position:relative;overflow:hidden}
+.tk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.tk.en::before{background:var(--a)}
+.tk.ex::before{background:var(--f)}
+.tk h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.tk .wh{font-size:10px;color:var(--a);font-weight:600;margin-bottom:10px}
+.tk-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tkt{padding:4px 10px;border-radius:20px;border:1.5px solid rgba(0,17,46,.12);background:var(--l);font-family:inherit;font-size:10px;font-weight:700;color:var(--w);cursor:pointer;transition:all .15s}
+.tkt:hover{border-color:var(--a);color:var(--f)}
+.tkt.on{border-color:var(--f);background:var(--f);color:#fff}
+.tk ol{padding-left:16px;display:flex;flex-direction:column;gap:9px}
+.tk ol li{font-size:12px;color:var(--w);line-height:1.6}
+
+.flow{display:flex;align-items:stretch;gap:5px;margin:28px 0;flex-wrap:wrap;justify-content:center}
+.fn{flex:1;min-width:110px;max-width:155px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 8px;background:var(--W);border-radius:var(--r);border:1px solid rgba(0,17,46,.06)}
+.fi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;margin-bottom:8px}
+.fn h4{font-size:11px;font-weight:700;margin-bottom:2px}
+.fn p{font-size:10px;color:var(--w)}
+.fa{display:flex;align-items:center;font-size:16px;color:var(--g);flex-shrink:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.crd{background:linear-gradient(135deg,#e8eeff,#f0f4ff);border:1px solid rgba(0,49,160,.12);border-radius:16px;padding:24px}
+.crd h3{font-size:18px;color:var(--f);margin-bottom:8px}
+.crd p{font-size:13px;color:var(--w);line-height:1.6}
+.wcrd{background:var(--W);border:1px solid rgba(0,17,46,.06);border-radius:16px;padding:24px}
+.wcrd h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.sr{display:flex;gap:8px;align-items:start;margin-bottom:6px}
+.sr span{font-size:16px;flex-shrink:0}
+.sr strong{font-size:13px;display:block}
+.sr p{font-size:11px;color:var(--w);margin:0}
+.partners-card{background:linear-gradient(135deg,#e8eeff,#f0f4ff);border:1px solid rgba(0,49,160,.12);border-radius:16px;padding:28px;margin-top:28px}
+.partners-card h3{font-size:20px;color:var(--f);margin-bottom:10px}
+.partners-card>p{font-size:13px;color:var(--w);line-height:1.7;margin-bottom:18px}
+.partner-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.pl-item{display:flex;gap:10px;align-items:start;background:rgba(255,255,255,.6);border-radius:10px;padding:12px 14px}
+.pl-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.pl-text{font-size:12px;color:var(--w);line-height:1.6}
+.pl-text strong{color:var(--b);display:block;margin-bottom:1px;font-size:13px}
+.partners-footer{font-size:13px;color:var(--w);font-style:italic;line-height:1.6;border-top:1px solid rgba(0,49,160,.12);padding-top:14px}
+
+.gt{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.gb{padding:9px 22px;border-radius:8px;border:2px solid rgba(0,17,46,.1);background:var(--W);font-family:inherit;font-size:13px;font-weight:700;color:var(--w);cursor:pointer;transition:all .2s}
+.gb:hover{border-color:var(--a);color:var(--f)}
+.gb.on{border-color:var(--f);background:var(--f);color:#fff}
+.gc{display:grid;grid-template-columns:1fr 160px;gap:20px;background:var(--W);border-radius:16px;border:1px solid rgba(0,17,46,.06);padding:24px;align-items:center}
+.gc h3{font-size:17px;margin-bottom:4px}
+.cq{font-size:13px;color:var(--f);font-weight:600;font-style:italic;margin-bottom:6px}
+.gc>div:first-child p{color:var(--w);font-size:12px;margin-bottom:3px}
+.gm{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.gm span{font-size:10px;font-weight:600;padding:3px 8px;border-radius:14px;background:rgba(0,49,160,.06);color:var(--f)}
+.gi{width:160px;height:120px;border-radius:var(--r);display:grid;place-items:center;font-size:48px;flex-shrink:0}
+.ex-link-btn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--f);color:#fff;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s}
+.ex-link-btn:hover{background:var(--b)}
+footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-top:1px solid rgba(0,17,46,.06)}
+
+@media(max-width:768px){
+  .hero,.two,.sc-grid,.tr{grid-template-columns:1fr}
+  .hero{gap:20px;padding:28px 16px 20px}
+  .gc{grid-template-columns:1fr}.gi{display:none}
+}
+@media print{.nav,.hero{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div>
+    <div class="badge"><span>⚙️</span> Phase 3 of DEEDS</div>
+    <h1 class="dm">Where ideas become <em>real.</em></h1>
+    <p>Scholars take on a professional role to design, plan, build, and refine a solution that directly addresses a root cause of the challenge — and demonstrate that it is ready for real-world use.</p>
+  </div>
+  <div class="vid">
+    <div class="pbtn"><svg width="20" height="20" fill="var(--f)" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <span>Watch: What is Engineer?</span>
+    <small>3 min overview</small>
+  </div>
+</header>
+
+<nav class="nav"><div class="nav-in">
+  <button class="nb on" data-t="success">Success Criteria</button>
+  <button class="nb" data-t="how">See How It Works</button>
+  <button class="nb" data-t="try">Explore Examples</button>
+</div></nav>
+
+<!-- SUCCESS CRITERIA -->
+<section id="success" class="full">
+  <div class="inn">
+    <div class="sl">By the End</div>
+    <div class="st dm">Success Criteria</div>
+    <p class="sd">By the end of Engineer, students should demonstrate growth across three core areas of design and professional construction:</p>
+    <div class="sc-grid">
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">1</div><h4>Design the Solution</h4></div>
+        <p>Make clear design choices that address a specific root cause, meet defined criteria and constraints, and can be justified with evidence and reasoning.</p>
+        <span class="sc-align">NGSS ETS1-1, ETS1-2 · CCSS W.2, MP.4 · C3 D4.7</span>
+      </div>
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">2</div><h4>Plan &amp; Build</h4></div>
+        <p>Develop a logical construction sequence, use professional tools and disciplinary methods safely and effectively, and follow the plan while adapting as needed.</p>
+        <span class="sc-align">NGSS SEP 3, ETS1-3 · CCSS W.4 · C3 D4</span>
+      </div>
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">3</div><h4>Test, Revise &amp; Demonstrate Readiness</h4></div>
+        <p>Test the solution during construction, revise based on feedback and evidence, and demonstrate that it functions as intended and is ready for enactment.</p>
+        <span class="sc-align">NGSS ETS1-3 · CCSS W.5, SL.4 · C3 D4.6</span>
+      </div>
+    </div>
+
+    <h3 class="dm" style="font-size:20px;margin-bottom:6px;margin-top:36px">Evidence of Learning</h3>
+    <p style="font-size:13px;color:var(--w);margin-bottom:12px">The Design Brief Check-In and Demonstrate Readiness Task track how students' design reasoning, construction planning, and professional execution develop over the phase.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:700;color:var(--b)">Select grade band:</span>
+      <div class="tk-tabs" id="shared-tabs">
+        <button class="tkt" onclick="switchGrade('k2',this)">K–2</button>
+        <button class="tkt" onclick="switchGrade('35',this)">3–5</button>
+        <button class="tkt" onclick="switchGrade('68',this)">6–8</button>
+        <button class="tkt" onclick="switchGrade('912',this)">9–12</button>
+      </div>
+    </div>
+    <div class="tr">
+      <div class="tk en">
+        <h4>⬇️ Design Brief Check-In</h4>
+        <div class="wh">After planning session — before building begins</div>
+        <ol id="lr-prompts"><li style="color:#c8b4a0;font-style:italic;list-style:none;margin-left:-16px;font-size:12px">← Select a grade band to view prompts</li></ol>
+      </div>
+      <div class="tk ex">
+        <h4>⬆️ Demonstrate Readiness Task</h4>
+        <div class="wh">Final session — before moving to Do</div>
+        <ol id="pt-prompts"><li style="color:#c8b4a0;font-style:italic;list-style:none;margin-left:-16px;font-size:12px">← Select a grade band to view prompts</li></ol>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;background:linear-gradient(135deg,#e8eeff,#f0f4ff);border:1px solid rgba(0,49,160,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--a);margin-bottom:5px">Assess Growth Over Time</div>
+        <h3 class="dm" style="font-size:18px;color:var(--f);margin-bottom:7px">Use the Developmental Continuum</h3>
+        <p style="font-size:13px;color:var(--w);line-height:1.6">The continuum describes how students' design thinking, construction planning, professional tool use, and iterative refinement develop over time and across projects — not by grade level. Use it to track growth and give targeted feedback throughout the build.</p>
+      </div>
+      <!-- TODO: replace href="#" with actual Google Doc link -->
+      <a href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--f);color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='var(--b)'" onmouseout="this.style.background='var(--f)'">View Developmental Continuum →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="sl">Overview</div>
+  <div class="st dm">See How It Works</div>
+  <p class="sd">Engineer mirrors a real professional design-build process: defining clear requirements, planning carefully, constructing with intentionality, and iterating until the solution is ready.</p>
+  <div class="flow">
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e8eeff,#c0ccf7)">📐</div><h4>Set Criteria &amp; Constraints</h4><p>Define what the solution must do and what limits it must work within.</p></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c0ccf7,#99aef0)">📋</div><h4>Plan the Build</h4><p>Develop a logical construction sequence with roles, materials, and tools.</p></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#99aef0,#7090e8)">🔨</div><h4>Build &amp; Test</h4><p>Construct the solution using professional tools and methods, testing as you go.</p></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#7090e8,#4a6ed9)">🔄</div><h4>Revise &amp; Refine</h4><p>Improve the solution based on testing results, feedback, and constraint analysis.</p></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#4a6ed9,var(--f))">✅</div><h4>Demonstrate Readiness</h4><p>Show that the solution works as intended and is ready for real-world use.</p></div>
+  </div>
+  <div class="two">
+    <div class="crd">
+      <h3 class="dm">💡 The Teacher Mindset</h3>
+      <p>You're not the expert builder — you're the project manager. Create conditions for students to make real design decisions, use professional tools responsibly, and take genuine pride in what they create.</p>
+      <p style="margin-top:8px">The goal isn't a perfect product. It's a <strong>functional solution that students can defend</strong> and are ready to put into action.</p>
+    </div>
+    <div class="wcrd">
+      <h4>What Scholars Do</h4>
+      <div class="sr"><span>📐</span><div><strong>Plan</strong><p>Complete a design brief with criteria and constraints</p></div></div>
+      <div class="sr"><span>🔨</span><div><strong>Build</strong><p>Construct using professional tools and methods</p></div></div>
+      <div class="sr"><span>🧪</span><div><strong>Test</strong><p>Check functionality against criteria during construction</p></div></div>
+      <div class="sr"><span>📝</span><div><strong>Revise</strong><p>Log and justify changes using evidence and feedback</p></div></div>
+    </div>
+  </div>
+  <div class="partners-card">
+    <h3 class="dm">🤝 Community Partners</h3>
+    <p>During Engineer, community partners act as professional mentors, advisors, and end-user reviewers who help students build and refine with real-world standards in mind. Partners may engage in several ways:</p>
+    <div class="partner-list">
+      <div class="pl-item"><span class="pl-icon">🏗️</span><div class="pl-text"><strong>Professional mentors in the relevant field</strong>guiding students in using tools, materials, and disciplinary methods safely and effectively.</div></div>
+      <div class="pl-item"><span class="pl-icon">📋</span><div class="pl-text"><strong>Practitioners who review design plans</strong>providing feedback on feasibility, alignment to criteria, and real-world constraints before building begins.</div></div>
+      <div class="pl-item"><span class="pl-icon">👥</span><div class="pl-text"><strong>End users or community members</strong>testing prototypes and providing authentic feedback on whether the solution works for the people it's meant to serve.</div></div>
+      <div class="pl-item"><span class="pl-icon">🏢</span><div class="pl-text"><strong>Partner organizations</strong>supplying materials, workspace, or professional context that makes the build more authentic and consequential.</div></div>
+    </div>
+    <p class="partners-footer">Partner involvement during Engineer raises the stakes for students — building something that a real professional will review changes how carefully students plan and how seriously they take revision.</p>
+  </div>
+</section>
+
+<!-- EXPLORE EXAMPLES -->
+<section id="try" class="full">
+  <div class="inn">
+    <div class="sl">In Practice</div>
+    <div class="st dm">Explore Examples</div>
+    <p class="sd">Each example below outlines a sample Engineer phase to spark inspiration for what this phase might look like in your own classroom.</p>
+    <div class="gt">
+      <button class="gb on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
+      <button class="gb" data-g="35" onclick="switchExample('35',this)">3–5</button>
+      <button class="gb" data-g="68" onclick="switchExample('68',this)">6–8</button>
+      <button class="gb" data-g="912" onclick="switchExample('912',this)">9–12</button>
+    </div>
+    <div class="gc" id="ex-overview">
+      <div>
+        <h3 class="dm" id="gt2">Grades K–2</h3>
+        <div class="cq" id="gq">Challenge question placeholder</div>
+        <p id="gb2">Example description placeholder. Update this in the JS switchExample data below.</p>
+        <div class="gm" id="gm2"></div>
+        <!-- TODO: update href to actual Google Doc link when available -->
+        <a id="ex-doc-link" href="#" target="_blank" class="ex-link-btn">View Full Example →</a>
+      </div>
+      <div class="gi" id="gimg" style="background:linear-gradient(135deg,#e8eeff,#c0ccf7)">⚙️</div>
+    </div>
+  </div>
+</section>
+
+<footer><p>Engineer — Phase 3 of DEEDS · RevX × Transcend</p></footer>
+
+<script>
+// NAV
+const NBS = document.querySelectorAll('.nb');
+NBS.forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.t).scrollIntoView({behavior:'smooth'})));
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) NBS.forEach(b => b.classList.toggle('on', b.dataset.t === e.target.id)); });
+}, {threshold:.15, rootMargin:'-60px 0px -40% 0px'});
+['success','how','try'].forEach(s => { const el = document.getElementById(s); if (el) obs.observe(el); });
+
+// GRADE-BAND TICKET PROMPTS
+const TDATA = {
+  lr: {
+    k2:  ['What will you make? What does it need to do?','What materials will you use? How will you put it together?','What will make your solution a good one?'],
+    35:  ['Describe your design: what will you make, what materials will you need, and what steps will you follow?','How does your design address the root cause of the challenge?','What criteria does your solution need to meet? How will you know if it works?'],
+    68:  ['Describe your design decision: what are you building, how does it address the root cause, and what criteria and constraints did you work within?','What is your construction plan? What might be difficult, and how will you handle it?','What does success look like at the end of Engineer? How will you measure it?'],
+    912: ['Justify your design choices: how does your solution address the root cause, what criteria are you meeting, and what tradeoffs did you accept?','What are the potential failure points in your build plan, and how have you anticipated them?','How does your design compare to alternatives? What makes it the most defensible choice?']
+  },
+  pt: {
+    k2:  ['Does your solution work? Show how it does what it needs to do.','Is your solution ready to use? What would you still want to fix or improve?','How does your solution help with the problem we were solving?'],
+    35:  ['Show how your solution works. Does it meet your criteria? What would you fix if you had more time?','What changes did you make while building? Why did you make them?','How well does your solution address the challenge? What is it missing?'],
+    68:  ['Demonstrate how your solution works and explain how it meets your defined criteria and constraints.','What did you change during construction and why? What does your Revision Log show?','How ready is your solution for real-world use? What limitations remain?'],
+    912: ['Demonstrate readiness: explain how your solution addresses the root cause, how it meets defined criteria and constraints, and how your revisions improved it.','What tradeoffs did you make during the build, and how do you justify them?','What would need to happen for this solution to have real impact? What are its limits?']
+  }
+};
+
+function switchGrade(grade, btn) {
+  ['lr','pt'].forEach(card => {
+    document.getElementById(card+'-prompts').innerHTML = TDATA[card][grade].map(p => '<li>'+p+'</li>').join('');
+  });
+  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+// EXPLORE EXAMPLES
+// TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
+const OV = {
+  k2: {
+    t: 'Grades K–2: Peaceful Paws',
+    q: '"How can we make something that helps shelter dogs feel calm while they wait to be adopted?"',
+    d: 'Students take on the role of pet toy designers and use what they learned in Examine to build calming toys for shelter dogs. They plan their design using a simple design brief, build and test prototypes, and revise based on how well the toys hold a dog\'s attention.',
+    tags: ['🤝 Muddy Paws Rescue', '__ sessions', 'Grade 2'],
+    e: '🐾',
+    bg: 'linear-gradient(135deg,#e8eeff,#c0ccf7)',
+    link: '#' // TODO: replace with Google Doc link
+  },
+  35: {
+    t: 'Grades 3–5',
+    q: 'Challenge question coming soon',
+    d: 'A Grades 3–5 example is in development.',
+    tags: [],
+    e: '🌱',
+    bg: 'linear-gradient(135deg,#c0ccf7,#99aef0)',
+    link: '#'
+  },
+  68: {
+    t: 'Grades 6–8',
+    q: 'Challenge question coming soon',
+    d: 'A Grades 6–8 example is in development.',
+    tags: [],
+    e: '🔬',
+    bg: 'linear-gradient(135deg,#99aef0,#7090e8)',
+    link: '#'
+  },
+  912: {
+    t: 'Grades 9–12',
+    q: 'Challenge question coming soon',
+    d: 'A Grades 9–12 example is in development.',
+    tags: [],
+    e: '🏛️',
+    bg: 'linear-gradient(135deg,#7090e8,#4a6ed9)',
+    link: '#'
+  }
+};
+
+function switchExample(grade, btn) {
+  document.querySelectorAll('.gt .gb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const o = OV[grade];
+  document.getElementById('gt2').textContent = o.t;
+  document.getElementById('gq').textContent = o.q;
+  document.getElementById('gb2').textContent = o.d;
+  document.getElementById('gm2').innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
+  const gi = document.getElementById('gimg');
+  gi.style.background = o.bg;
+  gi.textContent = o.e;
+  document.getElementById('ex-doc-link').href = o.link;
+}
+
+switchExample('k2', document.querySelector('.gb.on'));
+</script>
+</body>
+</html>
