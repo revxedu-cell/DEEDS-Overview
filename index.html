@@ -236,7 +236,71 @@ body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);lin
 
 
 /* ── Community Challenge ── */
-#community-challenge{}
+#community-challenge{
+  background:var(--surface);
+  padding:80px 24px;
+}
+.cc-in{
+  max-width:1200px;margin:0 auto;
+}
+.cc-kicker{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent-teal);margin-bottom:10px;
+}
+#community-challenge h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(26px,3.5vw,38px);
+  color:var(--text);margin-bottom:12px;
+}
+.cc-intro{
+  font-size:17px;color:var(--text-muted);
+  max-width:640px;margin-bottom:56px;line-height:1.7;
+}
+.cc-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+}
+.cc-strategies h3{
+  font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:20px;
+}
+.cc-strategy{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px;border-radius:var(--radius);
+  border:1.5px solid var(--border);
+  background:var(--bg);
+  margin-bottom:12px;
+}
+.cc-strategy:last-child{margin-bottom:0}
+.cc-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--accent-teal);
+  display:grid;place-items:center;
+  flex-shrink:0;font-size:18px;
+}
+.cc-strategy-text strong{
+  display:block;font-size:15px;font-weight:700;
+  color:var(--text);margin-bottom:3px;
+}
+.cc-strategy-text span{
+  font-size:13px;color:var(--text-muted);line-height:1.5;
+}
+.cc-examples h3{
+  font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:20px;
+}
+.cc-example-card{
+  border-radius:var(--radius);
+  border-left:4px solid var(--accent-cyan);
+  background:var(--bg);
+  padding:18px 20px;
+  margin-bottom:12px;
+  font-size:15px;font-weight:600;color:var(--text);
+  line-height:1.4;
+}
+.cc-example-card:last-child{margin-bottom:0}
+@media(max-width:720px){
+  .cc-grid{grid-template-columns:1fr}
+}
 
 
 /* ── Challenge Question ── */
@@ -244,7 +308,57 @@ body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);lin
 
 
 /* ── Get Started ── */
-#get-started{}
+#get-started{
+  background:linear-gradient(135deg,var(--accent-navy),#0a2a6e);
+  padding:80px 24px;
+  text-align:center;
+  color:#fff;
+}
+.gs-in{max-width:800px;margin:0 auto;}
+.gs-kicker{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:12px;
+}
+#get-started h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(28px,4vw,44px);
+  margin-bottom:16px;line-height:1.1;
+}
+#get-started .gs-sub{
+  font-size:16px;color:rgba(255,255,255,.65);
+  margin-bottom:48px;
+}
+.gs-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  text-align:left;
+}
+.gs-card{
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.13);
+  border-radius:16px;padding:28px;
+  text-decoration:none;color:#fff;
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .2s,transform .15s;
+}
+.gs-card:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.gs-card-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  opacity:.5;
+}
+.gs-card h3{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;line-height:1.2;
+}
+.gs-card p{
+  font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;flex:1;
+}
+.gs-card-arrow{
+  font-size:18px;margin-top:4px;
+  color:var(--discover);
+}
+.gs-card.primary{border-color:var(--discover);background:rgba(230,145,56,.12);}
+.gs-card.primary:hover{background:rgba(230,145,56,.2);}
+@media(max-width:600px){.gs-cards{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -406,13 +520,79 @@ body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);lin
 </section>
 
 <!-- Finding Your Community Challenge -->
-<section id="community-challenge"></section>
+<section id="community-challenge">
+  <div class="cc-in">
+    <p class="cc-kicker">Getting Started</p>
+    <h2>Finding Your Community Challenge</h2>
+    <p class="cc-intro">A strong community challenge is <strong>real, close, and worth solving.</strong></p>
+
+    <div class="cc-grid">
+
+      <div class="cc-strategies">
+        <h3>Strategies for Identifying Challenges</h3>
+
+        <div class="cc-strategy">
+          <div class="cc-icon">👂</div>
+          <div class="cc-strategy-text">
+            <strong>Listen to students</strong>
+            <span>Students often name the problems closest to them — let their voices lead.</span>
+          </div>
+        </div>
+
+        <div class="cc-strategy">
+          <div class="cc-icon">🤝</div>
+          <div class="cc-strategy-text">
+            <strong>Partner with community organizations</strong>
+            <span>Local nonprofits, city agencies, and advocacy groups carry real, unsolved problems.</span>
+          </div>
+        </div>
+
+        <div class="cc-strategy">
+          <div class="cc-icon">📍</div>
+          <div class="cc-strategy-text">
+            <strong>Look for the proximal</strong>
+            <span>The best challenges are nearby — visible, tangible, and actionable within a school year.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-examples">
+        <h3>Examples</h3>
+        <div class="cc-example-card">Improve air quality in our neighborhood</div>
+        <div class="cc-example-card">Support foster youth transitions</div>
+        <div class="cc-example-card">Redesign schoolyard for safe play</div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- Crafting Your Challenge Question -->
 <section id="challenge-question"></section>
 
 <!-- Get Started -->
-<section id="get-started"></section>
+<section id="get-started">
+  <div class="gs-in">
+    <p class="gs-kicker">Ready?</p>
+    <h2>Start Your DEEDS Journey</h2>
+    <p class="gs-sub">Choose where to begin.</p>
+
+    <div class="gs-cards">
+      <a href="plan.html" class="gs-card primary">
+        <span class="gs-card-eyebrow">Step 1</span>
+        <h3>Plan Your Unit →</h3>
+        <p>Design your challenge and learning journey</p>
+        <span class="gs-card-arrow">→</span>
+      </a>
+      <a href="discover.html" class="gs-card">
+        <span class="gs-card-eyebrow">Explore the Phases</span>
+        <h3>Start with Discover →</h3>
+        <p>Dive into Phase 1 and begin investigating your community challenge</p>
+        <span class="gs-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
