@@ -94,57 +94,21 @@ section{max-width:1200px;margin:0 auto;padding:48px 24px}
 .gb{padding:9px 22px;border-radius:8px;border:2px solid rgba(61,30,0,.1);background:var(--W);font-family:inherit;font-size:13px;font-weight:700;color:var(--w);cursor:pointer;transition:all .2s}
 .gb:hover{border-color:var(--a);color:var(--f)}
 .gb.on{border-color:var(--f);background:var(--f);color:#fff}
-.gc{display:grid;grid-template-columns:1fr 160px;gap:20px;background:var(--W);border-radius:16px 16px 0 0;border:1px solid rgba(61,30,0,.06);border-bottom:none;padding:24px;align-items:center}
+.gc{display:grid;grid-template-columns:1fr 160px;gap:20px;background:var(--W);border-radius:16px;border:1px solid rgba(61,30,0,.06);padding:24px;align-items:center}
 .gc h3{font-size:17px;margin-bottom:4px}
 .cq{font-size:13px;color:var(--f);font-weight:600;font-style:italic;margin-bottom:6px}
 .gc>div:first-child p{color:var(--w);font-size:12px;margin-bottom:3px}
 .gm{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .gm span{font-size:10px;font-weight:600;padding:3px 8px;border-radius:14px;background:rgba(212,96,10,.06);color:var(--f)}
 .gi{width:160px;height:120px;border-radius:var(--r);display:grid;place-items:center;font-size:48px;flex-shrink:0}
-.ex-detail{border:1px solid rgba(61,30,0,.06);border-top:none;border-radius:0 0 16px 16px;overflow:hidden}
-.ex-coming{padding:32px;text-align:center;color:var(--w);font-size:13px;background:var(--W)}
-.ex-coming strong{display:block;font-size:15px;color:var(--b);margin-bottom:6px}
-.ex-sessions{display:grid;grid-template-columns:repeat(5,1fr);border-top:3px solid var(--c)}
-@media(max-width:900px){.ex-sessions{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.ex-sessions{grid-template-columns:1fr}}
-.ex-sess{border-right:1px solid rgba(61,30,0,.06);display:flex;flex-direction:column}
-.ex-sess:last-child{border-right:none}
-.ex-sess-hdr{padding:10px 12px;font-size:11px;font-weight:700;display:flex;flex-direction:column;gap:2px}
-.ex-sess-hdr .ex-num{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;opacity:.7}
-.ex-sess-hdr .ex-step{font-size:11px;font-weight:700}
-.ex-sess-hdr .ex-goal{font-size:10px;font-weight:400;line-height:1.4;margin-top:4px;opacity:.85}
-.ex-sess-body{padding:8px;flex:1;display:flex;flex-direction:column;gap:3px;background:var(--W)}
-.ex-row{display:flex;gap:6px;border-radius:5px;padding:5px 7px;font-size:11px;line-height:1.4}
-.ex-row .er-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;flex-shrink:0;display:block;margin-bottom:1px}
-.ex-row .er-time{font-size:9px;font-weight:600;opacity:.6;flex-shrink:0;white-space:nowrap}
-.ex-row .er-icon{font-size:13px;flex-shrink:0}
-.ex-row .er-body{flex:1}
-.ex-row .er-name{font-weight:700;font-size:11px;display:block}
-.ex-row .er-text{font-size:10px;color:var(--w);line-height:1.4}
-.er-oc{background:var(--l);border:1px solid rgba(61,30,0,.06)}
-.er-oc .er-label{color:var(--w)}
-.er-act{background:#FFF0E0;border:1px solid rgba(212,96,10,.12)}
-.er-act .er-label{color:var(--f)}
-.er-proto{background:rgba(232,135,30,.07);border:1px solid rgba(232,135,30,.18)}
-.er-proto .er-label{color:var(--a)}
-.er-scaffold{background:var(--l);border:1.5px dashed rgba(61,30,0,.12)}
-.er-scaffold .er-label{color:var(--w)}
-.er-intro{background:linear-gradient(135deg,#FFFDE7,#FFF9C4);border:1px solid rgba(245,166,35,.3)}
-.er-intro .er-label{color:#8a6d00}
-.er-deliv{background:linear-gradient(135deg,#FFF0E0,#FFF8F0);border:1px solid rgba(212,96,10,.2)}
-.er-deliv .er-label{color:var(--f)}
-.er-trans{background:linear-gradient(135deg,#FFE0B2,#FFECD2);border:1px solid rgba(212,96,10,.25)}
-.er-trans .er-label{color:var(--f)}
-.er-custom{background:var(--l);border:1.5px dashed rgba(212,96,10,.2)}
-.er-custom .er-label{color:var(--a)}
-.er-prep{background:#FFF3E0;border-left:3px solid var(--a);border-radius:0 5px 5px 0;padding:5px 7px}
-.er-prep .er-label{color:var(--a)}
+.ex-link-btn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--f);color:#fff;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s}
+.ex-link-btn:hover{background:var(--b)}
 footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-top:1px solid rgba(61,30,0,.06)}
 
 @media(max-width:768px){
   .hero,.two,.sc-grid,.tr{grid-template-columns:1fr}
   .hero{gap:20px;padding:28px 16px 20px}
-  .gc{grid-template-columns:1fr;border-radius:16px 16px 0 0}.gi{display:none}
+  .gc{grid-template-columns:1fr}.gi{display:none}
 }
 @media print{.nav,.hero{display:none!important}body{background:#fff}}
 
@@ -166,85 +130,149 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 .pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
 .pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
 
-/* ── Site footer ── */
-.site-footer{text-align:center;padding:28px 24px 32px;border-top:1px solid rgba(61,30,0,.06)}
-.site-footer-brand{font-family:'DM Serif Display',serif;font-size:17px;font-weight:700;color:var(--b);text-decoration:none;display:inline-block;margin-bottom:12px}
-.site-footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-.site-footer-nav a{font-size:12px;font-weight:700;color:var(--w);text-decoration:none;transition:color .15s}
-.site-footer-nav a:hover{color:var(--f)}
-.site-footer-credit{font-size:11px;color:var(--w);opacity:.55}
+/* ── Site footer (matches index) ── */
+.site-footer {
+  background: #1f2937;
+  padding: 36px 0 0;
+  margin-top: 0;
+}
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px 28px;
+}
+.site-footer-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.site-footer-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-footer-nav a {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color .15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  margin-right: 10px;
+}
+.site-footer-nav a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.site-footer-nav a[href="discover.html"]::before { background: #e69138; }
+.site-footer-nav a[href="examine.html"]::before  { background: #0a9b19; }
+.site-footer-nav a[href="engineer.html"]::before { background: #003da6; }
+.site-footer-nav a[href="do.html"]::before       { background: #ffb600; }
+.site-footer-nav a[href="share.html"]::before    { background: #ab0a3d; }
+.site-footer-nav a:hover { color: #fff; }
+.site-footer-credit {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.28);
+}
 
 
-/* ── Site-wide navigation ── */
+/* ── Site-wide navigation (matches index) ── */
 :root { --site-nav-h: 52px; }
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--c);
-  border-bottom: 1px solid rgba(61,30,0,.09);
+  background: rgba(245, 241, 234, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.08);
 }
 .site-nav-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 18px;
   height: var(--site-nav-h);
 }
 .site-nav-brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--b);
-  text-decoration: none;
-  letter-spacing: -0.01em;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+  letter-spacing: 0.02em;
   white-space: nowrap;
+  text-decoration: none;
   flex-shrink: 0;
 }
 .site-nav-links {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
+  justify-content: flex-end;
 }
 .site-nav-links::-webkit-scrollbar { display: none; }
 .site-nav-link {
-  padding: 7px 12px;
+  padding: 9px 13px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
-  color: var(--w);
+  color: #4f5b6a;
   text-decoration: none;
   white-space: nowrap;
-  transition: background .15s ease, color .15s ease;
+  transition: background .18s ease, color .18s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
+.site-nav-link[href="index.html"]:hover,
+.site-nav-link[href="index.html"].active    { background: #1f2937; color: #fff; }
+.site-nav-link[href="discover.html"]:hover,
+.site-nav-link[href="discover.html"].active { background: #e69138; color: #fff; }
+.site-nav-link[href="examine.html"]:hover,
+.site-nav-link[href="examine.html"].active  { background: #0a9b19; color: #fff; }
+.site-nav-link[href="engineer.html"]:hover,
+.site-nav-link[href="engineer.html"].active { background: #003da6; color: #fff; }
+.site-nav-link[href="do.html"]:hover,
+.site-nav-link[href="do.html"].active       { background: #ffb600; color: #1f2937; }
+.site-nav-link[href="share.html"]:hover,
+.site-nav-link[href="share.html"].active    { background: #ab0a3d; color: #fff; }
 .site-nav-link::before {
   content: "";
+  display: inline-block;
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: currentColor;
-  opacity: 0;
+  opacity: 0.7;
   flex-shrink: 0;
-  transition: opacity .15s ease;
 }
-.site-nav-link:hover { background: rgba(61,30,0,.06); color: var(--b); }
-.site-nav-link.active {
-  background: var(--f);
-  color: #fff;
-}
-.site-nav-link.active-do { color: var(--b); }
-.site-nav-link.active::before { opacity: 0.6; }
-
-/* Push section nav below site-nav */
+.site-nav-link[href="index.html"]::before    { display: none; }
+.site-nav-link[href="discover.html"]::before { background: #e69138; }
+.site-nav-link[href="examine.html"]::before  { background: #0a9b19; }
+.site-nav-link[href="engineer.html"]::before { background: #003da6; }
+.site-nav-link[href="do.html"]::before       { background: #ffb600; }
+.site-nav-link[href="share.html"]::before    { background: #ab0a3d; }
 .nav { top: var(--site-nav-h) !important; }
+@media (max-width: 600px) {
+  .site-nav-inner { padding: 0 18px; gap: 10px; }
+  .site-nav-link { padding: 8px 10px; font-size: 12px; }
+}
 
 @media (max-width: 600px) {
   .site-nav-inner { padding: 0 16px; }
@@ -404,12 +432,12 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
       <div>
         <h3 class="dm" id="gt2">Grades K–2: Peaceful Paws</h3>
         <div class="cq" id="gq">"How can we create calming toys that help pets feel calm while they wait to be adopted?"</div>
-        <p id="gb2">Students learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.</p>
+        <p id="gb2">Scholars learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.</p>
+        <a id="ex-doc-link" href="#" target="_blank" class="ex-link-btn">View Full Example →</a>
         <div class="gm" id="gm2"><span>🤝 Muddy Paws Rescue</span><span>5 sessions</span><span>Grade 2</span></div>
       </div>
       <div class="gi" id="gimg" style="background:linear-gradient(135deg,#FFECD2,#FCB69F)">🐾</div>
     </div>
-    <div class="ex-detail" id="ex-detail"></div>
   </div>
 </section>
 
@@ -424,14 +452,16 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 </nav>
 
 <footer class="site-footer">
-  <a href="index.html" class="site-footer-brand">DEEDS</a>
-  <nav class="site-footer-nav" aria-label="All phases">
-    <a href="discover.html">Discover</a>
-    <a href="examine.html">Examine</a>
-    <a href="engineer.html">Engineer</a>
-    <a href="do.html">Do</a>
-    <a href="share.html">Share</a>
-  </nav>
+  <div class="site-footer-inner">
+    <a href="index.html" class="site-footer-brand">DEEDS</a>
+    <nav class="site-footer-nav" aria-label="All phases">
+      <a href="discover.html">Discover</a>
+      <a href="examine.html">Examine</a>
+      <a href="engineer.html">Engineer</a>
+      <a href="do.html">Do</a>
+      <a href="share.html">Share</a>
+    </nav>
+  </div>
   <div class="site-footer-credit">RevX × Transcend</div>
 </footer>
 
@@ -468,225 +498,13 @@ function switchGrade(grade, btn) {
   btn.classList.add('on');
 }
 
-// ── PROTOCOL INFO ─────────────────────────────────────
-const PROTO_INFO = {
-  nw: {
-    name: 'Notice & Wonder',
-    purpose: 'Students make careful observations before generating interpretive questions — building evidence-based thinking habits.',
-    research: [
-      {name:'Self-Questioning', es:'0.64', why:'Student-generated questions improve comprehension and retention.'},
-      {name:'Metacognitive Strategies', es:'0.60', why:'Students reflect on what they understand versus what they need to explore.'},
-      {name:'Problem-Solving Teaching', es:'0.61', why:'Inquiry-based framing promotes deeper reasoning.'}
-    ],
-    steps: [
-      {name:'Notice & Note', time:'3 min', prompts:{k2:'What do you see, hear, or feel?', 35:'What do you observe? What stands out?', 68:'What do you notice about this situation or source?', 912:'What specific details stand out, and why?'}},
-      {name:'Partner Talk',  time:'4 min', prompts:{k2:'Tell a partner one thing you noticed.', 35:'Share your observations. What did your partner notice that you missed?', 68:'Compare observations. Where do you agree or differ?', 912:'Discuss: where do your observations converge or diverge?'}},
-      {name:'Class Harvest', time:'3 min', prompts:{k2:"Share one thing we haven't heard yet.", 35:"Share one observation or question the class hasn't heard.", 68:'Contribute one observation or question that adds something new.', 912:"Offer one insight or question that pushes the class's thinking further."}}
-    ]
-  },
-  tfa: {
-    name: 'Think-Feel-Act',
-    purpose: 'Helps students process an immersive experience emotionally and begin connecting it to action.',
-    research: [
-      {name:'Classroom Discussion', es:'0.82', why:'Structured discourse accelerates learning when grounded in evidence.'},
-      {name:'Metacognitive Strategies', es:'0.60', why:'Separating thinking, feeling, and acting helps students self-regulate.'},
-      {name:'Self-Questioning', es:'0.64', why:'Prompting personal relevance deepens engagement and motivation.'}
-    ],
-    steps: [
-      {name:'Think', time:'2 min', prompts:{k2:'What did you notice or learn?', 35:'What did you notice or understand from the experience?', 68:'What stood out to you? What did you learn or observe?', 912:'What did you take away? What surprised or challenged you?'}},
-      {name:'Feel',  time:'2 min', prompts:{k2:'How did the experience make you feel? Why does this matter?', 35:'What emotions came up? Why might this challenge matter to you?', 68:'What emotions did this bring up, and why?', 912:'What emotional response did this provoke, and what does that tell you about why this challenge matters?'}},
-      {name:'Act',   time:'2 min', prompts:{k2:'What do you want to do or learn more about?', 35:'What does this make you want to explore or change?', 68:'What does this inspire you to investigate or do differently?', 912:'What does this challenge you to explore, question, or act on?'}}
-    ]
-  },
-  bp: {
-    name: 'Bridging Perspectives',
-    purpose: 'Students understand how different people experience the same challenge based on their role, power, and proximity.',
-    research: [
-      {name:'Classroom Discussion', es:'0.82', why:'Structured discourse with diverse viewpoints accelerates critical thinking.'},
-      {name:'Metacognitive Strategies', es:'0.60', why:'Perspective-taking requires students to monitor and adjust their own assumptions.'},
-      {name:'Teacher Clarity', es:'0.75', why:'Clear role structures reduce confusion and increase participation equity.'}
-    ],
-    steps: [
-      {name:'Step Into the Perspective', time:'3 min',  prompts:{k2:'Read your card. What matters most to this person?', 35:'Read your perspective card. What does this person care about most?', 68:'From this viewpoint, what matters most in relation to the challenge?', 912:'From this viewpoint, what is most at stake?'}},
-      {name:'Mix & Mingle',             time:'15 min', prompts:{k2:'Find a partner. Share who you are and what matters to you. Find something you both care about.', 35:"Find a partner. Share your perspective. Name one thing you share and one that's different.", 68:'"Here\'s who I am and what matters to me." "Something we share is…" "Something that\'s different is…"', 912:'Engage with 3–4 partners. Note where perspectives converge, conflict, and why.'}},
-      {name:'Name Patterns',            time:'7 min',  prompts:{k2:'What did lots of people care about? Was anything surprising?', 35:'What patterns did you notice? Who seemed to have more power? Less?', 68:'What concerns came up again and again? Where did perspectives conflict?', 912:'Who had the most power? The least? What systemic patterns do you see?'}}
-    ]
-  },
-  rtwd: {
-    name: 'Read \u2192 Think \u2192 Write \u2192 Discuss',
-    purpose: 'Scaffolds comprehension and structured discourse so all students engage with complex perspectives before sharing publicly.',
-    research: [
-      {name:'Classroom Discussion', es:'0.82', why:'Structured discourse significantly accelerates learning when grounded in evidence.'},
-      {name:'Writing to Learn',     es:'0.50', why:'Writing before discussion strengthens consolidation of understanding.'},
-      {name:'Metacognitive Strategies', es:'0.60', why:'Thinking before speaking increases comprehension monitoring.'},
-      {name:'Teacher Clarity',      es:'0.75', why:'Clear structure enhances learning for diverse learners, including ELLs.'}
-    ],
-    steps: [
-      {name:'Read',    time:'4 min', prompts:{k2:'Read or listen to the text together.', 35:'Read independently. Circle anything that surprises you.', 68:'Read and annotate — underline key ideas, circle questions.', 912:"Read and annotate. Note the author's purpose, key claims, and tensions."}},
-      {name:'Think',   time:'2 min', prompts:{k2:'What did you learn? What are you wondering?', 35:'What stood out to you? What questions do you have?', 68:"What is the author's perspective? How does it connect to the challenge?", 912:'What assumptions underlie this perspective? What does it reveal or conceal?'}},
-      {name:'Write',   time:'4 min', prompts:{k2:'Draw or write one thing you learned and one question.', 35:'Write one thing you learned and one question you still have.', 68:'Write a summary of the perspective and one question it raises.', 912:'Write a synthesis: what this perspective contributes to your understanding of the challenge.'}},
-      {name:'Discuss', time:'5 min', prompts:{k2:'Share your idea with a partner, then with the class.', 35:'Share with a partner, then contribute one idea to the class.', 68:'Discuss in pairs, then share one insight or question with the group.', 912:"Engage in structured academic discussion: build on, challenge, or extend each other's ideas."}}
-    ]
-  },
-  dd: {
-    name: 'Data Dive',
-    purpose: 'Students analyze data to understand the extent and impact of the challenge through observation, pattern recognition, and evidence-based claims.',
-    research: [
-      {name:'Metacognitive Strategies', es:'0.60', why:'Tracking understanding while analyzing data supports self-regulation.'},
-      {name:'Summarization',            es:'0.74', why:'Recording key findings increases encoding and retention.'},
-      {name:'Self-Questioning',         es:'0.64', why:'Generating questions during data analysis deepens processing.'},
-      {name:'Problem-Solving Teaching', es:'0.61', why:'Inquiry-based data framing promotes evidence-based reasoning.'}
-    ],
-    steps: [
-      {name:'Observe the Data', time:'8 min',  prompts:{k2:'What do you see in this picture or chart? What do the numbers show?', 35:'Name what the data is showing. What type is it? What do you notice?', 68:'Identify the type, title, units, and source. Share one clear observation.', 912:'Identify type, title, units, and source. Clarify confusing elements and note a specific observation.'}},
-      {name:'Notice Patterns',  time:'15 min', prompts:{k2:'Is anything bigger or smaller than you expected? What surprises you?', 35:'What patterns do you see? What changes or stays the same?', 68:'What patterns or relationships do you notice? What surprises you?', 912:'What trends, outliers, or relationships do you see? What do they suggest about the challenge?'}},
-      {name:'Make a Claim',     time:'7 min',  prompts:{k2:'What does this tell us about the challenge?', 35:'What does the data tell us? Write one thing you learned.', 68:'Write one claim about what the data suggests. Support it with evidence.', 912:'Write a claim supported by specific evidence. Pose one open question the data raises.'}}
-    ]
-  },
-  ccc: {
-    name: 'Connect-Care-Contribute',
-    purpose: 'Helps students connect the challenge to their lives and begin seeing their role in addressing it.',
-    research: [
-      {name:'Classroom Discussion', es:'0.82', why:'Structured discourse grounded in personal experience accelerates investment.'},
-      {name:'Self-Questioning',     es:'0.64', why:'Prompting personal relevance deepens motivation and ownership.'},
-      {name:'Metacognitive Strategies', es:'0.60', why:'Asking students to name their contributions builds agency and self-awareness.'}
-    ],
-    steps: [
-      {name:'Connect',    time:'5 min', prompts:{k2:'Where have you seen this problem in your life, school, or neighborhood?', 35:'Where have you seen this challenge in your life, school, or community?', 68:'Where have you seen or experienced this challenge in your life or community?', 912:'Where have you witnessed or experienced this challenge — directly or indirectly?'}},
-      {name:'Care',       time:'5 min', prompts:{k2:'Why does this matter to you or someone you love?', 35:'Why might this challenge matter to you or people you care about?', 68:'Why does this challenge matter to you or people in your community?', 912:'Why does this challenge matter — to you, to people you care about, or to society?'}},
-      {name:'Contribute', time:'5 min', prompts:{k2:'What could you do to help? What are you good at?', 35:'What strengths or ideas do you have that could help address this challenge?', 68:'What strengths, experiences, or ideas could you bring to addressing this challenge?', 912:'What knowledge, skills, or experiences position you to contribute to addressing this challenge?'}}
-    ]
-  }
-};
-
-function toggleResearch(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('open');
-}
-
-function renderProtoPanel(protoId, grade, panelKey) {
-  const info = PROTO_INFO[protoId];
-  if (!info) return '';
-  const g = grade || 'k2';
-  const rid = 'res-' + panelKey;
-  let h = '<div class="proto-panel"><div class="pp-purpose">' + info.purpose + '</div><div class="pp-steps">';
-  info.steps.forEach(s => {
-    h += '<div class="pp-step">'
-      + '<div class="pp-step-hdr"><span class="pp-step-name">' + s.name + '</span><span class="pp-step-time">' + s.time + '</span></div>'
-      + '<div class="pp-step-prompt">' + (s.prompts[g] || s.prompts.k2) + '</div>'
-      + '</div>';
-  });
-  h += '</div>';
-  h += '<button class="pp-research-toggle" onclick="toggleResearch(\'' + rid + '\')">📊 Why it works ↕</button>'
-    + '<div class="pp-research" id="' + rid + '">';
-  info.research.forEach(r => {
-    h += '<div class="pp-research-item"><span class="ri-name">' + r.name + '</span><span class="ri-es">Effect size ' + r.es + '</span></div>'
-      + '<div class="pp-research-why">' + r.why + '</div>';
-  });
-  h += '</div></div>';
-  return h;
-}
-
-// ── EXAMPLES ─────────────────────────────────────────
-const STEP_META = [
-  {label:'Experience the Challenge', hdrBg:'linear-gradient(135deg,#FFECD2,#FCB69F)', hdrColor:'#3D1E00'},
-  {label:'Understand Perspectives',  hdrBg:'linear-gradient(135deg,#FFE0B2,#FFB74D)', hdrColor:'#3D1E00'},
-  {label:'Explore Evidence',         hdrBg:'linear-gradient(135deg,#FFFDE7,#FFD166)', hdrColor:'#3D1E00'},
-  {label:'Make Meaning',             hdrBg:'linear-gradient(135deg,#FFD54F,#FF8A65)', hdrColor:'#fff'},
-  {label:'Explain Why It Matters',   hdrBg:'linear-gradient(135deg,#FF8A65,#D4600A)', hdrColor:'#fff'}
-];
-
-const EXAMPLES = {
-  k2: {
-    title:'Grades K\u20132: Peaceful Paws',
-    q:'"How can we create calming toys that help pets feel calm while they wait to be adopted?"',
-    desc:'Students learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.',
-    tags:['🤝 Muddy Paws Rescue','5 sessions','Grade 2'], emoji:'🐾', bg:'linear-gradient(135deg,#FFECD2,#FCB69F)',
-    sessions:[
-      {step:0, duration:'Extended session (~60 min)', goal:'Students encounter the problem of anxious dogs waiting to be adopted.',
-       rows:[
-         {t:'oc',      icon:'🌅', name:'Opening',                   time:'3 min',  text:'What do you notice or already know about dogs waiting to be adopted?'},
-         {t:'act',     icon:'🎤', name:'Hear from the Client',       time:'40 min', text:'An animal shelter worker visits the classroom with dogs.'},
-         {t:'proto',   icon:'📝', name:'Notice & Wonder',            time:''},
-         {t:'intro',   icon:'💡', name:'Challenge Introduction',     time:'2 min',  text:"While dogs are waiting to be adopted, they can feel anxious or fearful. When animals feel this way, they may chew or scratch things they shouldn't, or act in ways that make it harder to get adopted."},
-         {t:'deliv',   icon:'📋', name:'Launch Reflection',          time:'8 min',  bullets:['Tell what you notice or what you already know about the problem.','Tell one way the problem connects to your life, school, or neighborhood.','Who might this problem affect? Name at least two people or groups.']},
-         {t:'oc',      icon:'🌇', name:'Closing',                    time:'5 min',  text:''}
-       ]},
-      {step:1, duration:'35 min', goal:'Students understand how the problem affects different people and animals.',
-       rows:[
-         {t:'oc',    icon:'🌅', name:'Opening',                            time:'5 min',  text:"Quick review of yesterday's observations."},
-         {t:'prep',  icon:'📋', name:'Prepare ahead',                      time:'',       text:'Short texts and images showing foster dogs, shelter workers, and families adopting dogs.'},
-         {t:'proto', icon:'✍️', name:'Read \u2192 Think \u2192 Write \u2192 Discuss', time:'20 min', bullets:['Who is affected by this problem?','How are they affected?']},
-         {t:'oc',    icon:'🌇', name:'Closing',                            time:'5 min',  text:'Begin class anchor chart: Who is affected by this problem?'}
-       ]},
-      {step:2, duration:'35 min', goal:'Students examine evidence about dog emotions and adoption.',
-       rows:[
-         {t:'oc',       icon:'🌅', name:'Opening',                  time:'5 min',  text:'Review stakeholders chart from Session 2.'},
-         {t:'prep',     icon:'📋', name:'Prepare ahead',            time:'',       text:'Pictograph from the shelter: dogs adopted when calm vs. dogs adopted when stressed.'},
-         {t:'custom',   icon:'✏️', name:'Dog Body Language Card Sort', time:'10 min', text:'Teacher-created activity. Students learn signs of stress, calm, and excitement in dogs.'},
-         {t:'proto',    icon:'📊', name:'Data Dive',                time:'5 min',  text:'Students analyze the shelter pictograph. Prompts: What do you notice? What might this tell us?'},
-         {t:'scaffold', icon:'🗂️', name:'Scaffold: Graphic Analysis', time:'',    text:''},
-         {t:'oc',       icon:'🌇', name:'Closing',                  time:'3 min',  text:'Connect evidence to the challenge: the shelter wants more dogs to get adopted, so they asked us to help dogs feel calm while they wait.'}
-       ]},
-      {step:3, duration:'35 min', goal:'Students connect the challenge to their own lives.',
-       rows:[
-         {t:'oc',    icon:'🌅', name:'Opening',                    time:'5 min',  text:'Review what we know so far.'},
-         {t:'proto', icon:'💬', name:'Connect-Care-Contribute',    time:'20 min', bullets:['Connect: Where have you seen a pet feel scared, nervous, or excited?','Care: Why might helping animals feel calm matter?','Contribute: How could kids help solve this problem?']},
-         {t:'oc',    icon:'🌇', name:'Closing',                    time:'5 min',  text:'Class chart: Why do we care about this challenge?'}
-       ]},
-      {step:4, duration:'35 min', goal:'Students explain the challenge and its importance.',
-       rows:[
-         {t:'oc',    icon:'🌅', name:'Opening',                           time:'5 min',  bullets:['What is happening?','Who is affected?','What helps?']},
-         {t:'act',   icon:'✍️', name:'Shared Writing: Performance Task',  time:'20 min', bullets:['The challenge is…','This problem affects…','It matters because…']},
-         {t:'deliv', icon:'📋', name:'Performance Task',                  time:'',       text:'Teacher records class responses using sentence stems.'},
-         {t:'trans', icon:'🚀', name:'Bridge to Next Phase',              time:'10 min', text:'Teacher reveals the engineering challenge: "How can we make something that helps dogs waiting to be adopted feel calm?" Students celebrate becoming pet inventors.'},
-         {t:'oc',    icon:'🌇', name:'Closing',                           time:'',       text:''}
-       ]}
-    ]
-  },
-  35: null, 68: null, 912: null
-};
-
-function renderExRow(row) {
-  const cls = 'ex-row er-' + row.t;
-  let content = '';
-  if (row.bullets && row.bullets.length) {
-    content = (row.text ? '<span class="er-text">' + row.text + '</span>' : '')
-      + '<ul style="padding-left:13px;margin-top:3px">'
-      + row.bullets.map(b => '<li style="font-size:10px;color:var(--w);line-height:1.5">' + b + '</li>').join('')
-      + '</ul>';
-  } else {
-    content = row.text ? '<span class="er-text">' + row.text + '</span>' : '';
-  }
-  const timeStr = row.time ? ' \u00b7 <span class="er-time">' + row.time + '</span>' : '';
-  return '<div class="' + cls + '"><span class="er-icon">' + row.icon + '</span>'
-    + '<div class="er-body"><span class="er-label">' + row.name + timeStr + '</span>' + content + '</div></div>';
-}
-
-function renderExampleSessions(grade) {
-  const el = document.getElementById('ex-detail');
-  const ex = EXAMPLES[grade];
-  if (!ex) { el.innerHTML = '<div class="ex-coming"><strong>Coming soon</strong>An example for this grade band is in development.</div>'; return; }
-  let html = '<div class="ex-sessions">';
-  ex.sessions.forEach((sess, i) => {
-    const meta = STEP_META[sess.step];
-    html += '<div class="ex-sess"><div class="ex-sess-hdr" style="background:' + meta.hdrBg + ';color:' + meta.hdrColor + '">'
-      + '<span class="ex-num">Session ' + (i+1) + '</span><span class="ex-step">' + meta.label + '</span>'
-      + (sess.duration ? '<span style="font-size:9px;opacity:.7">' + sess.duration + '</span>' : '')
-      + (sess.goal ? '<span class="ex-goal">' + sess.goal + '</span>' : '')
-      + '</div><div class="ex-sess-body">' + sess.rows.map(r => renderExRow(r)).join('') + '</div></div>';
-  });
-  html += '</div>';
-  el.innerHTML = html;
-}
-
 function switchExample(grade, btn) {
   document.querySelectorAll('.gt .gb').forEach(b => b.classList.remove('on')); btn.classList.add('on');
   const ov = {
-    k2:  {t:'Grades K\u20132: Peaceful Paws', q:'"How can we create calming toys that help pets feel calm while they wait to be adopted?"', d:'Students learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.', tags:['🤝 Muddy Paws Rescue','5 sessions','Grade 2'], e:'🐾', bg:'linear-gradient(135deg,#FFECD2,#FCB69F)'},
-    35:  {t:'Grades 3\u20135', q:'Example coming soon', d:'A Grades 3\u20135 example is in development.', tags:[], e:'🌱', bg:'linear-gradient(135deg,#C8E6C9,#A5D6A7)'},
-    68:  {t:'Grades 6\u20138', q:'Example coming soon', d:'A Grades 6\u20138 example is in development.', tags:[], e:'🔬', bg:'linear-gradient(135deg,#B3E5FC,#81D4FA)'},
-    912: {t:'Grades 9\u201312', q:'Example coming soon', d:'A Grades 9\u201312 example is in development.', tags:[], e:'🏛️', bg:'linear-gradient(135deg,#FFE0B2,#FFCC80)'}
+    k2:  {t:'Grades K\u20132: Peaceful Paws', q:'"How can we create calming toys that help pets feel calm while they wait to be adopted?"', d:'Scholars learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.', tags:['🤝 Muddy Paws Rescue','5 sessions','Grade 2'], e:'🐾', bg:'linear-gradient(135deg,#FFECD2,#FCB69F)', link:'#'},
+    35:  {t:'Grades 3\u20135', q:'Example coming soon', d:'A Grades 3\u20135 example is in development.', tags:[], e:'🌱', bg:'linear-gradient(135deg,#C8E6C9,#A5D6A7)', link:null},
+    68:  {t:'Grades 6\u20138', q:'Example coming soon', d:'A Grades 6\u20138 example is in development.', tags:[], e:'🔬', bg:'linear-gradient(135deg,#B3E5FC,#81D4FA)', link:null},
+    912: {t:'Grades 9\u201312', q:'Example coming soon', d:'A Grades 9\u201312 example is in development.', tags:[], e:'🏛️', bg:'linear-gradient(135deg,#FFE0B2,#FFCC80)', link:null}
   };
   const o = ov[grade];
   document.getElementById('gt2').textContent = o.t;
@@ -694,10 +512,10 @@ function switchExample(grade, btn) {
   document.getElementById('gb2').textContent = o.d;
   document.getElementById('gm2').innerHTML = o.tags.map(t => '<span>' + t + '</span>').join('');
   const gi = document.getElementById('gimg'); gi.style.background = o.bg; gi.textContent = o.e;
-  renderExampleSessions(grade);
+  const lnk = document.getElementById('ex-doc-link');
+  if (o.link) { lnk.href = o.link; lnk.style.display = 'inline-flex'; }
+  else { lnk.style.display = 'none'; }
 }
-
-renderExampleSessions('k2');
 </script>
 </body>
 </html>

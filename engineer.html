@@ -129,85 +129,149 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 .pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
 .pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
 
-/* ── Site footer ── */
-.site-footer{text-align:center;padding:28px 24px 32px;border-top:1px solid rgba(61,30,0,.06)}
-.site-footer-brand{font-family:'DM Serif Display',serif;font-size:17px;font-weight:700;color:var(--b);text-decoration:none;display:inline-block;margin-bottom:12px}
-.site-footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-.site-footer-nav a{font-size:12px;font-weight:700;color:var(--w);text-decoration:none;transition:color .15s}
-.site-footer-nav a:hover{color:var(--f)}
-.site-footer-credit{font-size:11px;color:var(--w);opacity:.55}
+/* ── Site footer (matches index) ── */
+.site-footer {
+  background: #1f2937;
+  padding: 36px 0 0;
+  margin-top: 0;
+}
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px 28px;
+}
+.site-footer-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.site-footer-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-footer-nav a {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color .15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  margin-right: 10px;
+}
+.site-footer-nav a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.site-footer-nav a[href="discover.html"]::before { background: #e69138; }
+.site-footer-nav a[href="examine.html"]::before  { background: #0a9b19; }
+.site-footer-nav a[href="engineer.html"]::before { background: #003da6; }
+.site-footer-nav a[href="do.html"]::before       { background: #ffb600; }
+.site-footer-nav a[href="share.html"]::before    { background: #ab0a3d; }
+.site-footer-nav a:hover { color: #fff; }
+.site-footer-credit {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  color: rgba(255,255,255,0.28);
+}
 
 
-/* ── Site-wide navigation ── */
+/* ── Site-wide navigation (matches index) ── */
 :root { --site-nav-h: 52px; }
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--c);
-  border-bottom: 1px solid rgba(61,30,0,.09);
+  background: rgba(245, 241, 234, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.08);
 }
 .site-nav-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 18px;
   height: var(--site-nav-h);
 }
 .site-nav-brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--b);
-  text-decoration: none;
-  letter-spacing: -0.01em;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+  letter-spacing: 0.02em;
   white-space: nowrap;
+  text-decoration: none;
   flex-shrink: 0;
 }
 .site-nav-links {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
+  justify-content: flex-end;
 }
 .site-nav-links::-webkit-scrollbar { display: none; }
 .site-nav-link {
-  padding: 7px 12px;
+  padding: 9px 13px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
-  color: var(--w);
+  color: #4f5b6a;
   text-decoration: none;
   white-space: nowrap;
-  transition: background .15s ease, color .15s ease;
+  transition: background .18s ease, color .18s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
+.site-nav-link[href="index.html"]:hover,
+.site-nav-link[href="index.html"].active    { background: #1f2937; color: #fff; }
+.site-nav-link[href="discover.html"]:hover,
+.site-nav-link[href="discover.html"].active { background: #e69138; color: #fff; }
+.site-nav-link[href="examine.html"]:hover,
+.site-nav-link[href="examine.html"].active  { background: #0a9b19; color: #fff; }
+.site-nav-link[href="engineer.html"]:hover,
+.site-nav-link[href="engineer.html"].active { background: #003da6; color: #fff; }
+.site-nav-link[href="do.html"]:hover,
+.site-nav-link[href="do.html"].active       { background: #ffb600; color: #1f2937; }
+.site-nav-link[href="share.html"]:hover,
+.site-nav-link[href="share.html"].active    { background: #ab0a3d; color: #fff; }
 .site-nav-link::before {
   content: "";
+  display: inline-block;
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: currentColor;
-  opacity: 0;
+  opacity: 0.7;
   flex-shrink: 0;
-  transition: opacity .15s ease;
 }
-.site-nav-link:hover { background: rgba(61,30,0,.06); color: var(--b); }
-.site-nav-link.active {
-  background: var(--f);
-  color: #fff;
-}
-.site-nav-link.active-do { color: var(--b); }
-.site-nav-link.active::before { opacity: 0.6; }
-
-/* Push section nav below site-nav */
+.site-nav-link[href="index.html"]::before    { display: none; }
+.site-nav-link[href="discover.html"]::before { background: #e69138; }
+.site-nav-link[href="examine.html"]::before  { background: #0a9b19; }
+.site-nav-link[href="engineer.html"]::before { background: #003da6; }
+.site-nav-link[href="do.html"]::before       { background: #ffb600; }
+.site-nav-link[href="share.html"]::before    { background: #ab0a3d; }
 .nav { top: var(--site-nav-h) !important; }
+@media (max-width: 600px) {
+  .site-nav-inner { padding: 0 18px; gap: 10px; }
+  .site-nav-link { padding: 8px 10px; font-size: 12px; }
+}
 
 @media (max-width: 600px) {
   .site-nav-inner { padding: 0 16px; }
@@ -395,14 +459,16 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 </nav>
 
 <footer class="site-footer">
-  <a href="index.html" class="site-footer-brand">DEEDS</a>
-  <nav class="site-footer-nav" aria-label="All phases">
-    <a href="discover.html">Discover</a>
-    <a href="examine.html">Examine</a>
-    <a href="engineer.html">Engineer</a>
-    <a href="do.html">Do</a>
-    <a href="share.html">Share</a>
-  </nav>
+  <div class="site-footer-inner">
+    <a href="index.html" class="site-footer-brand">DEEDS</a>
+    <nav class="site-footer-nav" aria-label="All phases">
+      <a href="discover.html">Discover</a>
+      <a href="examine.html">Examine</a>
+      <a href="engineer.html">Engineer</a>
+      <a href="do.html">Do</a>
+      <a href="share.html">Share</a>
+    </nav>
+  </div>
   <div class="site-footer-credit">RevX × Transcend</div>
 </footer>
 
