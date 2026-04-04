@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="DEEDS is a project-based learning framework that organizes student learning around real community challenges, disciplinary inquiry, and meaningful action.">
+<meta name="description" content="DEEDS is a project-based learning framework that organizes scholar work around real community challenges. Five phases — Discover, Examine, Engineer, Do, Share — each building toward something real.">
 <meta name="theme-color" content="#f5f1ea">
-<title>DEEDS — Rigorous Learning Through Real-World Impact</title>
+<title>DEEDS — Learning That Matters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -520,6 +520,80 @@ img { display: block; max-width: 100%; }
 .principles-mini .mini strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 4px; font-weight: 800; }
 .principles-mini .mini span { font-size: 14px; color: var(--ink-soft); }
 
+
+/* ── Phase strip ── */
+.phase-strip { padding: 28px 0 0; }
+.phase-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.phase-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--pc, var(--accent-blue));
+  border-radius: var(--radius-md);
+  padding: 18px 16px 20px;
+  text-decoration: none;
+  display: block;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.phase-card:hover, .phase-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+  outline: none;
+}
+.phase-card:focus-visible { outline: 2px solid var(--pc); outline-offset: 2px; }
+.phase-card-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pc, var(--accent-blue));
+  margin-bottom: 6px;
+}
+.phase-card-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.phase-card-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+
+@media (max-width: 900px) {
+  .phase-strip-inner { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .phase-strip-inner { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Partner question (more prominent) ── */
+.partner-question {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent-plum);
+  background: rgba(140, 90, 121, 0.04);
+  border-radius: 0 10px 10px 0;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  color: var(--accent-plum);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.partner-question-label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-plum);
+  opacity: 0.65;
+  margin-bottom: 5px;
+  font-style: normal;
+}
+
 /* ── Footer (improved) ── */
 .footer {
   margin-top: 44px;
@@ -672,7 +746,7 @@ img { display: block; max-width: 100%; }
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">DEEDS Framework</div>
-      <h1>Rigorous learning <em>through real-world impact</em></h1>
+      <h1>Learning that <em>matters.</em></h1>
       <p>DEEDS is a project-based learning framework that organizes student work around real community challenges, disciplinary inquiry, and meaningful action. Select a phase to begin.</p>
     </div>
 
@@ -717,12 +791,45 @@ img { display: block; max-width: 100%; }
   <div class="container">
     <nav class="quick-jump" aria-label="Jump to section">
       <span class="quick-jump-label" aria-hidden="true">Jump to</span>
-      <a class="quick-link" href="#relevant-challenge">Identifying a Challenge</a>
-      <a class="quick-link" href="#partners">Finding Partners</a>
-      <a class="quick-link" href="#challenge-question">Writing the Question</a>
+      <a class="quick-link" href="#relevant-challenge">Start with Something Real</a>
+      <a class="quick-link" href="#partners">Bring the Community In</a>
+      <a class="quick-link" href="#challenge-question">Frame the Work as a Question</a>
     </nav>
   </div>
 </div>
+
+<!-- Phase strip -->
+<section class="phase-strip" aria-label="The five DEEDS phases">
+  <div class="container">
+    <div class="phase-strip-inner">
+      <a href="discover.html" class="phase-card" style="--pc:#e69138;">
+        <div class="phase-card-num">Phase 1</div>
+        <div class="phase-card-name">Discover</div>
+        <p class="phase-card-desc">Scholars see, hear, and feel the challenge before they study it.</p>
+      </a>
+      <a href="examine.html" class="phase-card" style="--pc:#0a9b19;">
+        <div class="phase-card-num">Phase 2</div>
+        <div class="phase-card-name">Examine</div>
+        <p class="phase-card-desc">Scholars investigate root causes through disciplinary inquiry.</p>
+      </a>
+      <a href="engineer.html" class="phase-card" style="--pc:#003da6;">
+        <div class="phase-card-num">Phase 3</div>
+        <div class="phase-card-name">Engineer</div>
+        <p class="phase-card-desc">Scholars design, build, and refine a real solution.</p>
+      </a>
+      <a href="do.html" class="phase-card" style="--pc:#c49500;">
+        <div class="phase-card-num">Phase 4</div>
+        <div class="phase-card-name">Do</div>
+        <p class="phase-card-desc">Scholars put the solution into action and measure impact.</p>
+      </a>
+      <a href="share.html" class="phase-card" style="--pc:#ab0a3d;">
+        <div class="phase-card-num">Phase 5</div>
+        <div class="phase-card-name">Share</div>
+        <p class="phase-card-desc">Scholars make their learning visible to a real audience.</p>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- Section 1: Relevant Challenge -->
 <section class="section" id="relevant-challenge">
@@ -730,10 +837,10 @@ img { display: block; max-width: 100%; }
     <div class="section-card">
       <div class="section-grid">
         <div class="section-panel">
-          <div class="eyebrow">Challenge Design</div>
-          <h2>Identify a relevant challenge</h2>
+          <div class="eyebrow">The Challenge</div>
+          <h2>Start with something real</h2>
           <p class="section-lead">
-            A strong DEEDS project starts with a challenge that is real, relevant, and actionable, but it also needs to hold the learning teachers are responsible for. Sometimes that means beginning with the standards or core content and looking for a challenge that gives that learning purpose.
+            A strong DEEDS unit is anchored in a challenge that exists in the world, not just in school. It should be real enough to matter, local enough for scholars to care, and substantial enough to require the learning teachers are responsible for.
           </p>
           <div class="challenge-framework">
 
@@ -759,8 +866,8 @@ img { display: block; max-width: 100%; }
                 </svg>
               </div>
               <div>
-                <strong>Choose something close enough for students to care about.</strong>
-                <span>The challenge should connect to students' lives, communities, futures, or sense of responsibility.</span>
+                <strong>Choose something close enough for scholars to care about.</strong>
+                <span>The challenge should connect to scholars' lives, communities, futures, or sense of responsibility.</span>
               </div>
             </div>
 
@@ -772,8 +879,8 @@ img { display: block; max-width: 100%; }
                 </svg>
               </div>
               <div>
-                <strong>Make sure the challenge requires students to learn what the standards demand.</strong>
-                <span>Students should need to build disciplinary knowledge, use important concepts, and apply core skills in order to respond well.</span>
+                <strong>Make sure the challenge requires scholars to learn what the standards demand.</strong>
+                <span>Scholars should need to build disciplinary knowledge, use important concepts, and apply core skills in order to respond well.</span>
               </div>
             </div>
 
@@ -796,20 +903,20 @@ img { display: block; max-width: 100%; }
 
         <div class="section-panel visual">
           <div class="starting-points">
-            <h3>Teachers can start in more than one place</h3>
-            <p>In practice, challenge design often moves in both directions. A teacher may begin with standards and content that must be taught, or begin with a real community issue and then map the learning students will need.</p>
+            <h3>There's no single entry point</h3>
+            <p>In practice, challenge design moves in both directions. Begin with standards and find the right challenge, or begin with a real community issue and map what scholars will need to learn. Both work.</p>
             <div class="starting-points-grid">
               <div class="starting-point">
                 <strong>Start with the standards or content.</strong>
-                <span>Identify the core ideas, skills, and disciplinary practices students need to learn, then look for a real challenge that makes that learning necessary.</span>
+                <span>Identify the core ideas, skills, and disciplinary practices scholars need to learn, then look for a real challenge that makes that learning necessary.</span>
               </div>
               <div class="starting-point">
                 <strong>Start with the challenge.</strong>
-                <span>Identify a real issue students care about, then determine what standards-aligned learning students will need in order to understand it and respond credibly.</span>
+                <span>Identify a real issue scholars care about, then determine what standards-aligned learning scholars will need in order to understand it and respond credibly.</span>
               </div>
               <div class="starting-point">
                 <strong>Move back and forth until the fit is strong.</strong>
-                <span>The best DEEDS challenges sit at the intersection of real need, student relevance, rigorous content, and meaningful action.</span>
+                <span>The best DEEDS challenges sit at the intersection of real need, scholar relevance, rigorous content, and meaningful action.</span>
               </div>
             </div>
           </div>
@@ -825,35 +932,35 @@ img { display: block; max-width: 100%; }
     <div class="section-card">
       <div class="section-grid">
         <div class="section-panel">
-          <div class="eyebrow">Partnership</div>
-          <h2>Work with real partners</h2>
+          <div class="eyebrow">Community</div>
+          <h2>Bring the community in</h2>
           <p class="section-lead">
-            Partners might include people experiencing the challenge, organizations already working on the issue, or professionals with relevant expertise. Strong partners make the work more accurate, more grounded, and more accountable to the real world.
+            Real partners — people living with the challenge, organizations already working on it, professionals with relevant expertise — make the work more accurate, more grounded, and more accountable. They also signal to scholars that what they're doing matters beyond the classroom.
           </p>
         </div>
 
         <div class="section-panel visual">
           <div class="partner-cards">
             <div class="partner-intro-note">
-              These are examples of the kinds of partners you might seek out as you shape the work.
+              Examples of the kinds of partners worth seeking out as you shape the work.
             </div>
             <div class="partner-card">
               <span class="tag">Partner type</span>
               <h3>Client experiencing the challenge</h3>
-              <p>People living with the problem can help students understand what the challenge feels like, what is at stake, and what would actually be useful.</p>
-              <div class="partner-question">What does this person need students to understand before they try to help?</div>
+              <p>People living with the problem can help scholars understand what the challenge feels like, what is at stake, and what would actually be useful.</p>
+              <div class="partner-question"><span class="partner-question-label">Ask yourself</span>What does this person need scholars to understand before they try to help?</div>
             </div>
             <div class="partner-card">
               <span class="tag">Partner type</span>
               <h3>Organization already working on the issue</h3>
-              <p>Community groups, nonprofits, agencies, or local institutions can help students understand what is already being tried, what constraints exist, and where there may be room to contribute.</p>
-              <div class="partner-question">What can this organization help students see about the real conditions, gaps, or opportunities?</div>
+              <p>Community groups, nonprofits, agencies, or local institutions can help scholars understand what is already being tried, what constraints exist, and where there may be room to contribute.</p>
+              <div class="partner-question"><span class="partner-question-label">Ask yourself</span>What can this organization help scholars see about the real conditions, gaps, or opportunities?</div>
             </div>
             <div class="partner-card">
               <span class="tag">Partner type</span>
               <h3>Professional or expert perspective</h3>
-              <p>Professionals bring disciplinary knowledge, criteria, tools, and feedback that help students do more credible work and understand how this kind of problem is approached beyond school.</p>
-              <div class="partner-question">What expertise, standards, or feedback can this person offer that will strengthen the work?</div>
+              <p>Professionals bring disciplinary knowledge, criteria, tools, and feedback that help scholars do more credible work and understand how this kind of problem is approached beyond school.</p>
+              <div class="partner-question"><span class="partner-question-label">Ask yourself</span>What expertise, standards, or feedback can this person offer that will strengthen the work?</div>
             </div>
           </div>
         </div>
@@ -869,11 +976,11 @@ img { display: block; max-width: 100%; }
       <div class="challenge-question-grid">
         <div class="challenge-question-left">
           <div class="eyebrow">Challenge Question</div>
-          <h2>Write a strong challenge question</h2>
-          <p>A DEEDS challenge question should name a real challenge, point toward action, and keep the people served visible throughout the learning.</p>
-          <p>In some projects, the teacher begins with a draft question. In others, the question is refined or co-crafted with students as they learn more during Discover. Both can be part of strong design.</p>
+          <h2>Frame the work as a question</h2>
+          <p>The challenge question isn't just the starting point — it's the throughline. It names the real challenge, keeps the people served visible, and gives the work direction at every phase.</p>
+          <p>In some projects, the teacher begins with a draft question. In others, it's refined or co-crafted with scholars during Discover. Both approaches can work.</p>
           <div class="challenge-question-note">
-            <strong>Design move:</strong> Start with a question sturdy enough to launch the work, then refine it as students deepen their understanding of the challenge, the context, and the people affected.
+            <strong>Design move:</strong> Start with a question sturdy enough to launch the work, then refine it as scholars deepen their understanding of the challenge, the context, and the people affected.
           </div>
         </div>
 
@@ -890,7 +997,7 @@ img { display: block; max-width: 100%; }
             </div>
             <div class="mini">
               <strong>Keep it open</strong>
-              <span>Students should need to learn, analyze, and investigate before they can respond well.</span>
+              <span>Scholars should need to learn, analyze, and investigate before they can respond well.</span>
             </div>
             <div class="mini">
               <strong>Point toward action</strong>
@@ -915,7 +1022,7 @@ img { display: block; max-width: 100%; }
     <div class="footer-inner">
       <div class="footer-brand-block">
         <p class="footer-wordmark">DEEDS</p>
-        <p>A project-based learning framework guiding students through cycles of discovery, inquiry, design, action, and public sharing — anchored in real community challenges.</p>
+        <p>A K-12 learning model that creates opportunities for young people to claim their power and transform the world.</p>
       </div>
       <nav class="footer-nav-group" aria-label="Phase pages">
         <h4>Phases</h4>
