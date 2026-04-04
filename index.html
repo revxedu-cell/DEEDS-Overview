@@ -305,42 +305,76 @@ img { display: block; max-width: 100%; }
   outline-offset: 2px;
 }
 
-/* ── Quick jump ── */
-.quick-jump-wrap { padding: 10px 0 12px; }
-.quick-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
+/* ── Framework intro ── */
+.framework-intro {
+  padding: 32px 0 0;
 }
-.quick-jump-label {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-right: 2px;
-}
-.quick-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.72);
+.framework-intro-inner {
+  max-width: 600px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg,
+    rgba(230, 145, 56, 0.10) 0%,
+    rgba(10, 155, 25, 0.07) 25%,
+    rgba(0, 61, 166, 0.07) 50%,
+    rgba(255, 182, 0, 0.07) 75%,
+    rgba(171, 10, 61, 0.08) 100%
+  );
   border: 1px solid var(--line);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink-soft);
-  transition: .2s ease;
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  position: relative;
+  overflow: hidden;
 }
-.quick-link:hover {
-  background: white;
+.framework-intro-inner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--discover) 0%,
+    var(--examine) 25%,
+    var(--engineer) 50%,
+    var(--do) 75%,
+    var(--share) 100%
+  );
+}
+.framework-intro-inner h2 {
+  font-size: clamp(26px, 3.4vw, 36px);
+  line-height: 1.05;
   color: var(--ink);
-  border-color: var(--line-strong);
+  margin-bottom: 10px;
 }
+.framework-intro-inner p {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+.framework-intro-inner { max-width: 760px; }
 
-/* ── Sections ── */
-.section { padding: 24px 0 0; }
+/* ── Section card color accents ── */
+.section-card[class*="accent-"],
+.challenge-question-shell[class*="accent-"] {
+  border-top-width: 3px;
+}
+.accent-discover { border-top-color: var(--discover); }
+.accent-examine  { border-top-color: var(--examine); }
+.accent-engineer { border-top-color: var(--engineer); }
+
+.accent-discover .eyebrow { color: var(--discover); }
+.accent-examine  .eyebrow { color: var(--examine); }
+.accent-engineer .eyebrow { color: var(--engineer); }
+
+
+.section { padding: 20px 0 0; }
+.section-preamble {
+  margin-bottom: 20px;
+}
+.section-preamble-text {
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin-top: 8px;
+}
 .section-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -522,7 +556,7 @@ img { display: block; max-width: 100%; }
 
 
 /* ── Phase strip ── */
-.phase-strip { padding: 28px 0 0; }
+.phase-strip { padding: 12px 0 0; }
 .phase-strip-inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -787,57 +821,26 @@ img { display: block; max-width: 100%; }
   </div>
 </section>
 
-<div class="quick-jump-wrap">
+<!-- Framework overview -->
+<section class="framework-intro" aria-labelledby="framework-heading">
   <div class="container">
-    <nav class="quick-jump" aria-label="Jump to section">
-      <span class="quick-jump-label" aria-hidden="true">Jump to</span>
-      <a class="quick-link" href="#relevant-challenge">Start with Something Real</a>
-      <a class="quick-link" href="#partners">Bring the Community In</a>
-      <a class="quick-link" href="#challenge-question">Frame the Work as a Question</a>
-    </nav>
-  </div>
-</div>
-
-<!-- Phase strip -->
-<section class="phase-strip" aria-label="The five DEEDS phases">
-  <div class="container">
-    <div class="phase-strip-inner">
-      <a href="discover.html" class="phase-card" style="--pc:#e69138;">
-        <div class="phase-card-num">Phase 1</div>
-        <div class="phase-card-name">Discover</div>
-        <p class="phase-card-desc">Scholars see, hear, and feel the challenge before they study it.</p>
-      </a>
-      <a href="examine.html" class="phase-card" style="--pc:#0a9b19;">
-        <div class="phase-card-num">Phase 2</div>
-        <div class="phase-card-name">Examine</div>
-        <p class="phase-card-desc">Scholars investigate root causes through disciplinary inquiry.</p>
-      </a>
-      <a href="engineer.html" class="phase-card" style="--pc:#003da6;">
-        <div class="phase-card-num">Phase 3</div>
-        <div class="phase-card-name">Engineer</div>
-        <p class="phase-card-desc">Scholars design, build, and refine a real solution.</p>
-      </a>
-      <a href="do.html" class="phase-card" style="--pc:#c49500;">
-        <div class="phase-card-num">Phase 4</div>
-        <div class="phase-card-name">Do</div>
-        <p class="phase-card-desc">Scholars put the solution into action and measure impact.</p>
-      </a>
-      <a href="share.html" class="phase-card" style="--pc:#ab0a3d;">
-        <div class="phase-card-num">Phase 5</div>
-        <div class="phase-card-name">Share</div>
-        <p class="phase-card-desc">Scholars make their learning visible to a real audience.</p>
-      </a>
+    <div class="framework-intro-inner">
+      <div class="eyebrow">The Framework</div>
+      <h2 id="framework-heading">Five phases, one coherent arc</h2>
+      <p>DEEDS moves through five phases — each with specific protocols, deliverables, and teacher moves.</p>
     </div>
   </div>
 </section>
 
+
 <!-- Section 1: Relevant Challenge -->
-<section class="section" id="relevant-challenge">
+<section class="section" id="relevant-challenge" style="padding-top:40px;">
   <div class="container">
-    <div class="section-card">
-      <div class="section-grid">
-        <div class="section-panel">
-          <div class="eyebrow">The Challenge</div>
+    <div class="section-preamble">
+      <div class="eyebrow">Designing the Unit</div>
+      <p class="section-preamble-text">Before you begin the five phases, there are a few foundational design decisions to work through. The following guidance supports that process.</p>
+    </div><!-- /.section-preamble -->
+    <div class="section-card accent-discover">
           <h2>Start with something real</h2>
           <p class="section-lead">
             A strong DEEDS unit is anchored in a challenge that exists in the world, not just in school. It should be real enough to matter, local enough for scholars to care, and substantial enough to require the learning teachers are responsible for.
@@ -929,10 +932,7 @@ img { display: block; max-width: 100%; }
 <!-- Section 2: Partners -->
 <section class="section" id="partners">
   <div class="container">
-    <div class="section-card">
-      <div class="section-grid">
-        <div class="section-panel">
-          <div class="eyebrow">Community</div>
+    <div class="section-card accent-examine">
           <h2>Bring the community in</h2>
           <p class="section-lead">
             Real partners — people living with the challenge, organizations already working on it, professionals with relevant expertise — make the work more accurate, more grounded, and more accountable. They also signal to scholars that what they're doing matters beyond the classroom.
@@ -972,7 +972,7 @@ img { display: block; max-width: 100%; }
 <!-- Section 3: Challenge Question -->
 <section class="section" id="challenge-question" style="padding-bottom: 44px;">
   <div class="container">
-    <div class="challenge-question-shell">
+    <div class="challenge-question-shell accent-engineer">
       <div class="challenge-question-grid">
         <div class="challenge-question-left">
           <div class="eyebrow">Challenge Question</div>
