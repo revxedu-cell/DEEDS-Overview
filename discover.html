@@ -278,6 +278,19 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .site-nav-inner { padding: 0 16px; }
   .site-nav-link { padding: 6px 10px; font-size: 12px; }
 }
+
+/* ── CORE PROTOCOLS ── */
+.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;margin-top:4px}
+.proto-card{background:var(--W);border:1px solid rgba(61,30,0,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,transform .15s}
+.proto-card:hover{box-shadow:0 4px 20px rgba(61,30,0,.1);transform:translateY(-2px)}
+.proto-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.proto-badge-r{background:var(--l);color:var(--w);border:1px solid rgba(61,30,0,.1)}
+.proto-badge-f{background:var(--l);color:var(--f);border:1px solid rgba(61,30,0,.12)}
+.proto-name{font-size:15px;font-weight:700;color:var(--b);margin:0}
+.proto-when{font-size:12px;color:var(--w);line-height:1.5;flex:1;margin:0}
+.proto-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--f);text-decoration:none;padding:7px 14px;border:1.5px solid rgba(61,30,0,.15);border-radius:8px;background:var(--l);transition:all .2s;align-self:flex-start;margin-top:2px}
+.proto-link:hover{background:var(--f);color:#fff;border-color:var(--f)}
+.proto-link-ph{color:var(--w);border-color:rgba(61,30,0,.1);pointer-events:none;opacity:.55}
 </style>
 </head>
 <body>
@@ -312,12 +325,43 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 </header>
 
 <nav class="nav" aria-label="Page sections"><div class="nav-in">
-  <button class="nb on" data-t="success">Success Criteria</button>
-  <button class="nb" data-t="how">See How It Works</button>
+  <button class="nb on" data-t="how">See How It Works</button>
+  <button class="nb" data-t="success">Success Criteria</button>
+  <button class="nb" data-t="protocols">Core Protocols</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
 
 <main id="main-content">
+
+<section id="how">
+  <div class="sl">Overview</div>
+  <div class="st dm">See How It Works</div>
+  <p class="sd">Discover mirrors how people encounter, understand, and begin to care about real-world challenges, both in school and in the wider world.</p>
+  <div class="flow">
+    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFECD2,#FCB69F)">🌍</div><h4>Experience the Challenge</h4><p>Meet the challenge through a provocation or real-world experience.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D)">🗣️</div><h4>Understand Perspectives</h4><p>Hear from people affected and explore different viewpoints.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFF3B0,#FFD166)">🔎</div><h4>Explore Evidence</h4><p>Investigate data, examples, and patterns related to the challenge.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFD54F,#FF8A65)">🧩</div><h4>Make Meaning</h4><p>Reflect on what you've learned and why it matters to you or your community.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FF8A65,var(--f))">📢</div><h4>Explain Why It Matters</h4><p>Make an evidence-based claim about the significance of the challenge.</p></div>
+  </div>
+  <div class="two">
+    <div class="crd">
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
+      <p>You're not teaching content — you're curating wonder. Design moments that make scholars lean in and say, <strong>"Wait, why is this happening?"</strong></p>
+      <p style="margin-top:8px">Think documentary filmmaker: make the challenge <em>impossible to ignore</em>.</p>
+    </div>
+    <div class="wcrd">
+      <h4>What Scholars Do</h4>
+      <div class="sr"><span aria-hidden="true">👁️</span><div><strong>See</strong><p>Images, videos, data</p></div></div>
+      <div class="sr"><span aria-hidden="true">👂</span><div><strong>Hear</strong><p>Stories, testimonials</p></div></div>
+      <div class="sr"><span aria-hidden="true">🤲</span><div><strong>Feel</strong><p>Simulations, role-play, walks</p></div></div>
+      <div class="sr"><span aria-hidden="true">💬</span><div><strong>Respond</strong><p>Reflect, question, connect</p></div></div>
+    </div>
+  </div></section>
 
 <section id="success" class="full">
   <div class="inn">
@@ -375,45 +419,47 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<section id="how">
-  <div class="sl">Overview</div>
-  <div class="st dm">See How It Works</div>
-  <p class="sd">Discover mirrors how people encounter, understand, and begin to care about real-world challenges, both in school and in the wider world.</p>
-  <div class="flow">
-    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFECD2,#FCB69F)">🌍</div><h4>Experience the Challenge</h4><p>Meet the challenge through a provocation or real-world experience.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D)">🗣️</div><h4>Understand Perspectives</h4><p>Hear from people affected and explore different viewpoints.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFF3B0,#FFD166)">🔎</div><h4>Explore Evidence</h4><p>Investigate data, examples, and patterns related to the challenge.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FFD54F,#FF8A65)">🧩</div><h4>Make Meaning</h4><p>Reflect on what you've learned and why it matters to you or your community.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" aria-hidden="true" style="background:linear-gradient(135deg,#FF8A65,var(--f))">📢</div><h4>Explain Why It Matters</h4><p>Make an evidence-based claim about the significance of the challenge.</p></div>
-  </div>
-  <div class="two">
-    <div class="crd">
-      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
-      <p>You're not teaching content — you're curating wonder. Design moments that make scholars lean in and say, <strong>"Wait, why is this happening?"</strong></p>
-      <p style="margin-top:8px">Think documentary filmmaker: make the challenge <em>impossible to ignore</em>.</p>
+<section id="protocols">
+  <div class="sl">Tools for Teaching</div>
+  <div class="st dm">Core Protocols</div>
+  <p class="sd">Key instructional routines that guide student thinking during this phase.</p>
+  <div class="proto-grid">
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-r">Daily Routine</span>
+      <p class="proto-name">Notice & Wonder</p>
+      <p class="proto-when">Opens every session, before the Focus Task</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
     </div>
-    <div class="wcrd">
-      <h4>What Scholars Do</h4>
-      <div class="sr"><span aria-hidden="true">👁️</span><div><strong>See</strong><p>Images, videos, data</p></div></div>
-      <div class="sr"><span aria-hidden="true">👂</span><div><strong>Hear</strong><p>Stories, testimonials</p></div></div>
-      <div class="sr"><span aria-hidden="true">🤲</span><div><strong>Feel</strong><p>Simulations, role-play, walks</p></div></div>
-      <div class="sr"><span aria-hidden="true">💬</span><div><strong>Respond</strong><p>Reflect, question, connect</p></div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Think, Feel, Act</p>
+      <p class="proto-when">After the Immersive Experience</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
     </div>
-  </div>
-  <div class="partners-card">
-    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
-    <p>During the Discover phase, community partners help students understand the real-world challenge from multiple perspectives. Partners may engage in several ways:</p>
-    <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👥</span><div class="pl-text"><strong>Clients or community members experiencing the challenge firsthand</strong>helping students understand the human impact of the issue.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Organizations already working on the challenge</strong>sharing what actions are being taken and where needs still exist.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🔬</span><div class="pl-text"><strong>Professionals or experts</strong>offering technical knowledge or industry perspectives that deepen students' understanding.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">📍</span><div class="pl-text"><strong>Field sites or community locations</strong>where students can visit, observe the challenge in context, and ask questions directly.</div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Bridging Perspectives</p>
+      <p class="proto-when">During the Perspectives focus</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
     </div>
-    <p class="partners-footer">Together, these experiences help students ground the challenge in real life and begin identifying the questions they need to investigate next.</p>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Data Dive</p>
+      <p class="proto-when">During the Evidence focus</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
+    </div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-r">Daily Routine</span>
+      <p class="proto-name">Uncovering the Challenge</p>
+      <p class="proto-when">Closes every session, after the Focus Task</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
+    </div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Connect, Care, Contribute</p>
+      <p class="proto-when">Final session, closing the phase</p>
+      <a href="discover-protocols.html" class="proto-link" target="_blank">View Slides →</a>
+    </div>
   </div>
 </section>
 

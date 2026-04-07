@@ -277,6 +277,19 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .site-nav-inner { padding: 0 16px; }
   .site-nav-link { padding: 6px 10px; font-size: 12px; }
 }
+
+/* ── CORE PROTOCOLS ── */
+.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;margin-top:4px}
+.proto-card{background:var(--W);border:1px solid rgba(61,30,0,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,transform .15s}
+.proto-card:hover{box-shadow:0 4px 20px rgba(61,30,0,.1);transform:translateY(-2px)}
+.proto-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.proto-badge-r{background:var(--l);color:var(--w);border:1px solid rgba(61,30,0,.1)}
+.proto-badge-f{background:var(--l);color:var(--f);border:1px solid rgba(61,30,0,.12)}
+.proto-name{font-size:15px;font-weight:700;color:var(--b);margin:0}
+.proto-when{font-size:12px;color:var(--w);line-height:1.5;flex:1;margin:0}
+.proto-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--f);text-decoration:none;padding:7px 14px;border:1.5px solid rgba(61,30,0,.15);border-radius:8px;background:var(--l);transition:all .2s;align-self:flex-start;margin-top:2px}
+.proto-link:hover{background:var(--f);color:#fff;border-color:var(--f)}
+.proto-link-ph{color:var(--w);border-color:rgba(61,30,0,.1);pointer-events:none;opacity:.55}
 </style>
 </head>
 <body>
@@ -311,14 +324,46 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 </header>
 
 <nav class="nav" aria-label="Page sections"><div class="nav-in">
-  <button class="nb on" data-t="success">Success Criteria</button>
-  <button class="nb" data-t="how">See How It Works</button>
+  <button class="nb on" data-t="how">See How It Works</button>
+  <button class="nb" data-t="success">Success Criteria</button>
+  <button class="nb" data-t="protocols">Core Protocols</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
 
 <main id="main-content">
 
 <!-- SUCCESS CRITERIA -->
+<section id="how">
+  <div class="sl">Overview</div>
+  <div class="st dm">See How It Works</div>
+  <p class="sd">Do mirrors the scientific and professional process of real-world testing: plan carefully, implement with fidelity, gather evidence, analyze what happened, and decide what should change.</p>
+  <div class="flow">
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fff8e0,#ffe8a0)" aria-hidden="true" aria-hidden="true">📋</div><h4>Plan Your Implementation</h4><p>Define how and where the solution will be enacted and how evidence will be collected.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffe8a0,#ffd060)" aria-hidden="true" aria-hidden="true">🚀</div><h4>Enact the Solution</h4><p>Put the solution into action with real users, systems, or environments.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffd060,#ffb600)" aria-hidden="true" aria-hidden="true" aria-hidden="true">📊</div><h4>Document Evidence</h4><p>Collect data, observations, and user feedback using the planned methods.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffb600,#e09b00)" aria-hidden="true">🔍</div><h4>Analyze Impact</h4><p>Examine what the evidence shows about effectiveness and real-world results.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--f))" aria-hidden="true" aria-hidden="true">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
+  </div>
+  <div class="two">
+    <div class="crd">
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
+      <p>Imperfect results are expected — and that's the point. <strong>Design a safe-to-fail environment</strong> where students can put their ideas to the test and use evidence to honestly evaluate what actually happened.</p>
+      <p style="margin-top:8px">The goal isn't a flawless outcome. It's building the habit of learning from evidence — which is what real changemakers do.</p>
+    </div>
+    <div class="wcrd">
+      <h4>What Scholars Do</h4>
+      <div class="sr"><span aria-hidden="true">🚀</span><div><strong>Implement</strong><p>Enact the solution in a real or realistic context</p></div></div>
+      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Document</strong><p>Record observations, measurements, and feedback</p></div></div>
+      <div class="sr"><span aria-hidden="true">📊</span><div><strong>Analyze</strong><p>Identify patterns, results, and unexpected outcomes</p></div></div>
+      <div class="sr"><span aria-hidden="true">⚖️</span><div><strong>Evaluate</strong><p>Weigh effectiveness, limitations, and next steps</p></div></div>
+    </div>
+  </div></section>
+
+<!-- HOW IT WORKS -->
 <section id="success" class="full">
   <div class="inn">
     <div class="sl">By the End</div>
@@ -377,50 +422,33 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="sl">Overview</div>
-  <div class="st dm">See How It Works</div>
-  <p class="sd">Do mirrors the scientific and professional process of real-world testing: plan carefully, implement with fidelity, gather evidence, analyze what happened, and decide what should change.</p>
-  <div class="flow">
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fff8e0,#ffe8a0)" aria-hidden="true" aria-hidden="true">📋</div><h4>Plan Your Implementation</h4><p>Define how and where the solution will be enacted and how evidence will be collected.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffe8a0,#ffd060)" aria-hidden="true" aria-hidden="true">🚀</div><h4>Enact the Solution</h4><p>Put the solution into action with real users, systems, or environments.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffd060,#ffb600)" aria-hidden="true" aria-hidden="true" aria-hidden="true">📊</div><h4>Document Evidence</h4><p>Collect data, observations, and user feedback using the planned methods.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffb600,#e09b00)" aria-hidden="true">🔍</div><h4>Analyze Impact</h4><p>Examine what the evidence shows about effectiveness and real-world results.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--f))" aria-hidden="true" aria-hidden="true">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
-  </div>
-  <div class="two">
-    <div class="crd">
-      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
-      <p>Imperfect results are expected — and that's the point. <strong>Design a safe-to-fail environment</strong> where students can put their ideas to the test and use evidence to honestly evaluate what actually happened.</p>
-      <p style="margin-top:8px">The goal isn't a flawless outcome. It's building the habit of learning from evidence — which is what real changemakers do.</p>
+<!-- EXPLORE EXAMPLES -->
+<section id="protocols">
+  <div class="sl">Tools for Teaching</div>
+  <div class="st dm">Core Protocols</div>
+  <p class="sd">Key instructional routines that guide student thinking during this phase.</p>
+  <div class="proto-grid">
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Implementation Plan</p>
+      <p class="proto-when">Before enacting the solution</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-    <div class="wcrd">
-      <h4>What Scholars Do</h4>
-      <div class="sr"><span aria-hidden="true">🚀</span><div><strong>Implement</strong><p>Enact the solution in a real or realistic context</p></div></div>
-      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Document</strong><p>Record observations, measurements, and feedback</p></div></div>
-      <div class="sr"><span aria-hidden="true">📊</span><div><strong>Analyze</strong><p>Identify patterns, results, and unexpected outcomes</p></div></div>
-      <div class="sr"><span aria-hidden="true">⚖️</span><div><strong>Evaluate</strong><p>Weigh effectiveness, limitations, and next steps</p></div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Evidence Capture</p>
+      <p class="proto-when">During solution enactment</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-  </div>
-  <div class="partners-card">
-    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
-    <p>During Do, community partners are the real-world recipients and evaluators of the solution. Their engagement makes the implementation authentic and the evidence meaningful. Partners may engage in several ways:</p>
-    <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👥</span><div class="pl-text"><strong>Real users of the solution</strong>who interact with what students built and provide honest feedback on whether it actually helps.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who host or facilitate the implementation, giving students access to a real context and real conditions.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">📊</span><div class="pl-text"><strong>Data collaborators</strong>who help students understand what evidence to collect, how to collect it honestly, and what it actually means.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🔬</span><div class="pl-text"><strong>Practitioners or advisors</strong>who help students interpret unexpected outcomes and connect their findings to real-world standards of effectiveness.</div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Analyze & Improve</p>
+      <p class="proto-when">After enactment, using collected evidence</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-    <p class="partners-footer">Authentic partner feedback during Do is what separates evidence-based evaluation from guessing. It pushes students to engage honestly with results rather than just describing what they hoped would happen.</p>
   </div>
 </section>
 
-<!-- EXPLORE EXAMPLES -->
 <section id="try" class="full">
   <div class="inn">
     <div class="sl">In Practice</div>

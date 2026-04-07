@@ -277,6 +277,19 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   .site-nav-inner { padding: 0 16px; }
   .site-nav-link { padding: 6px 10px; font-size: 12px; }
 }
+
+/* ── CORE PROTOCOLS ── */
+.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;margin-top:4px}
+.proto-card{background:var(--W);border:1px solid rgba(61,30,0,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,transform .15s}
+.proto-card:hover{box-shadow:0 4px 20px rgba(61,30,0,.1);transform:translateY(-2px)}
+.proto-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.proto-badge-r{background:var(--l);color:var(--w);border:1px solid rgba(61,30,0,.1)}
+.proto-badge-f{background:var(--l);color:var(--f);border:1px solid rgba(61,30,0,.12)}
+.proto-name{font-size:15px;font-weight:700;color:var(--b);margin:0}
+.proto-when{font-size:12px;color:var(--w);line-height:1.5;flex:1;margin:0}
+.proto-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--f);text-decoration:none;padding:7px 14px;border:1.5px solid rgba(61,30,0,.15);border-radius:8px;background:var(--l);transition:all .2s;align-self:flex-start;margin-top:2px}
+.proto-link:hover{background:var(--f);color:#fff;border-color:var(--f)}
+.proto-link-ph{color:var(--w);border-color:rgba(61,30,0,.1);pointer-events:none;opacity:.55}
 </style>
 </head>
 <body>
@@ -311,14 +324,46 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 </header>
 
 <nav class="nav" aria-label="Page sections"><div class="nav-in">
-  <button class="nb on" data-t="success">Success Criteria</button>
-  <button class="nb" data-t="how">See How It Works</button>
+  <button class="nb on" data-t="how">See How It Works</button>
+  <button class="nb" data-t="success">Success Criteria</button>
+  <button class="nb" data-t="protocols">Core Protocols</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
 
 <main id="main-content">
 
 <!-- SUCCESS CRITERIA -->
+<section id="how">
+  <div class="sl">Overview</div>
+  <div class="st dm">See How It Works</div>
+  <p class="sd">Share is built toward across every phase of the project. The final phase creates the conditions for students to explain, defend, and celebrate what they've learned with a real audience.</p>
+  <div class="flow">
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fce8ee,#f5c2d0)" aria-hidden="true">⏮️</div><h4>Project Rewind</h4><p>Revisit the full arc — challenge, investigation, solution, and impact.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#f5c2d0,#e8a0b8)" aria-hidden="true">✍️</div><h4>Prepare Your Explanation</h4><p>Draft and refine what you'll say: your learning, evidence, decisions, and growth.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e8a0b8,#d870900)" aria-hidden="true" aria-hidden="true">🎯</div><h4>Rehearse &amp; Get Feedback</h4><p>Practice with peers and use TAG feedback to sharpen your explanation.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#d87090,#c21048)" aria-hidden="true" aria-hidden="true">📢</div><h4>Share with an Audience</h4><p>Present to a real audience, answer questions, and defend your thinking.</p></div>
+    <div class="fa" aria-hidden="true">→</div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c21048,var(--f))" aria-hidden="true" aria-hidden="true">🌱</div><h4>Reflect on Growth</h4><p>Name how you've grown as a thinker, collaborator, and changemaker.</p></div>
+  </div>
+  <div class="two">
+    <div class="crd">
+      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
+      <p>This is not a performance — it's a <strong>conversation.</strong> Design a Share experience where students practice explaining their thinking, not just presenting it, and engage authentically with the people their work was meant to serve.</p>
+      <p style="margin-top:8px">Visibility and accountability are built throughout the project. Share is when students experience what it means to stand behind their work.</p>
+    </div>
+    <div class="wcrd">
+      <h4>What Scholars Do</h4>
+      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Prepare</strong><p>Curate evidence and craft an explanation of learning</p></div></div>
+      <div class="sr"><span aria-hidden="true">🎯</span><div><strong>Practice</strong><p>Rehearse and revise using peer feedback</p></div></div>
+      <div class="sr"><span aria-hidden="true">📢</span><div><strong>Present</strong><p>Explain and defend their work to a real audience</p></div></div>
+      <div class="sr"><span aria-hidden="true">🌱</span><div><strong>Reflect</strong><p>Name growth in learning, collaboration, and identity</p></div></div>
+    </div>
+  </div></section>
+
+<!-- HOW IT WORKS -->
 <section id="success" class="full">
   <div class="inn">
     <div class="sl">By the End</div>
@@ -377,50 +422,39 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="sl">Overview</div>
-  <div class="st dm">See How It Works</div>
-  <p class="sd">Share is built toward across every phase of the project. The final phase creates the conditions for students to explain, defend, and celebrate what they've learned with a real audience.</p>
-  <div class="flow">
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#fce8ee,#f5c2d0)" aria-hidden="true">⏮️</div><h4>Project Rewind</h4><p>Revisit the full arc — challenge, investigation, solution, and impact.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#f5c2d0,#e8a0b8)" aria-hidden="true">✍️</div><h4>Prepare Your Explanation</h4><p>Draft and refine what you'll say: your learning, evidence, decisions, and growth.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e8a0b8,#d870900)" aria-hidden="true" aria-hidden="true">🎯</div><h4>Rehearse &amp; Get Feedback</h4><p>Practice with peers and use TAG feedback to sharpen your explanation.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#d87090,#c21048)" aria-hidden="true" aria-hidden="true">📢</div><h4>Share with an Audience</h4><p>Present to a real audience, answer questions, and defend your thinking.</p></div>
-    <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#c21048,var(--f))" aria-hidden="true" aria-hidden="true">🌱</div><h4>Reflect on Growth</h4><p>Name how you've grown as a thinker, collaborator, and changemaker.</p></div>
-  </div>
-  <div class="two">
-    <div class="crd">
-      <h3 class="dm"><span aria-hidden="true">💡</span> The Teacher Mindset</h3>
-      <p>This is not a performance — it's a <strong>conversation.</strong> Design a Share experience where students practice explaining their thinking, not just presenting it, and engage authentically with the people their work was meant to serve.</p>
-      <p style="margin-top:8px">Visibility and accountability are built throughout the project. Share is when students experience what it means to stand behind their work.</p>
+<!-- EXPLORE EXAMPLES -->
+<section id="protocols">
+  <div class="sl">Tools for Teaching</div>
+  <div class="st dm">Core Protocols</div>
+  <p class="sd">Key instructional routines that guide student thinking during this phase.</p>
+  <div class="proto-grid">
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Project Rewind</p>
+      <p class="proto-when">Opening of Share, before building explanations</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-    <div class="wcrd">
-      <h4>What Scholars Do</h4>
-      <div class="sr"><span aria-hidden="true">📋</span><div><strong>Prepare</strong><p>Curate evidence and craft an explanation of learning</p></div></div>
-      <div class="sr"><span aria-hidden="true">🎯</span><div><strong>Practice</strong><p>Rehearse and revise using peer feedback</p></div></div>
-      <div class="sr"><span aria-hidden="true">📢</span><div><strong>Present</strong><p>Explain and defend their work to a real audience</p></div></div>
-      <div class="sr"><span aria-hidden="true">🌱</span><div><strong>Reflect</strong><p>Name growth in learning, collaboration, and identity</p></div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Explanation Builder</p>
+      <p class="proto-when">Constructing the public-facing narrative</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-  </div>
-  <div class="partners-card">
-    <h3 class="dm"><span aria-hidden="true">🤝</span> Community Partners</h3>
-    <p>During Share, community partners serve as the authentic audience that makes the experience real. Their presence — and their questions — signal to students that their work has consequence beyond the classroom. Partners may engage in several ways:</p>
-    <div class="partner-list">
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">👨‍👩‍👧</span><div class="pl-text"><strong>Families and community members</strong>who witness students' growth and affirm their identity as learners and changemakers.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏢</span><div class="pl-text"><strong>Partner organizations</strong>who originally posed the challenge — receiving students' work and responding as genuine stakeholders.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🏛️</span><div class="pl-text"><strong>Policymakers, professionals, or decision-makers</strong>who engage with students' evidence-based recommendations and provide feedback that matters.</div></div>
-      <div class="pl-item"><span class="pl-icon" aria-hidden="true">🎓</span><div class="pl-text"><strong>Mentors, experts, or former students</strong>who can speak to the quality of the work and push students' thinking with real-world expertise.</div></div>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-r">Daily Routine</span>
+      <p class="proto-name">TAG Rehearsal</p>
+      <p class="proto-when">Before the public share event</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
     </div>
-    <p class="partners-footer">The right audience elevates Share from a class presentation to a genuine act of public communication — and helps students begin to see themselves as people whose thinking is worth hearing.</p>
+    <div class="proto-card">
+      <span class="proto-badge proto-badge-f">Focus Protocol</span>
+      <p class="proto-name">Growth Reflection</p>
+      <p class="proto-when">After the public share event</p>
+      <span class="proto-link proto-link-ph">Coming Soon</span>
+    </div>
   </div>
 </section>
 
-<!-- EXPLORE EXAMPLES -->
 <section id="try" class="full">
   <div class="inn">
     <div class="sl">In Practice</div>
