@@ -234,8 +234,8 @@ img { display: block; max-width: 100%; }
 }
 .phase-hotspot:hover::after,
 .phase-hotspot:focus-visible::after {
-  border-color: rgba(88, 118, 168, 0.40);
-  background: rgba(88, 118, 168, 0.06);
+  border-color: transparent;
+  background: transparent;
 }
 .phase-hotspot:hover,
 .phase-hotspot:focus-visible {
@@ -526,6 +526,11 @@ img { display: block; max-width: 100%; }
   color: var(--ink-soft);
 }
 .challenge-question-note strong { color: var(--ink); }
+.example-callout { background: rgba(88,118,168,.06); border: 1px solid rgba(88,118,168,.18); border-left: 3px solid var(--accent-blue); border-radius: 0 14px 14px 0; padding: 18px 20px; margin-top: 24px; }
+.example-callout-label { font-size: 10px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 10px; }
+.example-callout ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.example-callout ul li { font-size: 13px; color: var(--ink-soft); padding-left: 14px; position: relative; line-height: 1.5; }
+.example-callout ul li::before { content: '–'; position: absolute; left: 0; color: var(--accent-blue); }
 .challenge-question-right { background: rgba(255,255,255,.98); padding: 34px; }
 
 .formula-label {
@@ -839,7 +844,7 @@ img { display: block; max-width: 100%; }
           <div class="eyebrow">The Challenge</div>
           <h2>Start with something real</h2>
           <p class="section-lead">
-            A strong DEEDS unit is anchored in a challenge that exists in the world, not just in school. It should be real enough to matter, local enough for scholars to care, and substantial enough to require the learning teachers are responsible for.
+            A strong DEEDS unit is anchored in a challenge that exists in the world, not just in school. It should be real enough to matter, local enough for scholars to impact, and substantial enough to require the learning teachers are responsible for.
           </p>
           <div class="challenge-framework">
 
@@ -898,6 +903,15 @@ img { display: block; max-width: 100%; }
             </div>
 
           </div>
+
+          <div class="example-callout">
+            <div class="example-callout-label">Example challenges</div>
+            <ul>
+              <li>A local food pantry can't keep up with demand — and the community doesn't know it exists.</li>
+              <li>An aging community garden is underused, but families nearby don't have access to fresh produce.</li>
+              <li>A neighborhood creek floods every spring, damaging homes and green spaces.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="section-panel visual">
@@ -934,8 +948,16 @@ img { display: block; max-width: 100%; }
           <div class="eyebrow">Community</div>
           <h2>Bring the community in</h2>
           <p class="section-lead">
-            Real partners — people living with the challenge, organizations already working on it, professionals with relevant expertise — make the work more accurate, more grounded, and more accountable. They also signal to scholars that what they're doing matters beyond the classroom.
+            Real partners — those closest to the challenge and those working to solve it — make the work more informed, relevant, and accountable. They also signal to scholars that what they're doing matters beyond the classroom.
           </p>
+          <div class="example-callout">
+            <div class="example-callout-label">Example partners</div>
+            <ul>
+              <li>A shelter director who can speak to what families actually need when they arrive.</li>
+              <li>A city parks department managing the green space scholars are designing around.</li>
+              <li>A civil engineer who can review a drainage proposal and give real feedback.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="section-panel visual">
@@ -980,6 +1002,14 @@ img { display: block; max-width: 100%; }
           <p>In some projects, the teacher begins with a draft question. In others, it's refined or co-crafted with scholars during Discover. Both approaches can work.</p>
           <div class="challenge-question-note">
             <strong>Design move:</strong> Start with a question sturdy enough to launch the work, then refine it as scholars deepen their understanding of the challenge, the context, and the people affected.
+          </div>
+          <div class="example-callout">
+            <div class="example-callout-label">Example challenge questions</div>
+            <ul>
+              <li>How might we help a local food pantry reach more families in our neighborhood?</li>
+              <li>How might we redesign a community garden so more families can grow their own food?</li>
+              <li>How might we reduce flooding along a local creek and protect the surrounding ecosystem?</li>
+            </ul>
           </div>
         </div>
 
