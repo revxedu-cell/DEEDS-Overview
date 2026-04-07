@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEEDS Examine — Protocol Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --phase:#0a7a14; --phase-light:#e8f7ea; --phase-mid:#bbf7d0; --phase-dark:#065f0c;
+  --amber:#F59E0B; --amber-light:#FEF3C7;
+  --text:#072b0a; --text-mid:#3d6b43; --text-soft:#6b9b72;
+  --border:#d4ead6; --bg:#f0faf1; --white:#fff;
+  --m-ind-bg:#EFF6FF; --m-ind-b:#BFDBFE; --m-ind-t:#1D4ED8;
+  --m-pair-bg:#F0FDF4; --m-pair-b:#BBF7D0; --m-pair-t:#15803D;
+  --m-sm-bg:#FAF5FF; --m-sm-b:#DDD6FE; --m-sm-t:#6D28D9;
+  --m-wh-bg:#FFF7ED; --m-wh-b:#FED7AA; --m-wh-t:#C2410C;
+  --t-bg:#072b0a; --t-s:rgba(255,255,255,.06); --t-l:rgba(255,255,255,.09);
+  --t-text:rgba(255,255,255,.88); --t-soft:rgba(255,255,255,.55);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position:sticky; top:0; z-index:50; background:white;
+  border-bottom:1px solid var(--border);
+  padding:9px 20px; display:flex; align-items:center;
+  justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.tl { display:flex; align-items:center; gap:9px; }
+.phase-pill { font-family:'Nunito',sans-serif; font-weight:900; font-size:11px; letter-spacing:.15em; color:white; background:var(--phase); padding:4px 11px; border-radius:5px; }
+.deck-label { font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.nav-area { display:flex; align-items:center; gap:9px; }
+.nav-btn { width:32px; height:32px; border-radius:7px; border:1.5px solid var(--border); background:white; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-mid); font-size:14px; transition:all .15s; }
+.nav-btn:hover:not(:disabled) { border-color:var(--phase); color:var(--phase); }
+.nav-btn:disabled { opacity:.3; cursor:not-allowed; }
+.slide-ctr { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:var(--text-mid); min-width:40px; text-align:center; }
+.ctrl-area { display:flex; align-items:center; gap:8px; }
+.tg { display:flex; background:var(--bg); border-radius:7px; padding:3px; gap:2px; }
+.tb { font-family:'Nunito',sans-serif; font-weight:700; font-size:11px; padding:4px 10px; border:none; border-radius:5px; cursor:pointer; background:transparent; color:var(--text-soft); transition:all .15s; }
+.tb.active { background:white; color:var(--phase-dark); box-shadow:0 1px 3px rgba(0,0,0,.1); }
+
+/* ── PAGE LAYOUT ── */
+.page { max-width:1080px; margin:24px auto; padding:0 20px 40px; }
+.slide { display:none; }
+.slide.active { display:block; }
+
+/* ── STUDENT CARD ── */
+.sc { background:white; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04); overflow:hidden; height:560px; display:none; flex-direction:column; }
+body.vs .sc { display:flex; }
+.sh { flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; padding:13px 24px; border-bottom:1px solid #f0f7f1; }
+.shl { display:flex; align-items:center; gap:9px; }
+.type-badge { font-family:'Nunito',sans-serif; font-weight:800; font-size:10px; letter-spacing:.1em; padding:4px 10px; border-radius:4px; text-transform:uppercase; }
+.badge-r { color:#3d6b43; background:var(--phase-light); border:1px solid var(--phase-mid); }
+.badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
+.timer { font-family:'Nunito',sans-serif; font-weight:800; font-size:13.5px; color:var(--text-mid); }
+
+/* band variants */
+.bv { display:none; flex-direction:column; flex:1; min-height:0; }
+body.bk2  .bv[data-b="k2"]  { display:flex; }
+body.b35   .bv[data-b="35"] { display:flex; }
+body.b68   .bv[data-b="68"] { display:flex; }
+body.b912  .bv[data-b="912"]{ display:flex; }
+body.b612  .bv[data-b="612"]{ display:flex; }
+
+.sb { flex:1; min-height:0; display:flex; flex-direction:column; padding:18px 24px 10px; }
+.s-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:40px; color:var(--text); line-height:1.1; margin-bottom:5px; flex-shrink:0; }
+.s-sub { font-size:19px; font-weight:600; color:var(--text-mid); margin-bottom:16px; flex-shrink:0; }
+
+/* cards row */
+.cr { flex:1; min-height:0; display:flex; align-items:stretch; }
+.cw { flex:1; display:flex; }
+.pc { flex:1; border-radius:10px; padding:12px 10px 10px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; overflow:hidden; }
+.pd { border:2px dashed var(--phase); }
+.pr { border:2px dashed #86efac; background:#f8fff9; }
+.card-arrow { flex:0 0 20px; display:flex; align-items:center; justify-content:center; color:var(--phase); font-size:16px; font-weight:900; flex-shrink:0; }
+.cm { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.mode-pill { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; letter-spacing:.05em; padding:2px 6px; border-radius:20px; white-space:nowrap; }
+.m-ind  { background:var(--m-ind-bg);  border:1px solid var(--m-ind-b);  color:var(--m-ind-t); }
+.m-pair { background:var(--m-pair-bg); border:1px solid var(--m-pair-b); color:var(--m-pair-t); }
+.m-sm   { background:var(--m-sm-bg);   border:1px solid var(--m-sm-b);   color:var(--m-sm-t); }
+.m-wh   { background:var(--m-wh-bg);   border:1px solid var(--m-wh-b);   color:var(--m-wh-t); }
+.c-time { font-family:'Nunito',sans-serif; font-weight:700; font-size:10px; color:var(--text-soft); }
+.c-icon { font-size:34px; line-height:1; flex-shrink:0; }
+.c-label { font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; color:var(--text); flex-shrink:0; }
+.c-prompt { font-size:17px; color:var(--text-mid); line-height:1.4; }
+.c-starter { font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.35; }
+/* annotation key badge */
+.annot-key { display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin-top:2px; }
+.ak { font-family:'Nunito',sans-serif; font-weight:800; font-size:9.5px; background:#f0f7f1; border:1px solid var(--phase-mid); color:var(--phase-dark); border-radius:4px; padding:2px 6px; }
+
+/* ── TEACHER CARD ── */
+.tc2 { background:var(--t-bg); border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.2); overflow:hidden; min-height:560px; display:none; flex-direction:column; }
+body.vt .tc2 { display:flex; }
+.t-hdr { flex:0 0 auto; background:var(--phase); padding:15px 24px; display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+.t-hdr-l { display:flex; flex-direction:column; gap:3px; }
+.t-ey { font-family:'Nunito',sans-serif; font-weight:700; font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.75); text-transform:uppercase; }
+.t-ttl { font-family:'Nunito',sans-serif; font-weight:900; font-size:21px; color:white; }
+.t-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; background:rgba(0,0,0,.15); border-radius:7px; padding:7px 12px; flex-shrink:0; }
+.t-ml { font-family:'Nunito',sans-serif; font-weight:700; font-size:9px; letter-spacing:.12em; color:rgba(255,255,255,.6); text-transform:uppercase; }
+.t-mv { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; color:white; }
+.t-body { flex:1; padding:14px 24px 18px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr auto auto; gap:12px; }
+.t-sec { background:var(--t-s); border-radius:9px; padding:12px 13px; overflow:hidden; }
+.t-sec-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); margin-bottom:8px; }
+.h-row { display:flex; align-items:flex-start; gap:8px; padding:6px 0; border-bottom:1px solid var(--t-l); }
+.h-row:last-of-type { border-bottom:none; padding-bottom:0; }
+.h-badge { flex-shrink:0; background:rgba(10,122,20,.25); border:1px solid rgba(10,122,20,.4); border-radius:5px; padding:3px 6px; text-align:center; min-width:42px; }
+.h-d { font-family:'Nunito',sans-serif; font-weight:900; font-size:11.5px; color:#86efac; line-height:1; }
+.h-lbl { font-family:'Nunito',sans-serif; font-weight:700; font-size:7px; color:rgba(134,239,172,.7); letter-spacing:.05em; }
+.h-name { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; color:#86efac; margin-bottom:2px; }
+.h-rat { font-size:11px; color:var(--t-soft); line-height:1.35; }
+.g-row { display:flex; align-items:flex-start; gap:7px; padding:4px 0; border-bottom:1px solid var(--t-l); }
+.g-row:last-child { border-bottom:none; padding-bottom:0; }
+.g-band { font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.08em; color:var(--phase-mid); background:rgba(10,122,20,.18); border-radius:3px; padding:2px 6px; white-space:nowrap; flex-shrink:0; margin-top:1px; }
+.g-note { font-size:11px; color:var(--t-soft); line-height:1.4; }
+.plan-note { background:rgba(255,255,255,.04); border:1px solid var(--t-l); border-radius:7px; padding:8px 11px; margin-top:8px; }
+.plan-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:3px; }
+.plan-txt { font-size:11px; color:var(--t-soft); line-height:1.4; }
+.why-box { grid-column:1/-1; border-left:3px solid var(--phase-mid); background:rgba(10,122,20,.1); border-radius:0 9px 9px 0; padding:10px 13px; }
+.why-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); margin-bottom:3px; }
+.why-t { font-size:12.5px; color:var(--t-text); line-height:1.55; }
+.std-row { grid-column:1/-1; display:flex; align-items:flex-start; gap:8px; padding-top:9px; border-top:1px solid var(--t-l); }
+.std-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); white-space:nowrap; padding-top:1px; }
+.std-v { font-size:11px; color:var(--t-soft); line-height:1.45; }
+
+@media print {
+  .topbar { display:none; }
+  .page { margin:0; padding:0; max-width:100%; }
+  .slide { display:block !important; page-break-after:always; }
+  .sc,.tc2 { display:flex !important; box-shadow:none; border-radius:0; }
+  body.vs .tc2, body.vt .sc { display:none !important; }
+}
+</style>
+</head>
+<body class="vs bk2">
+
+<div class="topbar">
+  <div class="tl">
+    <span class="phase-pill">EXAMINE</span>
+    <span class="deck-label">Protocol Slides</span>
+  </div>
+  <div class="nav-area">
+    <button class="nav-btn" id="pb" onclick="nav(-1)" disabled>&#8592;</button>
+    <span class="slide-ctr" id="ctr">1 / 5</span>
+    <button class="nav-btn" id="nb" onclick="nav(1)">&#8594;</button>
+  </div>
+  <div class="ctrl-area">
+    <div class="tg">
+      <button class="tb active" id="bvs" onclick="setView('s')">Student</button>
+      <button class="tb"        id="bvt" onclick="setView('t')">Teacher</button>
+    </div>
+    <div class="tg" id="band-btns">
+      <!-- rendered by JS based on current protocol -->
+    </div>
+  </div>
+</div>
+
+<div class="page" id="slides"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
+const MC = { individual:'m-ind', pair:'m-pair', small:'m-sm', whole:'m-wh' };
+const ML = { individual:'\u270F\uFE0F\u202FIndividual', pair:'\uD83D\uDC65\u202FPartner', small:'\u25CE\u202FSmall Group', whole:'\u25CE\u202FWhole Class' };
+
+// bands4:true means CTA — uses k2,35,68,912
+// bands4:false means 3-band — uses k2,35,612
+const P = [
+
+/* ══════════════════════════════════════════════════════════
+   1. QUESTION OF THE DAY  (routine, opener)
+   ══════════════════════════════════════════════════════════ */
+{
+  id:'qod', type:'routine', name:'Question of the Day', bands4:false,
+  timer:{ k2:'3\u20134 min', '35':'3\u20135 min', '612':'4\u20135 min' },
+  purpose:{
+    k2:'Listen to today\u2019s question. Share what you already think.',
+    '35':'Return to your inquiry question. Name what you expect to find today.',
+    '612':'Refine your inquiry question. Name your expectation — and what would surprise you.'
+  },
+  bands:{
+    k2:[
+      { mode:'whole', time:'1\u20132 min', icon:'\u2753', label:'Our Question',
+        prompt:'Teacher reads the inquiry question aloud. Listen carefully.',
+        starter:'' },
+      { mode:'whole', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'What Do We Think?',
+        prompt:'Draw or share: what do you already think about this question?',
+        starter:'I think\u2026 / I wonder\u2026' }
+    ],
+    '35':[
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDD0D', label:'Return to Your Question',
+        prompt:'Read your inquiry question. What do you expect to find out today?',
+        starter:'' },
+      { mode:'pair', time:'1\u20132 min', icon:'\uD83D\uDC65', label:'Share Your Hunch',
+        prompt:'Tell your partner what you predict — and why.',
+        starter:'I think we\u2019ll find\u2026 because\u2026' }
+    ],
+    '612':[
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDD0D', label:'Return & Refine',
+        prompt:'Read your inquiry question. Refine it if your thinking has shifted since last session.',
+        starter:'' },
+      { mode:'individual', time:'1 min', icon:'\uD83D\uDCA1', label:'Name Your Expectation',
+        prompt:'What do you expect today\u2019s investigation to reveal? What would surprise you?',
+        starter:'' },
+      { mode:'pair', time:'1 min', icon:'\uD83D\uDC65', label:'Quick Share',
+        prompt:'Exchange expectations. Flag where you disagree.',
+        starter:'' }
+    ]
+  },
+  teacher:{
+    when:'Daily, to open each session', type:'Daily Routine',
+    hattie:[
+      { d:'0.64', n:'Self-Questioning',          r:'Student-generated questions improve engagement and depth of thinking across disciplines.' },
+      { d:'0.60', n:'Metacognitive Strategies',  r:'Naming an expectation before investigating activates prior knowledge and sharpens attention during inquiry.' },
+      { d:'0.65', n:'Prior Knowledge Activation',r:'Connecting today\u2019s work to existing inquiry questions improves encoding and transfer.' }
+    ],
+    grade:{
+      k2:  'Teacher reads the inquiry question aloud and charts student ideas. Drawing accepted.',
+      '35':'Students should have written inquiry questions from a prior session to refer back to.',
+      '68':'Push students to genuinely refine — not just re-read — their question. What new information have they gained?',
+      '912':'Expect the question itself to evolve. A student who hasn\u2019t changed their question by mid-Examine may not be investigating deeply enough.'
+    },
+    planning:null,
+    why:'Examine is organized around inquiry questions, not topics. This routine ensures that daily investigation work is always tethered to a student-owned question — which is what gives Examine its coherence across sessions and sustains motivation through the phase.',
+    std:'NGSS SEP 1 \u00b7 C3 D3 \u00b7 CCSS W.7'
+  }
+},
+
+/* ══════════════════════════════════════════════════════════
+   2. COLLABORATIVE TEXT ANALYSIS  (routine, daily engine)
+   4 grade bands — CCSS ELA aligned
+   ══════════════════════════════════════════════════════════ */
+{
+  id:'cta', type:'routine', name:'Collaborative Text Analysis', bands4:true,
+  timer:{ k2:'25\u201330 min', '35':'30\u201335 min', '68':'30\u201335 min', '912':'30\u201335 min' },
+  purpose:{
+    k2:'Listen, notice, talk, and connect. What does this text help us understand?',
+    '35':'Read, annotate, and discuss. What is this text saying — and what does it mean for our challenge?',
+    '68':'Read, analyze, and evaluate. What is the argument, and how strong is the evidence?',
+    '912':'Read, analyze, and debate. What does this text add, complicate, or contradict?'
+  },
+  bands:{
+    k2:[
+      { mode:'whole',      time:'5\u20137 min', icon:'\uD83D\uDCD6', label:'Read Together',
+        prompt:'Teacher reads aloud. Listen and follow along. What\u2019s this mostly about?',
+        starter:'' },
+      { mode:'individual', time:'5\u20137 min', icon:'\u2B50', label:'Notice',
+        prompt:'Circle one word that feels important. Draw what you pictured.',
+        starter:'I noticed\u2026 / This is mostly about\u2026' },
+      { mode:'pair',       time:'5\u20137 min', icon:'\uD83D\uDC65', label:'Talk It Over',
+        prompt:'What is this mostly about? Build on your partner\u2019s ideas.',
+        starter:'' },
+      { mode:'whole',      time:'5 min',        icon:'\uD83D\uDD17', label:'Connect',
+        prompt:'How does this connect to our challenge question?',
+        starter:'' }
+    ],
+    '35':[
+      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read',
+        prompt:'Read for gist. What is this text mostly about?',
+        starter:'' },
+      { mode:'individual', time:'8\u201310 min', icon:'\u270F\uFE0F', label:'Annotate',
+        prompt:'Second read. Mark as you go.',
+        annot:['\u2B50 key idea','E evidence','\u2753 question'],
+        starter:'' },
+      { mode:'small',      time:'7\u20138 min',  icon:'\u25CE', label:'Discuss',
+        prompt:'What is the central idea? What evidence supports it? How strong is that evidence?',
+        starter:'' },
+      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
+        prompt:'What does this tell us about the challenge? Connect it to your inquiry question.',
+        starter:'This text shows\u2026 / This connects to my question because\u2026' }
+    ],
+    '68':[
+      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read & Annotate',
+        prompt:'Read and mark as you go.',
+        annot:['\u2B50 central idea','E evidence','\u2753 question','\u2B55 vocab'],
+        starter:'' },
+      { mode:'individual', time:'8\u201310 min', icon:'\uD83D\uDD0D', label:'Analyze',
+        prompt:'What is the author\u2019s argument? What is their purpose? What evidence is strongest?',
+        starter:'' },
+      { mode:'small',      time:'8\u201310 min', icon:'\u25CE', label:'Evaluate',
+        prompt:'How credible and relevant is the evidence? What perspective might the author be missing?',
+        starter:'' },
+      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
+        prompt:'Write a claim connecting this text to your root cause or solution reasoning. Cite evidence.',
+        starter:'' }
+    ],
+    '912':[
+      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read & Annotate',
+        prompt:'Read and mark: central claim, key evidence, assumptions, gaps.',
+        annot:['\u2B50 claim','E evidence','A assumption','? gap'],
+        starter:'' },
+      { mode:'individual', time:'8\u201310 min', icon:'\uD83D\uDD0D', label:'Deep Analysis',
+        prompt:'What is the argument? What evidence is strongest or weakest? What is absent from this text?',
+        starter:'' },
+      { mode:'small',      time:'8\u201310 min', icon:'\u25CE', label:'Evaluate & Debate',
+        prompt:'How does this compare to other sources? What does it add, complicate, or contradict?',
+        starter:'' },
+      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
+        prompt:'Write a precise claim with evidence. Address at least one counterargument.',
+        starter:'' }
+    ]
+  },
+  teacher:{
+    when:'Daily, as the primary investigation activity', type:'Daily Routine',
+    hattie:[
+      { d:'0.82', n:'Classroom Discussion',     r:'The Discuss/Evaluate step — when structured around evidence and argument — significantly accelerates reasoning and comprehension.' },
+      { d:'0.75', n:'Elaboration',              r:'The Apply step requires students to connect text to their inquiry question, deepening encoding and transfer.' },
+      { d:'0.60', n:'Metacognitive Strategies', r:'Annotation externalizes thinking during reading, helping students track understanding and identify gaps.' }
+    ],
+    grade:{
+      k2:  'Use short, accessible texts with images. The Read Together step should be slow and interactive. Accept drawing for the Notice step.',
+      '35':'Model annotation explicitly before students try independently. The Annotate step is the highest-leverage step for building disciplinary reading habits.',
+      '68':'The Evaluate step is where the deepest thinking happens. Push: \u201cHow do you know the evidence is credible? What would a skeptic say?\u201d',
+      '912':'The Apply step should produce writing that feeds directly into the end-of-Examine Defend Your Thinking protocol. Treat it as a running argument draft.'
+    },
+    planning:'Read → Think → Write → Discuss is the underlying cognitive sequence. The four phases of CTA follow this arc: First Read (Read) → Annotate/Analyze (Think) → Discuss/Evaluate (Discuss) → Apply (Write). This sequence ensures students process internally before speaking publicly, which reduces status dynamics and increases participation equity.',
+    why:'CTA is the daily engine of Examine. Every session, it moves students from text to thinking to discussion to application — building the disciplinary understanding, evidence use, and solution reasoning that the Examine continuum assesses. The quality of Apply writing across sessions is your best window into how students\u2019 thinking is developing.',
+    std:'CCSS RI.1, RI.2, RI.6, RI.8, RI.9 \u00b7 CCSS W.1, W.9 \u00b7 CCSS SL.1'
+  }
+},
+
+/* ══════════════════════════════════════════════════════════
+   3. EVIDENCE UPDATE  (routine, closer)
+   ══════════════════════════════════════════════════════════ */
+{
+  id:'eu', type:'routine', name:'Evidence Update', bands4:false,
+  timer:{ k2:'4\u20136 min', '35':'5\u20137 min', '612':'5\u20137 min' },
+  purpose:{
+    k2:'What did we learn today? Does it help us answer our question?',
+    '35':'Update your Evidence Log. What did today\u2019s investigation reveal?',
+    '612':'Log today\u2019s finding. Does it confirm, complicate, or shift your inquiry question?'
+  },
+  bands:{
+    k2:[
+      { mode:'whole', time:'2\u20133 min', icon:'\uD83D\uDCDA', label:'What Did We Learn?',
+        prompt:'Teacher charts: what new information did we get today?',
+        starter:'Today we learned\u2026' },
+      { mode:'whole', time:'2 min', icon:'\u2753', label:'Does It Help?',
+        prompt:'Does this help answer our question? Draw or say one thing we now know.',
+        starter:'Now I know\u2026' }
+    ],
+    '35':[
+      { mode:'individual', time:'2\u20133 min', icon:'\uD83D\uDCDA', label:'Update Your Log',
+        prompt:'What did today\u2019s investigation reveal? Add it to your Evidence Log.',
+        starter:'Today I learned\u2026 / This connects to my question because\u2026' },
+      { mode:'whole', time:'2 min', icon:'\uD83D\uDCAC', label:'Share One Insight',
+        prompt:'Share one finding that surprised or strengthened your thinking.',
+        starter:'' }
+    ],
+    '612':[
+      { mode:'individual', time:'2\u20133 min', icon:'\uD83D\uDCDA', label:'Log Entry',
+        prompt:'What did today reveal? Does it confirm, complicate, or shift your inquiry question?',
+        starter:'This confirms\u2026 / This complicates\u2026 / This shifts my thinking because\u2026' },
+      { mode:'individual', time:'1 min', icon:'\u2753', label:'New Question',
+        prompt:'What new question does today\u2019s evidence raise?',
+        starter:'' },
+      { mode:'small', time:'1\u20132 min', icon:'\u25CE', label:'Quick Synthesis',
+        prompt:'Share one finding and one new question. Where does the group align or diverge?',
+        starter:'' }
+    ]
+  },
+  teacher:{
+    when:'Daily, to close each session', type:'Daily Routine',
+    hattie:[
+      { d:'0.74', n:'Summarization',             r:'Producing a concise log entry after investigation increases encoding and long-term retention of disciplinary content.' },
+      { d:'0.60', n:'Metacognitive Strategies',  r:'The \u201cconfirm, complicate, or shift\u201d frame explicitly teaches students to monitor whether evidence is changing their thinking.' },
+      { d:'0.82', n:'Classroom Discussion',       r:'Brief end-of-session synthesis discussion consolidates learning and surfaces gaps before the next session.' }
+    ],
+    grade:{
+      k2:  'Teacher scribes the class chart. Revisit it at the start of each session to build knowledge continuity.',
+      '35':'Students should maintain a running Evidence Log across all Examine sessions. The log becomes source material for Root Cause Synthesis and Defend Your Thinking.',
+      '68':'Push students to use the confirm/complicate/shift frame precisely. \u201cIt complicates my thinking\u201d is more analytically valuable than \u201cit was interesting.\u201d',
+      '912':'The New Question step is the most important. A student who has no new questions after investigation may not be reading deeply enough.'
+    },
+    planning:'Evidence Logs should be structured as: Date | Source | What it shows | Connection to inquiry question | New question raised. This format makes Root Cause Synthesis significantly easier — students can scan their logs and pull the strongest evidence without reconstructing it from memory.',
+    why:'Examine is built on accumulating evidence across sessions. This routine ensures that evidence doesn\u2019t disappear into notebooks — it gets organized, connected to inquiry questions, and made usable. The log is the artifact of Examine learning and feeds directly into the end-of-phase Defend Your Thinking protocol.',
+    std:'CCSS W.7, W.9 \u00b7 NGSS SEP 4, SEP 8 \u00b7 C3 D3'
+  }
+},
+
+/* ══════════════════════════════════════════════════════════
+   4. ROOT CAUSE SYNTHESIS  (focus)
+   ══════════════════════════════════════════════════════════ */
+{
+  id:'rcs', type:'focus', name:'Root Cause Synthesis', bands4:false,
+  timer:{ k2:'10\u201312 min', '35':'12\u201315 min', '612':'12\u201315 min' },
+  purpose:{
+    k2:'Why is this problem happening? Which cause is biggest?',
+    '35':'List the causes. Use evidence to decide which one matters most.',
+    '612':'Map the system. Commit to the most significant root cause — and justify it with evidence.'
+  },
+  bands:{
+    k2:[
+      { mode:'whole', time:'3\u20134 min', icon:'\uD83E\uDDF1', label:'Why Is It Happening?',
+        prompt:'What causes this problem? Teacher charts all ideas students share.',
+        starter:'One reason this happens is\u2026' },
+      { mode:'pair', time:'3 min', icon:'\uD83D\uDC65', label:'Most Important',
+        prompt:'Which cause seems biggest? Tell your partner — and say why.',
+        starter:'I think the biggest cause is\u2026 because\u2026' },
+      { mode:'whole', time:'3\u20134 min', icon:'\u2705', label:'Our Best Answer',
+        prompt:'Which cause has the most evidence? Class decides together.',
+        starter:'' }
+    ],
+    '35':[
+      { mode:'individual', time:'3\u20134 min', icon:'\uD83E\uDDF1', label:'List the Causes',
+        prompt:'Why does this challenge exist? List as many causes as you can find evidence for.',
+        starter:'One cause is\u2026 / Another reason is\u2026' },
+      { mode:'small', time:'4\u20135 min', icon:'\u25CE', label:'Compare & Prioritize',
+        prompt:'Share your lists. Which cause is most significant? Which has the strongest evidence?',
+        starter:'' },
+      { mode:'whole', time:'3 min', icon:'\u2705', label:'Synthesize',
+        prompt:'Agree on the most significant root cause and the evidence that best supports it.',
+        starter:'' }
+    ],
+    '612':[
+      { mode:'individual', time:'3\u20134 min', icon:'\uD83E\uDDF1', label:'Map the System',
+        prompt:'What are the root causes, and how do they connect to each other?',
+        starter:'The root cause is\u2026 / This leads to\u2026 because\u2026' },
+      { mode:'small', time:'4\u20135 min', icon:'\u25CE', label:'Evaluate & Debate',
+        prompt:'Which cause is most significant? What evidence supports your position? Push each other.',
+        starter:'' },
+      { mode:'individual', time:'3\u20134 min', icon:'\u2705', label:'Commit & Justify',
+        prompt:'Write your claim: what is the root cause and why? What counterargument must you address?',
+        starter:'' }
+    ]
+  },
+  teacher:{
+    when:'After gathering sufficient evidence across multiple CTA sessions', type:'Focus Protocol',
+    hattie:[
+      { d:'0.82', n:'Classroom Discussion',     r:'Structured debate about which cause is most significant develops the evaluative reasoning assessed in the Examine continuum.' },
+      { d:'0.75', n:'Elaboration',              r:'Justifying a root cause claim in writing requires students to connect multiple pieces of evidence, deepening encoding.' },
+      { d:'0.61', n:'Problem-Solving Teaching', r:'Systems-level thinking \u2014 mapping how causes connect \u2014 develops the analytical capacity needed for solution reasoning.' }
+    ],
+    grade:{
+      k2:  'Use a simple cause-and-effect chart. Focus on one clear causal relationship rather than a full systems map.',
+      '35':'Students need evidence from their Evidence Logs to do this protocol well. Don\u2019t run it before they have enough accumulated evidence.',
+      '68':'The Evaluate & Debate step should feel genuinely contested. If everyone agrees on the same root cause, the investigation may not have surfaced enough competing explanations.',
+      '912':'Push students to think about proximate vs. root causes. A root cause analysis that stops at proximate causes will produce solutions that don\u2019t work at scale.'
+    },
+    planning:null,
+    why:'Root Cause Synthesis moves students from knowledge to system understanding \u2014 the essential cognitive shift before solution design. The Examine continuum assesses whether students can \u201canalyze impact, magnitude, and interacting causes\u201d and \u201cjustify which cause is most significant.\u201d This protocol is the direct instructional route to that capacity.',
+    std:'NGSS SEP 6, SEP 7 \u00b7 C3 D3, D4 \u00b7 CCSS W.1, SL.1'
+  }
+},
+
+/* ══════════════════════════════════════════════════════════
+   5. DEFEND YOUR THINKING  (focus)
+   ══════════════════════════════════════════════════════════ */
+{
+  id:'dyt', type:'focus', name:'Defend Your Thinking', bands4:false,
+  timer:{ k2:'12\u201315 min', '35':'20\u201325 min', '612':'25\u201330 min' },
+  purpose:{
+    k2:'Share your idea. Listen to a different one. Did anything change your mind?',
+    '35':'Make a claim with evidence. Listen to another side. Revise your thinking.',
+    '612':'Prepare your claim. Defend it under pressure. Then honestly revise.'
+  },
+  bands:{
+    k2:[
+      { mode:'whole', time:'3\u20134 min', icon:'\uD83D\uDCAC', label:'Share Your Idea',
+        prompt:'What do you think is the best explanation or solution? Teacher charts ideas.',
+        starter:'' },
+      { mode:'pair', time:'5\u20136 min', icon:'\uD83D\uDC65', label:'Listen to Another Side',
+        prompt:'Hear a different idea from your partner. Ask: why do they think that?',
+        starter:'' },
+      { mode:'whole', time:'3\u20134 min', icon:'\uD83D\uDD04', label:'Our Best Thinking',
+        prompt:'What did we learn from hearing different ideas? Did anyone change their mind?',
+        starter:'' }
+    ],
+    '35':[
+      { mode:'individual', time:'4\u20135 min', icon:'\uD83D\uDCDD', label:'Prepare Your Claim',
+        prompt:'What do you believe? What evidence supports it?',
+        starter:'I think\u2026 because the evidence shows\u2026' },
+      { mode:'small', time:'10\u201312 min', icon:'\u25CE', label:'Share & Respond',
+        prompt:'Each person shares. Others respond: \u201cI agree/disagree because\u2026\u201d Build on or push back.',
+        starter:'' },
+      { mode:'individual', time:'4\u20135 min', icon:'\uD83D\uDD04', label:'Revise',
+        prompt:'Did you hear anything that changed your thinking? Update your claim.',
+        starter:'I used to think\u2026 Now I think\u2026 because\u2026' }
+    ],
+    '612':[
+      { mode:'individual', time:'5 min', icon:'\uD83D\uDCDD', label:'Prepare',
+        prompt:'Write your claim, evidence, and the strongest counterargument you expect.',
+        starter:'My claim\u2026 / Evidence\u2026 / Someone might argue\u2026 / My response\u2026' },
+      { mode:'small', time:'15\u201318 min', icon:'\u25CE', label:'Defend & Challenge',
+        prompt:'Present your claim. Others push back with evidence. No one is safe from a good challenge.',
+        starter:'' },
+      { mode:'individual', time:'5 min', icon:'\uD83D\uDD04', label:'Revise',
+        prompt:'What held up under pressure? What changed? Rewrite your claim with any revisions.',
+        starter:'' }
+    ]
+  },
+  teacher:{
+    when:'Mid-Examine to evaluate competing explanations, or end of Examine to defend a solution direction', type:'Focus Protocol',
+    hattie:[
+      { d:'0.82', n:'Classroom Discussion',     r:'Structured academic discussion — especially when students must defend claims with evidence — produces the strongest learning gains of any instructional strategy.' },
+      { d:'0.70', n:'Feedback',                 r:'Peer challenge in the Defend step functions as high-quality feedback: targeted, evidence-based, and immediately usable.' },
+      { d:'0.92', n:'Self-Efficacy',            r:'Successfully defending a well-reasoned position builds the academic confidence that sustains engagement through difficult intellectual work.' }
+    ],
+    grade:{
+      k2:  'Focus on the social norm: listening before responding. At K\u20132, the goal is learning to hear a different idea and stay curious, not yet to argue a position.',
+      '35':'Model the Share & Respond step explicitly: what does \u201cI disagree because\u201d sound like when it\u2019s respectful and evidence-based?',
+      '68': 'The Prepare step is the most important \u2014 students who don\u2019t write their counterargument in advance often collapse under challenge. Hold the line on preparation.',
+      '912':'Run exploratively mid-Examine (students compare competing explanations) and as a formal defense end of Examine (students commit to a solution direction). The Revise step at end of Examine produces the first draft of Socratic Seminar thinking.'
+    },
+    planning:'Two modes of use: (1) Exploratory \u2014 mid-Examine, when students have gathered enough evidence to compare competing explanations. Run it open, without requiring a final commitment. (2) Defense \u2014 end of Examine, when students have committed to a solution direction. Run it as a stress test. The same protocol, different teacher framing.',
+    why:'The Examine continuum assesses whether students can \u201cevaluate tradeoffs and defend a solution direction using multiple criteria\u201d and \u201canticipate counterarguments and defend the most defensible solution under scrutiny.\u201d Defend Your Thinking is the only protocol that builds that capacity directly \u2014 no amount of reading and writing produces it without the experience of actual intellectual challenge.',
+    std:'CCSS SL.1, W.1 \u00b7 NGSS SEP 7 \u00b7 C3 D4'
+  }
+}
+
+]; // end P
+
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+
+function buildCard(step, isRoutine) {
+  const dc = isRoutine ? 'pr' : 'pd';
+  const mc = MC[step.mode] || 'm-wh';
+  const ml = ML[step.mode] || step.mode;
+  const starter = step.starter ? `<div class="c-starter">${step.starter}</div>` : '';
+  const annotKey = step.annot ? `<div class="annot-key">${step.annot.map(a=>`<span class="ak">${a}</span>`).join('')}</div>` : '';
+  return `<div class="cw"><div class="pc ${dc}">
+    <div class="cm"><span class="mode-pill ${mc}">${ml}</span><span class="c-time">\u23F3\u202F${step.time}</span></div>
+    <div class="c-icon">${step.icon}</div>
+    <div class="c-label">${step.label}</div>
+    <div class="c-prompt">${step.prompt}</div>
+    ${annotKey}${starter}
+  </div></div>`;
+}
+
+function buildBand(proto, band) {
+  const ir = proto.type === 'routine';
+  let cards = '';
+  proto.bands[band].forEach((s, i) => {
+    cards += buildCard(s, ir);
+    if (i < proto.bands[band].length - 1) cards += `<div class="card-arrow">\u203A</div>`;
+  });
+  return `<div class="bv" data-b="${band}">
+    <div class="sb">
+      <div class="s-title">${proto.name}</div>
+      <div class="s-sub">${proto.purpose[band]}</div>
+      <div class="cr">${cards}</div>
+    </div>
+  </div>`;
+}
+
+function buildTeacher(proto) {
+  const t = proto.teacher;
+  const hrows = t.hattie.map(h=>`<div class="h-row">
+    <div class="h-badge"><div class="h-d">d=${h.d}</div><div class="h-lbl">Hattie</div></div>
+    <div><div class="h-name">${h.n}</div><div class="h-rat">${h.r}</div></div>
+  </div>`).join('');
+  const gKeys = [
+    {k:'k2',l:'K\u20132'},{k:'35',l:'3\u20135'},
+    {k:'68',l:'6\u20138'},{k:'912',l:'9\u201312'}
+  ];
+  const grows = gKeys.map(g=>`<div class="g-row">
+    <span class="g-band">${g.l}</span>
+    <span class="g-note">${t.grade[g.k]}</span>
+  </div>`).join('');
+  const planNote = t.planning ? `<div class="plan-note">
+    <div class="plan-title">Planning Notes</div>
+    <div class="plan-txt">${t.planning}</div>
+  </div>` : '';
+  return `<div class="tc2">
+    <div class="t-hdr">
+      <div class="t-hdr-l">
+        <div class="t-ey">Teacher Background \u2014 Examine</div>
+        <div class="t-ttl">${proto.name}</div>
+      </div>
+      <div class="t-meta">
+        <div class="t-ml">When to use</div><div class="t-mv">${t.when}</div>
+        <div class="t-ml" style="margin-top:4px">Type</div><div class="t-mv">${t.type}</div>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-sec"><div class="t-sec-title">Hattie Effect Sizes</div>${hrows}</div>
+      <div class="t-sec"><div class="t-sec-title">Grade Band Guidance</div>${grows}${planNote}</div>
+      <div class="why-box"><div class="why-l">Why this, why now</div><div class="why-t">${t.why}</div></div>
+      <div class="std-row"><div class="std-l">Standards</div><div class="std-v">${t.std}</div></div>
+    </div>
+  </div>`;
+}
+
+function buildAll() {
+  let html = '';
+  P.forEach((proto, i) => {
+    const ir = proto.type === 'routine';
+    const bc = ir ? 'badge-r' : 'badge-f';
+    const bl = ir ? 'Daily Routine' : 'Focus Protocol';
+    const allBands = proto.bands4
+      ? ['k2','35','68','912']
+      : ['k2','35','612'];
+    const bvs = allBands.map(b => buildBand(proto, b)).join('');
+    html += `<div class="slide${i===0?' active':''}" data-i="${i}" data-bands4="${proto.bands4}">
+      <div class="sc">
+        <div class="sh">
+          <div class="shl">
+            <span class="phase-pill">EXAMINE</span>
+            <span class="type-badge ${bc}">${bl}</span>
+          </div>
+          <div class="timer" id="tmr${i}">\u23F1\u202F${proto.timer['k2']}</div>
+        </div>
+        ${bvs}
+      </div>
+      ${buildTeacher(proto)}
+    </div>`;
+  });
+  document.getElementById('slides').innerHTML = html;
+}
+buildAll();
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+let cur = 0;
+let curBand = 'k2';
+const TOT = P.length;
+
+function getBandLabel(b) {
+  return {k2:'K\u20132','35':'3\u20135','68':'6\u20138','912':'9\u201312','612':'6\u201312'}[b] || b;
+}
+
+function renderBandButtons(bands4) {
+  const btns = document.getElementById('band-btns');
+  if (bands4) {
+    btns.innerHTML =
+      ['k2','35','68','912'].map(b=>
+        `<button class="tb${curBand===b?' active':''}" id="bb${b}" onclick="setBand('${b}')">${getBandLabel(b)}</button>`
+      ).join('');
+  } else {
+    const threeBands = ['k2','35','612'];
+    // if curBand is 68 or 912, snap to 612
+    const activeBand = (curBand==='68'||curBand==='912') ? '612' : curBand;
+    btns.innerHTML = threeBands.map(b=>
+      `<button class="tb${activeBand===b?' active':''}" id="bb${b}" onclick="setBand('${b}')">${getBandLabel(b)}</button>`
+    ).join('');
+    if (activeBand !== curBand) { curBand = activeBand; applyBandClass(); }
+  }
+}
+
+function applyBandClass() {
+  document.body.className = document.body.className
+    .replace(/\bb(k2|35|68|912|612)\b/g,'').trim() + ' b' + curBand;
+}
+
+function nav(d) {
+  document.querySelector('.slide.active').classList.remove('active');
+  cur = Math.max(0, Math.min(TOT-1, cur+d));
+  const slide = document.querySelector(`.slide[data-i="${cur}"]`);
+  slide.classList.add('active');
+  document.getElementById('ctr').textContent = (cur+1)+' / '+TOT;
+  document.getElementById('pb').disabled = cur===0;
+  document.getElementById('nb').disabled = cur===TOT-1;
+  // update band selector for new protocol
+  const bands4 = slide.dataset.bands4 === 'true';
+  renderBandButtons(bands4);
+  // update timer
+  const el = document.getElementById('tmr'+cur);
+  if (el) el.textContent = '\u23F1\u202F' + (P[cur].timer[curBand] || P[cur].timer[Object.keys(P[cur].timer)[0]]);
+  history.replaceState(null,'','#'+P[cur].id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setView(v) {
+  document.body.classList.toggle('vs', v==='s');
+  document.body.classList.toggle('vt', v==='t');
+  document.getElementById('bvs').classList.toggle('active', v==='s');
+  document.getElementById('bvt').classList.toggle('active', v==='t');
+}
+
+function setBand(b) {
+  curBand = b;
+  applyBandClass();
+  const bands4 = document.querySelector('.slide.active').dataset.bands4 === 'true';
+  renderBandButtons(bands4);
+  const el = document.getElementById('tmr'+cur);
+  if (el) el.textContent = '\u23F1\u202F' + (P[cur].timer[b] || P[cur].timer[Object.keys(P[cur].timer)[0]]);
+}
+
+// init
+renderBandButtons(false); // first protocol is 3-band
+// hash navigation — open directly on a specific protocol
+(function() {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+  const idx = P.findIndex(p => p.id === hash);
+  if (idx <= 0) return;
+  document.querySelector('.slide.active').classList.remove('active');
+  cur = idx;
+  const slide = document.querySelector(`.slide[data-i="${cur}"]`);
+  slide.classList.add('active');
+  document.getElementById('ctr').textContent = (cur+1)+' / '+TOT;
+  document.getElementById('pb').disabled = false;
+  document.getElementById('nb').disabled = cur===TOT-1;
+  renderBandButtons(slide.dataset.bands4==='true');
+})();
+
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') nav(1);
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   nav(-1);
+  if (e.key==='s') setView('s');
+  if (e.key==='t') setView('t');
+});
+</script>
+</body>
+</html>

@@ -817,6 +817,19 @@ function buildAll() {
 }
 
 buildAll();
+// hash navigation — open directly on a specific protocol
+(function() {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+  const idx = P.findIndex(p => p.id === hash);
+  if (idx <= 0) return;
+  document.querySelector('.slide.active').classList.remove('active');
+  cur = idx;
+  document.querySelector(`.slide[data-i="${cur}"]`).classList.add('active');
+  document.getElementById('ctr').textContent = (cur+1)+' / '+TOT;
+  document.getElementById('pb').disabled = false;
+  document.getElementById('nb').disabled = cur===TOT-1;
+})();
 
 // ── NAVIGATION ──────────────────────────────────────────────────────────
 let cur = 0;
@@ -829,6 +842,7 @@ function nav(d) {
   document.getElementById('ctr').textContent = (cur + 1) + ' / ' + TOT;
   document.getElementById('pb').disabled = cur === 0;
   document.getElementById('nb').disabled = cur === TOT - 1;
+  history.replaceState(null,'','#'+P[cur].id);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
