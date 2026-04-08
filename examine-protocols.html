@@ -131,6 +131,41 @@ body.vt .tc2 { display:flex; }
   .sc,.tc2 { display:flex !important; box-shadow:none; border-radius:0; }
   body.vs .tc2, body.vt .sc { display:none !important; }
 }
+
+/* ── COVER SLIDE ── */
+.cover-slide {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  min-height:calc(100vh - 56px);
+  background:linear-gradient(145deg,#065f0c 0%,#0a7a14 50%,#16a34a 100%);
+  position:relative; overflow:hidden; text-align:center; padding:40px;
+}
+.cover-slide::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cv-badge {
+  font-weight:900; font-size:11px; letter-spacing:3px;
+  background:rgba(255,255,255,.2); color:#fff; padding:6px 18px;
+  border-radius:20px; text-transform:uppercase; margin-bottom:28px;
+  border:1px solid rgba(255,255,255,.35); position:relative;
+}
+.cv-title {
+  font-family:'Nunito',sans-serif; font-weight:900; font-size:90px;
+  color:#fff; line-height:.9; letter-spacing:-2px; position:relative;
+}
+.cv-sub {
+  font-size:22px; font-weight:700; color:rgba(255,255,255,.85);
+  margin-top:18px; letter-spacing:.5px; position:relative;
+}
+.cv-logo {
+  position:absolute; bottom:32px; right:36px;
+  display:flex; align-items:center; gap:10px;
+}
+.cv-logo-text {
+  font-size:10px; font-weight:700; color:rgba(255,255,255,.6);
+  letter-spacing:1.5px; text-transform:uppercase; text-align:right; line-height:1.4;
+}
+.cv-logo img { width:56px; height:56px; border-radius:50%; object-fit:cover; }
 </style>
 </head>
 <body class="vs bk2">
@@ -142,7 +177,7 @@ body.vt .tc2 { display:flex; }
   </div>
   <div class="nav-area">
     <button class="nav-btn" id="pb" onclick="nav(-1)" disabled>&#8592;</button>
-    <span class="slide-ctr" id="ctr">1 / 5</span>
+    <span class="slide-ctr" id="ctr">1 / 6</span>
     <button class="nav-btn" id="nb" onclick="nav(1)">&#8594;</button>
   </div>
   <div class="ctrl-area">
@@ -584,7 +619,8 @@ function buildTeacher(proto) {
 }
 
 function buildAll() {
-  let html = '';
+  const coverHTML = `<div class="slide active" data-i="-1"><div class="cover-slide"><div class="cv-badge">DEEDS Framework</div><div class="cv-title">EXAMINE</div><div class="cv-sub">Thinking Routines</div><div class="cv-logo"><div class="cv-logo-text">The Next Generation of<br><strong>CHANGE MAKERS</strong></div><img src="revx-logo.png" alt="RevX"></div></div></div>`;
+  let html = coverHTML;
   P.forEach((proto, i) => {
     const ir = proto.type === 'routine';
     const bc = ir ? 'badge-r' : 'badge-f';
@@ -645,10 +681,10 @@ function applyBandClass() {
 
 function nav(d) {
   document.querySelector('.slide.active').classList.remove('active');
-  cur = Math.max(0, Math.min(TOT-1, cur+d));
+  cur = Math.max(-1, Math.min(TOT-1, cur+d));
   const slide = document.querySelector(`.slide[data-i="${cur}"]`);
   slide.classList.add('active');
-  document.getElementById('ctr').textContent = (cur+1)+' / '+TOT;
+  document.getElementById('ctr').textContent = (cur+2)+' / '+(TOT+1);
   document.getElementById('pb').disabled = cur===0;
   document.getElementById('nb').disabled = cur===TOT-1;
   // update band selector for new protocol
@@ -657,7 +693,6 @@ function nav(d) {
   // update timer
   const el = document.getElementById('tmr'+cur);
   if (el) el.textContent = '\u23F1\u202F' + (P[cur].timer[curBand] || P[cur].timer[Object.keys(P[cur].timer)[0]]);
-  history.replaceState(null,'','#'+P[cur].id);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -684,12 +719,12 @@ renderBandButtons(false); // first protocol is 3-band
   const hash = location.hash.slice(1);
   if (!hash) return;
   const idx = P.findIndex(p => p.id === hash);
-  if (idx <= 0) return;
+  if (idx < 0) return;
   document.querySelector('.slide.active').classList.remove('active');
   cur = idx;
   const slide = document.querySelector(`.slide[data-i="${cur}"]`);
   slide.classList.add('active');
-  document.getElementById('ctr').textContent = (cur+1)+' / '+TOT;
+  document.getElementById('ctr').textContent = (cur+2)+' / '+(TOT+1);
   document.getElementById('pb').disabled = false;
   document.getElementById('nb').disabled = cur===TOT-1;
   renderBandButtons(slide.dataset.bands4==='true');
