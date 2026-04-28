@@ -292,6 +292,12 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 .proto-link-ph{color:var(--w);border-color:rgba(61,30,0,.1);pointer-events:none;opacity:.55}
 .proto-link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
 .proto-link-sm{font-size:11px;padding:5px 11px}
+
+.proto-group{margin-top:32px}
+.proto-group:first-child{margin-top:16px}
+.proto-group-label{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--f);margin-bottom:12px;padding-left:10px;border-left:3px solid var(--f)}
+.proto-badge-s{background:rgba(61,30,0,.04);color:var(--b);border:1px dashed rgba(61,30,0,.22)}
+.scaffold-note{font-size:11.5px;color:var(--w);line-height:1.6;margin:0;font-style:italic}
 </style>
 </head>
 <body>
@@ -328,7 +334,7 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 <nav class="nav" aria-label="Page sections"><div class="nav-in">
   <button class="nb on" data-t="how">See How It Works</button>
   <button class="nb" data-t="success">Success Criteria</button>
-  <button class="nb" data-t="protocols">Core Protocols</button>
+  <button class="nb" data-t="protocols">Core Practices</button>
   <button class="nb" data-t="try">Explore Examples</button>
 </div></nav>
 
@@ -427,44 +433,80 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 <!-- EXPLORE EXAMPLES -->
 <section id="protocols">
   <div class="sl">Tools for Teaching</div>
-  <div class="st dm">Core Protocols</div>
-  <p class="sd">Key instructional routines that guide student thinking during this phase.</p>
+  <div class="st dm">Core Practices</div>
+  <p class="sd">Key practices that guide student thinking during this phase.</p>
+
+  <div class="proto-group">
+    <div class="proto-group-label">Daily Routines</div>
     <div class="proto-grid">
-    <div class="proto-card">
-      <span class="proto-badge proto-badge-routine">Daily Routine</span>
-      <p class="proto-name">Question of the Day</p>
-      <p class="proto-when">Daily, to open each session</p>
-      <a href="protocols/question-of-the-day.html" class="proto-link" target="_blank">View Slides →</a>
-    </div>
-    <div class="proto-card">
-      <span class="proto-badge proto-badge-routine">Daily Routine</span>
-      <p class="proto-name">Collaborative Text Analysis</p>
-      <p class="proto-when">When reading complex texts — Reading, Science, and Social Studies</p>
-      <div class="proto-link-row">
-        <a href="protocols/collaborative-text-analysis.html" class="proto-link proto-link-sm" target="_blank">K–8 Slides →</a>
-        <a href="protocols/collaborative-text-analysis-hs.html" class="proto-link proto-link-sm" target="_blank">9–12 Slides →</a>
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-routine">Daily Routine</span>
+        <p class="proto-name">Question of the Day</p>
+        <p class="proto-when">Daily, to open each session</p>
+        <a href="protocols/question-of-the-day.html" class="proto-link" target="_blank">View Slides →</a>
+      </div>
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-routine">Daily Routine</span>
+        <p class="proto-name">Collaborative Text Analysis</p>
+        <p class="proto-when">When reading complex texts — Reading, Science, and Social Studies</p>
+        <div class="proto-link-row">
+          <a href="protocols/collaborative-text-analysis.html" class="proto-link proto-link-sm" target="_blank">K–8 Slides →</a>
+          <a href="protocols/collaborative-text-analysis-hs.html" class="proto-link proto-link-sm" target="_blank">9–12 Slides →</a>
+        </div>
+      </div>
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-routine">Daily Routine</span>
+        <p class="proto-name">Evidence Update</p>
+        <p class="proto-when">To track findings</p>
+        <a href="protocols/evidence-update.html" class="proto-link" target="_blank">View Slides →</a>
       </div>
     </div>
-    <div class="proto-card">
-      <span class="proto-badge proto-badge-routine">Daily Routine</span>
-      <p class="proto-name">Evidence Update</p>
-      <p class="proto-when">To track findings</p>
-      <a href="protocols/evidence-update.html" class="proto-link" target="_blank">View Slides →</a>
-    </div>
-    <div class="proto-card">
-      <span class="proto-badge proto-badge-focus">Focus Protocol</span>
-      <p class="proto-name">Root Cause Synthesis</p>
-      <p class="proto-when">Mid-Examine, to map causes</p>
-      <a href="protocols/root-cause-synthesis.html" class="proto-link" target="_blank">View Slides →</a>
-    </div>
-    <div class="proto-card">
-      <span class="proto-badge proto-badge-focus">Focus Protocol</span>
-      <p class="proto-name">Defend Your Thinking</p>
-      <p class="proto-when">End of Examine, to argue a solution</p>
-      <a href="protocols/defend-your-thinking.html" class="proto-link" target="_blank">View Slides →</a>
+  </div>
+
+  <div class="proto-group">
+    <div class="proto-group-label">Focus Protocols</div>
+    <div class="proto-grid">
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-focus">Focus Protocol</span>
+        <p class="proto-name">Root Cause Synthesis</p>
+        <p class="proto-when">Mid-Examine, to map causes</p>
+        <a href="protocols/root-cause-synthesis.html" class="proto-link" target="_blank">View Slides →</a>
+      </div>
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-focus">Focus Protocol</span>
+        <p class="proto-name">Defend Your Thinking</p>
+        <p class="proto-when">End of Examine, to argue a solution</p>
+        <a href="protocols/defend-your-thinking.html" class="proto-link" target="_blank">View Slides →</a>
+      </div>
     </div>
   </div>
-  </section>
+
+  <div class="proto-group">
+    <div class="proto-group-label">High Leverage Scaffolds</div>
+    <div class="proto-grid">
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-s">Scaffold</span>
+        <p class="proto-name">Evidence Log</p>
+        <p class="scaffold-note">Use throughout Examine to track sources and their significance. Scholars record each piece of evidence, what it means, and how it connects to the challenge.</p>
+        <div class="proto-link-row">
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">K–5 Template →</a>
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">6–8 Template →</a>
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">9–12 Template →</a>
+        </div>
+      </div>
+      <div class="proto-card">
+        <span class="proto-badge proto-badge-s">Scaffold</span>
+        <p class="proto-name">CER Writing Frame</p>
+        <p class="scaffold-note">Supports written responses to texts and data. Scholars make a Claim, support it with Evidence, and explain their Reasoning. Used across phases wherever extended written response is expected.</p>
+        <div class="proto-link-row">
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">K–5 Template →</a>
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">6–8 Template →</a>
+          <a href="#" class="proto-link proto-link-sm proto-link-ph">9–12 Template →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="try" class="full">
   <div class="inn">
