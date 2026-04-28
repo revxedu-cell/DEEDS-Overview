@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Collaborative Text Analysis — DEEDS Examine Protocol</title>
+<title>Collaborative Reading — DEEDS Examine Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 
@@ -27,77 +27,128 @@ body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--t
   position:sticky; top:0; z-index:50; background:white;
   border-bottom:1px solid var(--border);
   padding:9px 20px; display:flex; align-items:center;
-  justify-content:space-between; gap:12px; flex-wrap:wrap;
+  justify-content:space-between; gap:10px; flex-wrap:wrap;
 }
 .tl { display:flex; align-items:center; gap:9px; }
+.back-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:'Nunito',sans-serif; font-weight:700; font-size:12px;
+  color:var(--text-soft); text-decoration:none; padding:5px 10px 5px 6px;
+  border-radius:6px; border:1.5px solid var(--border); background:white; transition:all .15s;
+}
+.back-btn:hover { border-color:var(--phase); color:var(--phase); }
 .phase-pill { font-family:'Nunito',sans-serif; font-weight:900; font-size:11px; letter-spacing:.15em; color:white; background:var(--phase); padding:4px 11px; border-radius:5px; }
 .deck-label { font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
-.nav-area { display:flex; align-items:center; gap:9px; }
-.nav-btn { width:32px; height:32px; border-radius:7px; border:1.5px solid var(--border); background:white; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-mid); font-size:14px; transition:all .15s; }
-.nav-btn:hover:not(:disabled) { border-color:var(--phase); color:var(--phase); }
-.nav-btn:disabled { opacity:.3; cursor:not-allowed; }
-.slide-ctr { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:var(--text-mid); min-width:40px; text-align:center; }
-.ctrl-area { display:flex; align-items:center; gap:8px; }
+.ctrl-area { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .tg { display:flex; background:var(--bg); border-radius:7px; padding:3px; gap:2px; }
 .tb { font-family:'Nunito',sans-serif; font-weight:700; font-size:11px; padding:4px 10px; border:none; border-radius:5px; cursor:pointer; background:transparent; color:var(--text-soft); transition:all .15s; }
 .tb.active { background:white; color:var(--phase-dark); box-shadow:0 1px 3px rgba(0,0,0,.1); }
 
+/* subject toggle — slightly larger */
+.subj-tg { display:flex; background:var(--bg); border-radius:7px; padding:3px; gap:2px; }
+.subj-tb { font-family:'Nunito',sans-serif; font-weight:800; font-size:11px; padding:5px 11px; border:none; border-radius:5px; cursor:pointer; background:transparent; color:var(--text-soft); transition:all .15s; white-space:nowrap; }
+.subj-tb.active { background:var(--phase); color:white; box-shadow:0 1px 4px rgba(10,122,20,.35); }
+
+/* phase nav — only shown in CR mode */
+.phase-nav { display:none; align-items:center; gap:6px; }
+body.subj-cr .phase-nav { display:flex; }
+body.subj-css .phase-nav { display:flex; }
+.nav-btn { width:30px; height:30px; border-radius:6px; border:1.5px solid var(--border); background:white; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-mid); font-size:13px; transition:all .15s; }
+.nav-btn:hover:not(:disabled) { border-color:var(--phase); color:var(--phase); }
+.nav-btn:disabled { opacity:.3; cursor:not-allowed; }
+.slide-ctr { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; color:var(--text-mid); min-width:54px; text-align:center; white-space:nowrap; }
+
+/* band toggles — hidden for CS/CSS */
+.band-tg { display:none; }
+body.subj-cr .band-tg,
+body.subj-cta .band-tg,
+body.subj-css .band-tg { display:flex; }
+
 /* ── PAGE LAYOUT ── */
 .page { max-width:1080px; margin:24px auto; padding:0 20px 40px; }
-.slide { display:none; }
-.slide.active { display:block; }
+
+/* subject panels */
+.subj-panel { display:none; }
+body.subj-cr  .subj-panel.cr  { display:block; }
+body.subj-cta .subj-panel.cta { display:block; }
+body.subj-css .subj-panel.css { display:block; }
+
+/* CR phase slides */
+.cr-slide { display:none; }
+.cr-slide.active { display:block; }
+.cs-slide { display:none; }
+.cs-slide.active { display:block; }
+.css-slide { display:none; }
+.css-slide.active { display:block; }
 
 /* ── STUDENT CARD ── */
-.sc { background:white; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04); overflow:hidden; height:560px; display:none; flex-direction:column; }
-body.vs .sc { display:flex; }
+.sc { background:white; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04); overflow:hidden; min-height:520px; display:none; flex-direction:column; }
+body.subj-cr.vs  #cr-panel .sc,
+body.subj-cta.vs #cs-panel .sc,
+body.subj-css.vs #css-panel .sc { display:flex; }
+
 .sh { flex:0 0 auto; display:flex; align-items:center; justify-content:space-between; padding:13px 24px; border-bottom:1px solid #f0f7f1; }
 .shl { display:flex; align-items:center; gap:9px; }
 .type-badge { font-family:'Nunito',sans-serif; font-weight:800; font-size:10px; letter-spacing:.1em; padding:4px 10px; border-radius:4px; text-transform:uppercase; }
 .badge-r { color:#3d6b43; background:var(--phase-light); border:1px solid var(--phase-mid); }
 .badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
+.phase-num-badge { font-family:'Nunito',sans-serif; font-weight:900; font-size:10px; letter-spacing:.1em; padding:4px 11px; border-radius:4px; text-transform:uppercase; color:white; background:var(--phase-dark); }
 .timer { font-family:'Nunito',sans-serif; font-weight:800; font-size:13.5px; color:var(--text-mid); }
 
 /* band variants */
 .bv { display:none; flex-direction:column; flex:1; min-height:0; }
-body.bk2  .bv[data-b="k2"]  { display:flex; }
-body.b35   .bv[data-b="35"] { display:flex; }
-body.b68   .bv[data-b="68"] { display:flex; }
-body.b912  .bv[data-b="912"]{ display:flex; }
-body.b612  .bv[data-b="612"]{ display:flex; }
+/* scope bv rules to active panel only */
+body.subj-cr.bk2  #cr-panel .bv[data-b="k2"],
+body.subj-cta.bk2 #cs-panel .bv[data-b="k2"],
+body.subj-css.bk2 #css-panel .bv[data-b="k2"]  { display:flex; }
+body.subj-cr.b35  #cr-panel .bv[data-b="35"],
+body.subj-cta.b35 #cs-panel .bv[data-b="35"],
+body.subj-css.b35 #css-panel .bv[data-b="35"]  { display:flex; }
+body.subj-cr.b68  #cr-panel .bv[data-b="68"],
+body.subj-cta.b68 #cs-panel .bv[data-b="68"],
+body.subj-css.b68 #css-panel .bv[data-b="68"]  { display:flex; }
+body.subj-cr.b912 #cr-panel .bv[data-b="912"]  { display:flex; }
 
-.sb { flex:1; min-height:0; display:flex; flex-direction:column; padding:18px 24px 10px; }
-.s-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:40px; color:var(--text); line-height:1.1; margin-bottom:5px; flex-shrink:0; }
-.s-sub { font-size:19px; font-weight:600; color:var(--text-mid); margin-bottom:16px; flex-shrink:0; }
+.sb { flex:1; min-height:0; display:flex; flex-direction:column; padding:18px 24px 14px; }
+.s-phase-label { font-family:'Nunito',sans-serif; font-weight:900; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--phase); margin-bottom:4px; flex-shrink:0; }
+.s-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:36px; color:var(--text); line-height:1.05; margin-bottom:5px; flex-shrink:0; }
+.s-sub { font-size:16px; font-weight:600; color:var(--text-mid); margin-bottom:14px; flex-shrink:0; }
 
 /* cards row */
-.cr { flex:1; min-height:0; display:flex; align-items:stretch; }
+.cr { flex:1; min-height:0; display:flex; align-items:stretch; gap:0; }
 .cw { flex:1; display:flex; }
-.pc { flex:1; border-radius:10px; padding:12px 10px 10px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; overflow:hidden; }
+.pc { flex:1; border-radius:10px; padding:12px 10px 10px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:5px; overflow:hidden; }
 .pd { border:2px dashed var(--phase); }
 .pr { border:2px dashed #86efac; background:#f8fff9; }
-.card-arrow { flex:0 0 20px; display:flex; align-items:center; justify-content:center; color:var(--phase); font-size:16px; font-weight:900; flex-shrink:0; }
+.card-arrow { flex:0 0 18px; display:flex; align-items:center; justify-content:center; color:var(--phase); font-size:15px; font-weight:900; flex-shrink:0; }
 .cm { display:flex; align-items:center; justify-content:space-between; width:100%; }
-.mode-pill { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; letter-spacing:.05em; padding:2px 6px; border-radius:20px; white-space:nowrap; }
+.mode-pill { font-family:'Nunito',sans-serif; font-weight:800; font-size:11px; letter-spacing:.05em; padding:2px 6px; border-radius:20px; white-space:nowrap; }
 .m-ind  { background:var(--m-ind-bg);  border:1px solid var(--m-ind-b);  color:var(--m-ind-t); }
 .m-pair { background:var(--m-pair-bg); border:1px solid var(--m-pair-b); color:var(--m-pair-t); }
 .m-sm   { background:var(--m-sm-bg);   border:1px solid var(--m-sm-b);   color:var(--m-sm-t); }
 .m-wh   { background:var(--m-wh-bg);   border:1px solid var(--m-wh-b);   color:var(--m-wh-t); }
 .c-time { font-family:'Nunito',sans-serif; font-weight:700; font-size:10px; color:var(--text-soft); }
-.c-icon { font-size:34px; line-height:1; flex-shrink:0; }
-.c-label { font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; color:var(--text); flex-shrink:0; }
-.c-prompt { font-size:17px; color:var(--text-mid); line-height:1.4; }
-.c-starter { font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.35; }
-/* annotation key badge */
-.annot-key { display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin-top:2px; }
-.ak { font-family:'Nunito',sans-serif; font-weight:800; font-size:9.5px; background:#f0f7f1; border:1px solid var(--phase-mid); color:var(--phase-dark); border-radius:4px; padding:2px 6px; }
+.c-icon { font-size:30px; line-height:1; flex-shrink:0; }
+.c-label { font-family:'Nunito',sans-serif; font-weight:900; font-size:17px; color:var(--text); flex-shrink:0; }
+.c-prompt { font-size:14px; color:var(--text-mid); line-height:1.4; }
+.c-starter { font-size:12.5px; color:var(--text-soft); font-style:italic; line-height:1.35; }
+.annot-key { display:flex; flex-wrap:wrap; gap:3px; justify-content:center; margin-top:2px; }
+.ak { font-family:'Nunito',sans-serif; font-weight:800; font-size:9px; background:#f0f7f1; border:1px solid var(--phase-mid); color:var(--phase-dark); border-radius:4px; padding:2px 5px; }
+
+/* phase stepper dots */
+.phase-dots { display:flex; justify-content:center; gap:8px; padding:12px 0 0; }
+.phase-dot { width:28px; height:6px; border-radius:3px; background:var(--phase-mid); cursor:pointer; transition:all .2s; }
+.phase-dot.active { background:var(--phase); width:36px; }
 
 /* ── TEACHER CARD ── */
 .tc2 { background:var(--t-bg); border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.2); overflow:hidden; min-height:560px; display:none; flex-direction:column; }
-body.vt .tc2 { display:flex; }
+body.vt.subj-cr  #cr-panel .tc2 { display:flex; }
+body.vt.subj-cta #cs-panel .tc2 { display:flex; }
+body.vt.subj-css #css-panel .tc2 { display:flex; }
 .t-hdr { flex:0 0 auto; background:var(--phase); padding:15px 24px; display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
 .t-hdr-l { display:flex; flex-direction:column; gap:3px; }
 .t-ey { font-family:'Nunito',sans-serif; font-weight:700; font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.75); text-transform:uppercase; }
-.t-ttl { font-family:'Nunito',sans-serif; font-weight:900; font-size:21px; color:white; }
+.t-ttl { font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; color:white; }
 .t-meta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; background:rgba(0,0,0,.15); border-radius:7px; padding:7px 12px; flex-shrink:0; }
 .t-ml { font-family:'Nunito',sans-serif; font-weight:700; font-size:9px; letter-spacing:.12em; color:rgba(255,255,255,.6); text-transform:uppercase; }
 .t-mv { font-family:'Nunito',sans-serif; font-weight:800; font-size:12px; color:white; }
@@ -115,9 +166,9 @@ body.vt .tc2 { display:flex; }
 .g-row:last-child { border-bottom:none; padding-bottom:0; }
 .g-band { font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.08em; color:var(--phase-mid); background:rgba(10,122,20,.18); border-radius:3px; padding:2px 6px; white-space:nowrap; flex-shrink:0; margin-top:1px; }
 .g-note { font-size:11px; color:var(--t-soft); line-height:1.4; }
-.plan-note { background:rgba(255,255,255,.04); border:1px solid var(--t-l); border-radius:7px; padding:8px 11px; margin-top:8px; }
-.plan-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:3px; }
-.plan-txt { font-size:11px; color:var(--t-soft); line-height:1.4; }
+.fac-list { list-style:none; display:flex; flex-direction:column; gap:4px; overflow:auto; }
+.fac-list li { font-size:11.5px; color:var(--t-soft); line-height:1.4; padding-left:12px; position:relative; }
+.fac-list li::before { content:'›'; position:absolute; left:0; color:var(--phase-mid); font-weight:900; }
 .why-box { grid-column:1/-1; border-left:3px solid var(--phase-mid); background:rgba(10,122,20,.1); border-radius:0 9px 9px 0; padding:10px 13px; }
 .why-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); margin-bottom:3px; }
 .why-t { font-size:12.5px; color:var(--t-text); line-height:1.55; }
@@ -125,191 +176,1216 @@ body.vt .tc2 { display:flex; }
 .std-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); white-space:nowrap; padding-top:1px; }
 .std-v { font-size:11px; color:var(--t-soft); line-height:1.45; }
 
+/* ── PLACEHOLDER PANEL ── */
+.placeholder-panel { background:white; border-radius:14px; box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04); padding:48px 40px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; }
+.ph-icon { font-size:48px; }
+.ph-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:24px; color:var(--text); }
+.ph-sub { font-size:15px; color:var(--text-mid); max-width:420px; line-height:1.55; }
+.ph-tag { font-family:'Nunito',sans-serif; font-weight:800; font-size:11px; letter-spacing:.12em; color:var(--text-soft); background:var(--phase-light); border:1px solid var(--phase-mid); padding:4px 12px; border-radius:20px; }
+
 @media print {
   .topbar { display:none; }
   .page { margin:0; padding:0; max-width:100%; }
-  .slide { display:block !important; page-break-after:always; }
+  .cr-slide { display:block !important; page-break-after:always; }
+  .cs-slide { display:block !important; page-break-after:always; }
   .sc,.tc2 { display:flex !important; box-shadow:none; border-radius:0; }
   body.vs .tc2, body.vt .sc { display:none !important; }
 }
-
-/* ── COVER SLIDE ── */
-.cover-slide {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  min-height:calc(100vh - 56px);
-  background:linear-gradient(145deg,#065f0c 0%,#0a7a14 50%,#16a34a 100%);
-  position:relative; overflow:hidden; text-align:center; padding:40px;
-}
-.cover-slide::before {
-  content:''; position:absolute; inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
-}
-.cv-badge {
-  font-weight:900; font-size:11px; letter-spacing:3px;
-  background:rgba(255,255,255,.2); color:#fff; padding:6px 18px;
-  border-radius:20px; text-transform:uppercase; margin-bottom:28px;
-  border:1px solid rgba(255,255,255,.35); position:relative;
-}
-.cv-title {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:90px;
-  color:#fff; line-height:.9; letter-spacing:-2px; position:relative;
-}
-.cv-sub {
-  font-size:22px; font-weight:700; color:rgba(255,255,255,.85);
-  margin-top:18px; letter-spacing:.5px; position:relative;
-}
-.cv-logo {
-  position:absolute; bottom:32px; right:36px;
-  display:flex; align-items:center; gap:10px;
-}
-.cv-logo-text {
-  font-size:10px; font-weight:700; color:rgba(255,255,255,.6);
-  letter-spacing:1.5px; text-transform:uppercase; text-align:right; line-height:1.4;
-}
-.cv-logo img { width:56px; height:56px; border-radius:50%; object-fit:cover; }
-
-/* ── Individual protocol page overrides ── */
-.slide { display:block; }
-.back-btn {
-  display:inline-flex; align-items:center; gap:5px;
-  font-family:'Nunito',sans-serif; font-weight:700; font-size:12px;
-  color:var(--text-soft); text-decoration:none; padding:5px 10px 5px 6px;
-  border-radius:6px; border:1.5px solid var(--border); background:white;
-  transition:all .15s;
-}
-.back-btn:hover { border-color:var(--phase); color:var(--phase); }
 </style>
 </head>
-<body class="vs bk2">
+<body class="vs bk2 subj-cr">
 
 <div class="topbar">
   <div class="tl">
     <a class="back-btn" href="../examine.html">&#8592; Examine</a>
     <span class="phase-pill">EXAMINE</span>
-    <span class="deck-label">Collaborative Text Analysis</span>
+    <span class="deck-label" id="deck-label">Collaborative Reading</span>
   </div>
   <div class="ctrl-area">
+
+    <!-- Subject toggle -->
+    <div class="subj-tg">
+      <button class="subj-tb active" id="bscr"  onclick="setSubject('cr')">Reading</button>
+      <button class="subj-tb"        id="bscs"  onclick="setSubject('cs')">Science</button>
+      <button class="subj-tb"        id="bscss" onclick="setSubject('css')">Social Studies</button>
+    </div>
+
+    <!-- Phase nav — CR only -->
+    <div class="phase-nav" id="phase-nav">
+      <button class="nav-btn" id="prev-btn" onclick="prevPhase()" disabled>&#8592;</button>
+      <span class="slide-ctr" id="slide-ctr">Phase 1 of 5</span>
+      <button class="nav-btn" id="next-btn" onclick="nextPhase()">&#8594;</button>
+    </div>
+
+    <!-- Student / Teacher -->
     <div class="tg">
       <button class="tb active" id="bvs" onclick="setView('s')">Student</button>
       <button class="tb"        id="bvt" onclick="setView('t')">Teacher</button>
     </div>
-    <div class="tg">
-      <button class="tb active" id="bbk2"  onclick="setBand('k2')">K–2</button>
-      <button class="tb"        id="bb35"  onclick="setBand('35')">3–5</button>
-      <button class="tb"        id="bb68"  onclick="setBand('68')">6–8</button>
-      <button class="tb"        id="bb912" onclick="setBand('912')">9–12</button>
+
+    <!-- Grade band -->
+    <div class="tg band-tg">
+      <button class="tb active" id="bbk2" onclick="setBand('k2')">K–2</button>
+      <button class="tb"        id="bb35" onclick="setBand('35')">3–5</button>
+      <button class="tb"        id="bb68" onclick="setBand('68')">6–8</button>
     </div>
   </div>
 </div>
 
 <div class="page">
-  <div id="slide0"></div>
-</div>
+
+  <!-- ══ COLLABORATIVE READING PANEL ══ -->
+  <div class="subj-panel cr" id="cr-panel"></div>
+
+  <!-- ══ COLLABORATIVE SCIENCE PANEL ══ -->
+  <div class="subj-panel cta" id="cs-panel"></div>
+
+  <!-- ══ COLLABORATIVE SOCIAL STUDIES PANEL ══ -->
+  <div class="subj-panel css" id="css-panel"></div>
+
+</div><!-- /page -->
 
 <script>
+const CR_PHASES = [
 
-const MC = { individual:'m-ind', pair:'m-pair', small:'m-sm', whole:'m-wh' };
-const ML = { individual:'\u270F\uFE0F\u202FIndividual', pair:'\uD83D\uDC65\u202FPartner', small:'\u25CE\u202FSmall Group', whole:'\u25CE\u202FWhole Class' };
-
-const P = [
 {
-  id:'cta', type:'routine', name:'Collaborative Text Analysis', bands4:true,
-  timer:{ k2:'25\u201330 min', '35':'30\u201335 min', '68':'30\u201335 min', '912':'30\u201335 min' },
+  num:1, name:`What's the Main Idea?`, label:`Phase 1 · Main Idea`,
+  timer:{ k2:'15 min', '35':'15 min', '68':'10 min' },
   purpose:{
-    k2:'Listen, notice, talk, and connect. What does this text help us understand?',
-    '35':'Read, annotate, and discuss. What is this text saying — and what does it mean for our challenge?',
-    '68':'Read, analyze, and evaluate. What is the argument, and how strong is the evidence?',
-    '912':'Read, analyze, and debate. What does this text add, complicate, or contradict?'
+    k2:`Listen, read, and think together: What is this text mostly about?`,
+    '35':`Read, choose a strategy, and prove the main idea with evidence from the text.`,
+    '68':`Read independently. What is the central idea, and how does the author develop it?`
   },
   bands:{
     k2:[
-      { mode:'whole',      time:'5\u20137 min', icon:'\uD83D\uDCD6', label:'Read Together',
-        prompt:'Teacher reads aloud. Listen and follow along. What\u2019s this mostly about?',
-        starter:'' },
-      { mode:'individual', time:'5\u20137 min', icon:'\u2B50', label:'Notice',
-        prompt:'Circle one word that feels important. Draw what you pictured.',
-        starter:'I noticed\u2026 / This is mostly about\u2026' },
-      { mode:'pair',       time:'5\u20137 min', icon:'\uD83D\uDC65', label:'Talk It Over',
-        prompt:'What is this mostly about? Build on your partner\u2019s ideas.',
-        starter:'' },
-      { mode:'whole',      time:'5 min',        icon:'\uD83D\uDD17', label:'Connect',
-        prompt:'How does this connect to our challenge question?',
-        starter:'' }
+      { mode:`whole`,      time:`3–4 min`, icon:`📖`, label:`Read Together — Twice`,
+        prompt:`Follow along as the text is read aloud. Then the class reads together.`,
+        annot:['accuracy','rate','expression','punctuation'] },
+      { mode:`individual`, time:`2 min`,   icon:`🧠`, label:`Think Time`,
+        prompt:`Use a strategy to determine the main idea. Circle key details that support it.`,
+        starter:`I used the [strategy] strategy. The text is mostly about…` },
+      { mode:`whole`,      time:`2–3 min`, icon:`💬`, label:`Share Your Thinking`,
+        prompt:`Flash your participation card. State your answer and tell us where you found evidence.`,
+        starter:`The text is mainly about… I know because…` }
     ],
     '35':[
-      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read',
-        prompt:'Read for gist. What is this text mostly about?',
-        starter:'' },
-      { mode:'individual', time:'8\u201310 min', icon:'\u270F\uFE0F', label:'Annotate',
-        prompt:'Second read. Mark as you go.',
-        annot:['\u2B50 key idea','E evidence','\u2753 question'],
-        starter:'' },
-      { mode:'small',      time:'7\u20138 min',  icon:'\u25CE', label:'Discuss',
-        prompt:'What is the central idea? What evidence supports it? How strong is that evidence?',
-        starter:'' },
-      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
-        prompt:'What does this tell us about the challenge? Connect it to your inquiry question.',
-        starter:'This text shows\u2026 / This connects to my question because\u2026' }
+      { mode:`whole`,      time:`5–6 min`, icon:`🎵`, label:`Read Twice — Fluency Check`,
+        prompt:`Class reads the text twice. Complete the Fluency Checklist.`,
+        annot:['accuracy','rate','expression','punctuation'] },
+      { mode:`individual`, time:`2–3 min`, icon:`🔍`, label:`Choose a Strategy & Annotate`,
+        prompt:`Pick a main idea strategy. Annotate key details (KD) and use POE on the choices.`,
+        annot:['title','WHO / WHAT','repeated ideas','first/last sentence','visual aids'] },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Defend Your Answer`,
+        prompt:`Flash your card. State your answer, which strategy you used, and exactly where your evidence appears.`,
+        starter:`The central idea is… I used the [strategy] strategy because… Evidence: paragraph…` }
     ],
     '68':[
-      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read & Annotate',
-        prompt:'Read and mark as you go.',
-        annot:['\u2B50 central idea','E evidence','\u2753 question','\u2B55 vocab'],
-        starter:'' },
-      { mode:'individual', time:'8\u201310 min', icon:'\uD83D\uDD0D', label:'Analyze',
-        prompt:'What is the author\u2019s argument? What is their purpose? What evidence is strongest?',
-        starter:'' },
-      { mode:'small',      time:'8\u201310 min', icon:'\u25CE', label:'Evaluate',
-        prompt:'How credible and relevant is the evidence? What perspective might the author be missing?',
-        starter:'' },
-      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
-        prompt:'Write a claim connecting this text to your root cause or solution reasoning. Cite evidence.',
-        starter:'' }
-    ],
-    '912':[
-      { mode:'individual', time:'5\u20137 min',  icon:'\uD83D\uDCD6', label:'First Read & Annotate',
-        prompt:'Read and mark: central claim, key evidence, assumptions, gaps.',
-        annot:['\u2B50 claim','E evidence','A assumption','? gap'],
-        starter:'' },
-      { mode:'individual', time:'8\u201310 min', icon:'\uD83D\uDD0D', label:'Deep Analysis',
-        prompt:'What is the argument? What evidence is strongest or weakest? What is absent from this text?',
-        starter:'' },
-      { mode:'small',      time:'8\u201310 min', icon:'\u25CE', label:'Evaluate & Debate',
-        prompt:'How does this compare to other sources? What does it add, complicate, or contradict?',
-        starter:'' },
-      { mode:'individual', time:'5\u20138 min',  icon:'\uD83D\uDD17', label:'Apply',
-        prompt:'Write a precise claim with evidence. Address at least one counterargument.',
-        starter:'' }
+      { mode:`whole`,      time:`2 min`,   icon:`📖`, label:`Introduce`,
+        prompt:`Introduce title, genre, and key vocabulary. What do you already know about this topic? What might complicate your thinking?` },
+      { mode:`individual`, time:`3 min`,   icon:`📖`, label:`First Read`,
+        prompt:`Read independently for gist. Don't annotate yet — just read.` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Identify the Central Idea`,
+        prompt:`Read again. What is the central idea? How does the author develop it across the text?`,
+        starter:`The central idea is… The author develops this by… The detail that made me most certain was…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`State the central idea and your strongest support. Be specific about where in the text you found it.`,
+        starter:`The central idea is… I know because in paragraph… the author…` }
     ]
   },
   teacher:{
-    when:'Daily, as the primary investigation activity', type:'Daily Routine',
-    hattie:[
-      { d:'0.82', n:'Classroom Discussion',     r:'The Discuss/Evaluate step — when structured around evidence and argument — significantly accelerates reasoning and comprehension.' },
-      { d:'0.75', n:'Elaboration',              r:'The Apply step requires students to connect text to their inquiry question, deepening encoding and transfer.' },
-      { d:'0.60', n:'Metacognitive Strategies', r:'Annotation externalizes thinking during reading, helping students track understanding and identify gaps.' }
-    ],
+    obj:`Students identify the main or central idea of the text and distinguish it from supporting details.`,
     grade:{
-      k2:  'Use short, accessible texts with images. The Read Together step should be slow and interactive. Accept drawing for the Notice step.',
-      '35':'Model annotation explicitly before students try independently. The Annotate step is the highest-leverage step for building disciplinary reading habits.',
-      '68':'The Evaluate step is where the deepest thinking happens. Push: \u201cHow do you know the evidence is credible? What would a skeptic say?\u201d',
-      '912':'The Apply step should produce writing that feeds directly into the end-of-Examine Defend Your Thinking protocol. Treat it as a running argument draft.'
+      k2:`Scribe student responses on a class circle map. Accept oral responses. Model strategies explicitly — especially WHO/WHAT. If a student selects a detail as the main idea, prompt: "Does the author mention this throughout the whole text, or just once?"`,
+      '35':`Students should know the strategies; push them to articulate which strategy they used and why. Watch for the common misconception: a detail that appears in a strong paragraph is not the main idea. Process of Elimination is a key skill to coach here.`,
+      '68':`Students don't need choral reading — two independent reads are sufficient. Push beyond identification to how and why the author develops the central idea. Phase 1 questions should require synthesis, not just locating a stated idea.`
     },
-    planning:'Read → Think → Write → Discuss is the underlying cognitive sequence. The four phases of CTA follow this arc: First Read (Read) → Annotate/Analyze (Think) → Discuss/Evaluate (Discuss) → Apply (Write). This sequence ensures students process internally before speaking publicly, which reduces status dynamics and increases participation equity.',
-    why:'CTA is the daily engine of Examine. Every session, it moves students from text to thinking to discussion to application — building the disciplinary understanding, evidence use, and solution reasoning that the Examine continuum assesses. The quality of Apply writing across sessions is your best window into how students\u2019 thinking is developing.',
-    std:'CCSS RI.1, RI.2, RI.6, RI.8, RI.9 \u00b7 CCSS W.1, W.9 \u00b7 CCSS SL.1'
+    notes:[
+      `Introduce only one or two strategies at a time for K–1; build the full strategy set progressively across the year.`,
+      `The think time observation window is your formative data: note who is annotating, who is using POE, and who needs coaching.`,
+      `If most of the class selects the wrong answer, treat it as a teaching moment — don't simply reveal the answer. Ask: "What details from the text support that choice?"`,
+      `For grades 2+, require students to name their strategy when sharing, not just their answer.`
+    ],
+    why:`The main idea is the backbone of the text. Without it, students cannot organize details, make connections across phases, or write a coherent Phase 5 synthesis. Phase 1 sets the lens through which students read everything that follows.`,
+    std:`CCSS RI.2 · RI.3 · SL.1`
+  }
+},
+
+{
+  num:2, name:`Making Our Thinking Visible`, label:`Phase 2 · Annotation`,
+  timer:{ k2:'15 min', '35':'15 min', '68':'10 min' },
+  purpose:{
+    k2:`Use one annotation marking to show your thinking. Where in this text is the most important information?`,
+    '35':`Annotate with multiple markings and notes. Show your thinking so you can use it as evidence later.`,
+    '68':`Read and annotate. Show your thinking — not just what you marked, but why it matters.`
+  },
+  bands:{
+    k2:[
+      { mode:`whole`,      time:`3–4 min`, icon:`📋`, label:`Introduce & Read Together`,
+        prompt:`Review the annotation marking focus for today. Then read the text twice chorally.`,
+        annot:['⭐ important info','🧑 text-self connection','❓ question','F fact','KD key detail'] },
+      { mode:`whole`,      time:`2–3 min`, icon:`🖊️`, label:`Watch the Think-Aloud`,
+        prompt:`Watch the think-aloud. Which marking is used? Why does it go on that part of the text?` },
+      { mode:`individual`, time:`3–4 min`, icon:`✏️`, label:`Annotate Your Text`,
+        prompt:`Use the marking to show your thinking. Annotate at least one spot. Write a note next to your marking.`,
+        starter:`I used the [marking] because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`What did you mark? Which marking? Why is it important to the text?`,
+        starter:`I used [marking] next to… because it shows…` }
+    ],
+    '35':[
+      { mode:`whole`,      time:`2–3 min`, icon:`📋`, label:`Introduce & Read Twice`,
+        prompt:`Review annotation markings. Read the text twice chorally.`,
+        annot:['⭐ important','— underline key words','→ connect ideas','❓ question','F fact / opinion','KD main idea support'] },
+      { mode:`individual`, time:`3–4 min`, icon:`✏️`, label:`Annotate Independently`,
+        prompt:`Use multiple markings as needed. Write brief notes next to each marking to show your reasoning.`,
+        starter:`I marked [marking] because…` },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Share & Add to Class Text`,
+        prompt:`State what you annotated, the marking used, and why. Others: add any markings you missed.`,
+        starter:`I used [marking] next to… because it shows…` },
+      { mode:`individual`, time:`2 min`,   icon:`🎯`, label:`Wrap-Up`,
+        prompt:`Look at your annotations. Which one will be most useful for answering questions in Phases 3–5? Circle it.`,
+        starter:`The most useful annotation I made is… because…` }
+    ],
+    '68':[
+      { mode:`individual`, time:`4–5 min`, icon:`✏️`, label:`Read & Annotate`,
+        prompt:`Read with your annotation markings. Next to each marking, write a phrase — not just a symbol.`,
+        annot:['⭐ key idea','E evidence','❓ question','→ connection','! surprising','P perspective'] },
+      { mode:`pair`,       time:`2 min`,   icon:`👥`, label:`Partner Share`,
+        prompt:`Compare annotations with a partner. What did they mark that you missed? What did you mark that they didn't?`,
+        starter:`I marked [marking] next to… because… / This connects to the central idea because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Whole-Class Build`,
+        prompt:`Share one annotation that surprised you or changed your thinking. Add anything you missed.` }
+    ]
+  },
+  teacher:{
+    obj:`Students externalize their thinking through annotation markings, preparing evidence for Phases 3–5.`,
+    grade:{
+      k2:`Focus on one annotation marking per session in the early part of the year. Model extensively using a think-aloud before releasing to students. Accept any reasoned annotation — the process of thinking "why this marking?" matters more than perfection.`,
+      '35':`Students should use multiple markings; push them to explain their reasoning, not just name what they marked. The annotation is only useful if students can point back to it as evidence in later phases.`,
+      '68':`Require phrases next to each marking — 'evidence' as a label is not enough; 'evidence that challenges the central idea' is. Partner share surfaces productive discrepancies in reading and provides formative data.`
+    },
+    notes:[
+      `In K–1, annotations will not always look like their peers' — normalize this while highlighting that key details supporting the main idea will often overlap.`,
+      `The 3–4 minute independent annotation window is a formative observation. Circulate: who is annotating purposefully, who is marking randomly, who needs coaching?`,
+      `For upper elementary, model annotating text structure symbols (cause/effect arrows, compare/contrast) in addition to content markings.`,
+      `Toward year's end, students should use more than one marking as long as they can explain each.`
+    ],
+    why:`Annotation makes thinking visible — for the student and for the teacher. It creates the evidence trail students need for Phases 3 and 4. Students who skip this phase struggle to locate and cite evidence later.`,
+    std:`CCSS RI.1 · SL.1 · RF.4`
+  }
+},
+
+{
+  num:3, name:`Key Ideas and Details`, label:`Phase 3 · Text-Dependent Questions`,
+  timer:{ k2:'15 min', '35':'15 min', '68':'10 min' },
+  purpose:{
+    k2:`Go back to the text to find the answer. The evidence is right there — you just need to locate it.`,
+    '35':`Locate, annotate, and cite the evidence that directly answers the question. No guessing.`,
+    '68':`Go back to the text with a specific question. Use your annotations to locate and analyze precisely.`
+  },
+  bands:{
+    k2:[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to the main idea from Phase 1. Today's question will ask you to find evidence right there in the text.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Read Twice`,
+        prompt:`Read the text twice chorally.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🔍`, label:`Find the Evidence`,
+        prompt:`Annotate the question word so you know what the question is asking. Think time: locate evidence and circle it.`,
+        starter:`The answer is right there in paragraph…` },
+      { mode:`whole`,      time:`2–3 min`, icon:`💬`, label:`Prove It`,
+        prompt:`Flash your participation card. State your answer and read aloud the exact evidence from the text.`,
+        starter:`The answer is [choice]. I know because the text says in paragraph… that…` }
+    ],
+    '35':[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to the main idea from Phase 1. Introduce the Phase 3 learning intention.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Read Twice`,
+        prompt:`Class reads twice.` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Annotate & Locate`,
+        prompt:`Annotate the question word. Think time: find and annotate evidence. Use POE — eliminate each wrong answer with a reason.`,
+        annot:['annotate question word','locate evidence','use POE'] },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Cite & Discuss`,
+        prompt:`Flash your card. State your answer, name the paragraph, and read the evidence. Explain why the other choices are wrong.`,
+        starter:`The answer is [choice] because… in paragraph… the text says… The other choices are wrong because…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Think back to the Phase 1 central idea. Today's questions ask you to analyze how the author builds meaning — not just what the text says.` },
+      { mode:`individual`, time:`2 min`,   icon:`🔍`, label:`Annotate the Question`,
+        prompt:`Read both questions. Underline the key analytical task in each question stem.`,
+        annot:['How does the author use…?','What inference can you draw…?','What does the author assume…?','How does this paragraph contribute…?'] },
+      { mode:`individual`, time:`4 min`,   icon:`✍️`, label:`Locate & Reason`,
+        prompt:`Find your evidence. Answer both questions. For written responses, use the sentence frame.`,
+        starter:`The author suggests… / This implies… / The word [X] reveals… because… / This connects to the central idea by…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Discuss`,
+        prompt:`Share answers. Does the evidence actually support the claim? What would a skeptic say?`,
+        starter:`My answer is… because in paragraph… / A counterargument might be… but the text shows…` }
+    ]
+  },
+  teacher:{
+    obj:`Students answer text-dependent "right there" questions by locating and citing direct evidence from the text.`,
+    grade:{
+      k2:`The answer must be explicitly in the text — no inference required in Phase 3. Direct students to a specific paragraph if they struggle. Prompt: "Put your finger on the paragraph. Read it again slowly."`,
+      '35':`POE is a critical skill: students should explain why each wrong answer is wrong using evidence, not just why the right answer is right. This is where annotation from Phase 2 becomes useful.`,
+      '68':`Phase 3 at 6–8 should include at least one craft/structure question — not just what the text says but how the author said it. If students select correct answers without explanation, probe: "Why is that right? What makes the others wrong?"`
+    },
+    notes:[
+      `Annotating the question word (What, Who, Why, How) is a non-negotiable step — it tells students what kind of evidence to look for.`,
+      `If a student selects a wrong answer, ask them to explain their reasoning before correcting — this surfaces misconceptions for the whole class.`,
+      `The think time window is your best opportunity to identify which students need small-group support with evidence location.`
+    ],
+    why:`Text-dependent questions build the habit of returning to the text rather than relying on memory or prior knowledge. This skill — locating and citing precise evidence — is foundational for all subject-area reading.`,
+    std:`CCSS RI.1 · RI.3 · SL.1 · SL.4`
+  }
+},
+
+{
+  num:4, name:`Author's Craft & Structure`, label:`Phase 4 · Author's Craft`,
+  timer:{ k2:'15 min', '35':'15 min', '68':'10 min' },
+  purpose:{
+    k2:`Think about the author's choices: Why did they use that word? What does it help us understand?`,
+    '35':`Analyze how the author's choices — structure, word choice, point of view — shape the meaning of the text.`,
+    '68':`Analyze a specific author's choice — structure, language, or point of view. Explain its effect.`
+  },
+  bands:{
+    k2:[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to the main idea and Phase 3 finding. Introduce today's focus: word choice, meaning, or text structure.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Whole Class Reads Twice`,
+        prompt:`Class reads together from the start — no model read.` },
+      { mode:`individual`, time:`3 min`,   icon:`🔎`, label:`Locate & Annotate`,
+        prompt:`Annotate the question word. Think time: find evidence. Identify why the author chose this word or structure.`,
+        annot:['word choice','meaning in context','sentence structure'] },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Explain the Author's Choice`,
+        prompt:`Flash your card. State your answer and explain why the author made that choice.`,
+        starter:`The answer is [choice]. The author used [word/structure] because it helps the reader understand…` }
+    ],
+    '35':[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to Phases 1–3. Identify the type of author's craft question: word choice, point of view, text structure, tone, or visual analysis.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Whole Class Reads Twice`,
+        prompt:`Class reads together — no model read.` },
+      { mode:`individual`, time:`3 min`,   icon:`🔎`, label:`Annotate & Analyze`,
+        prompt:`Annotate the question word. Think time: find evidence. Use POE. Think: what is the author's purpose with this choice?`,
+        annot:['word choice / diction','point of view','tone / mood','text structure','visual analysis'] },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Discuss the Author's Intent`,
+        prompt:`Flash your card. State your answer, cite evidence, and explain the author's purpose.`,
+        starter:`The answer is [choice]. The author chose… because it creates… / shows… / helps the reader…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Connect to Phases 1–3. Today's question focuses on one author's choice — structure, language, point of view, or a visual.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🔎`, label:`Read Again — Author's Lens`,
+        prompt:`Re-read the relevant section. Why did the author make this choice? What effect does it have? What would be different if they'd chosen differently?`,
+        annot:['Why does the author use [X structure]?','How does point of view affect meaning?','What is the effect of [word/phrase] on the reader?'] },
+      { mode:`individual`, time:`3 min`,   icon:`✍️`, label:`Write Your Analysis`,
+        prompt:`Identify the author's choice and explain its effect. Don't just name it — explain why it matters.`,
+        starter:`The author chose… in order to… / This creates the effect of… because… / If the author had instead… the reader would…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`Share your analysis. Others: agree, add, or push back with evidence.`,
+        starter:`I agree/disagree that the author's purpose was… because…` }
+    ]
+  },
+  teacher:{
+    obj:`Students analyze the author's intentional craft choices and explain how those choices convey meaning.`,
+    grade:{
+      k2:`Focus on word choice and word meaning in context. Ask: "Why did the author use this word instead of a simpler one?" Syntax questions can address sentence length or punctuation effect for grades 1–2.`,
+      '35':`Expand to point of view, mood, tone, and text structure. The key question is always "Why?" — not just identifying the device, but explaining its effect on the reader's understanding.`,
+      '68':`Push from 'the author uses metaphor' to 'the author uses metaphor in order to… which creates the effect of…' The 'what if they'd chosen differently' prompt is particularly effective for building analytical thinking at this level.`
+    },
+    notes:[
+      `Name the type of craft question explicitly at the start: "This is a word choice question / a point of view question." This focuses student attention.`,
+      `If a student picks the correct answer without being able to explain the author's purpose, probe further: "Why would the author choose that? What effect does it have on you as a reader?"`,
+      `Phase 4 directly feeds Phase 5: if the craft question is about text structure, the synthesis prompt should require students to connect structure to meaning.`
+    ],
+    why:`Phase 4 moves students from literal comprehension to analytical thinking. Understanding craft and structure also improves writing: students can apply the same techniques the authors they read use.`,
+    std:`CCSS RI.4 · RI.5 · RI.6 · SL.1`
+  }
+},
+
+{
+  num:5, name:`Summary or Synthesis`, label:`Phase 5 · Synthesis`,
+  timer:{ k2:'15–20 min', '35':'15–20 min', '68':'10 min' },
+  purpose:{
+    k2:`Put it all together: show what you learned from this text in your own words, sketch, or sentence.`,
+    '35':`Write a synthesis response that connects the main idea, evidence, and author's craft into a clear, supported answer.`,
+    '68':`Take a position about the author's argument. Defend it, challenge it, and refine it through discussion.`
+  },
+  bands:{
+    k2:[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to the week's phases. Introduce the Phase 5 question or prompt — this brings it all together.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Read Twice`,
+        prompt:`Class reads twice. This is the final reading of the week — try for your best time.` },
+      { mode:`individual`, time:`5–7 min`, icon:`✍️`, label:`Respond`,
+        prompt:`Annotate the question or prompt word. Write or sketch your response. Use details from the text to support your thinking.`,
+        starter:`K–1: Sketch + label what you learned. / Grade 2: Write an opinion + one reason. Use "I think… because…"` },
+      { mode:`whole`,      time:`5 min`,   icon:`🏷️`, label:`TAG Feedback`,
+        prompt:`One scholar shares their work. Class gives feedback: Tell something you liked. Ask a question. Give a suggestion.`,
+        annot:['Tell: I like how you…','Ask: What did you mean by…?','Give: Next time you could…'] }
+    ],
+    '35':[
+      { mode:`whole`,      time:`2 min`,   icon:`🔄`, label:`Review & Introduce`,
+        prompt:`Think back to Phases 1–4. Introduce the synthesis question — this should connect main idea, evidence, and craft.` },
+      { mode:`whole`,      time:`4–5 min`, icon:`🎵`, label:`Read Twice`,
+        prompt:`Class reads twice. Aim for best weekly time.` },
+      { mode:`individual`, time:`5–7 min`, icon:`✍️`, label:`Write Your Synthesis`,
+        prompt:`Annotate the question word. Think time, then write your response independently. Cite at least two details from the text.`,
+        starter:`The text shows… / The author communicates… / This is important because… / One detail that supports this is…` },
+      { mode:`whole`,      time:`5 min`,   icon:`🏷️`, label:`Share & TAG`,
+        prompt:`One scholar shares their response. Class uses the TAG protocol to give specific, evidence-focused feedback.`,
+        annot:['Tell: I like how you answered both parts…','Ask: Why didn\'t you include…?','Give: Next time, try…'] }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Question`,
+        prompt:`There is no single right answer. This question asks you to evaluate the author's argument, effectiveness, or perspective. Use evidence.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🧠`, label:`Think & Write`,
+        prompt:`Write your position. Include at least two pieces of evidence. Acknowledge one counterargument.`,
+        starter:`I argue that… because… / The strongest evidence for this is… / A counterargument might be… but…` },
+      { mode:`whole`,      time:`5 min`,   icon:`💬`, label:`Discussion`,
+        prompt:`Share and defend your position. The goal is not consensus — it's the strongest possible argument.`,
+        starter:`I agree with [name] that… and I'd add… / I see this differently because… / [Name]'s argument doesn't account for…` }
+    ]
+  },
+  teacher:{
+    obj:`Students synthesize their learning across all five phases in a written or illustrated response, then give and receive peer feedback via TAG (K–5) or structured discussion (6–8).`,
+    grade:{
+      k2:`K–1 students may sketch and label. Grade 2 should write a short opinion with one supporting reason. Celebrate specificity in the response.`,
+      '35':`A strong synthesis response answers both parts of the question and cites at least two text details. The TAG protocol teaches students to give substantive feedback, not just compliments.`,
+      '68':`Phase 5 at 6–8 requires evaluation: 'Is the author\'s argument convincing? Why or why not?' Require students to acknowledge at least one counterargument in their written response before sharing.`
+    },
+    notes:[
+      `Phase 5 is always on its own day — do not combine it with Phase 4 even if time is short.`,
+      `Circulate during the writing window and select your model student before sharing begins. Pick work that is specific and evidence-based.`,
+      `Teach TAG with modeling: 'I liked it' is not TAG feedback. Push for: 'I liked how you cited paragraph 2 to support your claim.'`,
+      `Oral responses are acceptable for K–1, but students should still attempt to put pencil to paper.`
+    ],
+    why:`Phase 5 is the culminating assessment of the week's reading. It measures whether students can independently combine main idea, key details, and craft awareness into a coherent response.`,
+    std:`CCSS W.1 · W.2 · RI.9 · SL.1 · SL.4`
   }
 }
-];
 
-function buildCard(step, isRoutine) {
-  const dc = isRoutine ? 'pr' : 'pd';
+]; // end CR_PHASES
+
+
+const CS_PHASES = [
+
+/* ── CS PHASE 1 ── */
+{
+  num: 1,
+  name: `What's the Claim?`,
+  label: `Phase 1 · Claim & Evidence`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Listen and look: What is the scientist saying? What evidence do they give us?`,
+    '35': `Read and decide: What claim is the author making? Which evidence best supports it?`,
+    '68':`Read independently. Identify the scientific claim, the evidence type — and begin to evaluate how strong it is.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2–3 min', icon:'📖', label:`Introduce the Text`,
+        prompt:`Preview the title, images, and key science vocabulary. Think: What phenomenon or question does this text address?`,
+        starter:`I think this text will be about… because I see…` },
+      { mode:'whole',      time:'3–4 min', icon:'🎵', label:`Read Together`,
+        prompt:`Follow along as the text is read aloud. Listen for: What is the scientist claiming? What did they observe or measure?` },
+      { mode:'individual', time:'2 min',   icon:'🔍', label:`Identify the Claim`,
+        prompt:`Point to or draw the claim in the text. Circle one piece of evidence that supports it.`,
+        starter:`The scientist is saying that… One thing they used as evidence is…` },
+      { mode:'whole',      time:'1–2 min', icon:'💬', label:`Share`,
+        prompt:`State the claim in your own words. Point to the evidence in the text.`,
+        starter:`The claim is… I know because the text shows…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'2 min',   icon:'📖', label:`Introduce`,
+        prompt:`Introduce the text: title, key vocabulary, and the scientific phenomenon or investigation context. Number the paragraphs.` },
+      { mode:'whole',      time:'3–4 min', icon:'🎵', label:`Read Twice`,
+        prompt:`Class reads twice. On the second read, listen for the author's central claim and the types of evidence they use.` },
+      { mode:'individual', time:'2 min',   icon:'🔍', label:`Identify Claim & Evidence Type`,
+        prompt:`Underline the claim. Circle evidence that supports it. Label the evidence type.`,
+        annot:['D data / measurement','O observation','M model or diagram','E experiment result'] },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Defend`,
+        prompt:`State the claim and the strongest evidence. Explain why that evidence supports the claim.`,
+        starter:`The author's claim is… The strongest evidence is… because it shows…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`2 min`,   icon:`📖`, label:`Introduce`,
+        prompt:`Introduce title, key vocabulary, and the scientific phenomenon. Number the paragraphs.` },
+      { mode:`individual`, time:`3 min`,   icon:`📖`, label:`First Read`,
+        prompt:`Read independently. What claim is being made? What kind of evidence do they use?` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Identify Claim & Evaluate Evidence`,
+        prompt:`Write the scientific claim. Identify the evidence type — and begin to evaluate how strong it is.`,
+        annot:['D data / measurement','O observation','M model or diagram','E experiment result'],
+        starter:`The claim is… The evidence type is… This evidence is [strong/limited] because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Challenge`,
+        prompt:`State the claim and strongest evidence. Is this evidence enough? What would make it stronger?`,
+        starter:`The claim is supported by… but limited because… / To strengthen this, you'd need…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`2 min`,   icon:`📖`, label:`Introduce`,
+        prompt:`Introduce title, key vocabulary, and the scientific phenomenon. Number the paragraphs.` },
+      { mode:`individual`, time:`3 min`,   icon:`📖`, label:`First Read`,
+        prompt:`Read independently. What claim is being made? What kind of evidence do they use?` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Identify Claim & Evaluate Evidence`,
+        prompt:`Write the scientific claim. Identify the evidence type — and begin to evaluate how strong it is.`,
+        annot:['D data / measurement','O observation','M model or diagram','E experiment result'],
+        starter:`The claim is… The evidence type is… This evidence is [strong/limited] because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Challenge`,
+        prompt:`State the claim and strongest evidence. Is this evidence enough? What would make it stronger?`,
+        starter:`The claim is supported by… but limited because… / To strengthen this, you'd need…` }
+    ]
+  },
+  teacher: {
+    obj: `Students identify the central scientific claim and distinguish it from supporting evidence.`,
+    grade: {
+      k2: `Use texts with clear visual evidence (diagrams, photos, data tables). Accept pointing and drawing. Prompt: "What did the scientist see or measure?" to distinguish claim from evidence.`,
+      '35': `Push students to name the evidence type — not just "they said" but "they measured," "they observed," or "their experiment showed." This sets up Phase 3's analytical questions.`,
+      '68':`Add explicit evaluation of evidence quality — not just naming the type but assessing its strength. Push: 'What would make this evidence more convincing? What variable might affect these results?'`
+    },
+    notes: [
+      `The distinction between claim and evidence is the foundation of science literacy. Spend extra time here if students conflate the two.`,
+      `In K–2, use the sentence frame "The scientist says __ because __" to scaffold claim/evidence separation.`,
+      `For grades 3–5, label evidence types explicitly on the board as students share. Build a class reference chart across the year.`
+    ],
+    why: `Science texts are structured around claims supported by evidence — not narrative. Students who recognize this structure read more efficiently and can evaluate source credibility. This phase sets the analytical lens for all subsequent phases.`,
+    std: `NGSS SEP 6 · NGSS SEP 7 · CCSS RI.1 · CCSS RI.2`
+  }
+},
+
+/* ── CS PHASE 2 ── */
+{
+  num: 2,
+  name: `Making Our Thinking Visible`,
+  label: `Phase 2 · Annotation`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Use one annotation marking to show your thinking — especially around data, diagrams, or key observations.`,
+    '35': `Annotate using science-specific markings to track claims, evidence, and questions about the data or investigation.`,
+    '68':`Read with a pen. Write phrases next to your markings — explain your thinking, not just the symbol.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2–3 min', icon:'📋', label:`Introduce & Read Together`,
+        prompt:`Review the annotation focus for today. Read the text twice. Look especially at any diagrams, charts, or photographs.`,
+        annot:['⭐ important info','🔬 science fact','❓ question','E evidence','D data'] },
+      { mode:'whole',      time:'2 min',   icon:'🖊️', label:`Watch the Think-Aloud`,
+        prompt:`Watch the think-aloud. Which marking is being used? Why does it go on that part of the text or diagram?` },
+      { mode:'individual', time:'3 min',   icon:'✏️', label:`Annotate`,
+        prompt:`Use one marking on the part of the text — or the diagram — that feels most important to the claim.`,
+        starter:`I used [marking] because this part of the text/diagram shows…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share`,
+        prompt:`What did you mark? Why? How does your annotation connect to the claim from Phase 1?`,
+        starter:`I marked… because it is evidence for the claim that…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'2 min',   icon:'📋', label:`Introduce & Read Twice`,
+        prompt:`Review the science annotation markings. Read the text twice, paying attention to data, diagrams, and experiment descriptions.`,
+        annot:['C claim','E evidence','D data / measurement','M model','❓ question / confusion','! surprising'] },
+      { mode:'individual', time:'3–4 min', icon:'✏️', label:`Annotate Independently`,
+        prompt:`Mark the text — including any figures, tables, or diagrams. Write a brief note next to each marking.`,
+        starter:`I marked [marking] because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share & Build Class Text`,
+        prompt:`State what you annotated, which marking, and why. Others: add any markings you missed.`,
+        starter:`I used [marking] next to… because it shows…` },
+      { mode:'individual', time:'1 min',   icon:'🎯', label:`Wrap-Up`,
+        prompt:`Which annotation will be most useful for answering Phases 3–5 questions? Circle it.`,
+        starter:`My most useful annotation is… because…` }
+    ],
+    '68':[
+      { mode:`individual`, time:`4–5 min`, icon:`✏️`, label:`Read & Annotate`,
+        prompt:`Read with your annotation markings. Next to each marking, write a phrase — not just a symbol. Include diagrams, tables, and graphs.`,
+        annot:['C claim','E evidence','D data / measurement','M model','❓ question','! surprising'] },
+      { mode:`pair`,       time:`2 min`,   icon:`👥`, label:`Partner Share`,
+        prompt:`Compare annotations. Did you mark the same anomalies? The same methodology limits?`,
+        starter:`I marked [marking] next to… because… / I didn't notice… until my partner pointed out…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`What annotations connect most directly to the claim? What surprises might change the argument?` }
+    ],
+    '68': [
+      { mode:`individual`, time:`4–5 min`, icon:`✏️`, label:`Read & Annotate`,
+        prompt:`Read with your annotation markings. Next to each marking, write a phrase — not just a symbol. Mark maps, timelines, and images too.`,
+        annot:['⭐ important','E evidence','❓ question','→ connection','! surprising','P perspective'] },
+      { mode:`pair`,       time:`2 min`,   icon:`👥`, label:`Partner Share`,
+        prompt:`Compare annotations. Did you mark the same perspective shifts? The same surprises?`,
+        starter:`I marked [marking] next to… because… / I marked P here because the perspective is… / I didn't notice…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Build`,
+        prompt:`Share one annotation that changed your thinking or revealed a perspective. Add anything you missed.` }
+    ],
+    '68': [
+      { mode:`individual`, time:`4–5 min`, icon:`✏️`, label:`Read & Annotate`,
+        prompt:`Read with your annotation markings. Next to each marking, write a phrase — not just a symbol. Include diagrams, tables, and graphs.`,
+        annot:['C claim','E evidence','D data / measurement','M model','❓ question','! surprising'] },
+      { mode:`pair`,       time:`2 min`,   icon:`👥`, label:`Partner Share`,
+        prompt:`Compare annotations. Did you mark the same anomalies? The same methodology limits?`,
+        starter:`I marked [marking] next to… because… / I didn't notice… until my partner pointed out…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`What annotations connect most directly to the claim? What surprises might change the argument?` }
+    ]
+  },
+  teacher: {
+    obj: `Students annotate scientific texts and visual data using content-appropriate markings to prepare evidence for Phases 3–5.`,
+    grade: {
+      k2: `Teach students to annotate diagrams and images, not just text. A label on a diagram ("E — this shows the evidence") is as valid as underlining a sentence.`,
+      '35': `Extend annotation to tables and graphs — "What does this axis tell me? What is surprising about this data point?" Students who annotate visuals are better prepared for Phase 3 science question types.`,
+      '68':`Annotation at 6–8 should extend to methodology observations — 'This experiment didn\'t control for…' is a valid and important note. Require explanatory phrases next to every marking.`
+    },
+    notes: [
+      `Science annotation should always include visual data features — don't let students skip diagrams, tables, or graphs.`,
+      `The "!" marking for surprising data is particularly productive in science — it surfaces the anomalies that drive scientific inquiry.`,
+      `Annotation in Phase 2 should explicitly prepare students for the question type they'll encounter in Phase 3.`
+    ],
+    why: `Science literacy requires reading both text and visual data simultaneously. Annotation teaches students to slow down, interact with data, and track which evidence connects to which claim — a skill needed for all NGSS SEP practices.`,
+    std: `NGSS SEP 4 · NGSS SEP 8 · CCSS RI.1 · CCSS RF.4`
+  }
+},
+
+/* ── CS PHASE 3 ── */
+{
+  num: 3,
+  name: `Evidence & Data Questions`,
+  label: `Phase 3 · Text-Dependent Science Questions`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Use the data, diagram, or text to answer the question. The evidence is right there — point to it.`,
+    '35': `Use mathematical thinking, data, or scientific evidence to answer precisely. Cite exactly where your evidence appears.`,
+    '68':`Analyze evidence quality and methodology — not just results. What does the data prove, and what can it not prove?`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2 min',   icon:'🔄', label:`Introduce`,
+        prompt:`Think back to the Phase 1 claim. Today's question will ask you to use data, a table, or a diagram to explain.` },
+      { mode:'whole',      time:'3 min',   icon:'🎵', label:`Read & Look`,
+        prompt:`Read the text twice. Study any tables, graphs, or diagrams carefully — the answer may be inside a figure, not the text.` },
+      { mode:'individual', time:'2–3 min', icon:'🔍', label:`Annotate & Find Evidence`,
+        prompt:`Annotate the question word. Look at the data or diagram. Circle the evidence that answers the question.`,
+        annot:['What does the table/graph show?','Which result is different?','What happened when…?'] },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Explain Using Evidence`,
+        prompt:`State your answer. Point to exactly where in the data, table, or text your evidence appears.`,
+        starter:`The answer is… I know because the [table/graph/text] shows that…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Introduce`,
+        prompt:`Recall Phase 1 claim. Identify the type of Phase 3 question: data analysis, mathematical thinking, or evaluating information.` },
+      { mode:'whole',      time:'3 min',   icon:'🎵', label:`Read Twice — Study the Data`,
+        prompt:`Read the text twice. On the second read, focus on any tables, graphs, or quantitative information.`,
+        annot:['Which table correctly predicts…','Based on results shown in… explain why…','Using evidence from… construct an argument…','Place a checkmark to indicate…','Indicate yes or no in the table…'] },
+      { mode:'individual', time:'3 min',   icon:'🔍', label:`Annotate & Reason`,
+        prompt:`Annotate the question stem. Locate your evidence in the data or text. Use scientific reasoning to explain — not just identify.`,
+        starter:`The evidence that supports this is… / This explains why… / Based on the data…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Cite & Justify`,
+        prompt:`State your answer. Name the exact figure, paragraph, or data point. Explain your scientific reasoning.`,
+        starter:`Based on the [data/table/text], I can conclude… because… This is evidence that…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Think back to the Phase 1 claim. Today's questions ask you to analyze evidence quality and methodology — not just results.` },
+      { mode:`whole`,      time:`2 min`,   icon:`🎵`, label:`Read Twice — Study the Data`,
+        prompt:`Read twice. Focus on tables, graphs, and quantitative information. Look for limits in the data.`,
+        annot:['What are the limits of this data?','What variable was not controlled?','Which evidence best supports the claim, and why?','What alternative explanation could this data support?'] },
+      { mode:`individual`, time:`4 min`,   icon:`🔍`, label:`Annotate & Reason`,
+        prompt:`Annotate the question stem. Find your evidence. Think: what does the data prove — and what can it not prove?`,
+        starter:`The data suggests… but is limited because… / An alternative explanation is… / The strongest evidence is… because it rules out…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Cite & Discuss`,
+        prompt:`State your answer. Name the specific data point. Explain your scientific reasoning.`,
+        starter:`Based on the data… / I can conclude… but cannot conclude… because…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Think back to the Phase 1 claim. Today's questions ask you to analyze evidence quality and methodology — not just results.` },
+      { mode:`whole`,      time:`2 min`,   icon:`🎵`, label:`Read Twice — Study the Data`,
+        prompt:`Read twice. Focus on tables, graphs, and quantitative information. Look for limits in the data.`,
+        annot:['What are the limits of this data?','What variable was not controlled?','Which evidence best supports the claim, and why?','What alternative explanation could this data support?'] },
+      { mode:`individual`, time:`4 min`,   icon:`🔍`, label:`Annotate & Reason`,
+        prompt:`Annotate the question stem. Find your evidence. Think: what does the data prove — and what can it not prove?`,
+        starter:`The data suggests… but is limited because… / An alternative explanation is… / The strongest evidence is… because it rules out…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Cite & Discuss`,
+        prompt:`State your answer. Name the specific data point. Explain your scientific reasoning.`,
+        starter:`Based on the data… / I can conclude… but cannot conclude… because…` }
+    ]
+  },
+  teacher: {
+    obj: `Students answer text-dependent science questions using mathematical or computational thinking and/or evidence from data, tables, and scientific text (NGSS SEP 5, SEP 8).`,
+    grade: {
+      k2: `Questions should direct students to a specific visual feature — a table row, graph bar, or labeled diagram. Prompt: "Look at the table. Which row shows…?" Accept pointing before requiring oral explanation.`,
+      '35': `Phase 3 questions in science often require students to complete a table, write a yes/no, or compare two data sets — not just select a multiple-choice answer. Prepare students for constructed-response formats explicitly.`,
+      '68':`Add methodology evaluation — 'what are the limits of this investigation?' Common 6–8 question types: what variable was not controlled, what alternative explanation fits the data, which evidence is strongest and why.`
+    },
+    notes: [
+      `Science Phase 3 questions test NGSS SEP 5 (using math) and SEP 8 (obtaining and evaluating information) — name these practices so students build vocabulary.`,
+      `Common stems: "Which table correctly predicts…", "Based on the results shown in… explain why…", "Using evidence from… construct an argument to explain…", "Indicate yes or no in the table…"`,
+      `If students answer without citing a specific location (table, paragraph, figure), prompt: "Point to exactly where in the data you see that."`,
+      `Normalize that constructed-response answers (explain why, construct an argument) take more time than selected-response — adjust think time accordingly.`
+    ],
+    why: `NGSS SEP 5 and SEP 8 require students to use data and text as integrated evidence sources — not separately. Phase 3 builds this habit by requiring precise citation across both textual and visual data, preparing students for performance tasks.`,
+    std: `NGSS SEP 4 · NGSS SEP 5 · NGSS SEP 8 · CCSS RI.1 · CCSS SL.4`
+  }
+},
+
+/* ── CS PHASE 4 ── */
+{
+  num: 4,
+  name: `Design Challenge`,
+  label: `Phase 4 · Engineering Design`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Think like an engineer: Which solution would work? Use what you learned from the text to explain your choice.`,
+    '35': `Apply the science from this text to an engineering design challenge. Evaluate solutions using evidence and scientific reasoning.`,
+    '68':`Evaluate two or more design solutions using the science from this text. No solution is perfect — identify the best choice given the constraints, and explain the tradeoffs.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2 min',   icon:'🔄', label:`Connect to Design`,
+        prompt:`Recall the claim and evidence. Introduce the Phase 4 question: how does what you learned apply to solving a real problem?` },
+      { mode:'whole',      time:'2–3 min', icon:'🎵', label:`Read & Visualize`,
+        prompt:`Read the text again. Think: which design solution connects to the science we just read about?` },
+      { mode:'individual', time:'2–3 min', icon:'⚙️', label:`Choose & Explain`,
+        prompt:`Look at the design options. Which solution uses the science from the text? Sketch or circle your choice and explain why.`,
+        starter:`I chose [solution] because the text told us that… and this solution works because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Defend Your Design Choice`,
+        prompt:`Share your choice. What science from the text supports your solution?`,
+        starter:`I chose [solution] because the science in the text shows…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Connect to Design Challenge`,
+        prompt:`Think back to the Phase 1 claim. Read the engineering design question. Your solution should be supported by evidence from this text.`,
+        annot:['Which design solution would require…','Identify the solution that best… Explain why…','Identify one method that… Using scientific reasoning, explain…','Based on the investigation, identify one factor to consider when designing…'] },
+      { mode:'whole',      time:'2–3 min', icon:'🎵', label:`Read Again — Engineering Lens`,
+        prompt:`Re-read with this question: what criteria or constraints does the science suggest? What tradeoffs appear?` },
+      { mode:'individual', time:'3 min',   icon:'⚙️', label:`Evaluate & Justify`,
+        prompt:`Identify the best solution or design factor. Write your justification using specific scientific reasoning from the text.`,
+        starter:`The best solution is… because the science shows… / A key factor to consider is… because… / This design will work because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Present Your Reasoning`,
+        prompt:`State your solution. Cite the specific science from the text that supports your engineering reasoning.`,
+        starter:`I identified [solution/factor] because the text provides evidence that… This matters for the design because…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Connect to Design Challenge`,
+        prompt:`Connect the Phase 1 science to a real design problem. You will evaluate solutions — not just choose one.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🎵`, label:`Re-read — Engineering Lens`,
+        prompt:`What criteria and constraints does the science suggest? What tradeoffs appear between solutions?`,
+        annot:['Evaluate which solution best meets the criteria…','Identify the key tradeoff between solutions…','Which solution would you refine, and how?'] },
+      { mode:`individual`, time:`4 min`,   icon:`⚙️`, label:`Evaluate Tradeoffs`,
+        prompt:`Identify the strongest solution and explain the tradeoffs. Acknowledge what your preferred solution cannot do.`,
+        starter:`Solution A is stronger than B because… / The key tradeoff is… / This solution is limited by… / Given the constraint of…, the best choice is… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Present Your Evaluation`,
+        prompt:`Present your evaluation. Others: challenge the tradeoff analysis.`,
+        starter:`I'd argue Solution B is stronger because… / The tradeoff you identified matters, but… / The science suggests the limit could be addressed by…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Connect to Design Challenge`,
+        prompt:`Connect the Phase 1 science to a real design problem. You will evaluate solutions — not just choose one.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🎵`, label:`Re-read — Engineering Lens`,
+        prompt:`What criteria and constraints does the science suggest? What tradeoffs appear between solutions?`,
+        annot:['Evaluate which solution best meets the criteria…','Identify the key tradeoff between solutions…','Which solution would you refine, and how?'] },
+      { mode:`individual`, time:`4 min`,   icon:`⚙️`, label:`Evaluate Tradeoffs`,
+        prompt:`Identify the strongest solution and explain the tradeoffs. Acknowledge what your preferred solution cannot do.`,
+        starter:`Solution A is stronger than B because… / The key tradeoff is… / This solution is limited by… / Given the constraint of…, the best choice is… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Present Your Evaluation`,
+        prompt:`Present your evaluation. Others: challenge the tradeoff analysis.`,
+        starter:`I'd argue Solution B is stronger because… / The tradeoff you identified matters, but… / The science suggests the limit could be addressed by…` }
+    ]
+  },
+  teacher: {
+    obj: `Students apply science content from the text to evaluate engineering design solutions, citing scientific reasoning and criteria (NGSS ETS1).`,
+    grade: {
+      k2: `Provide 2–3 concrete design options (pictures work well). The key question is "Why?" — students must connect their choice to something from the text, not just preference.`,
+      '35': `Push students to articulate tradeoffs: "Why might someone choose the other solution? What are the limits of yours?" This develops the engineering design thinking in NGSS ETS1.B.`,
+      '68':`At 6–8, shift from choosing a solution to evaluating tradeoffs. Students should be able to state what their preferred solution cannot do. This is the core of NGSS ETS1.B.`
+    },
+    notes: [
+      `Common Phase 4 stems: "Which design solution would require…", "Identify the solution that best… Explain why…", "Based on what was learned in the investigation, identify one factor that needs to be considered when designing…"`,
+      `Phase 4 bridges science content knowledge (Phases 1–3) to the engineering design challenge students are working on in their DEEDS project.`,
+      `If students select a solution without scientific justification, prompt: "Where in the text does it say that solution would work? What science does it use?"`,
+      `For grades 4–5, require students to address at least one constraint or tradeoff in their justification.`
+    ],
+    why: `NGSS ETS1 requires students to apply disciplinary content knowledge to design problems — not just recall it. Phase 4 makes this connection explicit every week, building the bridge between science understanding and the engineering work of the DEEDS project.`,
+    std: `NGSS ETS1-1 · NGSS ETS1-2 · NGSS SEP 6 · CCSS SL.4`
+  }
+},
+
+/* ── CS PHASE 5 ── */
+{
+  num: 5,
+  name: `Data Discussion`,
+  label: `Phase 5 · Critical Thinking & Data Analysis`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Talk it out: What does the data tell us? What surprised you? What questions do you still have?`,
+    '35': `Analyze the data and discuss an open-ended question — there is no single right answer. Use evidence to defend your thinking.`,
+    '68':`There is no single right answer. Evaluate what the data does and does not prove. Defend the most scientifically defensible position.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2 min',   icon:'🔄', label:`Introduce the Discussion Question`,
+        prompt:`There is no single right answer — we are thinking together. Think about the data or phenomenon as you prepare to share.` },
+      { mode:'whole',      time:'2–3 min', icon:'🎵', label:`Read & Look at the Data`,
+        prompt:`Read the text one more time. Pay special attention to any graphs, charts, or results tables.` },
+      { mode:'individual', time:'2 min',   icon:'🧠', label:`Think Time`,
+        prompt:`Think about the data. What pattern do you notice? What does it tell us about the science? Sketch or write one idea.`,
+        starter:`The data shows… / I notice that… / I wonder why…` },
+      { mode:'whole',      time:'3 min',   icon:'💬', label:`Discuss`,
+        prompt:`Share your thinking. Listen to others. Build on each other's ideas.`,
+        starter:`I agree with… because… / I am not sure about… because the data shows… / My question is…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Introduce the Discussion Question`,
+        prompt:`There is no single right answer. Study the data display carefully before you respond.` },
+      { mode:'whole',      time:'2 min',   icon:'🎵', label:`Review the Data`,
+        prompt:`Re-read the relevant data section of the text. Focus on: what patterns appear, what anomalies exist, and what the data does or does not prove.` },
+      { mode:'individual', time:'2–3 min', icon:'🧠', label:`Analyze & Formulate a Position`,
+        prompt:`Use the data to form a defensible answer. Write your claim and your evidence. Identify at least one limit of the data.`,
+        starter:`Based on the data… / The evidence suggests… / One limitation of this data is… / An alternative explanation might be…` },
+      { mode:'whole',      time:'3 min',   icon:'💬', label:`Evidence-Based Discussion`,
+        prompt:`Share your position. Challenge or build on each other's reasoning. Reference specific data points.`,
+        starter:`My claim is… because the data shows… / I agree/disagree with [name] because… / A question the data raises is…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Discussion Question`,
+        prompt:`There is no single right answer. This question asks you to evaluate what the data does and does not prove.` },
+      { mode:`whole`,      time:`2 min`,   icon:`🎵`, label:`Review the Data`,
+        prompt:`Re-read the data section. Focus on: what patterns appear, what anomalies exist, what the data cannot prove.` },
+      { mode:`individual`, time:`3 min`,   icon:`🧠`, label:`Analyze & Formulate a Position`,
+        prompt:`Write your claim. Cite specific data. State the most significant limit of this data.`,
+        starter:`The data supports… but cannot prove… because… / A stronger study would… / The most important limitation is…` },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Evidence-Based Discussion`,
+        prompt:`Share your position. Challenge each other's reasoning. What would it take to resolve the disagreement?`,
+        starter:`The evidence favors… because… / That argument doesn't account for [data point]… / We cannot conclude… from this data because…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Discussion Question`,
+        prompt:`There is no single right answer. This question asks you to evaluate what the data does and does not prove.` },
+      { mode:`whole`,      time:`2 min`,   icon:`🎵`, label:`Review the Data`,
+        prompt:`Re-read the data section. Focus on: what patterns appear, what anomalies exist, what the data cannot prove.` },
+      { mode:`individual`, time:`3 min`,   icon:`🧠`, label:`Analyze & Formulate a Position`,
+        prompt:`Write your claim. Cite specific data. State the most significant limit of this data.`,
+        starter:`The data supports… but cannot prove… because… / A stronger study would… / The most important limitation is…` },
+      { mode:`whole`,      time:`3 min`,   icon:`💬`, label:`Evidence-Based Discussion`,
+        prompt:`Share your position. Challenge each other's reasoning. What would it take to resolve the disagreement?`,
+        starter:`The evidence favors… because… / That argument doesn't account for [data point]… / We cannot conclude… from this data because…` }
+    ]
+  },
+  teacher: {
+    obj: `Students engage in evidence-based scientific discussion around an open-ended question, analyzing data and defending positions with specific evidence (NGSS SEP 7, SEP 4).`,
+    grade: {
+      k2: `The Phase 5 question should have observable answers in the data — "What do you notice about the graph?" or "What surprised you about the results?" These are more accessible than interpretive questions for K–2.`,
+      '35': `A strong Phase 5 question has multiple defensible answers — students should be able to disagree with each other using the same data. If all students arrive at the same answer, the question is too closed.`,
+      '68':`At 6–8, push toward evaluating data quality: 'What would a skeptical scientist say about this data?' Students who identify limits of evidence are demonstrating stronger scientific thinking than those who only interpret results.`
+    },
+    notes: [
+      `Phase 5 discussion is not about consensus — it is about reasoning. Students should be able to defend different interpretations of the same data using evidence.`,
+      `Sentence starters that promote productive disagreement: "I see the same data differently because…" / "That explanation does not account for…"`,
+      `Common Phase 5 data question types: analyzing trends in a graph, comparing two experimental conditions, evaluating which variable had the greatest impact.`,
+      `Collect student written responses from Phase 5 — they provide your best formative data on students' ability to reason from evidence, which is the core of the DEEDS Examine continuum.`,
+      `If discussion stays shallow, press with: "What in the data specifically makes you say that? Could the data support a different conclusion?"`
+    ],
+    why: `NGSS SEP 7 (Engaging in Argument from Evidence) and SEP 4 (Analyzing Data) are the highest-order practices in science. Phase 5 gives students a structured, low-stakes opportunity to practice both every week — building the reasoning stamina they need for the Defend Your Thinking protocol.`,
+    std: `NGSS SEP 4 · NGSS SEP 7 · CCSS SL.1 · CCSS SL.4`
+  }
+}
+
+]; // end CS_PHASES
+
+const CSS_PHASES = [
+
+/* ── CSS PHASE 1 ── */
+{
+  num: 1,
+  name: `What's the Argument?`,
+  label: `Phase 1 · Argument & Evidence`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Listen and look: What is this text saying? What evidence does it use?`,
+    '35': `Read and decide: What is the author arguing? Which evidence best supports it?`,
+    '68':`Read independently. What is the central argument? Whose perspective does it reflect — and what does that mean for how we read it?`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2–3 min', icon:'📖', label:`Introduce the Text`,
+        prompt:`Look at the title, images, map, or timeline together. What do you notice? What might this text be about?`,
+        starter:`I notice… / I think this text will be about…` },
+      { mode:'whole',      time:'3–4 min', icon:'🎵', label:`Read Together`,
+        prompt:`Follow along as the text is read aloud. Listen for: What is the author saying? What do they use to back it up?` },
+      { mode:'individual', time:'2 min',   icon:'🔍', label:`Find the Argument`,
+        prompt:`Circle the author's big idea. Put a ⭐ next to one piece of evidence that supports it.`,
+        starter:`The author is saying that… One piece of evidence is…` },
+      { mode:'whole',      time:'1–2 min', icon:'💬', label:`Share`,
+        prompt:`Say the argument in your own words. Point to your evidence.`,
+        starter:`The author thinks… I know because the text says…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'2 min',   icon:'📖', label:`Introduce`,
+        prompt:`Introduce the text: title, key vocabulary, and context (time period, place, issue). Number the paragraphs.` },
+      { mode:'whole',      time:'3–4 min', icon:'🎵', label:`Read Twice`,
+        prompt:`Read twice. On the second read, listen for the author's argument and the evidence they use.` },
+      { mode:'individual', time:'2 min',   icon:'🔍', label:`Identify Argument & Evidence`,
+        prompt:`Underline the argument. Use E to mark evidence. Label what kind: text, data, map, or image.`,
+        annot:['E evidence','⭐ key idea','❓ question'],
+        starter:`The author's argument is… The strongest evidence is… because it shows…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Defend`,
+        prompt:`State the argument and your strongest piece of evidence. Explain the connection.`,
+        starter:`The author argues… The strongest evidence is… because…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`2 min`,   icon:`📖`, label:`Introduce`,
+        prompt:`Introduce the text: title, key vocabulary, and context (time period, place, issue). Number the paragraphs.` },
+      { mode:`individual`, time:`3 min`,   icon:`📖`, label:`First Read`,
+        prompt:`Read independently. What argument is being made? Whose perspective does it reflect?` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Identify Argument & Perspective`,
+        prompt:`Write the central argument. Identify: whose perspective does this text reflect? What perspective might be missing?`,
+        annot:['E evidence','⭐ key idea','❓ question','P perspective'],
+        starter:`The author's argument is… / This text reflects the perspective of… / A perspective likely absent is… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Challenge`,
+        prompt:`State the argument and strongest evidence. Is this perspective complete? What would change the argument?`,
+        starter:`The argument is [well-supported/limited] because… / The author assumes… / To fully evaluate this, you'd also need…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`2 min`,   icon:`📖`, label:`Introduce`,
+        prompt:`Introduce the text: title, key vocabulary, and context (time period, place, issue). Number the paragraphs.` },
+      { mode:`individual`, time:`3 min`,   icon:`📖`, label:`First Read`,
+        prompt:`Read independently. What argument is being made? Whose perspective does it reflect?` },
+      { mode:`individual`, time:`3 min`,   icon:`🔍`, label:`Identify Argument & Perspective`,
+        prompt:`Write the central argument. Identify: whose perspective does this text reflect? What perspective might be missing?`,
+        annot:['E evidence','⭐ key idea','❓ question','P perspective'],
+        starter:`The author's argument is… / This text reflects the perspective of… / A perspective likely absent is… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Challenge`,
+        prompt:`State the argument and strongest evidence. Is this perspective complete? What would change the argument?`,
+        starter:`The argument is [well-supported/limited] because… / The author assumes… / To fully evaluate this, you'd also need…` }
+    ]
+  },
+  teacher: {
+    obj: `Students identify the central argument of a social studies text and distinguish it from supporting evidence (Gathering, Interpreting, and Using Evidence practice).`,
+    grade: {
+      k2: `Use texts with clear visual evidence — maps, photos, timelines. Prompt: "What is the author trying to convince us of?" to help students distinguish argument from evidence. Accept pointing.`,
+      '35': `Push students to name evidence type — not just "they said" but "this map shows" or "this data shows." Note the difference from science: in social studies, arguments often reflect perspective and interpretation, not just facts.`,
+      '68':`At 6–8, the perspective question becomes essential — who is speaking, and who isn\'t? This explicit perspective step sets up the competing perspectives analysis in Phases 3 and 5.`
+    },
+    notes: [
+      `Help students notice whose voice is represented and whose may be missing — this sets up Phase 5.`,
+      `In K–2, use "The author wants us to believe ___ because ___" as a scaffold for argument/evidence separation.`,
+      `For 3–5, build a class evidence-type chart across the year that includes primary vs. secondary source distinctions.`,
+      `Phase 1 argument identification feeds directly into the Phase 5 civic discussion — keep the connection visible.`
+    ],
+    why: `Social studies texts make arguments — they don't just report facts. Students who learn to identify an argument and its evidence develop the critical stance needed for civic engagement.`,
+    std: `NYS SS: Gathering, Interpreting, and Using Evidence · CCSS RI.1 · RI.2 · SL.1`
+  }
+},
+
+/* ── CSS PHASE 2 ── */
+{
+  num: 2,
+  name: `Making Our Thinking Visible`,
+  label: `Phase 2 · Annotation`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Use one annotation marking to show your thinking — especially on maps, images, or timelines.`,
+    '35': `Annotate the text and visuals to track arguments, evidence, and questions.`,
+    '68':`Read with a pen. Write phrases next to your markings — including maps, timelines, and images.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2–3 min', icon:'📋', label:`Introduce & Read Together`,
+        prompt:`Review today's annotation focus. Read twice. Look especially at any maps, timelines, or photographs.`,
+        annot:['⭐ important','E evidence','❓ question','→ connection'] },
+      { mode:'whole',      time:'2 min',   icon:'🖊️', label:`Watch the Think-Aloud`,
+        prompt:`Watch the think-aloud. Which marking is used? Why does it go on that part of the text, map, or image?` },
+      { mode:'individual', time:'3 min',   icon:'✏️', label:`Annotate`,
+        prompt:`Use one marking on the part that feels most important to the argument.`,
+        starter:`I used [marking] because this part shows…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share`,
+        prompt:`What did you mark? Why? How does it connect to the argument from Phase 1?`,
+        starter:`I marked… because it is evidence for the idea that…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'2 min',   icon:'📋', label:`Introduce & Read Twice`,
+        prompt:`Review the annotation markings. Read twice, paying attention to the argument, evidence, and any maps, timelines, or data.`,
+        annot:['⭐ important','E evidence','❓ question','→ connection','! surprising','P perspective'] },
+      { mode:'individual', time:'3–4 min', icon:'✏️', label:`Annotate Independently`,
+        prompt:`Mark the text and any visuals. Write a brief note next to each marking.`,
+        starter:`I marked [marking] because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share & Build Class Text`,
+        prompt:`State what you annotated, which marking, and why. Others: add any markings you missed.`,
+        starter:`I used [marking] next to… because it shows…` },
+      { mode:'individual', time:'1 min',   icon:'🎯', label:`Wrap-Up`,
+        prompt:`Which annotation will be most useful for answering today's questions? Circle it.`,
+        starter:`My most useful annotation is… because…` }
+    ],
+    '68':[
+      { mode:`individual`, time:`4–5 min`, icon:`✏️`, label:`Read & Annotate`,
+        prompt:`Read with your annotation markings. Next to each marking, write a phrase — not just a symbol. Mark maps, timelines, and images too.`,
+        annot:['⭐ important','E evidence','❓ question','→ connection','! surprising','P perspective'] },
+      { mode:`pair`,       time:`2 min`,   icon:`👥`, label:`Partner Share`,
+        prompt:`Compare annotations. Did you mark the same perspective shifts? The same surprises?`,
+        starter:`I marked [marking] next to… because… / I marked P here because the perspective is… / I didn't notice…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share & Build`,
+        prompt:`Share one annotation that changed your thinking or revealed a perspective. Add anything you missed.` }
+    ]
+  },
+  teacher: {
+    obj: `Students annotate social studies texts and visual sources using a consistent set of markings, preparing evidence for Phases 3–5.`,
+    grade: {
+      k2: `Teach students to annotate maps, timelines, and photographs — not just text. A label on a map or timeline ("E") is as valid as underlining a sentence.`,
+      '35': `The P marking for perspective is particularly important — it surfaces whose viewpoint is represented. The ! marking surfaces surprising claims that merit scrutiny. Point out that the same text can receive multiple markings — that's layered thinking.`,
+      '68':`The P (perspective) marking is especially productive at 6–8 — push students to note not just that a perspective is present but whose it is and what it might obscure. Require explanatory phrases next to every marking.`
+    },
+    notes: [
+      `Always include visual data features — don't let students skip maps, graphs, or images.`,
+      `The → connection marking is especially useful for cause-and-effect and compare-and-contrast thinking.`,
+      `Annotation in Phase 2 should explicitly prepare students for the question type they'll encounter in Phase 3.`,
+      `The same annotation set is used across all phases — students learn it once and apply it throughout.`
+    ],
+    why: `Annotation teaches students to interact with arguments and evidence, and to notice whose perspective is represented — skills needed for all social studies reading and the Gathering, Interpreting, and Using Evidence practice.`,
+    std: `NYS SS: Gathering, Interpreting, and Using Evidence · CCSS RI.1 · RF.4`
+  }
+},
+
+/* ── CSS PHASE 3 ── */
+{
+  num: 3,
+  name: `Questions About the Text`,
+  label: `Phase 3 · Comprehension & Analysis`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Go back to the text, map, or timeline to find the answer. Point to your evidence.`,
+    '35': `Use the text and visuals to answer two questions carefully. Think about what happened, why it happened, and what it means.`,
+    '68':`Think beyond what happened to why it matters and who was affected. Cite evidence from the text and visuals precisely.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2 min',   icon:'🔄', label:`Introduce`,
+        prompt:`Think back to the Phase 1 argument. Today's questions will ask you to use the text, map, or timeline to explain.` },
+      { mode:'whole',      time:'3 min',   icon:'🎵', label:`Read & Look`,
+        prompt:`Read twice. Study any maps, timelines, or graphs — the answer may be in a visual, not the text.` },
+      { mode:'individual', time:'2–3 min', icon:'🔍', label:`Find & Mark Evidence`,
+        prompt:`Read the question. Find the part of the text or visual that answers it. Circle your evidence.`,
+        annot:['What happened?','How did things change?','Why did this happen?','How are these alike or different?'],
+        starter:`The answer is… I found it in…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Prove It`,
+        prompt:`State your answer. Point to exactly where in the text, map, or timeline your evidence appears.`,
+        starter:`The answer is… because the [text/map/timeline] shows…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Introduce`,
+        prompt:`Think back to the Phase 1 argument. You will answer two questions — one focused on the text, one on a visual.` },
+      { mode:'whole',      time:'3 min',   icon:'🎵', label:`Read Twice — Study the Visuals`,
+        prompt:`Read twice. On the second read, focus on any maps, timelines, graphs, or data tables.`,
+        annot:['Use evidence to explain how…','How did this change over time?','How are these alike or different?','What caused… and what were the effects?','How did this affect different people or places?'] },
+      { mode:'individual', time:'3 min',   icon:'🔍', label:`Annotate & Reason`,
+        prompt:`Annotate the question. Find your evidence in the text or visual. Think: not just what happened, but why it matters.`,
+        starter:`The evidence that supports this is… / This happened because… / This is similar to/different from… / This affected people because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Cite & Discuss`,
+        prompt:`State your answer. Name the exact paragraph, map feature, or data point. Explain your reasoning.`,
+        starter:`Based on the [text/map/data]… because… / I can argue that… because the evidence shows…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Think back to the Phase 1 argument. You will answer two questions — think beyond what happened to why it matters and who was affected.` },
+      { mode:`whole`,      time:`2–3 min`, icon:`🎵`, label:`Read Twice — Study the Visuals`,
+        prompt:`Read twice. On the second read, focus on maps, timelines, and data. Look for multiple perspectives.`,
+        annot:['How did earlier events influence what happened later?','Categorize the perspectives on this event…','Evaluate the costs and benefits for different groups…','How did geography or economics shape this outcome?'] },
+      { mode:`individual`, time:`3–4 min`, icon:`🔍`, label:`Annotate & Reason`,
+        prompt:`Annotate the question. Find evidence in the text and visual. Think: not just what happened, but who was affected and why it matters.`,
+        starter:`This event was caused by… which led to… / [Group A] benefited because… while [Group B] was harmed because… / The key turning point was… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Cite & Discuss`,
+        prompt:`State your answer. Name the specific paragraph, map feature, or data point. Explain your reasoning.`,
+        starter:`Based on the [text/map/data]… because… / I can argue that… because the evidence shows… / This connects to the broader pattern of…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce`,
+        prompt:`Think back to the Phase 1 argument. You will answer two questions — think beyond what happened to why it matters and who was affected.` },
+      { mode:`whole`,      time:`2–3 min`, icon:`🎵`, label:`Read Twice — Study the Visuals`,
+        prompt:`Read twice. On the second read, focus on maps, timelines, and data. Look for multiple perspectives.`,
+        annot:['How did earlier events influence what happened later?','Categorize the perspectives on this event…','Evaluate the costs and benefits for different groups…','How did geography or economics shape this outcome?'] },
+      { mode:`individual`, time:`3–4 min`, icon:`🔍`, label:`Annotate & Reason`,
+        prompt:`Annotate the question. Find evidence in the text and visual. Think: not just what happened, but who was affected and why it matters.`,
+        starter:`This event was caused by… which led to… / [Group A] benefited because… while [Group B] was harmed because… / The key turning point was… because…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Cite & Discuss`,
+        prompt:`State your answer. Name the specific paragraph, map feature, or data point. Explain your reasoning.`,
+        starter:`Based on the [text/map/data]… because… / I can argue that… because the evidence shows… / This connects to the broader pattern of…` }
+    ]
+  },
+  teacher: {
+    obj: `Students answer two text-dependent questions using a targeted SS practice (Chronological Reasoning and Causation, Comparison and Contextualization, or Economics and Economic Systems). Note the standard and SS practice for each question in your planning — students don't name the practice, but you should know which one you're targeting.`,
+    grade: {
+      k2: `Direct students to a specific visual — a point on a timeline, a region on a map, a data row. Accept pointing before requiring oral explanation.`,
+      '35': `Include two questions — one on the text, one on a visual. The visual question should require students to read a feature (trend, region, comparison) rather than simply describe what they see. For written responses, protect the think time — constructed responses take longer than selected-response.`,
+      '68':`At 6–8, question types should deepen across all three practices — Chronological: turning points and long-term causation; Comparison: categorize multiple perspectives; Economics: evaluate costs and benefits for different groups.`
+    },
+    notes: [
+      `Chronological Reasoning question stems: "How did ___ change over time?" / "What caused ___ and what were the effects?" / "What were the long-term and immediate causes of…?"`,
+      `Comparison and Contextualization stems: "How were ___ alike or different?" / "How did geography influence…?" / "What perspective is missing from this text?"`,
+      `Economics and Economic Systems stems: "How did this decision affect different groups?" / "What were the costs and benefits of…?" / "How did scarcity affect the decision to…?"`,
+      `Students should cite a specific location in every response. If they don't, prompt: "Point to exactly where in the [text/map/timeline] you see that."`
+    ],
+    why: `Students practice applying different kinds of historical and social thinking — tracing change, making comparisons, analyzing decisions — skills that transfer across all social studies content.`,
+    std: `NYS SS: Chronological Reasoning and Causation · Comparison and Contextualization · Economics and Economic Systems · CCSS RI.1 · SL.4`
+  }
+},
+
+/* ── CSS PHASE 4 ── */
+{
+  num: 4,
+  name: `Data Analysis`,
+  label: `Phase 4 · Visual Source Analysis`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `Study a new map, image, or graph. What does it show? What does it add to what we read?`,
+    '35': `Analyze a new visual source and use what it shows to deepen or challenge the argument from the text.`,
+    '68':`Analyze a new visual source — then evaluate it. Who made it? What's left out? How does that affect what you can argue?`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'2 min',   icon:'🔄', label:`Introduce the Visual`,
+        prompt:`Study the new map, image, or graph. What kind of source is it? What is it showing?` },
+      { mode:'whole',      time:'2–3 min', icon:'🗺️', label:`Look Closely`,
+        prompt:`Read the title, labels, and key. What stands out? What is this visual telling us about the topic?` },
+      { mode:'individual', time:'2–3 min', icon:'✍️', label:`Respond`,
+        prompt:`Look at the visual and the question. Write or sketch your response. Use at least one detail from the visual.`,
+        starter:`This [map/graph/image] shows… / I notice that… / This connects to what we read because…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share`,
+        prompt:`Share your response. Point to the specific feature of the visual that supports your answer.`,
+        starter:`I think… because the [map/graph/image] shows…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Introduce the Visual`,
+        prompt:`Study the new map, graph, or data table. What type of source is it? What does it show? How might it connect to what you read?` },
+      { mode:'whole',      time:'2–3 min', icon:'🗺️', label:`Read & Analyze`,
+        prompt:`Read the title, labels, and legend. What patterns, changes, or comparisons does this visual make visible? What does it add to — or challenge — the text?`,
+        annot:['Based on the [map/graph], explain how…','How does this data support or challenge the argument that…?','What pattern do you see, and what might explain it?','How does this compare to what the text argues?'] },
+      { mode:'individual', time:'3 min',   icon:'✍️', label:`Write Your Response`,
+        prompt:`Write your response using at least two specific details from the visual.`,
+        starter:`This [map/graph] shows… / This supports/challenges the argument that… / One pattern I notice is… which suggests…` },
+      { mode:'whole',      time:'2 min',   icon:'💬', label:`Share`,
+        prompt:`Share your response. Name specific visual features. How does this visual deepen or complicate what the text argued?`,
+        starter:`I argued… because the [map/graph] shows… / This data changes/strengthens the argument that…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Visual`,
+        prompt:`Study the new map, graph, or data table. What type of source is it? Who created it? What does it show?` },
+      { mode:`whole`,      time:`2–3 min`, icon:`🗺️`, label:`Read, Analyze & Evaluate`,
+        prompt:`Read the title, labels, and legend. What patterns does this visual make visible? Then: what might it leave out? How does that affect the argument?`,
+        annot:['How does this data support or challenge the argument that…?','Whose perspective shaped this source?','What is missing — and why might that matter?','How does this compare to what the text argues?'] },
+      { mode:`individual`, time:`3–4 min`, icon:`✍️`, label:`Write Your Analysis`,
+        prompt:`Write your response using the source and the text. Acknowledge both what the source shows and what it cannot prove.`,
+        starter:`This source reveals… / It is useful for arguing… but limited because… / This source reflects the perspective of… which means… / A source that would complicate this is…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`How does evaluating this source change what you can argue? What source would you need to make a stronger argument?`,
+        starter:`This source strengthens/limits the argument that… because… / Even with this evidence, we cannot conclude… because…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Visual`,
+        prompt:`Study the new map, graph, or data table. What type of source is it? Who created it? What does it show?` },
+      { mode:`whole`,      time:`2–3 min`, icon:`🗺️`, label:`Read, Analyze & Evaluate`,
+        prompt:`Read the title, labels, and legend. What patterns does this visual make visible? Then: what might it leave out? How does that affect the argument?`,
+        annot:['How does this data support or challenge the argument that…?','Whose perspective shaped this source?','What is missing — and why might that matter?','How does this compare to what the text argues?'] },
+      { mode:`individual`, time:`3–4 min`, icon:`✍️`, label:`Write Your Analysis`,
+        prompt:`Write your response using the source and the text. Acknowledge both what the source shows and what it cannot prove.`,
+        starter:`This source reveals… / It is useful for arguing… but limited because… / This source reflects the perspective of… which means… / A source that would complicate this is…` },
+      { mode:`whole`,      time:`2 min`,   icon:`💬`, label:`Share`,
+        prompt:`How does evaluating this source change what you can argue? What source would you need to make a stronger argument?`,
+        starter:`This source strengthens/limits the argument that… because… / Even with this evidence, we cannot conclude… because…` }
+    ]
+  },
+  teacher: {
+    obj: `Students analyze a new map, image, or data representation and use it to construct or deepen an argument. Note the standard and SS practice for the Phase 4 question in your planning.`,
+    grade: {
+      k2: `The Phase 4 visual should be accessible — a simple map with 2–3 labeled features, a bar graph with a clear pattern, or a relevant photograph. Guide students to read the title and labels before the data itself.`,
+      '35': `The Phase 4 visual should be new — not already in the text — so students practice synthesizing across sources. Strong responses connect the visual to the text's argument: "This map supports / challenges / adds to the argument that…"`,
+      '68':`At 6–8, add an explicit source evaluation dimension — who created this, for what purpose, what might be absent. This is the critical move that distinguishes analytical from surface-level visual reading.`
+    },
+    notes: [
+      `Teach a visual reading sequence: Title → Labels/Key → Data → Patterns → What does this mean? Model before releasing.`,
+      `Multiple defensible responses are expected — name this explicitly. Students who defend different interpretations are engaging in authentic social studies thinking.`,
+      `Collect Phase 4 written responses as formative data — they show students' ability to synthesize across text and visual sources.`,
+      `Phase 4 uses a new visual source (not already in the text) — this is what makes it distinct from Phase 3's visual questions.`
+    ],
+    why: `Maps, graphs, and images are primary sources in social studies — not just illustrations. Phase 4 trains students to read visual sources with the same analytical habits they bring to text, applying the Gathering, Interpreting, and Using Evidence and Geographic Reasoning practices.`,
+    std: `NYS SS: Gathering, Interpreting, and Using Evidence · Geographic Reasoning · CCSS RI.7 · SL.4`
+  }
+},
+
+/* ── CSS PHASE 5 ── */
+{
+  num: 5,
+  name: `Discussion`,
+  label: `Phase 5 · Civic Participation`,
+  timer: { k2:'10 min', '35':'10 min', '68':'10 min' },
+  purpose: {
+    k2: `There is no single right answer — we are thinking together. What should people do about this? What is our role?`,
+    '35': `Use the text, visuals, and what you know to discuss what citizens, communities, or leaders should do. There is no single right answer — defend your position with evidence.`,
+    '68':`Evaluate the strongest argument and the most important perspective missing from the text. There is no single right answer.`
+  },
+  bands: {
+    k2: [
+      { mode:'whole',      time:'1–2 min', icon:'🔄', label:`Introduce the Question`,
+        prompt:`There is no single right answer. Think about what people — including us — can do. Think about what we read and what you already know.` },
+      { mode:'individual', time:'2 min',   icon:'🧠', label:`Think Time`,
+        prompt:`What do you think? What did the text or map tell us that helps you answer? Sketch or write one idea.`,
+        starter:`I think… because… / One thing we could do is… / The text tells us…, so…` },
+      { mode:'whole',      time:'4–5 min', icon:'💬', label:`Discuss`,
+        prompt:`Share your thinking. Listen to others. Build on or respectfully disagree with each other's ideas.`,
+        starter:`I agree/disagree with… because… / The text also shows… / I think we have a responsibility to… because…` }
+    ],
+    '35': [
+      { mode:'whole',      time:'1 min',   icon:'🔄', label:`Introduce the Question`,
+        prompt:`There is no single right answer. This question asks what citizens, communities, or leaders could or should do. Use the text, data, and what you already know.` },
+      { mode:'individual', time:'2–3 min', icon:'🧠', label:`Think & Write`,
+        prompt:`Write your position and at least one piece of evidence from the text or visual. Think about: who is affected by this issue? Whose perspective matters?`,
+        starter:`My position is… because the text shows… / One perspective that matters here is… / Citizens/communities/leaders could…` },
+      { mode:'whole',      time:'4–5 min', icon:'💬', label:`Discussion`,
+        prompt:`Share your position. Build on or respectfully challenge each other's reasoning. Use the text and visuals to support your points.`,
+        starter:`I agree/disagree with [name] because the evidence shows… / A different perspective is… / Based on what we read, I think our responsibility is…` }
+    ],
+    '68':[
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Question`,
+        prompt:`There is no single right answer. Evaluate the strongest argument and the most important perspective missing from the text.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🧠`, label:`Think & Write`,
+        prompt:`Write your position. Cite evidence. Acknowledge a competing perspective — and explain why your interpretation is still more defensible.`,
+        starter:`The strongest argument is… because… / A competing perspective argues… This is less convincing because… / The perspective of [group] matters because…` },
+      { mode:`whole`,      time:`4–5 min`, icon:`💬`, label:`Discussion`,
+        prompt:`Share and challenge. Which argument is most defensible? What source would change the conversation?`,
+        starter:`[Name]'s argument is compelling, but it doesn't account for… / The assumption underlying that argument is… / I'd revise my position to include…` }
+    ],
+    '68': [
+      { mode:`whole`,      time:`1 min`,   icon:`🔄`, label:`Introduce the Question`,
+        prompt:`There is no single right answer. Evaluate the strongest argument and the most important perspective missing from the text.` },
+      { mode:`individual`, time:`2–3 min`, icon:`🧠`, label:`Think & Write`,
+        prompt:`Write your position. Cite evidence. Acknowledge a competing perspective — and explain why your interpretation is still more defensible.`,
+        starter:`The strongest argument is… because… / A competing perspective argues… This is less convincing because… / The perspective of [group] matters because…` },
+      { mode:`whole`,      time:`4–5 min`, icon:`💬`, label:`Discussion`,
+        prompt:`Share and challenge. Which argument is most defensible? What source would change the conversation?`,
+        starter:`[Name]'s argument is compelling, but it doesn't account for… / The assumption underlying that argument is… / I'd revise my position to include…` }
+    ]
+  },
+  teacher: {
+    obj: `Students engage in structured civic discussion around an open-ended question, using evidence from the text and visual sources to defend positions about community action, rights, responsibilities, or change (Civic Participation practice).`,
+    grade: {
+      k2: `Anchor in students' immediate communities — classroom, school, neighborhood. "What could we do to…?" and "What should our community do about…?" are more accessible than abstract policy questions. Connect to the text's argument explicitly.`,
+      '35': `Require students to take and defend a position, not just describe the issue. Push students to consider whose perspectives should be heard. Strong prompts ask: "What should [citizens / the community / leaders] do about…? Use evidence from the text and at least one other source or piece of knowledge."`,
+      '68':`At 6–8, require students to identify the strongest competing perspective and explain why their argument is more defensible despite it. This is more rigorous than sharing an opinion — it requires genuine engagement with disagreement.`
+    },
+    notes: [
+      `Phase 5 is not about reaching consensus — it's about hearing multiple defensible positions. Students who respectfully disagree with evidence are showing the strongest thinking.`,
+      `Sentence starters for productive disagreement: "I see this differently because the text shows…" / "That argument doesn't account for the perspective of…"`,
+      `Collect student written positions from Phase 5 — they are your formative assessment of civic reasoning, which is the heart of the DEEDS Examine continuum in social studies.`,
+      `If discussion stays shallow: "Who is most affected by this? What would they want us to consider?" / "What does the text tell us about what we should do?"`
+    ],
+    why: `Every week of Collaborative Social Studies ends with students answering the question that matters most: what does this mean for how we live and act in our community? The Civic Participation practice connects learning to action.`,
+    std: `NYS SS: Civic Participation · Gathering, Interpreting, and Using Evidence · CCSS SL.1 · SL.4`
+  }
+}
+
+]; // end CSS_PHASES
+
+
+const MC = { individual:'m-ind', pair:'m-pair', small:'m-sm', whole:'m-wh' };
+const ML = { individual:'✏️\u202FIndividual', pair:'👥\u202FPartner', small:'◎\u202FSmall Group', whole:'◎\u202FWhole Class' };
+
+function buildCard(step) {
   const mc = MC[step.mode] || 'm-wh';
   const ml = ML[step.mode] || step.mode;
   const starter = step.starter ? `<div class="c-starter">${step.starter}</div>` : '';
   const annotKey = step.annot ? `<div class="annot-key">${step.annot.map(a=>`<span class="ak">${a}</span>`).join('')}</div>` : '';
-  return `<div class="cw"><div class="pc ${dc}">
-    <div class="cm"><span class="mode-pill ${mc}">${ml}</span><span class="c-time">\u23F3\u202F${step.time}</span></div>
+  return `<div class="cw"><div class="pc pr">
+    <div class="cm"><span class="mode-pill ${mc}">${ml}</span><span class="c-time">⏳\u202F${step.time}</span></div>
     <div class="c-icon">${step.icon}</div>
     <div class="c-label">${step.label}</div>
     <div class="c-prompt">${step.prompt}</div>
@@ -317,101 +1393,148 @@ function buildCard(step, isRoutine) {
   </div></div>`;
 }
 
-function buildBand(proto, band) {
-  const ir = proto.type === 'routine';
-  let cards = '';
-  proto.bands[band].forEach((s, i) => {
-    cards += buildCard(s, ir);
-    if (i < proto.bands[band].length - 1) cards += `<div class="card-arrow">\u203A</div>`;
-  });
+function bvSlot(ph, band) {
+  const steps = ph.bands[band];
+  if(!steps) return '';
+  const cards = steps.map((s,i)=>buildCard(s)+(i<steps.length-1?'<div class="card-arrow">›</div>':'')).join('');
   return `<div class="bv" data-b="${band}">
     <div class="sb">
-      <div class="s-title">${proto.name}</div>
-      <div class="s-sub">${proto.purpose[band]}</div>
+      <div class="s-phase-label">${ph.label}</div>
+      <div class="s-title">${ph.name}</div>
+      <div class="s-sub">${ph.purpose[band] || ph.purpose['35']}</div>
       <div class="cr">${cards}</div>
     </div>
   </div>`;
 }
 
-function buildTeacher(proto) {
-  const t = proto.teacher;
-  const hrows = t.hattie.map(h=>`<div class="h-row">
-    <div class="h-badge"><div class="h-d">d=${h.d}</div><div class="h-lbl">Hattie</div></div>
-    <div><div class="h-name">${h.n}</div><div class="h-rat">${h.r}</div></div>
-  </div>`).join('');
-  const gKeys = [
-    {k:'k2',l:'K\u20132'},{k:'35',l:'3\u20135'},
-    {k:'68',l:'6\u20138'},{k:'912',l:'9\u201312'}
-  ];
-  const grows = gKeys.map(g=>`<div class="g-row">
-    <span class="g-band">${g.l}</span>
-    <span class="g-note">${t.grade[g.k]}</span>
-  </div>`).join('');
-  const planNote = t.planning ? `<div class="plan-note">
-    <div class="plan-title">Planning Notes</div>
-    <div class="plan-txt">${t.planning}</div>
-  </div>` : '';
+function buildTeacherCard(ph, subject) {
+  const t = ph.teacher;
+  const gKeys = [{k:'k2',l:'K\u20132'},{k:'35',l:'3\u20135'},{k:'68',l:'6\u20138'}];
+  const grows = gKeys.map(g=>`<div class="g-row"><span class="g-band">${g.l}</span><span class="g-note">${t.grade[g.k]||''}</span></div>`).join('');
+  const facNotes = t.notes.map(n=>`<li>${n}</li>`).join('');
   return `<div class="tc2">
     <div class="t-hdr">
       <div class="t-hdr-l">
-        <div class="t-ey">Teacher Background \u2014 Examine</div>
-        <div class="t-ttl">${proto.name}</div>
+        <div class="t-ey">Teacher Background — ${subject}</div>
+        <div class="t-ttl">${ph.label}</div>
       </div>
       <div class="t-meta">
-        <div class="t-ml">When to use</div><div class="t-mv">${t.when}</div>
-        <div class="t-ml" style="margin-top:4px">Type</div><div class="t-mv">${t.type}</div>
+        <div class="t-ml">Objective</div>
+        <div class="t-mv" style="font-size:10px;max-width:170px;text-align:right;line-height:1.3">${t.obj}</div>
       </div>
     </div>
     <div class="t-body">
-      <div class="t-sec"><div class="t-sec-title">Hattie Effect Sizes</div>${hrows}</div>
-      <div class="t-sec"><div class="t-sec-title">Grade Band Guidance</div>${grows}${planNote}</div>
-      <div class="why-box"><div class="why-l">Why this, why now</div><div class="why-t">${t.why}</div></div>
+      <div class="t-sec"><div class="t-sec-title">Grade Band Guidance</div>${grows}</div>
+      <div class="t-sec"><div class="t-sec-title">Facilitation Notes</div><ul class="fac-list">${facNotes}</ul></div>
+      <div class="why-box"><div class="why-l">Why this phase, why now</div><div class="why-t">${t.why}</div></div>
       <div class="std-row"><div class="std-l">Standards</div><div class="std-v">${t.std}</div></div>
     </div>
   </div>`;
 }
 
-function buildAll() {
-  const ir = P[0].type === 'routine';
-  const bc = ir ? 'badge-r' : 'badge-f';
-  const bl = ir ? 'Daily Routine' : 'Focus Protocol';
-  const allBands = ["k2","35","68","912"];
-  const bvs = allBands.map(b => buildBand(P[0], b)).join('');
-  document.getElementById('slide0').innerHTML = `
+function buildSlide(ph, idx, subject, slideClass, panelPrefix) {
+  return `
+  <div class="${slideClass}${idx===0?' active':''}" data-idx="${idx}">
     <div class="sc">
       <div class="sh">
         <div class="shl">
           <span class="phase-pill">EXAMINE</span>
-          <span class="type-badge ${bc}">${bl}</span>
+          <span class="phase-num-badge">Phase ${ph.num}</span>
+          <span class="type-badge badge-r">${subject}</span>
         </div>
-        <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
+        <div class="timer" id="${panelPrefix}tmr${idx}">⏱\u202F${ph.timer['k2']}</div>
       </div>
-      ${bvs}
+      ${bvSlot(ph,'k2')}${bvSlot(ph,'35')}${bvSlot(ph,'68')}
     </div>
-    ${buildTeacher(P[0])}`;
+    ${buildTeacherCard(ph, subject)}
+    <div class="phase-dots" id="${panelPrefix}dots${idx}"></div>
+  </div>`;
 }
 
-buildAll();
+function buildPanel(phases, panelId, subject, slideClass, panelPrefix) {
+  const panel = document.getElementById(panelId);
+  panel.innerHTML = phases.map((ph,i) => buildSlide(ph, i, subject, slideClass, panelPrefix)).join('');
+  const dotsHTML = phases.map((_,i)=>`<div class="phase-dot" id="${panelPrefix}dot${i}" onclick="goToPhase(${i})"></div>`).join('');
+  document.querySelectorAll(`[id^="${panelPrefix}dots"]`).forEach(el => { el.innerHTML = dotsHTML; });
+}
+
+function getConfig() {
+  const b = document.body;
+  if(b.classList.contains('subj-cta')) return { phases:CS_PHASES,  panelId:'cs-panel',  slideClass:'cs-slide',  prefix:'cs',  subject:'Collaborative Science',       nav:updateNav };
+  if(b.classList.contains('subj-css')) return { phases:CSS_PHASES, panelId:'css-panel', slideClass:'css-slide', prefix:'css', subject:'Collaborative Social Studies', nav:updateNav };
+  return { phases:CR_PHASES, panelId:'cr-panel', slideClass:'cr-slide', prefix:'cr', subject:'Collaborative Reading', nav:updateNav };
+}
+
+let currentPhase = 0;
+
+function goToPhase(idx) {
+  const { panelId, slideClass, nav } = getConfig();
+  document.querySelectorAll(`#${panelId} .${slideClass}`).forEach(s => s.classList.remove('active'));
+  const t = document.querySelector(`#${panelId} .${slideClass}[data-idx="${idx}"]`);
+  if(t) t.classList.add('active');
+  currentPhase = idx;
+  updateNav();
+}
+
+function prevPhase() { if(currentPhase > 0) goToPhase(currentPhase - 1); }
+function nextPhase() {
+  const { phases } = getConfig();
+  if(currentPhase < phases.length - 1) goToPhase(currentPhase + 1);
+}
+
+function updateNav() {
+  const { phases, panelId } = getConfig();
+  document.getElementById('prev-btn').disabled = currentPhase === 0;
+  document.getElementById('next-btn').disabled = currentPhase === phases.length - 1;
+  document.getElementById('slide-ctr').textContent = `Phase ${currentPhase + 1} of ${phases.length}`;
+  document.querySelectorAll(`#${panelId} .phase-dot`).forEach((d,i) => d.classList.toggle('active', i === currentPhase));
+  const band = document.body.className.match(/\bb(\w+)\b/)?.[1] || 'k2';
+  const cfg = getConfig();
+  const tmr = document.getElementById(`${cfg.prefix}tmr${currentPhase}`);
+  if(tmr) tmr.textContent = '\u23F1\u202F' + (cfg.phases[currentPhase].timer[band] || cfg.phases[currentPhase].timer['k2']);
+}
+
+function setSubject(s) {
+  document.body.className = document.body.className.replace(/\bsubj-\w+\b/g,'').trim()
+    + ' subj-' + (s==='cs' ? 'cta' : s==='css' ? 'css' : 'cr');
+  ['cr','cs','css'].forEach(x => {
+    const btn = document.getElementById('bs'+x);
+    if(btn) btn.classList.toggle('active', x===s);
+  });
+  const labels = { cr:'Collaborative Reading', cs:'Collaborative Science', css:'Collaborative Social Studies' };
+  document.getElementById('deck-label').textContent = labels[s] || 'Collaborative Reading';
+  const showNav = true;
+  document.getElementById('phase-nav').style.display = 'flex';
+  currentPhase = 0;
+  updateNav();
+}
 
 function setView(v) {
-  document.body.classList.toggle('vs', v === 's');
-  document.body.classList.toggle('vt', v === 't');
-  document.getElementById('bvs').classList.toggle('active', v === 's');
-  document.getElementById('bvt').classList.toggle('active', v === 't');
+  document.body.classList.toggle('vs', v==='s');
+  document.body.classList.toggle('vt', v==='t');
+  document.getElementById('bvs').classList.toggle('active', v==='s');
+  document.getElementById('bvt').classList.toggle('active', v==='t');
 }
 
 function setBand(b) {
-  document.body.className = document.body.className.replace(/\bb(k2|35|612|68|912)\b/g,'').trim() + ' b' + b;
-  ['k2','35','68','912'].forEach(x => {
+  document.body.className = document.body.className.replace(/\bb\w+\b/g,'').trim() + ' b' + b;
+  ['k2','35','68'].forEach(x => {
     const btn = document.getElementById('bb'+x);
-    if(btn) btn.classList.toggle('active', x === b);
+    if(btn) btn.classList.toggle('active', x===b);
   });
-  const el = document.getElementById('tmr0');
-  if(el) el.textContent = '\u23F1\u202F' + (P[0].timer[b] || P[0].timer['35'] || P[0].timer['k2']);
+  updateNav();
 }
+
 document.addEventListener('keydown', e => {
-  if(e.key==='ArrowLeft'||e.key==='ArrowRight') return;
+  if(e.key==='ArrowRight') nextPhase();
+  if(e.key==='ArrowLeft')  prevPhase();
 });
+
+// Build all panels on load
+buildPanel(CR_PHASES,  'cr-panel',  'Collaborative Reading',       'cr-slide',  'cr');
+buildPanel(CS_PHASES,  'cs-panel',  'Collaborative Science',       'cs-slide',  'cs');
+buildPanel(CSS_PHASES, 'css-panel', 'Collaborative Social Studies', 'css-slide', 'css');
+updateNav();
 
 </script>
 </body>

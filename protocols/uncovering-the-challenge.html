@@ -364,8 +364,8 @@ const P = [
         prompt:'Write what you know \u2014 stick to what you\u2019ve seen evidence for.',
         starter:'We know that\u2026' },
       { mode:'individual', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
-        prompt:'What are you still unsure about? What questions remain?',
-        starter:'We\u2019re not sure about\u2026' },
+        prompt:'What are you still unsure about? What questions do you still have? And \u2014 is there anything you\u2019ve been guessing at without real evidence?',
+        starter:'We\u2019re not sure about\u2026 / We might be guessing that\u2026' },
       { mode:'whole', time:'2 min', icon:'\u2699\uFE0F', label:'Next Steps',
         prompt:'Share: what would most help us learn more or take action?',
         starter:'' }
@@ -383,7 +383,7 @@ const P = [
     ]
   },
   teacher: {
-    when:'Daily, after each Focus Task (Sessions 2\u20134)', type:'Daily Routine',
+    when:'Daily, after each Focus Task', type:'Daily Routine',
     hattie: [
       { d:'0.82', n:'Classroom Discussion',     r:'Structured discourse about what is known vs. unknown significantly accelerates reasoning and conceptual development.' },
       { d:'0.74', n:'Summarization',             r:'Producing concise meaning from a learning experience increases encoding and long-term retention.' },
@@ -396,7 +396,7 @@ const P = [
       '68': 'The Challenge Assumptions step is where the thinking sharpens. Push: \u201cWhich assumption, if wrong, would most change what you think the problem is?\u201d',
       '912':'Most students will need a modeled example of an \u201cassumed\u201d belief vs. an \u201cunknown\u201d before they can distinguish them reliably.'
     },
-    planning: 'Anchor chart structure: three columns labeled KNOWN / UNKNOWN (Questions) / NEXT STEPS. Add a session label to each round of contributions so students can trace how thinking shifted. At the end of Session 4, a strong chart is the student\u2019s first draft of their performance task.',
+    planning: 'Anchor chart structure: three columns labeled KNOWN / UNKNOWN (Questions) / NEXT STEPS. Add a date or phase label to each round of contributions so students can trace how thinking shifted. By the end of Discover, a strong chart is the student\u2019s first draft of their performance task.',
     why: 'This routine directly builds the \u201cFrame and Define the Challenge\u201d capacity. Track how the Known column grows and the Unknown column shifts \u2014 this progression IS the evidence of Discover learning.',
     std:'NGSS SEP 1, SEP 8 \u00b7 C3 D1 \u00b7 CCSS W.7, SL.1'
   }
