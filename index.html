@@ -438,6 +438,34 @@ img { display: block; max-width: 100%; }
 .challenge-point strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 5px; font-weight: 800; }
 .challenge-point span { display: block; font-size: 14px; color: var(--ink-soft); }
 
+/* ── Key Documents ── */
+.key-docs { padding: 44px 0 48px; }
+.key-docs-inner {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  padding: 40px 56px 44px;
+}
+.key-docs-inner h2 { font-size: clamp(22px, 3vw, 30px); color: var(--ink); margin-bottom: 6px; }
+.key-docs-inner > p { font-size: 15px; color: var(--ink-soft); margin-bottom: 28px; max-width: 58ch; }
+.key-docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.key-doc-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  transition: box-shadow .18s ease, transform .15s ease;
+}
+.key-doc-card:hover { box-shadow: 0 4px 18px rgba(31,41,55,0.10); transform: translateY(-2px); }
+.key-doc-card strong { display: block; font-size: 15px; font-weight: 800; color: var(--ink); }
+.key-doc-card span { display: block; font-size: 13px; color: var(--ink-soft); line-height: 1.55; flex: 1; }
+.key-doc-card .doc-link-label { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--accent-blue); margin-top: 6px; flex: 0; }
+
 .starting-points {
   padding: 32px 56px;
   border-top: 1px solid var(--line);
@@ -724,6 +752,12 @@ img { display: block; max-width: 100%; }
   }
   .starting-points {
     padding: 28px 32px;
+  }
+  .key-docs-inner {
+    padding: 28px 24px 32px;
+  }
+  .key-docs-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1043,6 +1077,44 @@ img { display: block; max-width: 100%; }
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Documents -->
+<section class="key-docs">
+  <div class="container">
+    <div class="key-docs-inner">
+      <div class="eyebrow">Resources</div>
+      <h2>Key documents</h2>
+      <p>Core planning and facilitation resources for getting started with DEEDS.</p>
+      <div class="key-docs-grid">
+
+        <a class="key-doc-card" href="https://docs.google.com/document/d/1PMbFEO_3tm7iSZcbb7N1aFF4snXP5cJ4-xQ-Gc1TH0o/edit?tab=t.0" target="_blank" rel="noopener">
+          <strong>What is DEEDS?</strong>
+          <span>A one-page overview of the DEEDS framework — the five phases, what happens in each, and what facilitators and scholars do.</span>
+          <span class="doc-link-label">Open document →</span>
+        </a>
+
+        <a class="key-doc-card" href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/edit?usp=sharing" target="_blank" rel="noopener">
+          <strong>DEEDS Planning Template</strong>
+          <span>A structured template for designing a DEEDS module — from clarifying learning goals and the community challenge through planning each phase.</span>
+          <span class="doc-link-label">Open document →</span>
+        </a>
+
+        <a class="key-doc-card" href="https://docs.google.com/document/d/1RTuRmnZKRBp4Ep54wPEoAivPqR24a83gz3cZAJspENg/edit?usp=sharing" target="_blank" rel="noopener">
+          <strong>Unit Planning & Preparation Checklist</strong>
+          <span>A facilitator checklist for developing and revising a DEEDS unit — covering authentic challenge design, assessment, differentiation, and phase-by-phase look-fors.</span>
+          <span class="doc-link-label">Open document →</span>
+        </a>
+
+        <a class="key-doc-card" href="https://docs.google.com/document/d/1jpS7RFMEbbW0-QUmtAlET1VQnSyrXjXkno1vT0tFvvo/edit?usp=sharing" target="_blank" rel="noopener">
+          <strong>Classroom Walkthrough Observation Tool</strong>
+          <span>A structured observation guide for coaches and leaders visiting DEEDS classrooms — with low-inference look-fors by phase and space for glows and grows.</span>
+          <span class="doc-link-label">Open document →</span>
+        </a>
+
       </div>
     </div>
   </div>
