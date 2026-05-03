@@ -2,342 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Do is Phase 4 of DEEDS — students put their solution into action in the real world, collect evidence, and use data to honestly evaluate impact and effectiveness.">
-<meta name="theme-color" content="#FFFDF0">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Do — Phase 4 of DEEDS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="revx.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--f:#b87800;--a:#d48b00;--g:#ffb600;--c:#fffbf0;--b:#3d2800;--w:#6b5100;--l:#fff8e0;--W:#fff;--r:12px}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--b);background:var(--c);line-height:1.6;overflow-x:hidden}
-.dm{font-family:'DM Serif Display',serif}
-
-.hero{max-width:1200px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:8px;background:var(--f);color:#fff;padding:5px 16px 5px 10px;border-radius:24px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
-.badge span{width:22px;height:22px;background:rgba(255,255,255,.25);border-radius:50%;display:grid;place-items:center;font-size:13px}
-.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin-bottom:16px}
-.hero h1 em{font-style:normal;color:var(--f);text-decoration:underline;text-decoration-color:var(--g);text-underline-offset:4px}
-.hero p{font-size:16px;color:var(--w);max-width:500px}
-.vid{background:linear-gradient(135deg,var(--f),var(--g));border-radius:16px;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .3s;position:relative;overflow:hidden}
-.vid:hover{transform:scale(1.02)}
-.vid::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.12),transparent 60%)}
-.pbtn{width:52px;height:52px;background:#fff;border-radius:50%;display:grid;place-items:center;margin-bottom:10px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
-.pbtn svg{margin-left:2px}
-.vid span{color:#fff;font-weight:600;font-size:13px}
-.vid small{color:rgba(255,255,255,.8);font-size:11px}
-
-.nav{position:sticky;top:0;z-index:100;background:rgba(255,251,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(61,40,0,.08);padding:0 24px}
-.nav-in{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px 0}
-.nav-in::-webkit-scrollbar{display:none}
-.nb{white-space:nowrap;padding:9px 18px;border-radius:8px;border:none;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--w);cursor:pointer;transition:all .2s}
-.nb:hover{background:rgba(184,120,0,.08);color:var(--f)}
-.nb.on{background:var(--f);color:#fff}
-
-section{max-width:1200px;margin:0 auto;padding:48px 24px}
-.sl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--a);margin-bottom:6px}
-.st{font-size:clamp(24px,3.5vw,36px);margin-bottom:10px}
-.sd{color:var(--w);max-width:640px;margin-bottom:28px;font-size:14px}
-.full{background:var(--W);max-width:100%;padding:48px 24px}
-.inn{max-width:1200px;margin:0 auto}
-
-.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
-.sc-card{background:var(--W);border-radius:16px;border:1px solid rgba(61,40,0,.07);padding:22px;display:flex;flex-direction:column;gap:8px}
-.sc-num{width:28px;height:28px;border-radius:50%;background:var(--f);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;flex-shrink:0}
-.sc-card h4{font-size:15px;font-weight:700;color:var(--b);margin-bottom:2px}
-.sc-card p{font-size:12px;color:var(--w);line-height:1.6;flex:1}
-.sc-align{font-size:10px;font-weight:700;color:var(--a);background:rgba(184,120,0,.06);border-radius:6px;padding:5px 9px;display:inline-block;margin-top:4px;letter-spacing:.3px}
-.tr{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-.tk{border-radius:var(--r);border:1.5px solid rgba(61,40,0,.08);padding:20px 20px 18px;background:var(--W);position:relative;overflow:hidden}
-.tk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.tk.en::before{background:var(--a)}
-.tk.ex::before{background:var(--f)}
-.tk h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
-.tk .wh{font-size:10px;color:var(--a);font-weight:600;margin-bottom:10px}
-.tk-tabs{display:flex;gap:4px;flex-wrap:wrap}
-.tkt{padding:4px 10px;border-radius:20px;border:1.5px solid rgba(61,40,0,.12);background:var(--l);font-family:inherit;font-size:10px;font-weight:700;color:var(--w);cursor:pointer;transition:all .15s}
-.tkt:hover{border-color:var(--a);color:var(--f)}
-.tkt.on{border-color:var(--f);background:var(--f);color:#fff}
-.tk ol{padding-left:16px;display:flex;flex-direction:column;gap:9px}
-.tk ol li{font-size:12px;color:var(--w);line-height:1.6}
-
-.flow{display:flex;align-items:stretch;gap:5px;margin:28px 0;flex-wrap:wrap;justify-content:center}
-.fn{flex:1;min-width:110px;max-width:155px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 8px;background:var(--W);border-radius:var(--r);border:1px solid rgba(61,40,0,.06)}
-.fi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;margin-bottom:8px}
-.fn h4{font-size:11px;font-weight:700;margin-bottom:2px}
-.fn p{font-size:10px;color:var(--w)}
-.fa{display:flex;align-items:center;font-size:16px;color:var(--g);flex-shrink:0}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
-.crd{background:linear-gradient(135deg,#fff8e0,#fffbf0);border:1px solid rgba(184,120,0,.12);border-radius:16px;padding:24px}
-.crd h3{font-size:18px;color:var(--f);margin-bottom:8px}
-.crd p{font-size:13px;color:var(--w);line-height:1.6}
-.wcrd{background:var(--W);border:1px solid rgba(61,40,0,.06);border-radius:16px;padding:24px}
-.wcrd h4{font-size:14px;font-weight:700;margin-bottom:10px}
-.sr{display:flex;gap:8px;align-items:start;margin-bottom:6px}
-.sr span{font-size:16px;flex-shrink:0}
-.sr strong{font-size:13px;display:block}
-.sr p{font-size:11px;color:var(--w);margin:0}
-.partners-card{background:linear-gradient(135deg,#fff8e0,#fffbf0);border:1px solid rgba(184,120,0,.12);border-radius:16px;padding:28px;margin-top:28px}
-.partners-card h3{font-size:20px;color:var(--f);margin-bottom:10px}
-.partners-card>p{font-size:13px;color:var(--w);line-height:1.7;margin-bottom:18px}
-.partner-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.pl-item{display:flex;gap:10px;align-items:start;background:rgba(255,255,255,.6);border-radius:10px;padding:12px 14px}
-.pl-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-.pl-text{font-size:12px;color:var(--w);line-height:1.6}
-.pl-text strong{color:var(--b);display:block;margin-bottom:1px;font-size:13px}
-.partners-footer{font-size:13px;color:var(--w);font-style:italic;line-height:1.6;border-top:1px solid rgba(184,120,0,.12);padding-top:14px}
-
-.gt{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
-.gb{padding:9px 22px;border-radius:8px;border:2px solid rgba(61,40,0,.1);background:var(--W);font-family:inherit;font-size:13px;font-weight:700;color:var(--w);cursor:pointer;transition:all .2s}
-.gb:hover{border-color:var(--a);color:var(--f)}
-.gb.on{border-color:var(--f);background:var(--f);color:#fff}
-.gc{display:grid;grid-template-columns:1fr 160px;gap:20px;background:var(--W);border-radius:16px;border:1px solid rgba(61,40,0,.06);padding:24px;align-items:center}
-.gc h3{font-size:17px;margin-bottom:4px}
-.cq{font-size:13px;color:var(--f);font-weight:600;font-style:italic;margin-bottom:6px}
-.gc>div:first-child p{color:var(--w);font-size:12px;margin-bottom:3px}
-.gm{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.gm span{font-size:10px;font-weight:600;padding:3px 8px;border-radius:14px;background:rgba(184,120,0,.06);color:var(--f)}
-.gi{width:160px;height:120px;border-radius:var(--r);display:grid;place-items:center;font-size:48px;flex-shrink:0}
-.ex-link-btn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--f);color:#fff;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s}
-.ex-link-btn:hover{background:var(--b)}
-footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-top:1px solid rgba(61,40,0,.06)}
-
-@media(max-width:768px){
-  .hero,.two,.sc-grid,.tr{grid-template-columns:1fr}
-  .hero{gap:20px;padding:28px 16px 20px}
-  .gc{grid-template-columns:1fr}.gi{display:none}
-}
-@media print{.nav,.hero{display:none!important}body{background:#fff}}
-/* ── Skip link ── */
-.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-.skip-link:focus{position:fixed;top:16px;left:16px;width:auto;height:auto;padding:10px 18px;background:var(--b);color:#fff;border-radius:10px;font-weight:700;font-size:14px;z-index:9999;text-decoration:none;outline:3px solid var(--g);outline-offset:2px}
-
-/* ── Touch targets ── */
-.gb,.tkt,.nb{min-height:44px}
-
-/* ── Phase navigation strip ── */
-.phase-nav-strip{max-width:1200px;margin:0 auto;padding:28px 24px 8px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.pns-back{font-size:13px;font-weight:700;color:var(--w);text-decoration:none;padding:10px 16px;border:1.5px solid rgba(61,30,0,.12);border-radius:999px;background:var(--W);transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
-.pns-back:hover,.pns-back:focus-visible{border-color:var(--f);color:var(--f)}
-.pns-back:focus-visible{outline:2px solid var(--f);outline-offset:2px}
-.pns-phases{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.pns-current{padding:10px 18px;border-radius:999px;font-size:13px;font-weight:800;min-height:44px;display:inline-flex;align-items:center}
-.pns-next{padding:10px 18px;border-radius:999px;background:var(--nc,#1f2937);color:var(--nct,#fff);font-size:13px;font-weight:800;text-decoration:none;transition:filter .18s;min-height:44px;display:inline-flex;align-items:center}
-.pns-next:hover,.pns-next:focus-visible{filter:brightness(1.12)}
-.pns-next:focus-visible{outline:2px solid var(--nc,#1f2937);outline-offset:3px}
-
-/* ── Site footer (matches index) ── */
-.site-footer {
-  background: #1f2937;
-  padding: 36px 0 0;
-  margin-top: 0;
-}
-.site-footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 28px 28px;
-}
-.site-footer-brand {
-  font-family: 'DM Serif Display', serif;
-  font-size: 20px;
-  color: #fff;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-}
-.site-footer-nav {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.site-footer-nav a {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  transition: color .15s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 0;
-  margin-right: 10px;
-}
-.site-footer-nav a::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  flex-shrink: 0;
-}
-.site-footer-nav a[href="discover.html"]::before { background: #e69138; }
-.site-footer-nav a[href="examine.html"]::before  { background: #0a9b19; }
-.site-footer-nav a[href="engineer.html"]::before { background: #003da6; }
-.site-footer-nav a[href="do.html"]::before       { background: #ffb600; }
-.site-footer-nav a[href="share.html"]::before    { background: #ab0a3d; }
-.site-footer-nav a:hover { color: #fff; }
-.site-footer-credit {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px 28px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 12px;
-  color: rgba(255,255,255,0.28);
-}
-
-
-/* ── Site-wide navigation (matches index) ── */
-:root { --site-nav-h: 52px; }
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  background: rgba(245, 241, 234, 0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(31, 41, 55, 0.08);
-}
-.site-nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  height: var(--site-nav-h);
-}
-.site-nav-brand {
-  font-size: 18px;
-  font-weight: 800;
-  color: #1f2937;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.site-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  justify-content: flex-end;
-}
-.site-nav-links::-webkit-scrollbar { display: none; }
-.site-nav-link {
-  padding: 9px 13px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #4f5b6a;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background .18s ease, color .18s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.site-nav-link[href="index.html"]:hover,
-.site-nav-link[href="index.html"].active    { background: #1f2937; color: #fff; }
-.site-nav-link[href="discover.html"]:hover,
-.site-nav-link[href="discover.html"].active { background: #e69138; color: #fff; }
-.site-nav-link[href="examine.html"]:hover,
-.site-nav-link[href="examine.html"].active  { background: #0a9b19; color: #fff; }
-.site-nav-link[href="engineer.html"]:hover,
-.site-nav-link[href="engineer.html"].active { background: #003da6; color: #fff; }
-.site-nav-link[href="do.html"]:hover,
-.site-nav-link[href="do.html"].active       { background: #ffb600; color: #1f2937; }
-.site-nav-link[href="share.html"]:hover,
-.site-nav-link[href="share.html"].active    { background: #ab0a3d; color: #fff; }
-.site-nav-link::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-.site-nav-link[href="index.html"]::before    { display: none; }
-.site-nav-link[href="discover.html"]::before { background: #e69138; }
-.site-nav-link[href="examine.html"]::before  { background: #0a9b19; }
-.site-nav-link[href="engineer.html"]::before { background: #003da6; }
-.site-nav-link[href="do.html"]::before       { background: #ffb600; }
-.site-nav-link[href="share.html"]::before    { background: #ab0a3d; }
-.nav { top: var(--site-nav-h) !important; }
-@media (max-width: 600px) {
-  .site-nav-inner { padding: 0 18px; gap: 10px; }
-  .site-nav-link { padding: 8px 10px; font-size: 12px; }
-}
-
-@media (max-width: 600px) {
-  .site-nav-inner { padding: 0 16px; }
-  .site-nav-link { padding: 6px 10px; font-size: 12px; }
-}
-
-/* ── CORE PROTOCOLS ── */
-.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;margin-top:4px}
-.proto-card{background:var(--W);border:1px solid rgba(61,30,0,.08);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s,transform .15s}
-.proto-card:hover{box-shadow:0 4px 20px rgba(61,30,0,.1);transform:translateY(-2px)}
-.proto-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
-.proto-badge-r{background:var(--l);color:var(--w);border:1px solid rgba(61,30,0,.1)}
-.proto-badge-f{background:var(--l);color:var(--f);border:1px solid rgba(61,30,0,.12)}
-.proto-name{font-size:15px;font-weight:700;color:var(--b);margin:0}
-.proto-when{font-size:12px;color:var(--w);line-height:1.5;flex:1;margin:0}
-.proto-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--f);text-decoration:none;padding:7px 14px;border:1.5px solid rgba(61,30,0,.15);border-radius:8px;background:var(--l);transition:all .2s;align-self:flex-start;margin-top:2px}
-.proto-link:hover{background:var(--f);color:#fff;border-color:var(--f)}
-.proto-link-ph{color:var(--w);border-color:rgba(61,30,0,.1);pointer-events:none;opacity:.55}
-
-.proto-group{margin-top:32px}
-.proto-group:first-child{margin-top:16px}
-.proto-group-label{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--f);margin-bottom:12px;padding-left:10px;border-left:3px solid var(--f)}
-.proto-badge-s{background:rgba(61,30,0,.04);color:var(--b);border:1px dashed rgba(61,30,0,.22)}
-.scaffold-note{font-size:11.5px;color:var(--w);line-height:1.6;margin:0;font-style:italic}
-
-.proto-link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
-.proto-link-sm{font-size:11px;padding:5px 11px}
+:root { --phase-color: var(--do); --phase-color-hex: #FFB600; }
 </style>
 </head>
 <body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav class="site-nav" aria-label="Site navigation">
+<nav class="site-nav" role="navigation" aria-label="Site navigation">
   <div class="site-nav-inner">
-    <a href="index.html" class="site-nav-brand">DEEDS</a>
-    <div class="site-nav-links" role="list">
+    <a href="index.html" class="site-nav-brand">
+      <img src="assets/revx-logo.png" alt="RevX logo" />
+      <span class="site-nav-brand-label">DEEDS</span>
+    </a>
+    <div class="site-nav-links">
       <a href="index.html" class="site-nav-link">Home</a>
-      <a href="discover.html" class="site-nav-link">Discover</a>
-      <a href="examine.html" class="site-nav-link">Examine</a>
-      <a href="engineer.html" class="site-nav-link">Engineer</a>
-      <a href="do.html" class="site-nav-link active active-do" aria-current="page">Do</a>
-      <a href="share.html" class="site-nav-link">Share</a>
+      <a href="discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a><a href="examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a><a href="engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a><a href="do.html" class="site-nav-link active" aria-current="page"><span class="phase-dot" style="background:var(--do)"></span>Do</a><a href="share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
     </div>
   </div>
 </nav>
-
-<header class="hero" id="top" aria-label="Page header">
-  <div>
-    <div class="badge"><span aria-hidden="true">🚀</span> Phase 4 of DEEDS</div>
-    <h1 class="dm">Where solutions come to <em>life.</em></h1>
-    <p>Scholars put their solution into action in the real world, collect evidence of what happens, and use data to evaluate impact, effectiveness, and what comes next.</p>
-  </div>
-  <div class="vid">
-    <div class="pbtn"><svg width="20" height="20" fill="var(--f)" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    <span>Watch: What is Do?</span>
-    <small>3 min overview</small>
-  </div>
-</header>
-
-<nav class="nav" aria-label="Page sections"><div class="nav-in">
-  <button class="nb on" data-t="how">See How It Works</button>
-  <button class="nb" data-t="success">Success Criteria</button>
-  <button class="nb" data-t="protocols">Core Practices</button>
-  <button class="nb" data-t="try">Explore Examples</button>
-</div></nav>
 
 <main id="main-content">
 
@@ -355,7 +42,7 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
     <div class="fa" aria-hidden="true">→</div>
     <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#ffb600,#e09b00)" aria-hidden="true">🔍</div><h4>Analyze Impact</h4><p>Examine what the evidence shows about effectiveness and real-world results.</p></div>
     <div class="fa" aria-hidden="true">→</div>
-    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--f))" aria-hidden="true" aria-hidden="true">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
+    <div class="fn"><div class="fi" style="background:linear-gradient(135deg,#e09b00,var(--phase-color-hex))" aria-hidden="true" aria-hidden="true">💡</div><h4>Evaluate &amp; Improve</h4><p>Identify what worked, what didn't, and what the solution should do next.</p></div>
   </div>
   <div class="two">
     <div class="crd">
@@ -423,10 +110,10 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
     <div style="margin-top:28px;background:linear-gradient(135deg,#fff8e0,#fffbf0);border:1px solid rgba(184,120,0,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
       <div style="flex:1;min-width:220px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--a);margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 class="dm" style="font-size:18px;color:var(--f);margin-bottom:7px">Use the Developmental Continuum</h3>
+        <h3 class="dm" style="font-size:18px;color:var(--phase-color-hex);margin-bottom:7px">Use the Developmental Continuum</h3>
         <p style="font-size:13px;color:var(--w);line-height:1.6">The continuum describes how students' capacity to enact solutions, collect real-world evidence, and evaluate impact develops over time and across projects. Use it to give targeted feedback and help students name what they are learning by doing.</p>
       </div>
-      <a href="https://docs.google.com/document/d/1nYEjekpbynen5u4p3EpuEuUVpWvzOtsthPR1_vNw6j0/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--f);color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='var(--b)'" onmouseout="this.style.background='var(--f)'">View Developmental Continuum →</a>
+      <a href="https://docs.google.com/document/d/1nYEjekpbynen5u4p3EpuEuUVpWvzOtsthPR1_vNw6j0/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--phase-color-hex);color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='var(--b)'" onmouseout="this.style.background='var(--phase-color-hex)'">View Developmental Continuum →</a>
     </div>
   </div>
 </section>
@@ -508,26 +195,38 @@ footer{text-align:center;padding:32px 24px;color:var(--w);font-size:12px;border-
 <nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
   <a href="engineer.html" class="pns-back">← Engineer</a>
   <div class="pns-phases">
-    <span class="pns-current" style="background:#ffb600;color:#1f2937;">4 · Do</span>
-    <a href="share.html" class="pns-next" style="--nc:#ab0a3d;">5 · Share →</a>
+    <span class="pns-current" style="background:#FFB600;color:#fff;">4 · Do</span>
+    <a href="share.html" class="pns-next">4 · Share →</a>
   </div>
 </nav>
 
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
-    <a href="index.html" class="site-footer-brand">DEEDS</a>
-    <nav class="site-footer-nav" aria-label="All phases">
-      <a href="discover.html">Discover</a>
-      <a href="examine.html">Examine</a>
-      <a href="engineer.html">Engineer</a>
-      <a href="do.html">Do</a>
-      <a href="share.html">Share</a>
+    <div>
+      <a href="index.html" class="site-footer-brand">
+        <img src="assets/revx-logo.png" alt="RevX logo" />
+        <span class="site-footer-wordmark">DEEDS</span>
+      </a>
+      <p class="site-footer-tagline">A K–12 learning model that creates opportunities for young people to claim their power and transform the world.</p>
+    </div>
+    <nav class="site-footer-col" aria-label="Phase pages">
+      <h4>Phases</h4>
+      <div class="site-footer-links">
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      </div>
     </nav>
   </div>
-  <div class="site-footer-credit">RevX × Transcend</div>
+  <div class="site-footer-credit">DEEDS Framework · RevX × Transcend</div>
 </footer>
 
 <script>
+const nav = document.querySelector('.site-nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
 // NAV
 const NBS = document.querySelectorAll('.nb');
 NBS.forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.t).scrollIntoView({behavior:'smooth'})));
@@ -616,6 +315,7 @@ function switchExample(grade, btn) {
 }
 
 switchExample('k2', document.querySelector('.gb.on'));
+
 </script>
 </body>
 </html>
