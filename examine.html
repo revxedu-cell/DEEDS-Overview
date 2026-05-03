@@ -28,7 +28,33 @@
 
 <main id="main-content">
 
-<!-- SUCCESS CRITERIA -->
+<header class="phase-hero">
+  <div class="container">
+    <div class="phase-hero-inner">
+      <div>
+        <div class="phase-badge" style="background:#0a9b19;color:#fff;"><span class="phase-badge-dot"></span>Phase 2 of DEEDS</div>
+        <h1>Where questions meet <em>evidence.</em></h1>
+        <p>Scholars investigate the root causes of the challenge through disciplinary inquiry, building the content knowledge and evidence base needed to propose and defend a solution direction.</p>
+      </div>
+      <div class="vid-placeholder">
+        <div class="play-btn">
+          <svg width="20" height="20" fill="#0a9b19" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span>Watch: What is Examine?</span>
+        <small>3 min overview</small>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="section-subnav" aria-label="Page sections">
+  <div class="section-subnav-inner">
+    <button class="snb on" data-t="how">See How It Works</button>
+    <button class="snb" data-t="success">Success Criteria</button>
+    <button class="snb" data-t="try">Explore Examples</button>
+  </div>
+</nav>
+
 <section class="section" id="how" style="padding-top:52px;">
   <div class="container">
     <span class="eyebrow">Overview</span>
@@ -96,30 +122,87 @@
   </div>
 </section>
 
-<section id="try" class="full">
-  <div class="inn">
-    <div class="sl">In Practice</div>
-    <div class="st dm">Explore Examples</div>
-    <p class="sd">Each example below outlines a sample Examine phase to spark inspiration for what this phase might look like in your own classroom.</p>
-    <div class="gt">
-      <button class="gb on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
-      <button class="gb" data-g="35" onclick="switchExample('35',this)">3–5</button>
-      <button class="gb" data-g="68" onclick="switchExample('68',this)">6–8</button>
-      <button class="gb" data-g="912" onclick="switchExample('912',this)">9–12</button>
-    </div>
-    <div class="gc" id="ex-overview">
-      <div>
-        <h3 class="dm" id="gt2">Grades K–2</h3>
-        <div class="cq" id="gq">Challenge question placeholder</div>
-        <p id="gb2">Example description placeholder. Update this in the JS switchExample data below.</p>
-        <div class="gm" id="gm2"></div>
-        <a id="ex-doc-link" href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.slu13is9wj5o" target="_blank" class="ex-link-btn">View Full Example →</a>
+<section class="full-section" id="success">
+  <div class="container">
+    <div class="eyebrow-text">By the End</div>
+    <div class="section-title">Success Criteria</div>
+    <p class="section-desc">By the end of Examine, students should demonstrate growth in three areas of disciplinary reasoning and evidence use:</p>
+    <div class="sc-grid sr-hidden">
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">1</div><h4>Apply Disciplinary Concepts</h4></div>
+        <p>Accurately apply targeted content standards to explain how the system behind the challenge operates and what causes the problem.</p>
+        <span class="sc-align">NGSS SEP 2, SEP 6 · CCSS R.1, R.4, W.2 · C3 D2</span>
       </div>
-      <div class="gi" id="gimg" style="background:linear-gradient(135deg,#c8f0cc,#a0e4a6)">🔬</div>
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">2</div><h4>Identify &amp; Analyze Root Causes</h4></div>
+        <p>Use disciplinary evidence to identify underlying causes, analyze impact and magnitude, and compare competing explanations.</p>
+        <span class="sc-align">NGSS SEP 4, SEP 6 · CCSS W.1 · C3 D3</span>
+      </div>
+      <div class="sc-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">3</div><h4>Evaluate &amp; Justify Solutions</h4></div>
+        <p>Compare solution pathways using criteria and evidence, then defend a solution direction by synthesizing findings across all instructional cycles.</p>
+        <span class="sc-align">NGSS SEP 7, ETS1-2 · CCSS W.1, W.9, SL.4 · C3 D4.6</span>
+      </div>
+    </div>
+
+    <h3 class="dm" style="font-size:20px;margin-bottom:6px;margin-top:36px">Evidence of Learning</h3>
+    <p style="font-size:13px;color:var(--gray-700);margin-bottom:12px">The Opening Investigation Reflection and Solution Justification Task track how students' causal reasoning and solution justification develop across instructional cycles.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:11px;font-weight:700;color:var(--gray-900)">Select grade band:</span>
+      <div class="grade-tabs" id="shared-tabs">
+        <button class="grade-tab" onclick="switchGrade('k2',this)">K–2</button>
+        <button class="grade-tab" onclick="switchGrade('35',this)">3–5</button>
+        <button class="grade-tab" onclick="switchGrade('68',this)">6–8</button>
+        <button class="grade-tab" onclick="switchGrade('912',this)">9–12</button>
+      </div>
+    </div>
+    <div class="ticket-grid sr-hidden">
+      <div class="ticket-card">
+        <h4>⬇️ Opening Investigation Reflection</h4>
+        <div class="ticket-when">Start of each instructional cycle</div>
+        <ol id="lr-prompts"><li style="color:#c8b4a0;font-style:italic;list-style:none;margin-left:-16px;font-size:12px">← Select a grade band to view prompts</li></ol>
+      </div>
+      <div class="ticket-card">
+        <h4>⬆️ Solution Justification Task</h4>
+        <div class="ticket-when">End of Examine — after Socratic Seminar</div>
+        <ol id="pt-prompts"><li style="color:#c8b4a0;font-style:italic;list-style:none;margin-left:-16px;font-size:12px">← Select a grade band to view prompts</li></ol>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;background:linear-gradient(135deg,#e8f7ea,#f0faf1);border:1px solid rgba(10,122,20,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#0a9b19;margin-bottom:5px">Assess Growth Over Time</div>
+        <h3 class="dm" style="font-size:18px;color:#0a9b19;margin-bottom:7px">Use the Developmental Continuum</h3>
+        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students' disciplinary understanding, causal reasoning, solution evaluation, and evidence use develop over time. Because it spans multiple DEEDS projects, it helps teachers track growth, give targeted feedback, and see how students' reasoning deepens from one challenge to the next.</p>
+      </div>
+      <a href="https://docs.google.com/document/d/1PC-jQE7CiZqC0H6BEHJYXVXa5OCIupbnWshVUuj2VzE/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#0a9b19;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#0a9b19'">View Developmental Continuum →</a>
     </div>
   </div>
 </section>
 
+<section class="full-section" id="try">
+  <div class="container">
+    <div class="eyebrow-text">In Practice</div>
+    <div class="section-title">Explore Examples</div>
+    <p class="section-desc">Each example below outlines a sample Examine phase to spark inspiration for what this phase might look like in your own classroom.</p>
+    <div class="grade-tabs">
+      <button class="grade-tab on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
+      <button class="grade-tab" data-g="35" onclick="switchExample('35',this)">3–5</button>
+      <button class="grade-tab" data-g="68" onclick="switchExample('68',this)">6–8</button>
+      <button class="grade-tab" data-g="912" onclick="switchExample('912',this)">9–12</button>
+    </div>
+    <div class="example-grid sr-hidden" id="ex-overview">
+      <div>
+        <h3 class="dm" id="gt2">Grades K–2</h3>
+        <div class="example-cq" id="gq">Challenge question placeholder</div>
+        <p id="gb2">Example description placeholder. Update this in the JS switchExample data below.</p>
+        <div class="example-tags" id="gm2"></div>
+        <a id="ex-doc-link" href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.slu13is9wj5o" target="_blank" class="btn-secondary">View Full Example →</a>
+      </div>
+      <div class="example-img" id="gimg" style="background:linear-gradient(135deg,#c8f0cc,#a0e4a6)">🔬</div>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -127,7 +210,7 @@
   <a href="discover.html" class="pns-back">← Discover</a>
   <div class="pns-phases">
     <span class="pns-current" style="background:#0a9b19;color:#fff;">2 · Examine</span>
-    <a href="engineer.html" class="pns-next">2 · Engineer →</a>
+    <a href="engineer.html" class="pns-next">3 · Engineer →</a>
   </div>
 </nav>
 
@@ -157,6 +240,24 @@
 <script>
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+// Sub-nav scroll observer
+const NBS = document.querySelectorAll('.snb');
+NBS.forEach(b => b.addEventListener('click', () => {
+  const el = document.getElementById(b.dataset.t);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}));
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) NBS.forEach(b => b.classList.toggle('on', b.dataset.t === e.target.id)); });
+}, { threshold: 0.15, rootMargin: '-80px 0px -40% 0px' });
+['how','success','try'].forEach(id => { const el = document.getElementById(id); if (el) sectionObs.observe(el); });
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.replace('sr-hidden','sr-visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.sr-hidden').forEach(el => revealObs.observe(el));
+
 
 // NAV
 const NBS = document.querySelectorAll('.nb');
