@@ -118,7 +118,7 @@
     <span class="eyebrow">By the End</span>
     <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:10px;">Success Criteria</h2>
     <p style="color:var(--gray-700);max-width:60ch;margin-bottom:28px;">By the end of Do, students should demonstrate growth across three areas of real-world implementation and evidence-based evaluation:</p>
-    <div class="sc-grid sr-hidden">
+    <div class="sc-grid">
       <div class="sc-card">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div class="sc-num">1</div><h4>Enact a Solution</h4></div>
         <p>Implement the solution with real users, systems, or environments; document the process; and adapt when real-world conditions require it.</p>
@@ -147,7 +147,7 @@
         <button class="grade-tab" onclick="switchGrade('912',this)">9–12</button>
       </div>
     </div>
-    <div class="ticket-grid sr-hidden">
+    <div class="ticket-grid">
       <div class="ticket-card">
         <h4>⬇️ Implementation Plan</h4>
         <div class="ticket-when">Before Do begins — planning session</div>
@@ -182,7 +182,7 @@
       <button class="grade-tab" data-g="68" onclick="switchExample('68',this)">6–8</button>
       <button class="grade-tab" data-g="912" onclick="switchExample('912',this)">9–12</button>
     </div>
-    <div class="example-grid sr-hidden" id="ex-overview">
+    <div class="example-grid" id="ex-overview">
       <div>
         <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; id="gt2"">Grades K–2</h3>
         <div class="example-cq" id="gq">Challenge question placeholder</div>
@@ -243,20 +243,9 @@ const sectionObs = new IntersectionObserver(entries => {
 }, { threshold: 0.15, rootMargin: '-80px 0px -40% 0px' });
 ['how','success','try'].forEach(id => { const el = document.getElementById(id); if (el) sectionObs.observe(el); });
 
-// Scroll reveal
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.replace('sr-hidden','sr-visible'); revealObs.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.sr-hidden').forEach(el => revealObs.observe(el));
 
 
-// NAV
-const NBS = document.querySelectorAll('.nb');
-NBS.forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.t).scrollIntoView({behavior:'smooth'})));
-const obs = new IntersectionObserver(es => {
-  es.forEach(e => { if (e.isIntersecting) NBS.forEach(b => b.classList.toggle('on', b.dataset.t === e.target.id)); });
-}, {threshold:.15, rootMargin:'-60px 0px -40% 0px'});
-['success','how','try'].forEach(s => { const el = document.getElementById(s); if (el) obs.observe(el); });
+
 
 // GRADE-BAND TICKET PROMPTS
 const TDATA = {
