@@ -158,6 +158,7 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  #tab-agency .tab-panel > div[style*="grid"] { grid-template-columns: 1fr; }
   .hero-content, .tab-bar-inner, .tab-panel,
   .resources-section, .phase-strip-inner { padding-left: 20px; padding-right: 20px; }
   .docs-grid { grid-template-columns: 1fr; }
@@ -318,24 +319,28 @@
   <div id="tab-agency" class="tab-panel" role="tabpanel" style="--tab-color:var(--do)">
     <span class="tab-eyebrow">Solution Design</span>
     <div class="tab-heading">Match the solution space to your learners</div>
-    <p class="tab-body">In DEEDS, the level of openness in a challenge is intentionally designed. Younger learners work within a bounded set of well-structured solution options. As students get older, the solution space opens up: tradeoffs become less obvious, criteria become more contested, and ultimately students define the problem and generate their own response. This progression is intentional. Structure helps students develop the skills and habits they need. Increasing openness then gives them the space to apply those skills with developing judgment, independence, and creativity.</p>
-    <div class="points-list">
-      <div class="point-row">
-        <span class="point-title">Bounded choice (K–2)</span>
-        <span class="point-body">Two or three well-structured options. The challenge is real; the solution pathway is defined enough to be manageable and build early confidence.</span>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+      <div>
+        <p class="tab-body" style="max-width:none;">In DEEDS, the level of openness in a challenge is intentionally designed. Younger learners work within a bounded set of well-structured solution options. As students get older, the solution space opens up: tradeoffs become less obvious, criteria become more contested, and ultimately students define the problem and generate their own response. This progression is intentional. Structure helps students develop the skills and habits they need. Increasing openness then gives them the space to apply those skills with developing judgment, independence, and creativity.</p>
+        <div class="note-box">
+          <span class="note-label">Design move</span>
+          <span class="note-body">The solution space should feel slightly beyond what students could do alone — structured enough to support success, open enough to require genuine thinking.</span>
+        </div>
       </div>
-      <div class="point-row">
-        <span class="point-title">Guided inquiry (3–8)</span>
-        <span class="point-body">Multiple open-ended options with real tradeoffs. Students evaluate solutions rather than just choose them, developing judgment about what makes a response strong.</span>
+      <div class="points-list" style="margin-bottom:0;">
+        <div class="point-row">
+          <span class="point-title">Bounded choice (K–2)</span>
+          <span class="point-body">Two or three well-structured options. The challenge is real; the solution pathway is defined enough to be manageable and build early confidence.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Guided inquiry (3–8)</span>
+          <span class="point-body">Multiple open-ended options with real tradeoffs. Students evaluate solutions rather than just choose them, developing judgment about what makes a response strong.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Open inquiry (9–12)</span>
+          <span class="point-body">Students unpack the challenge, define the problem, and generate their own solution from the ground up — doing the full work of a disciplined problem-solver.</span>
+        </div>
       </div>
-      <div class="point-row">
-        <span class="point-title">Open inquiry (9–12)</span>
-        <span class="point-body">Students unpack the challenge, define the problem, and generate their own solution from the ground up — doing the full work of a disciplined problem-solver.</span>
-      </div>
-    </div>
-    <div class="note-box">
-      <span class="note-label">Design move</span>
-      <span class="note-body">The solution space should feel slightly beyond what students could do alone — structured enough to support success, open enough to require genuine thinking.</span>
     </div>
   </div>
 
