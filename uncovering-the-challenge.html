@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Uncovering the Challenge — DEEDS Discover Protocol</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
 :root {
@@ -20,7 +20,7 @@
   --t-text:rgba(255,255,255,.88); --t-soft:rgba(255,255,255,.55);
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
 
 /* ── TOPBAR ── */
 .topbar {
@@ -31,28 +31,28 @@ body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--t
 }
 .tl { display:flex; align-items:center; gap:9px; }
 .phase-pill {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:13px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:13px;
   letter-spacing:.15em; color:white; background:var(--phase);
-  padding:5px 13px; border-radius:5px;
+  padding:5px 13px; border-radius:0;
 }
-.deck-label { font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
 .nav-area { display:flex; align-items:center; gap:9px; }
 .nav-btn {
-  width:32px; height:32px; border-radius:7px; border:1.5px solid var(--border);
+  width:32px; height:32px; border-radius:0; border:1.5px solid var(--border);
   background:white; cursor:pointer; display:flex; align-items:center;
   justify-content:center; color:var(--text-mid); font-size:14px; transition:all .15s;
 }
 .nav-btn:hover:not(:disabled) { border-color:var(--phase); color:var(--phase); }
 .nav-btn:disabled { opacity:.3; cursor:not-allowed; }
-.slide-ctr { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:var(--text-mid); min-width:40px; text-align:center; }
+.slide-ctr { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); min-width:40px; text-align:center; }
 .ctrl-area { display:flex; align-items:center; gap:8px; }
-.tg { display:flex; background:var(--bg); border-radius:7px; padding:3px; gap:2px; }
+.tg { display:flex; background:var(--bg); border-radius:0; padding:2px; gap:1px; }
 .tb {
-  font-family:'Nunito',sans-serif; font-weight:700; font-size:11px;
-  padding:4px 10px; border:none; border-radius:5px; cursor:pointer;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:11px;
+  padding:4px 10px; border:none; border-radius:0; cursor:pointer;
   background:transparent; color:var(--text-soft); transition:all .15s;
 }
-.tb.active { background:white; color:var(--phase-dark); box-shadow:0 1px 3px rgba(0,0,0,.1); }
+.tb.active { background:var(--phase); color:white; }
 
 /* ── PAGE LAYOUT ── */
 .page { max-width:1400px; margin:24px auto; padding:0 20px 40px; }
@@ -61,10 +61,10 @@ body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--t
 
 /* ── STUDENT CARD (fixed slide dimensions) ── */
 .sc {
-  background:white; border-radius:14px;
+  background:white; border-radius:0;
   box-shadow:0 2px 20px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04);
-  overflow:hidden;
-  aspect-ratio:16/9;     /* scales with screen width for projection */
+  overflow:visible;
+  min-height:0; /* removed aspect-ratio to prevent content clipping */
   min-height:480px;
   display:none;
   flex-direction:column;
@@ -79,12 +79,12 @@ body.vs .sc { display:flex; }
 }
 .shl { display:flex; align-items:center; gap:9px; }
 .type-badge {
-  font-family:'Nunito',sans-serif; font-weight:800; font-size:12px;
-  letter-spacing:.1em; padding:5px 12px; border-radius:4px; text-transform:uppercase;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
+  letter-spacing:.1em; padding:5px 12px; border-radius:0; text-transform:uppercase;
 }
 .badge-r { color:#92400E; background:var(--amber-light); border:1px solid #FDE68A; }
 .badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
-.timer { font-family:'Nunito',sans-serif; font-weight:800; font-size:18px; color:var(--text-mid); }
+.timer { font-family:'Oswald',sans-serif; font-weight:700; font-size:18px; color:var(--text-mid); }
 
 /* band variants — only active band visible */
 .bv { display:none; flex-direction:column; flex:1; min-height:0; }
@@ -99,7 +99,7 @@ body.b612 .bv[data-b="612"]{ display:flex; }
   padding:18px 24px 10px;
 }
 .s-title {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:40px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:40px;
   color:var(--text); line-height:1.1; margin-bottom:6px; flex-shrink:0;
 }
 .s-sub {
@@ -115,7 +115,7 @@ body.b612 .bv[data-b="612"]{ display:flex; }
 .cw { flex:1; display:flex; }
 .pc {
   flex:1;
-  border-radius:10px;
+  border-radius:0;
   padding:14px 12px 12px;
   display:flex; flex-direction:column;
   align-items:center; text-align:center;
@@ -123,28 +123,28 @@ body.b612 .bv[data-b="612"]{ display:flex; }
   overflow:hidden;
 }
 /* routine = muted dashes; focus = orange dashes */
-.pd { border:2px dashed var(--phase); }
-.pr { border:2px dashed #FDBA74; background:#FFFCF9; }
+.pd { border:1px solid var(--border); border-top:3px solid var(--phase); }
+.pr { border:1px solid var(--border); border-top:3px solid var(--amber); background:#FFFCF9; }
 
 .card-arrow {
   flex:0 0 20px; display:flex; align-items:center; justify-content:center;
-  color:var(--phase); font-size:16px; font-weight:900; flex-shrink:0;
+  color:var(--phase); font-size:16px; font-weight:700; flex-shrink:0;
 }
 
 /* card internals */
 .cm { display:flex; align-items:center; justify-content:space-between; width:100%; }
 .mode-pill {
-  font-family:'Nunito',sans-serif; font-weight:800; font-size:12px;
-  letter-spacing:.05em; padding:3px 9px; border-radius:20px; white-space:nowrap;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
+  letter-spacing:.05em; padding:3px 9px; border-radius:0; white-space:nowrap;
 }
 .m-ind  { background:var(--m-ind-bg);  border:1px solid var(--m-ind-b);  color:var(--m-ind-t); }
 .m-pair { background:var(--m-pair-bg); border:1px solid var(--m-pair-b); color:var(--m-pair-t); }
 .m-sm   { background:var(--m-sm-bg);   border:1px solid var(--m-sm-b);   color:var(--m-sm-t); }
 .m-wh   { background:var(--m-wh-bg);   border:1px solid var(--m-wh-b);   color:var(--m-wh-t); }
-.c-time { font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; color:var(--text-soft); }
+.c-time { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-soft); }
 .c-icon { font-size:34px; line-height:1; flex-shrink:0; }
 .c-label {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; color:var(--text);
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; color:var(--text);
   flex-shrink:0;
 }
 .c-prompt { font-size:17px; color:var(--text-mid); line-height:1.4; }
@@ -152,10 +152,10 @@ body.b612 .bv[data-b="612"]{ display:flex; }
 
 /* ── TEACHER CARD (fixed slide dimensions) ── */
 .tc2 {
-  background:var(--t-bg); border-radius:14px;
+  background:var(--t-bg); border-radius:0;
   box-shadow:0 2px 20px rgba(0,0,0,.2);
   overflow:hidden;
-  aspect-ratio:16/9;      /* scales with screen width for projection */
+  min-height:0; /* removed aspect-ratio to prevent content clipping */
   min-height:500px;
   display:none;
   flex-direction:column;
@@ -169,16 +169,16 @@ body.vt .tc2 { display:flex; }
 }
 .t-hdr-l { display:flex; flex-direction:column; gap:3px; }
 .t-ey {
-  font-family:'Nunito',sans-serif; font-weight:700; font-size:10px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:10px;
   letter-spacing:.18em; color:rgba(255,255,255,.75); text-transform:uppercase;
 }
-.t-ttl { font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; color:white; }
+.t-ttl { font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; color:white; }
 .t-meta {
   display:flex; flex-direction:column; align-items:flex-end; gap:2px;
-  background:rgba(0,0,0,.15); border-radius:7px; padding:7px 12px; flex-shrink:0;
+  background:rgba(0,0,0,.15); border-radius:0; padding:7px 12px; flex-shrink:0;
 }
-.t-ml { font-family:'Nunito',sans-serif; font-weight:700; font-size:10px; letter-spacing:.12em; color:rgba(255,255,255,.6); text-transform:uppercase; }
-.t-mv { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:white; }
+.t-ml { font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:.12em; color:rgba(255,255,255,.6); text-transform:uppercase; }
+.t-mv { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:white; }
 
 .t-body {
   flex:1; min-height:0;
@@ -190,7 +190,7 @@ body.vt .tc2 { display:flex; }
 }
 .t-sec { background:var(--t-s); border-radius:9px; padding:12px 13px; overflow:hidden; }
 .t-sec-title {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px;
   letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:8px;
 }
 
@@ -202,11 +202,11 @@ body.vt .tc2 { display:flex; }
 .h-row:last-of-type { border-bottom:none; padding-bottom:0; }
 .h-badge {
   flex-shrink:0; background:rgba(249,115,22,.18); border:1px solid rgba(249,115,22,.35);
-  border-radius:5px; padding:3px 6px; text-align:center; min-width:42px;
+  border-radius:0; padding:3px 6px; text-align:center; min-width:42px;
 }
-.h-d { font-family:'Nunito',sans-serif; font-weight:900; font-size:13px; color:#FED7AA; line-height:1; }
-.h-lbl { font-family:'Nunito',sans-serif; font-weight:700; font-size:8px; color:rgba(249,115,22,.7); letter-spacing:.05em; }
-.h-name { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:#FED7AA; margin-bottom:2px; }
+.h-d { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#FED7AA; line-height:1; }
+.h-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:8px; color:rgba(249,115,22,.7); letter-spacing:.05em; }
+.h-name { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#FED7AA; margin-bottom:2px; }
 .h-rat { font-size:12px; color:var(--t-soft); line-height:1.35; }
 
 /* grade notes */
@@ -216,7 +216,7 @@ body.vt .tc2 { display:flex; }
 }
 .g-row:last-child { border-bottom:none; padding-bottom:0; }
 .g-band {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.08em;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:.08em;
   color:var(--phase); background:rgba(249,115,22,.12); border-radius:3px;
   padding:2px 6px; white-space:nowrap; flex-shrink:0; margin-top:1px;
 }
@@ -225,9 +225,9 @@ body.vt .tc2 { display:flex; }
 /* planning note */
 .plan-note {
   background:rgba(255,255,255,.04); border:1px solid var(--t-l);
-  border-radius:7px; padding:8px 11px;
+  border-radius:0; padding:8px 11px;
 }
-.plan-title { font-family:'Nunito',sans-serif; font-weight:900; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:4px; }
+.plan-title { font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:4px; }
 .plan-txt { font-size:12px; color:var(--t-soft); line-height:1.4; }
 
 /* why now — spans both columns */
@@ -236,7 +236,7 @@ body.vt .tc2 { display:flex; }
   border-left:3px solid var(--phase); background:rgba(249,115,22,.09);
   border-radius:0 9px 9px 0; padding:10px 13px;
 }
-.why-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:3px; }
+.why-l { font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:3px; }
 .why-t { font-size:13px; color:var(--t-text); line-height:1.55; }
 
 /* standards row */
@@ -245,12 +245,20 @@ body.vt .tc2 { display:flex; }
   display:flex; align-items:flex-start; gap:8px;
   padding-top:9px; border-top:1px solid var(--t-l);
 }
-.std-l { font-family:'Nunito',sans-serif; font-weight:900; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase); white-space:nowrap; padding-top:1px; }
+.std-l { font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase); white-space:nowrap; padding-top:1px; }
 .std-v { font-size:12px; color:var(--t-soft); line-height:1.45; }
 
-/* ── PRINT ── */
+/* ── PRINT / PDF ── */
 @media print {
-  .topbar { display:none; }
+  @page { size: A4 landscape; margin: 12mm; }
+  .topbar, .page > :not(.slide.active) { display:none !important; }
+  .page { margin:0; padding:0; max-width:100%; }
+  .slide.active { display:block !important; }
+  .sc { display:flex !important; box-shadow:none; width:100%; min-height:0; }
+  .tc2 { display:none !important; }
+  body.vt .sc { display:none !important; }
+  body.vt .tc2 { display:flex !important; }
+}
   .page { margin:0; padding:0; max-width:100%; }
   .slide { display:block !important; page-break-after:always; }
   .sc, .tc2 { display:flex !important; box-shadow:none; border-radius:0; }
@@ -269,13 +277,13 @@ body.vt .tc2 { display:flex; }
   background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
 }
 .cv-badge {
-  font-weight:900; font-size:11px; letter-spacing:3px;
+  font-weight:700; font-size:11px; letter-spacing:3px;
   background:rgba(255,255,255,.2); color:#fff; padding:6px 18px;
-  border-radius:20px; text-transform:uppercase; margin-bottom:28px;
+  border-radius:0; text-transform:uppercase; margin-bottom:28px;
   border:1px solid rgba(255,255,255,.35); position:relative;
 }
 .cv-title {
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:90px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:90px;
   color:#fff; line-height:.9; letter-spacing:-2px; position:relative;
 }
 .cv-sub {
@@ -296,12 +304,23 @@ body.vt .tc2 { display:flex; }
 .slide { display:block; }
 .back-btn {
   display:inline-flex; align-items:center; gap:5px;
-  font-family:'Nunito',sans-serif; font-weight:700; font-size:12px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
   color:var(--text-soft); text-decoration:none; padding:5px 10px 5px 6px;
-  border-radius:6px; border:1.5px solid var(--border); background:white;
+  border-radius:0; border:1.5px solid var(--border); background:white;
   transition:all .15s;
 }
 .back-btn:hover { border-color:var(--phase); color:var(--phase); }
+
+.print-btn {
+  font-family:'Oswald',sans-serif; font-weight:500; font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border:1px solid var(--border);
+  background:white; color:var(--text-mid); cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px; transition:all .15s;
+  border-radius:0; white-space:nowrap;
+}
+.print-btn:hover { border-color:var(--phase); color:var(--phase); }
+.print-btn svg { flex-shrink:0; }
 </style>
 </head>
 <body class="vs bk2">
@@ -322,6 +341,10 @@ body.vt .tc2 { display:flex; }
       <button class="tb"        id="bb35"  onclick="setBand('35')">3–5</button>
       <button class="tb"        id="bb612" onclick="setBand('612')">6–12</button>
     </div>
+    <button class="print-btn" onclick="window.print()" title="Save as PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
   </div>
 </div>
 
@@ -360,10 +383,10 @@ const P = [
         starter:'We could\u2026' }
     ],
     '35': [
-      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'Known',
+      { mode:'pair', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'Known',
         prompt:'Write what you know \u2014 stick to what you\u2019ve seen evidence for.',
         starter:'We know that\u2026' },
-      { mode:'individual', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
+      { mode:'pair', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
         prompt:'What are you still unsure about? What questions do you still have? And \u2014 is there anything you\u2019ve been guessing at without real evidence?',
         starter:'We\u2019re not sure about\u2026 / We might be guessing that\u2026' },
       { mode:'whole', time:'2 min', icon:'\u2699\uFE0F', label:'Next Steps',
@@ -371,14 +394,14 @@ const P = [
         starter:'' }
     ],
     '612': [
-      { mode:'individual', time:'2 min', icon:'\uD83D\uDCA1', label:'Known, Unknown, Assumed',
-        prompt:'Write what you know (with evidence), what you don\u2019t know, and what you\u2019ve been assuming without evidence.',
-        starter:'I know\u2026 / I don\u2019t know\u2026 / I\u2019ve been assuming\u2026' },
-      { mode:'small', time:'2\u20133 min', icon:'\u2753', label:'Challenge Assumptions',
-        prompt:'Share assumptions. Which ones most risk distorting your challenge definition?',
-        starter:'' },
-      { mode:'whole', time:'1 min', icon:'\u2699\uFE0F', label:'Next Steps',
-        prompt:'One question that, if answered, would most change your understanding of this challenge.',
+      { mode:'pair', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'Known',
+        prompt:'Write what you know \u2014 stick to what you\u2019ve seen evidence for. Note anything you\u2019ve been assuming as if it were fact.',
+        starter:'We know that\u2026' },
+      { mode:'pair', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
+        prompt:'What are you still unsure about? What questions remain? What would you need to find out to move forward?',
+        starter:'We\u2019re not sure about\u2026 / We still need to find out\u2026' },
+      { mode:'whole', time:'2 min', icon:'\u2699\uFE0F', label:'Next Steps',
+        prompt:'Share: what would most help us learn more or take action?',
         starter:'' }
     ]
   },
