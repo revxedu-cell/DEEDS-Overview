@@ -190,6 +190,10 @@ body.vt .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
+
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
 </style>
 </head>
 <body class="vs bk2">
@@ -271,7 +275,8 @@ const P = [
     ]
   },
   teacher:{
-    when:'After gathering sufficient evidence across multiple CTA sessions', type:'Focus Protocol',
+    when:'After gathering sufficient evidence through research and investigation.', type:'Focus Protocol',
+    studentWhen:'Use this when you need to figure out why a problem exists before you can solve it.',
     hattie:[
       { d:'0.82', n:'Classroom Discussion',     r:'Structured debate about which cause is most significant develops the evaluative reasoning assessed in the Examine continuum.' },
       { d:'0.75', n:'Elaboration',              r:'Justifying a root cause claim in writing requires students to connect multiple pieces of evidence, deepening encoding.' },
@@ -315,8 +320,7 @@ function buildBand(proto, band) {
   return `<div class="bv" data-b="${band}">
     <div class="sb">
       <div class="s-title">${proto.name}</div>
-      <div class="s-sub">${proto.purpose[band]}</div>
-      <div class="cr">${cards}</div>
+            <div class="cr">${cards}</div>
     </div>
   </div>`;
 }
@@ -374,6 +378,7 @@ function buildAll() {
         </div>
         <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
       </div>
+      ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
     </div>
     ${buildTeacher(P[0])}`;

@@ -228,6 +228,10 @@ body.vt.subj-css #css-panel .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
+
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
 </style>
 </head>
 <body class="vs bk2 subj-cr">
@@ -301,6 +305,7 @@ const CR_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Scribe responses on a class anchor chart. Accept oral answers. Model WHO/WHAT strategy explicitly.`,
       '35': `Push students to name which strategy they used and why. Watch for the common error: citing a detail as the main idea.`,
@@ -329,6 +334,7 @@ const CR_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Focus on one marking per session early in the year. Model extensively before releasing. Accept any reasoned annotation.`,
       '35': `Require students to write phrases next to markings, not just symbols. Build a class annotation chart across the year.`,
@@ -357,6 +363,7 @@ const CR_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Annotate the question word together as a class before releasing to independent work. Accept pointing before oral explanation.`,
       '35': `Push process of elimination explicitly — students should be able to say why each wrong answer is wrong, not just why the right answer is right.`,
@@ -385,6 +392,7 @@ const CR_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Focus on word choice and illustrations. "Why did the author use that word?" is the most accessible craft question for K–2.`,
       '35': `Name the craft technique explicitly before students answer. Students who can name the technique produce stronger explanations of effect.`,
@@ -413,6 +421,7 @@ const CR_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Accept oral responses. Use a sentence frame on the board. The goal is a complete claim, not a sophisticated one.`,
       '35': `TAG feedback should be specific: "I liked how you cited paragraph 2" not "good job." Model what strong feedback looks like before students practice.`,
@@ -442,6 +451,7 @@ const CS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Activate prior knowledge before previewing vocabulary. Use an image or question to surface what students already know.`,
       '35': `Keep vocabulary preview focused — 2–4 terms maximum. If a term can be inferred from context, let students encounter it during reading.`,
@@ -470,6 +480,7 @@ const CS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Focus on one marking. Model annotation on a diagram or table, not just text — science literacy means reading visuals too.`,
       '35': `Extend annotation to tables and graphs. "What does this data point show?" is as valid an annotation as underlining a sentence.`,
@@ -499,6 +510,7 @@ const CS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Questions should point students to a specific visual feature — a table row, graph bar, or labeled diagram. Accept pointing before oral explanation.`,
       '35': `Phase 3 science questions often require students to complete a table or compare two data sets — not just select an answer. Prepare students for constructed-response formats.`,
@@ -527,6 +539,7 @@ const CS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Provide 2–3 concrete design options with pictures. The key question is always "Why?" — students must connect their choice to something from the text.`,
       '35': `Push students to articulate tradeoffs: "Why might someone choose the other solution? What are the limits of yours?" This develops NGSS ETS1.B thinking.`,
@@ -555,6 +568,7 @@ const CS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `The discussion question should have observable answers in the data. "What do you notice?" is more accessible than interpretive questions for K–2.`,
       '35': `A strong Phase 5 question has multiple defensible answers — students should be able to disagree using the same data. If all students arrive at the same answer, the question is too closed.`,
@@ -584,6 +598,7 @@ const CSS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Use texts with clear visual evidence — maps, photos, timelines. Prompt: "What is the author trying to convince us of?"`,
       '35': `Push students to name evidence type — not just "they said" but "this map shows." Note the difference from science: social studies arguments reflect perspective.`,
@@ -612,6 +627,7 @@ const CSS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Focus on one marking per session. Annotating maps and images is as valid as annotating text in social studies.`,
       '35': `Build a class evidence-type chart across the year that includes primary vs. secondary source distinctions.`,
@@ -640,6 +656,7 @@ const CSS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Analytical lenses for K–2: cause/effect and compare. Keep questions concrete: "What caused…?" "How was… different from…?"`,
       '35': `Push students to use evidence to explain — not just describe. "What caused X" requires an answer; "explain how X caused Y" requires analysis.`,
@@ -668,6 +685,7 @@ const CSS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `Use maps, photographs, or timelines that students can observe directly. "What do you notice?" is the right entry point before asking what it means.`,
       '35': `Push students to make connections explicit: "Where in the text does it say something similar?" Source comparison is the core skill here.`,
@@ -696,6 +714,7 @@ const CSS_PHASES = [
   }
 ,
   teacher: {
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     grade: {
       k2: `"What could we do?" and "What should our community do?" are more accessible than abstract policy questions. Connect explicitly to the text.`,
       '35': `Require students to take and defend a position — not just describe the issue. Strong prompts ask "What should [people/community] do? Use evidence."`,
@@ -792,6 +811,7 @@ function buildPanel(phases, panelId, subject, slideClass, panelPrefix) {
         </div>
         <div class="timer">\u23F1\u202F~10\u201315 min / phase</div>
       </div>
+      <div class=\"student-when\"><span class=\"student-when-icon\">💡</span><span class=\"student-when-text\">Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.</span></div>
       ${bvSlots}
     </div>
     ${buildTeacherPanel(phases, subject, bands)}`;

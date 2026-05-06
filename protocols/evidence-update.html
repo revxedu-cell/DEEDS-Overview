@@ -190,6 +190,10 @@ body.vt .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
+
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
 </style>
 </head>
 <body class="vs bk2">
@@ -266,18 +270,19 @@ const P = [
   },
   teacher:{
     when:'Daily, to close each session', type:'Daily Routine',
+    studentWhen:'Use this to track your learning as you build knowledge that will help you address a challenge.',
     hattie:[
       { d:'0.74', n:'Summarization',             r:'Producing a concise log entry after investigation increases encoding and long-term retention of disciplinary content.' },
       { d:'0.60', n:'Metacognitive Strategies',  r:'The \u201cconfirm, complicate, or shift\u201d frame explicitly teaches students to monitor whether evidence is changing their thinking.' },
       { d:'0.82', n:'Classroom Discussion',       r:'Brief end-of-session synthesis discussion consolidates learning and surfaces gaps before the next session.' }
     ],
     grade:{
-      k2:  'Teacher scribes the class chart. Revisit it at the start of each session to build knowledge continuity.',
-      '35':'Students should maintain a running Evidence Log across all Examine sessions. The log becomes source material for Root Cause Synthesis and Defend Your Thinking.',
-      '68':'Push students to use the confirm/complicate/shift frame precisely. \u201cIt complicates my thinking\u201d is more analytically valuable than \u201cit was interesting.\u201d',
+      k2:  'Use the circle map as a class chart. Write the challenge in the center, what scholars are finding out in the middle ring, and how they are learning it (books, videos, visitors, field trips) in the outer ring. Revisit at the start of each session to build continuity.',
+      '35':'Scholars maintain individual logs with columns for Evidence, Where We Found It, How It Connects to the Challenge, and How It Helps Address It. The log becomes the primary source material for Root Cause Synthesis and Defend Your Thinking.',
+      '68':'Scholars use the four-column organizer: Evidence, Source, What It Means, and How It Helps Address the Challenge. Push students to use the confirm/complicate/shift frame in the \u201cWhat It Means\u201d column. \u201cIt complicates my thinking\u201d is more analytically valuable than \u201cit was interesting.\u201d',
       '912':'The New Question step is the most important. A student who has no new questions after investigation may not be reading deeply enough.'
     },
-    planning:'Evidence Logs should be structured as: Date | Source | What it shows | Connection to inquiry question | New question raised. This format makes Root Cause Synthesis significantly easier — students can scan their logs and pull the strongest evidence without reconstructing it from memory.',
+    planning:'The 6–12 organizer uses four columns: Evidence, Source, What It Means, and How It Helps Address the Challenge. The 3–5 organizer uses Evidence, Where We Found It, How It Connects to the Challenge, and How It Helps Address It. K–2 uses a circle map with the challenge at center, findings in the middle ring, and sources in the outer ring. Introduce the organizer at the start of Examine and use it consistently — it becomes the source material for Root Cause Synthesis.',
     why:'Examine is built on accumulating evidence across sessions. This routine ensures that evidence doesn\u2019t disappear into notebooks — it gets organized, connected to inquiry questions, and made usable. The log is the artifact of Examine learning and feeds directly into the end-of-phase Defend Your Thinking protocol.',
     std:'CCSS W.7, W.9 \u00b7 NGSS SEP 4, SEP 8 \u00b7 C3 D3'
   }
@@ -309,8 +314,7 @@ function buildBand(proto, band) {
   return `<div class="bv" data-b="${band}">
     <div class="sb">
       <div class="s-title">${proto.name}</div>
-      <div class="s-sub">${proto.purpose[band]}</div>
-      <div class="cr">${cards}</div>
+            <div class="cr">${cards}</div>
     </div>
   </div>`;
 }
@@ -368,6 +372,7 @@ function buildAll() {
         </div>
         <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
       </div>
+      ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
     </div>
     ${buildTeacher(P[0])}`;

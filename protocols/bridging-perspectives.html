@@ -322,6 +322,9 @@ body.vt .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
 </style>
 </head>
 <body class="vs bk2">
@@ -373,19 +376,19 @@ const P = [
   },
   bands: {
     k2: [
-      { mode:'whole', time:'2 min', icon:'\uD83C\uDFAD', label:'Meet Your Person',
-        prompt:'Teacher reads the card aloud. Who is this person? What do they care about?',
+      { mode:'whole', time:'2 min', icon:'\uD83C\uDFAD', label:'Meet the Characters',
+        prompt:'Your teacher will introduce each card. Listen carefully: who is each person, and what do they care about?',
         starter:'' },
-      { mode:'pair', time:'3\u20134 min', icon:'\uD83D\uDDE3\uFE0F', label:'Speak Up',
-        prompt:'Tell your partner what your person thinks or feels about this situation.',
-        starter:'My person thinks\u2026 / My person feels\u2026' },
-      { mode:'whole', time:'2 min', icon:'\uD83D\uDD17', label:'Compare',
-        prompt:'Are the characters\u2019 feelings the same or different? Why might that be?',
+      { mode:'whole', time:'3\u20134 min', icon:'\uD83D\uDDE3\uFE0F', label:'Hear from Each Person',
+        prompt:'Volunteers: speak as your character. Tell the class what your person thinks or feels.',
+        starter:'My person is\u2026 / My person cares about\u2026 / My person feels\u2026' },
+      { mode:'whole', time:'2 min', icon:'\uD83D\uDD17', label:'Notice Together',
+        prompt:'What did these people agree on? Where did they see things differently?',
         starter:'' }
     ],
     '35': [
       { mode:'individual', time:'2\u20133 min', icon:'\uD83C\uDFAD', label:'Read Your Card',
-        prompt:'Who is this person? What matters most to them in this situation?',
+        prompt:'You have a card describing someone affected by this challenge. Who is this person? What matters most to them?',
         starter:'I am\u2026 / I care about\u2026 because\u2026' },
       { mode:'small', time:'3\u20134 min', icon:'\uD83D\uDDE3\uFE0F', label:'Speak in Role',
         prompt:'Share from your perspective. Stay in role. Use \u201cI\u201d statements.',
@@ -396,18 +399,19 @@ const P = [
     ],
     '612': [
       { mode:'individual', time:'2\u20133 min', icon:'\uD83C\uDFAD', label:'Construct the Perspective',
-        prompt:'Read your card. Go deeper: what structural forces \u2014 economic, historical, social \u2014 shape this person\u2019s values and experience?',
+        prompt:'You have a card describing someone affected by this challenge. Who is this person, what do they want, and what are they afraid of losing?',
         starter:'' },
       { mode:'small', time:'4\u20135 min', icon:'\uD83D\uDDE3\uFE0F', label:'Deliberate in Role',
         prompt:'Each person makes their case. Others must acknowledge the logic before responding.',
         starter:'' },
       { mode:'individual', time:'2\u20133 min', icon:'\u26A1', label:'Analyze',
-        prompt:'Who holds power in this situation? Whose perspective is most often centered \u2014 and what does that reveal about the challenge?',
+        prompt:'Who holds power in this situation? Whose perspective is most often centered, and what does that reveal about the challenge?',
         starter:'' }
     ]
   },
   teacher: {
-    when:'Focus Task', type:'Focus Protocol',
+    when:'Focus Task',
+    studentWhen:'Use this to understand how different people experience the same challenge before deciding how to respond to it.', type:'Focus Protocol',
     hattie: [
       { d:'0.57', n:'Social-Emotional Learning', r:'Structured perspective-taking builds empathy and supports collaborative reasoning across content.' },
       { d:'0.61', n:'Problem-Solving Teaching',  r:'Analyzing competing stakeholder perspectives develops the systems thinking required for precise challenge framing.' },
@@ -416,7 +420,7 @@ const P = [
     principal: null,
     grade: {
       k2:   'Read perspective cards aloud and use images. Assign roles \u2014 don\u2019t ask students to choose. Keep Compare step whole-class with teacher charting.',
-      '35': 'Model \u201cspeaking in role\u201d yourself before students try. Students often drop out of role when uncertain \u2014 normalize it and redirect.',
+      '35': 'The first time you run this protocol, use a fishbowl: have 2\u20133 volunteers speak as their characters while the class observes, then debrief together before students try it in small groups. Model speaking in role yourself. Students often drop out of role when uncertain \u2014 normalize it and redirect.',
       '68': 'The Analyze step is where the deepest thinking happens. Ask explicitly: what structural force produces this tension?',
       '912':'The \u201cacknowledge internal logic\u201d norm in Deliberate must be explicitly taught before this protocol runs.'
     },
@@ -456,8 +460,7 @@ function buildBand(proto, band) {
   return `<div class="bv" data-b="${band}">
     <div class="sb">
       <div class="s-title">${proto.name}</div>
-      <div class="s-sub">${proto.purpose[band]}</div>
-      <div class="cr">${cards}</div>
+            <div class="cr">${cards}</div>
     </div>
   </div>`;
 }
@@ -531,6 +534,7 @@ function buildAll() {
         </div>
         <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
       </div>
+      ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
     </div>
     ${buildTeacher(P[0])}`;

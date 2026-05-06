@@ -158,6 +158,10 @@ body.subj-css.vt #css9-panel .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
+
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
 </style>
 </head>
 <body class="vs subj-cr">
@@ -227,6 +231,7 @@ const CR9_PHASES = [
       starter:`I read the central claim as… / I'd push back on that because… / The author's purpose seems to be… based on…` }
   ],
   teacher:{
+    studentWhen:'Use this to read complex texts closely and pull out the ideas that matter most for understanding the challenge.',
     obj:`Students identify the central claim and author's purpose, distinguishing between what the text says and what the author wants the reader to believe.`,
     vocabNote:`Before the partner read, introduce 2–3 key terms students will be expected to use in Phase 3 and Phase 5 responses. Don't define exhaustively — give enough to not block comprehension. Students should encounter the words again in the text.`,
     notes:[
@@ -707,8 +712,7 @@ function buildSlide9(ph, idx, subject, prefix) {
       <div class="sb">
         <div class="s-phase-label">${ph.label}</div>
         <div class="s-title">${ph.name}</div>
-        <div class="s-sub">${ph.purpose}</div>
-        <div class="cr">${cards}</div>
+                <div class="cr">${cards}</div>
       </div>
     </div>
     <div class="tc2">
