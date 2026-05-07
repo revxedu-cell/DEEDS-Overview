@@ -106,7 +106,7 @@
           <div style="padding:10px 14px 14px;flex:1;display:flex;flex-direction:column;gap:6px;">
             <p style="font-size:11px;color:var(--gray-700);line-height:1.55;margin-bottom:2px;">Present learning publicly — explaining thinking, engaging in dialogue, and reflecting on growth and impact with a real audience.</p>
             <div style="font-size:10px;font-weight:500;color:var(--gray-700);text-transform:uppercase;letter-spacing:0.07em;margin-top:4px;">Checkpoint</div>
-            <a href="#success" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(171,10,61,0.1);border:0.5px solid rgba(171,10,61,0.35);color:#ab0a3d;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
+            <a href="protocols/evidence-of-learning-share.html" target="_blank" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(171,10,61,0.1);border:0.5px solid rgba(171,10,61,0.35);color:#ab0a3d;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
           </div>
         </div>
 
@@ -176,22 +176,7 @@
     </div>
 
     <div style="margin-top:36px;border-top:1px solid var(--gray-200);padding-top:28px;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
-        <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
-        <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(171,10,61,0.1);border:0.5px solid rgba(171,10,61,0.35);color:#ab0a3d;border-radius:0;">End of Phase</span>
       </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Share when they can share their thinking about the following:</p>
-      <a href="protocols/evidence-of-learning-share.html" target="_blank" style="display:inline-block;font-size:11px;padding:5px 12px;background:var(--gray-100);border:0.5px dashed var(--gray-200);color:var(--gray-700);text-decoration:none;font-weight:600;">View Evidence of Learning Prompts →</a
-    </div>
-
-    <div style="margin-top:28px;background:linear-gradient(135deg,#fce8ee,#fff0f4);border:1px solid rgba(140,8,48,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#ab0a3d;margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; style="font-size:18px;color:#ab0a3d;margin-bottom:7px"">Use the Developmental Continuum</h3>
-        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students develop in their ability to communicate learning publicly, reflect on identity and collaboration, and evaluate the impact of their work. Use it to assess summative learning and give evidence-based feedback during exhibitions, defenses, or public conversations.</p>
-      </div>
-      <a href="https://docs.google.com/document/d/1u9Sk10mW-NDB6mvV_GlUly4yOEUP0CdaQyGLVXrHq0o/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#ab0a3d;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#ab0a3d'">View Developmental Continuum →</a>
-    </div>
   </div>
 </section>
 
@@ -337,23 +322,19 @@ function switchExample(grade, btn) {
   document.querySelectorAll('.gt .gb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   const o = OV[grade];
-  document.getElementById('gt2').textContent = o.t;
-  document.getElementById('gq').textContent = o.q;
-  document.getElementById('gb2').textContent = o.d;
-  document.getElementById('gm2').innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
+  const el_gt2 = document.getElementById('gt2'); if (el_gt2) el_gt2.textContent = o.t;
+  const el_gq = document.getElementById('gq'); if (el_gq) el_gq.textContent = o.q;
+  const el_gb2 = document.getElementById('gb2'); if (el_gb2) el_gb2.textContent = o.d;
+  const el_gm2 = document.getElementById('gm2'); if (el_gm2) el_gm2.innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
   const gi = document.getElementById('gimg');
   gi.style.background = o.bg;
   gi.textContent = o.e;
   document.getElementById('ex-doc-link').href = o.link;
 }
 
-switchExample('k2', document.querySelector('.gb.on'));
+const initBtn = document.querySelector('[data-g="k2"]'); if (initBtn) switchExample('k2', initBtn);
 
 
-).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
 </script>
 </body>
 </html>

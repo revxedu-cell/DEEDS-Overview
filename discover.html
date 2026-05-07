@@ -124,7 +124,7 @@
           <div style="padding:10px 14px 14px;flex:1;display:flex;flex-direction:column;gap:6px;">
             <p style="font-size:11px;color:var(--gray-700);line-height:1.55;margin-bottom:2px;">Make an evidence-based claim about the significance of the challenge and why solving it matters.</p>
             <div style="font-size:10px;font-weight:500;color:var(--gray-700);text-transform:uppercase;letter-spacing:0.07em;margin-top:4px;">Checkpoint</div>
-            <a href="#success" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
+            <a href="protocols/evidence-of-learning-discover.html" target="_blank" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
           </div>
         </div>
 
@@ -166,13 +166,6 @@
       </div>
     </div>
 
-    <div style="margin-top:36px;border-top:1px solid var(--gray-200);padding-top:28px;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-        <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
-        <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;border-radius:0;">End of Phase</span>
-      </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Discover when they can respond to the end-of-phase prompts.</p>
-      <a href="protocols/evidence-of-learning-discover.html" target="_blank" style="display:inline-block;font-size:11px;padding:5px 12px;background:var(--gray-100);border:0.5px dashed var(--gray-200);color:var(--gray-700);text-decoration:none;font-weight:600;">View Evidence of Learning Prompts →</a>
     </div>
 
     <div class="continuum-cta">
@@ -311,20 +304,16 @@ function switchExample(grade, btn) {
   document.querySelectorAll('.grade-tabs .grade-tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   const o = EXAMPLES[grade];
-  document.getElementById('gt2').textContent = o.t;
-  document.getElementById('gq').textContent = o.q;
-  document.getElementById('gb2').textContent = o.d;
-  document.getElementById('gm2').innerHTML = o.tags.map(t => '<span class="example-tag">' + t + '</span>').join('');
-  document.getElementById('gimg').textContent = o.e;
+  const el_gt2=document.getElementById('gt2'); if(el_gt2) el_gt2.textContent=o.t;
+  const el_gq=document.getElementById('gq'); if(el_gq) el_gq.textContent=o.q;
+  const el_gb2=document.getElementById('gb2'); if(el_gb2) el_gb2.textContent=o.d;
+  const el_gm2=document.getElementById('gm2'); if(el_gm2) el_gm2.innerHTML=o.tags.map(t=>'<span class="example-tag">'+t+'</span>').join('');
+  const el_gimg=document.getElementById('gimg'); if(el_gimg) el_gimg.textContent = o.e;
   const lnk = document.getElementById('ex-doc-link');
   lnk.style.display = o.link ? 'inline-flex' : 'none';
   if (o.link) lnk.href = o.link;
 }
 
-).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
 </script>
 </body>
 </html>

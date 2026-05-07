@@ -106,7 +106,7 @@
             <div style="font-size:10px;font-weight:500;color:var(--gray-700);text-transform:uppercase;letter-spacing:0.07em;margin-top:4px;">Protocol</div>
             <a href="protocols/socratic-seminar.html" target="_blank" style="display:block;font-size:11px;padding:5px 9px;background:rgba(10,155,25,0.07);border:0.5px solid rgba(10,155,25,0.22);color:var(--phase-color-hex);line-height:1.3;text-decoration:none;">Socratic Seminar</a>
             <div style="font-size:10px;font-weight:500;color:var(--gray-700);text-transform:uppercase;letter-spacing:0.07em;margin-top:4px;">Checkpoint</div>
-            <a href="#success" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
+            <a href="protocols/evidence-of-learning-examine.html" target="_blank" onclick="document.getElementById('success').scrollIntoView({behavior:'smooth'});return false;" style="display:block;font-size:11px;padding:5px 9px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;font-weight:600;line-height:1.3;text-decoration:none;">✓ Evidence of Learning</a>
           </div>
         </div>
 
@@ -150,13 +150,6 @@
       </div>
     </div>
 
-    <div style="margin-top:36px;border-top:1px solid var(--gray-200);padding-top:28px;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
-        <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
-        <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;border-radius:0;">End of Phase</span>
-      </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Examine when they can respond to the end-of-phase prompts.</p>
-      <a href="protocols/evidence-of-learning-examine.html" target="_blank" style="display:inline-block;font-size:11px;padding:5px 12px;background:var(--gray-100);border:0.5px dashed var(--gray-200);color:var(--gray-700);text-decoration:none;font-weight:600;">View Evidence of Learning Prompts →</a>
     </div>
 
     <div style="margin-top:28px;background:linear-gradient(135deg,#e8f7ea,#f0faf1);border:1px solid rgba(10,122,20,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
@@ -317,7 +310,8 @@ function switchExample(grade, btn) {
   const el_gb2 = document.getElementById('gb2'); if (el_gb2) el_gb2.textContent = o.d;
   const el_gm2 = document.getElementById('gm2'); if (el_gm2) el_gm2.innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
   const gi = document.getElementById('gimg');
-  if (gi) { gi.style.background = o.bg; gi.textContent = o.e; }
+  gi.style.background = o.bg;
+  gi.textContent = o.e;
   document.getElementById('ex-doc-link').href = o.link;
 }
 
@@ -325,10 +319,6 @@ function switchExample(grade, btn) {
 const initBtn = document.querySelector('[data-g="k2"]'); if (initBtn) switchExample('k2', initBtn);
 
 
-).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
 </script>
 </body>
 </html>
