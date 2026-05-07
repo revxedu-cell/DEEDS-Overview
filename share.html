@@ -350,11 +350,7 @@ function switchExample(grade, btn) {
 switchExample('k2', document.querySelector('.gb.on'));
 
 
-function switchEol(band, btn) {
-  var data = TDATA.pt[band];
-  document.getElementById('eol-prompts').innerHTML = data.map(function(p) {
-    return '<li style="font-size:13px;color:var(--gray-700);line-height:1.6;">' + p + '</li>';
-  }).join('');
+).join('');
   document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
   btn.classList.add('on');
 }
