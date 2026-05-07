@@ -149,6 +149,7 @@ body.b612 .bv[data-b="612"]{ display:flex; }
   flex-shrink:0;
 }
 .c-prompt { font-size:17px; color:var(--text-mid); line-height:1.4; }
+.c-prompt small { font-size:12px; color:var(--text-mid); line-height:1.5; opacity:0.8; display:block; margin-top:6px; }
 .c-starter { font-size:15px; color:var(--text-soft); font-style:italic; line-height:1.35; }
 
 /* ── TEACHER CARD (fixed slide dimensions) ── */
@@ -322,7 +323,6 @@ body.vt .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
-
 .student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
 .student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
 .student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
@@ -369,7 +369,7 @@ const ML = { individual:'\u270F\uFE0F\u202FIndividual', pair:'\uD83D\uDC65\u202F
 const P = [
 {
   id:'ccc', type:'focus', name:'Connect, Care, Contribute',
-  timer: { k2:'5\u20137 min', '35':'6\u20138 min', '612':'8\u201310 min' },
+  timer: { k2:'5\u20137 min', '35':'8\u201310 min', '612':'10\u201312 min' },
   purpose: {
     k2:   'What does this remind you of? How does it make you feel? What could we do?',
     '35': 'Connect this challenge to your life. Write why you care, then share what you could do.',
@@ -378,41 +378,47 @@ const P = [
   bands: {
     k2: [
       { mode:'whole', time:'1\u20132 min', icon:'\uD83D\uDD17', label:'Connect',
-        prompt:'This reminds me of\u2026 Teacher charts connections.',
-        starter:'This reminds me of\u2026' },
+        prompt:'How does this challenge affect you, someone you know, or your community?',
+        starter:'This affects me because\u2026 / Someone I know\u2026 / In my community\u2026' },
       { mode:'whole', time:'2 min', icon:'\u2764\uFE0F', label:'Care',
-        prompt:'How does this make you feel? Why does it matter?',
-        starter:'I care because\u2026' },
-      { mode:'whole', time:'2 min', icon:'\uD83E\uDD1D', label:'Contribute',
-        prompt:'What could we do? Brainstorm together.',
-        starter:'We could help by\u2026' }
+        prompt:'Pick 1\u20132 words that explain why this matters to you. Share with the class.<br><small><em>fair, safe, kind, healthy, together, free, beautiful, connected, legacy</em></small>',
+        starter:'I care because\u2026 / This word fits because\u2026' },
+      { mode:'whole', time:'2\u20133 min', icon:'\u25cb', label:'Contribute',
+        prompt:'Circle discussion: what could we do to help with this challenge?',
+        starter:'We could help by\u2026 / I could\u2026' }
     ],
     '35': [
-      { mode:'individual', time:'2 min', icon:'\uD83D\uDD17', label:'Connect',
-        prompt:'Write how this challenge connects to your life or your community.',
-        starter:'This connects to me because\u2026' },
-      { mode:'individual', time:'2\u20133 min', icon:'\u2764\uFE0F', label:'Care',
-        prompt:'Write why you care \u2014 push past the first thing that comes to mind. Why does it matter to you specifically?',
-        starter:'I care because\u2026' },
-      { mode:'pair', time:'2 min', icon:'\uD83E\uDD1D', label:'Contribute',
-        prompt:'Share with a partner: one specific thing you could do to help.',
-        starter:'We could help by\u2026' }
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDD17', label:'Connect',
+        prompt:'How does this challenge affect you, someone you know, or your community?',
+        starter:'This affects me because\u2026 / Someone I know\u2026 / In my community\u2026' },
+      { mode:'individual', time:'2 min', icon:'\u2764\uFE0F', label:'Care',
+        prompt:'Pick 1\u20132 words that explain why this matters to you. Write a sentence using them.<br><small><em>fairness, safety, belonging, kindness, responsibility, health, freedom, community, opportunity, beauty, interdependence, stewardship, creativity, voice, care, legacy</em></small>',
+        starter:'I care about this because of [value]\u2026' },
+      { mode:'individual', time:'2 min', icon:'\uD83E\uDD1D', label:'Contribute',
+        prompt:'What does this challenge need, and what could you specifically bring to it?',
+        starter:'I could contribute\u2026 / This challenge needs\u2026' },
+      { mode:'whole', time:'3 min', icon:'\u25cb', label:'Circle',
+        prompt:'Looking at what you wrote: what does this challenge need, and what could someone like you bring to it?',
+        starter:'I realized\u2026 / Something I could contribute is\u2026' }
     ],
     '612': [
-      { mode:'individual', time:'2\u20133 min', icon:'\uD83D\uDD17', label:'Connect',
-        prompt:'Write your honest connection to this challenge. Acknowledge ambivalence if it\u2019s real.',
+      { mode:'individual', time:'2 min', icon:'\uD83D\uDD17', label:'Connect',
+        prompt:'How does this challenge affect you, someone you know, or your community? Acknowledge ambivalence if it\u2019s real.',
         starter:'' },
-      { mode:'small', time:'2\u20133 min', icon:'\u2764\uFE0F', label:'Care',
-        prompt:'Share your reasons. Push each other: is this based on values, community, or responsibility? What kind of care produces action?',
-        starter:'' },
+      { mode:'individual', time:'2 min', icon:'\u2764\uFE0F', label:'Care',
+        prompt:'Pick 1\u20132 words that explain why this matters to you. Write a sentence grounding your care in those values.<br><small><em>dignity, justice, equity, belonging, responsibility, freedom, opportunity, solidarity, accountability, care, self-determination, community, interdependence, stewardship, sustainability, beauty, creativity, reciprocity, resilience, voice, truth, legacy</em></small>',
+        starter:'I care about this because of [value]\u2026' },
       { mode:'individual', time:'2 min', icon:'\uD83E\uDD1D', label:'Contribute',
-        prompt:'What could you specifically contribute \u2014 with your skills, knowledge, or access? What would it actually take?',
-        starter:'' }
+        prompt:'What could you specifically contribute, with your skills, knowledge, or access? What would it actually take?',
+        starter:'' },
+      { mode:'whole', time:'3\u20134 min', icon:'\u25cb', label:'Circle',
+        prompt:'What did this reflection tell you about your relationship to this challenge: what you value, who you\u2019re connected to, and what you could actually contribute?',
+        starter:'I realized\u2026 / Something I hadn\u2019t considered\u2026 / I could contribute\u2026' }
     ]
   },
   teacher: {
-    when:'End of Discover phase', type:'Focus Protocol',
-    studentWhen:'Use this to reflect on why this challenge matters to you personally and how you might play a role in addressing it.',
+    when:'End of Discover phase',
+    studentWhen:'Use this to reflect on why this challenge matters to you personally and how you might play a role in addressing it.', type:'Focus Protocol',
     hattie: [
       { d:'1.33', n:'Student Expectations',     r:'When students set their own intellectual and civic direction, motivation and achievement increase significantly.' },
       { d:'0.92', n:'Self-Efficacy',             r:'Students who believe they can meaningfully contribute to a real problem are more likely to engage rigorously in Examine.' },
@@ -420,10 +426,10 @@ const P = [
     ],
     principal: null,
     grade: {
-      k2:   'Drawing + sentence frames throughout. Whole-class brainstorm for the Contribute step. Ownership of the problem is the goal, not sophistication of the idea.',
-      '35': 'Model the Care step yourself to show what \u201cpushing past the obvious\u201d sounds like. Students often stop at the first emotion that surfaces.',
-      '68': 'The small-group Care step requires a safe classroom climate. Name the expectation explicitly: we\u2019re pushing thinking, not criticizing.',
-      '912':'Hold the line in Care: what kind of care produces action? That question is the bridge to Examine and should be left unresolved, not answered neatly.'
+      k2:   'All three steps are oral and whole class. Read the values words aloud and let students point or repeat. The Contribute step is the circle \u2014 accept all ideas and chart them. Ownership of the problem is the goal, not sophistication of the idea.',
+      '35': 'Model the Care step by sharing your own values word and sentence. The circle prompt is the most important moment \u2014 give it time. Students who have written across all three steps will have more to say.',
+      '68': 'Name the values word list explicitly before students write \u2014 give them a moment to read it first. The circle prompt should feel open and unhurried. Resist the urge to summarize or synthesize for students.',
+      '912':'Hold space in the circle for ambivalence and complexity. Students who say \u201cI\u2019m not sure what I could contribute\u201d are engaging honestly \u2014 that is a valid and valuable response. The circle should end with questions open, not answers closed.'
     },
     planning: null,
     why: 'The \u201cArticulate Purpose & Significance\u201d capacity at its highest level requires a reasoned case linking purpose, impact, and responsibility. That case cannot be made analytically without emotional roots. Push students: \u201cI feel sad\u201d needs to become \u201cI feel responsible because this directly affects people in my community.\u201d',
