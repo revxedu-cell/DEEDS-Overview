@@ -322,7 +322,6 @@ body.vt .tc2 { display:flex; }
 }
 .print-btn:hover { border-color:var(--phase); color:var(--phase); }
 .print-btn svg { flex-shrink:0; }
-
 .student-when { display:flex; align-items:flex-start; gap:10px; padding:9px 24px; background:rgba(0,0,0,.04); border-bottom:1px solid rgba(0,0,0,.08); flex-shrink:0; }
 .student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
 .student-when-text { font-size:12.5px; color:var(--phase); line-height:1.4; font-weight:600; }
@@ -369,7 +368,7 @@ const ML = { individual:'\u270F\uFE0F\u202FIndividual', pair:'\uD83D\uDC65\u202F
 const P = [
 {
   id:'dd', type:'focus', name:'Data Dive',
-  timer: { k2:'8\u201310 min', '35':'10\u201312 min', '612':'10\u201312 min' },
+  timer: { k2:'8\u201310 min', '35':'12\u201315 min', '612':'12\u201315 min' },
   purpose: {
     k2:   'Look closely at the data. What does it show about the problem?',
     '35': 'Notice patterns. Make a claim, then return to the evidence to check it.',
@@ -377,10 +376,10 @@ const P = [
   },
   bands: {
     k2: [
-      { mode:'whole', time:'2\u20133 min', icon:'\uD83D\uDD0D', label:'Look Closely',
-        prompt:'What do you see? Is this a picture, a graph, or numbers? What does it count or measure?',
-        starter:'I see\u2026 / This shows\u2026' },
-      { mode:'pair', time:'2\u20133 min', icon:'\uD83D\uDCCA', label:'What Does It Show?',
+      { mode:'whole', time:'2\u20133 min', icon:'\uD83D\uDD0D', label:'Notice',
+        prompt:'Look carefully. What do you see? Is this a picture, a graph, or numbers? What does it count or measure?',
+        starter:'I see\u2026 / This counts\u2026 / This measures\u2026' },
+      { mode:'pair', time:'2\u20133 min', icon:'\uD83D\uDCCA', label:'What It Means',
         prompt:'Tell your partner: what does this tell us about the problem?',
         starter:'There are more\u2026 than\u2026 / This shows that\u2026' },
       { mode:'whole', time:'2 min', icon:'\uD83C\uDF10', label:'Connect',
@@ -388,9 +387,12 @@ const P = [
         starter:'' }
     ],
     '35': [
-      { mode:'individual', time:'2\u20133 min', icon:'\uD83D\uDD0D', label:'See',
-        prompt:'What do you notice? What type of data is this, and what does it measure? Then look across it \u2014 do you see any patterns or changes?',
-        starter:'I notice\u2026 / A pattern I see is\u2026' },
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDD0D', label:'Identify',
+        prompt:'What type of data is this? What does it measure? Note the source and scale.',
+        starter:'This data measures\u2026 / The source is\u2026 / The scale shows\u2026' },
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDC40', label:'Notice',
+        prompt:'Now look across the data. What patterns, changes, or surprises do you see?',
+        starter:'A pattern I see is\u2026 / Something surprising is\u2026 / I notice that\u2026' },
       { mode:'individual', time:'2 min', icon:'\uD83D\uDCCA', label:'React',
         prompt:'Make a claim about what this data tells you about the challenge.',
         starter:'This data shows that\u2026 / This suggests\u2026' },
@@ -398,16 +400,19 @@ const P = [
         prompt:'Share your claim. Does the evidence actually support it? What did your partner notice that changes your thinking?',
         starter:'' },
       { mode:'whole', time:'2 min', icon:'\uD83C\uDF10', label:'Connect',
-        prompt:'What does the evidence SHOW \u2014 not just suggest \u2014 about this challenge?',
+        prompt:'What does the evidence actually show about this challenge?',
         starter:'' }
     ],
     '612': [
-      { mode:'individual', time:'2\u20133 min', icon:'\uD83D\uDD0D', label:'See & Annotate',
-        prompt:'Record what the data shows. Note type, scale, source, and what\u2019s missing or unclear.',
-        starter:'' },
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDD0D', label:'Identify',
+        prompt:'What does this data measure? Note its type, scale, source, and anything missing or unclear. Do not interpret yet.',
+        starter:'This data measures\u2026 / The source is\u2026 / What is missing is\u2026' },
+      { mode:'individual', time:'1\u20132 min', icon:'\uD83D\uDC40', label:'Notice',
+        prompt:'Now look across the data. What patterns, anomalies, or absences do you see?',
+        starter:'A pattern I see is\u2026 / An anomaly is\u2026 / Notably absent is\u2026' },
       { mode:'individual', time:'2 min', icon:'\uD83D\uDCCA', label:'React',
-        prompt:'Make a specific, evidence-grounded claim. What does this data NOT tell you?',
-        starter:'' },
+        prompt:'First evaluate the source: how reliable and complete is this data? Then make a specific claim. What does this data not tell you?',
+        starter:'This source is reliable because… / My claim is… / This data does not tell us…' },
       { mode:'pair', time:'2\u20133 min', icon:'\u2705', label:'Validate',
         prompt:'Exchange claims. Is the claim warranted by the evidence? Where is the reasoning weakest? Revise.',
         starter:'' },
@@ -417,18 +422,18 @@ const P = [
     ]
   },
   teacher: {
-    when:'Focus Task', type:'Focus Protocol',
-    studentWhen:'Use this to examine evidence carefully and make claims about the scale and impact of a challenge.',
+    when:'Focus Task',
+    studentWhen:'Use this to examine evidence carefully and make claims about the scale and impact of a challenge.', type:'Focus Protocol',
     hattie: [
       { d:'0.75', n:'Elaboration',              r:'Explaining and defending a claim based on evidence requires deep processing that increases retention and transfer.' },
       { d:'0.70', n:'Feedback',                 r:'The Validate step is structured peer feedback \u2014 returning to evidence after forming a claim develops analytical thinking.' },
-      { d:'0.60', n:'Metacognitive Strategies', r:'Separating See from React prevents premature conclusions and builds stronger analytical habits over time.' }
+      { d:'0.60', n:'Metacognitive Strategies', r:'Separating observation from interpretation prevents premature conclusions and builds stronger analytical habits over time.' }
     ],
     principal: null,
     grade: {
-      k2:   'Use pictographs or visual data only. The \u201cWhat does it count or measure?\u201d prompt in the See step provides the interpretation scaffold. Sentence frames are essential.',
-      '35': 'The \u201cwhat type of data is this?\u201d prompt is the scaffolding for interpretation \u2014 students who can name the data type make more accurate claims. Honor the Validate revision publicly.',
-      '68': 'Name the See/React/Validate distinction explicitly before running. Students routinely skip to React \u2014 slow that move down.',
+      k2:   'Use pictographs or visual data only. The \u201cWhat does it count or measure?\u201d prompt in the Notice step is the interpretation scaffold \u2014 do not skip it. Sentence frames are essential.',
+      '35': 'The Identify step is the anchor \u2014 students who can name the data type and source make more accurate claims in React. The Notice step should come after, not during. Honor the Validate revision publicly.',
+      '68': 'Name the Identify/Notice/React/Validate distinction explicitly before running. Students routinely skip to React \u2014 slow that down. In React, push students to evaluate source reliability before committing to a claim.',
       '912':'Expect students to identify what the data does NOT show. Absence of evidence is as analytically important as evidence itself.'
     },
     planning: null,
