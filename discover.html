@@ -72,7 +72,10 @@
 <section class="section" id="how" style="padding-top:52px;">
   <div class="container">
     <span class="eyebrow">See How It Works</span>
-    <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:10px;">Student Experience</h2>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+      <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:0;">Student Experience</h2>
+      <span style="font-size:11px;font-weight:600;color:var(--phase-color-hex);background:rgba(230,145,56,0.1);border:1px solid rgba(230,145,56,0.25);padding:3px 10px;border-radius:20px;white-space:nowrap;">~4 sessions</span>
+    </div>
     <p style="color:var(--gray-700);max-width:60ch;margin-bottom:28px;">Discover mirrors how people encounter, understand, and begin to care about real-world challenges — both in school and in the wider world.</p>
 
     <div style="width:100%;overflow-x:auto;">
@@ -133,11 +136,11 @@
 
       <div style="background:rgba(0,61,166,0.04);border:0.5px solid rgba(0,61,166,0.18);padding:10px 14px;margin-top:12px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#003da6;white-space:nowrap;min-width:140px;">Opening Routine</span>
+          <span style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#003da6;white-space:nowrap;min-width:140px;">Daily Opening Routine</span>
           <a href="protocols/notice-and-wonder.html" target="_blank" style="font-size:13px;color:#003da6;background:rgba(0,61,166,0.07);border:0.5px solid rgba(0,61,166,0.18);padding:5px 10px;white-space:nowrap;text-decoration:none;">Notice &amp; Wonder →</a>
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#003da6;white-space:nowrap;min-width:140px;">Sensemaking Routine</span>
+          <span style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#003da6;white-space:nowrap;min-width:140px;">Daily Sensemaking Routine</span>
           <a href="protocols/uncovering-the-challenge.html" target="_blank" style="font-size:13px;color:#003da6;background:rgba(0,61,166,0.07);border:0.5px solid rgba(0,61,166,0.18);padding:5px 10px;white-space:nowrap;text-decoration:none;">Uncovering the Challenge →</a>
         </div>
       </div>
@@ -230,20 +233,24 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ── DEVELOPMENTAL CONTINUUM ── -->
-<section class="section" id="continuum" style="padding-top:0;padding-bottom:40px;background:var(--gray-50,#f9fafb);border-top:1px solid var(--gray-200);">
-  <div class="container">
-    <div class="continuum-cta">
-      <div>
-        <div class="continuum-cta-label">Assess Growth Over Time</div>
-        <h3>Use the Developmental Continuum</h3>
-        <p>The continuum describes how students' ability to understand a challenge and make evidence-based claims develops over time. Because it is used across multiple DEEDS challenges, it helps teachers track growth, give targeted feedback, and see how students' reasoning deepens from one project to the next.</p>
+    <!-- Assessing Growth accordion -->
+    <div class="accordion-block" style="margin-top:12px;">
+      <button class="accordion-trigger" onclick="this.closest('.accordion-block').classList.toggle('open')" aria-expanded="false">
+        <span class="accordion-trigger-label">Assessing Growth in Discover</span>
+        <span class="accordion-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <div class="continuum-cta">
+          <div>
+            <div class="continuum-cta-label">Assess Growth Over Time</div>
+            <h3>Use the Developmental Continuum</h3>
+            <p>The continuum describes how students' ability to understand a challenge and make evidence-based claims develops over time. Because it is used across multiple DEEDS challenges, it helps teachers track growth, give targeted feedback, and see how students' reasoning deepens from one project to the next.</p>
+          </div>
+          <a href="https://docs.google.com/document/d/1HDu2JdjjkYurgCNh-pFLkXuHD3UgZpjZyne8GEdgg3w/edit" target="_blank" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">View Continuum →</a>
+        </div>
       </div>
-      <a href="https://docs.google.com/document/d/1HDu2JdjjkYurgCNh-pFLkXuHD3UgZpjZyne8GEdgg3w/edit" target="_blank" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">View Continuum →</a>
     </div>
+
   </div>
 </section>
 
@@ -318,7 +325,7 @@ const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
 
 // Sub-nav active state on scroll
-const sections = ['how','success','teacher-guidance','continuum','protocols','try'];
+const sections = ['how','success','teacher-guidance','protocols','try'];
 const snbs = document.querySelectorAll('.snb');
 snbs.forEach(b => b.addEventListener('click', () => {
   const el = document.getElementById(b.dataset.t);
