@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Launch Reflection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --phase: #d4600a;
+  --phase-light: rgba(212,96,10,0.07);
+  --phase-border: rgba(212,96,10,0.2);
+  --text: #1a1a1a;
+  --text-mid: #555;
+  --gray-100: #f5f5f5;
+  --gray-200: #e8e8e8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f5f4f2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 48px;
+}
+
+.topbar {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  margin-bottom: 8px;
+}
+
+.back-btn {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--phase);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.back-btn:hover { opacity: .75; }
+
+.band-toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.tb {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 5px 12px;
+  border: 1.5px solid var(--gray-200);
+  background: white;
+  color: var(--text-mid);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all .15s;
+}
+
+.tb.active {
+  background: var(--phase);
+  border-color: var(--phase);
+  color: white;
+}
+
+.card {
+  width: 100%;
+  max-width: 680px;
+  background: white;
+  border-radius: 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phase-pill {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: white;
+  background: var(--phase);
+  padding: 4px 10px;
+}
+
+.type-badge {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 4px 10px;
+  background: var(--phase-light);
+  color: var(--phase);
+  text-transform: uppercase;
+}
+
+.card-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  padding: 20px 24px 4px;
+  line-height: 1.1;
+}
+
+.intro {
+  font-size: 13.5px;
+  color: var(--text-mid);
+  line-height: 1.55;
+  padding: 8px 24px 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.prompts-section {
+  padding: 24px;
+}
+
+.band-prompts { display: none; }
+.band-prompts.active { display: block; }
+
+.prompt-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.prompt-item:last-child { border-bottom: none; }
+
+.prompt-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--phase-light);
+  border: 1.5px solid var(--phase-border);
+  color: var(--phase);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.prompt-text {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.5;
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-btn" href="../discover.html">&#8592; Discover</a>
+  <div class="band-toggle">
+    <button class="tb active" onclick="setBand('k2', this)">K&ndash;2</button>
+    <button class="tb" onclick="setBand('35', this)">3&ndash;5</button>
+    <button class="tb" onclick="setBand('68', this)">6&ndash;8</button>
+    <button class="tb" onclick="setBand('912', this)">9&ndash;12</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="header-left">
+      <span class="phase-pill">DISCOVER</span>
+      <span class="type-badge">Checkpoint</span>
+    </div>
+  </div>
+  <div class="card-title">Launch Reflection</div>
+  <div class="intro">Use these prompts after the initial provocation to help scholars capture their first thinking about the challenge. Select a grade band to see the prompts.</div>
+
+  <div class="prompts-section">
+
+    <div class="band-prompts active" id="bp-k2">
+      <div class="prompt-item"><div class="prompt-num">1</div><div class="prompt-text">Tell what you notice or what you already know about the problem.</div></div>
+      <div class="prompt-item"><div class="prompt-num">2</div><div class="prompt-text">Have you ever seen this problem before? Tell one way it connects to your life, school, or neighborhood.</div></div>
+      <div class="prompt-item"><div class="prompt-num">3</div><div class="prompt-text">Who might this problem affect? Name at least two people or groups and tell how they might feel.</div></div>
+    </div>
+
+    <div class="band-prompts" id="bp-35">
+      <div class="prompt-item"><div class="prompt-num">1</div><div class="prompt-text">Describe the problem and share what you already know about it.</div></div>
+      <div class="prompt-item"><div class="prompt-num">2</div><div class="prompt-text">How might this problem connect to your life, school, or community? Give one example.</div></div>
+      <div class="prompt-item"><div class="prompt-num">3</div><div class="prompt-text">Who could be affected? Name at least two groups and explain how it might affect them.</div></div>
+    </div>
+
+    <div class="band-prompts" id="bp-68">
+      <div class="prompt-item"><div class="prompt-num">1</div><div class="prompt-text">Explain the challenge and what you think might be causing it.</div></div>
+      <div class="prompt-item"><div class="prompt-num">2</div><div class="prompt-text">How might this problem connect to your experiences or community? Describe one connection.</div></div>
+      <div class="prompt-item"><div class="prompt-num">3</div><div class="prompt-text">Who might be affected? Identify at least two groups and explain how the impact might differ.</div></div>
+    </div>
+
+    <div class="band-prompts" id="bp-912">
+      <div class="prompt-item"><div class="prompt-num">1</div><div class="prompt-text">Explain the challenge and what you already know about its causes or impacts.</div></div>
+      <div class="prompt-item"><div class="prompt-num">2</div><div class="prompt-text">How might this challenge connect to your life or larger societal issues? Explain one meaningful connection.</div></div>
+      <div class="prompt-item"><div class="prompt-num">3</div><div class="prompt-text">Who might be affected? Identify at least two stakeholders and describe how impacts may differ across groups.</div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setBand(band, btn) {
+  document.querySelectorAll('.band-prompts').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('bp-' + band).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
