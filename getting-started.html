@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="A planning guide for designing a DEEDS unit — from learning goals and community challenge through challenge question and student agency.">
+<title>Getting Started — DEEDS</title>
+<link rel="stylesheet" href="revx.css">
+<style>
+
+/* ── Hero ── */
+.hero-banner {
+  position: relative; min-height: 320px;
+  background: url('assets/THE-MODEL-1-scaled.jpg') center/cover no-repeat;
+  display: flex; align-items: flex-end;
+}
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 65%, transparent);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  padding: 0 48px 44px;
+}
+.hero-content h1 { color: #fff; margin-bottom: 10px; font-size: clamp(28px, 4vw, 48px); }
+.hero-content p  { color: rgba(255,255,255,0.88); font-weight: 300; font-size: 17px; max-width: 58ch; line-height: 1.65; }
+
+/* ── Page body ── */
+.page-body {
+  max-width: 800px; margin: 0 auto; padding: 56px 48px 80px;
+}
+
+/* ── Step accordions ── */
+.step-block {
+  border: 0.5px solid var(--gray-200);
+  background: #fff;
+  margin-bottom: 12px;
+}
+.step-trigger {
+  width: 100%; display: flex; align-items: center; gap: 16px;
+  padding: 20px 24px; background: none; border: none; cursor: pointer; text-align: left;
+}
+.step-num {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gray-100); border: 1.5px solid var(--gray-200);
+  font-size: 11px; font-weight: 700; color: var(--gray-700);
+  display: flex; align-items: center; justify-content: center;
+}
+.step-block.open .step-num {
+  background: #1a4c81; border-color: #1a4c81; color: #fff;
+}
+.step-title {
+  flex: 1; font-size: 15px; font-weight: 700; color: var(--gray-900); text-align: left;
+}
+.step-arrow {
+  font-size: 14px; color: var(--gray-400); transition: transform 0.2s; flex-shrink: 0;
+}
+.step-block.open .step-arrow { transform: rotate(180deg); }
+.step-body {
+  display: none; padding: 0 24px 28px 68px;
+}
+.step-block.open .step-body { display: block; }
+
+/* ── Content styles (reuse from index) ── */
+.tab-eyebrow {
+  display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--tab-color, #888); margin-bottom: 6px;
+}
+.tab-heading {
+  font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; color: var(--gray-900);
+  font-family: var(--font-display); line-height: 1.2; margin-bottom: 14px;
+}
+.tab-body {
+  font-size: 14px; color: var(--gray-700); line-height: 1.7;
+  max-width: 65ch; margin-bottom: 24px;
+}
+.points-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+.point-row { display: flex; flex-direction: column; gap: 3px; }
+.point-title { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+.point-body  { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+.examples-box {
+  background: var(--gray-100); border: 0.5px solid var(--gray-200);
+  padding: 14px 18px; margin-bottom: 16px;
+}
+.examples-label {
+  display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--gray-700); margin-bottom: 10px;
+}
+.example-item { display: flex; gap: 8px; margin-bottom: 6px; }
+.example-dash { color: var(--gray-400); flex-shrink: 0; font-size: 13px; }
+.example-text { font-size: 13px; color: var(--gray-700); line-height: 1.55; }
+.note-box {
+  background: #fff; border-left: 3px solid var(--tab-color, #888);
+  padding: 12px 16px; display: flex; flex-direction: column; gap: 4px;
+}
+.note-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--tab-color, #888); }
+.note-body  { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+.formula-block {
+  background: var(--gray-100); border: 0.5px solid var(--gray-200);
+  padding: 16px 20px; margin-bottom: 20px;
+}
+.formula-label-text {
+  display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--gray-700); margin-bottom: 8px;
+}
+.formula-text {
+  font-size: 15px; color: var(--gray-900); line-height: 1.6; font-style: italic;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: #1a4c81; display: block; margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .page-body { padding: 36px 20px 60px; }
+  .step-body { padding-left: 24px; }
+  .hero-content { padding: 0 20px 36px; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── NAV ── -->
+<nav class="site-nav" role="navigation" aria-label="Site navigation">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">
+      <img src="assets/revx-logo.png" alt="RevX logo" />
+      <span class="site-nav-brand-label">DEEDS</span>
+    </a>
+    <div class="site-nav-links">
+      <a href="index.html" class="site-nav-link">Home</a>
+      <a href="getting-started.html" class="site-nav-link active">Getting Started</a>
+      <a href="discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+      <a href="examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+      <a href="engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+      <a href="do.html" class="site-nav-link"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+      <a href="share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero-banner">
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <h1>Getting Started</h1>
+    <p>A planning guide for designing a DEEDS unit — from learning goals and community challenge through challenge question and student agency.</p>
+  </div>
+</div>
+
+<main id="main-content">
+<div class="page-body">
+
+  <span class="section-label">Unit Design</span>
+  <p style="font-size:15px;color:var(--gray-700);line-height:1.7;max-width:65ch;margin-bottom:36px;">These five steps walk through the key decisions in designing a DEEDS unit. They don't have to happen in strict order — in practice, challenge design and learning goals often develop together — but working through each one will give your unit a strong foundation.</p>
+
+  <!-- Step 1: Learning Goals -->
+  <div class="step-block open" style="--tab-color:#1a4c81;">
+    <button class="step-trigger" onclick="this.closest('.step-block').classList.toggle('open')" aria-expanded="true">
+      <span class="step-num">1</span>
+      <span class="step-title">Determine Learning Goals</span>
+      <span class="step-arrow">▾</span>
+    </button>
+    <div class="step-body">
+      <p class="tab-body">A strong DEEDS unit is built around clear learning targets — the content standards and competencies students will develop through the work. Identifying these before you design the challenge ensures the project does real academic work, not just real-world work.</p>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Content standards</span>
+          <span class="point-body">Start with the disciplinary standards your students need to master. Standards are core to DEEDS design, shaping what students investigate in Examine, what they build in Engineer, and what they reflect on in Share. Choose standards substantive enough to require genuine inquiry and application.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Competencies</span>
+          <span class="point-body">Identify the personal, professional, or civic competencies your school or program prioritizes. DEEDS projects naturally develop skills like communication, collaboration, evidence-based reasoning, and self-direction — but naming the specific competencies you're targeting helps you design for them deliberately.</span>
+        </div>
+      </div>
+      <div class="note-box">
+        <span class="note-label">Planning resource</span>
+        <span class="note-body">Use the <a href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/edit?usp=sharing" target="_blank" style="color:#1a4c81;">DEEDS Planning Template</a> to map your standards and competencies before moving to challenge design.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Identify a Relevant Challenge -->
+  <div class="step-block" style="--tab-color:var(--discover);">
+    <button class="step-trigger" onclick="this.closest('.step-block').classList.toggle('open')" aria-expanded="false">
+      <span class="step-num">2</span>
+      <span class="step-title">Identify a Relevant Challenge</span>
+      <span class="step-arrow">▾</span>
+    </button>
+    <div class="step-body">
+      <p class="tab-body">A strong DEEDS unit is anchored in a challenge that exists in the world — real enough to matter, local enough for students to impact, and substantial enough to require the learning teachers are responsible for.</p>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Ground the work in an actual need, tension, problem, or opportunity.</span>
+          <span class="point-body">The challenge should exist beyond school and matter to people in a real context.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Choose something close enough for students to care about.</span>
+          <span class="point-body">It should connect to students' lives, communities, futures, or sense of responsibility.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Make sure the challenge requires students to learn what the standards demand.</span>
+          <span class="point-body">Students should need to build disciplinary knowledge, use important concepts, and apply core skills to respond well.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Choose a challenge that can lead to meaningful action.</span>
+          <span class="point-body">The work should point toward designing, improving, informing, advocating, building, or testing something real.</span>
+        </div>
+      </div>
+      <div class="examples-box">
+        <span class="examples-label">Example challenges</span>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">A local food pantry can't keep up with demand — and the community doesn't know it exists.</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">An aging community garden is underused, but families nearby don't have access to fresh produce.</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">A neighborhood creek floods every spring, damaging homes and green spaces.</span></div>
+      </div>
+      <div class="note-box">
+        <span class="note-label">There's no single entry point</span>
+        <span class="note-body">In practice, challenge design moves in both directions. Begin with standards and find the right challenge, or begin with a real community issue and map what students will need to learn. Both work.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Connect with Community Partners -->
+  <div class="step-block" style="--tab-color:var(--examine);">
+    <button class="step-trigger" onclick="this.closest('.step-block').classList.toggle('open')" aria-expanded="false">
+      <span class="step-num">3</span>
+      <span class="step-title">Connect with Community Partners</span>
+      <span class="step-arrow">▾</span>
+    </button>
+    <div class="step-body">
+      <p class="tab-body">Real partners — those closest to the challenge and those working to solve it — make the work more informed, relevant, and accountable. They also signal to students that what they're doing matters beyond the classroom.</p>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Client experiencing the challenge</span>
+          <span class="point-body">People living with the problem help students understand what the challenge feels like, what is at stake, and what would actually be useful.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Organization already working on the issue</span>
+          <span class="point-body">Community groups, nonprofits, agencies, or local institutions can help students understand what is already being tried and where there's room to contribute.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Professional or expert perspective</span>
+          <span class="point-body">Professionals bring disciplinary knowledge, criteria, tools, and feedback that help students do more credible work.</span>
+        </div>
+      </div>
+      <div class="examples-box">
+        <span class="examples-label">Example partners</span>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">A shelter director who can speak to what families actually need when they arrive.</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">A city parks department managing the green space students are designing around.</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">A civil engineer who can review a drainage proposal and give real feedback.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Develop the Challenge Question -->
+  <div class="step-block" style="--tab-color:var(--engineer);">
+    <button class="step-trigger" onclick="this.closest('.step-block').classList.toggle('open')" aria-expanded="false">
+      <span class="step-num">4</span>
+      <span class="step-title">Develop the Challenge Question</span>
+      <span class="step-arrow">▾</span>
+    </button>
+    <div class="step-body">
+      <p class="tab-body">The challenge question isn't just the starting point — it's the throughline. It names the real challenge, keeps the people served visible, and gives the work direction at every phase.</p>
+      <div class="formula-block">
+        <span class="formula-label-text">Challenge question frame</span>
+        <div class="formula-text">How might we address <em>[a real challenge]</em> so that <em>[a specific community]</em> can <em>[experience meaningful improvement]</em>?</div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Make it real</span>
+          <span class="point-body">Ground the question in an actual place, partner, need, or condition.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Keep it open</span>
+          <span class="point-body">Students should need to learn, analyze, and investigate before they can respond well.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Point toward action</span>
+          <span class="point-body">The question should lead naturally to designing, improving, building, informing, or advocating.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Name who it serves</span>
+          <span class="point-body">Keep the people most affected visible throughout the learning journey.</span>
+        </div>
+      </div>
+      <div class="examples-box">
+        <span class="examples-label">Example challenge questions</span>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">How might we help a local food pantry reach more families in our neighborhood?</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">How might we redesign a community garden so more families can grow their own food?</span></div>
+        <div class="example-item"><span class="example-dash">–</span><span class="example-text">How might we reduce flooding along a local creek and protect the surrounding ecosystem?</span></div>
+      </div>
+      <div class="note-box">
+        <span class="note-label">Design move</span>
+        <span class="note-body">Start with a question sturdy enough to launch the work, then refine it as students deepen their understanding of the challenge, the context, and the people affected.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5: Design for Student Agency -->
+  <div class="step-block" style="--tab-color:var(--do);">
+    <button class="step-trigger" onclick="this.closest('.step-block').classList.toggle('open')" aria-expanded="false">
+      <span class="step-num">5</span>
+      <span class="step-title">Design for Student Agency</span>
+      <span class="step-arrow">▾</span>
+    </button>
+    <div class="step-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+        <div>
+          <p class="tab-body" style="max-width:none;">In DEEDS, the level of openness in a challenge is intentionally designed. Younger learners work within a bounded set of well-structured solution options. As students get older, the solution space opens up: tradeoffs become less obvious, criteria become more contested, and ultimately students define the problem and generate their own response. This progression is intentional. Structure helps students develop the skills and habits they need. Increasing openness then gives them the space to apply those skills with developing judgment, independence, and creativity.</p>
+          <div class="note-box">
+            <span class="note-label">Design move</span>
+            <span class="note-body">The solution space should feel slightly beyond what students could do alone — structured enough to support success, open enough to require genuine thinking.</span>
+          </div>
+        </div>
+        <div class="points-list" style="margin-bottom:0;">
+          <div class="point-row">
+            <span class="point-title">Bounded choice (K–2)</span>
+            <span class="point-body">Two or three well-structured options. The challenge is real; the solution pathway is defined enough to be manageable and build early confidence.</span>
+          </div>
+          <div class="point-row">
+            <span class="point-title">Guided inquiry (3–8)</span>
+            <span class="point-body">Multiple open-ended options with real tradeoffs. Students evaluate solutions rather than just choose them, developing judgment about what makes a response strong.</span>
+          </div>
+          <div class="point-row">
+            <span class="point-title">Open inquiry (9–12)</span>
+            <span class="point-body">Students unpack the challenge, define the problem, and generate their own solution from the ground up — doing the full work of a disciplined problem-solver.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <a href="index.html" class="site-footer-brand">
+        <img src="assets/revx-logo.png" alt="RevX logo" />
+        <span class="site-footer-wordmark">DEEDS</span>
+      </a>
+      <p class="site-footer-tagline">A K–12 learning model that creates opportunities for young people to claim their power and transform the world.</p>
+    </div>
+    <nav class="site-footer-col" aria-label="Phase pages">
+      <h4>Phases</h4>
+      <div class="site-footer-links">
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer-credit">DEEDS Framework · RevX × Transcend</div>
+</footer>
+
+<script>
+const nav = document.querySelector('.site-nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+</script>
+</body>
+</html>
