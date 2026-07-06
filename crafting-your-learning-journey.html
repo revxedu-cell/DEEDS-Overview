@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Map what students will learn, do, and produce across all five DEEDS phases, and make sure each phase sets up the next.">
+<title>Crafting Your Learning Journey — DEEDS</title>
+<link rel="stylesheet" href="revx.css">
+<style>
+
+/* ── Hero ── */
+.hero-banner {
+  position: relative; min-height: 320px;
+  background: url('assets/THE-MODEL-1-scaled.jpg') center/cover no-repeat;
+  display: flex; align-items: flex-end;
+}
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 65%, transparent);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  padding: 0 48px 44px;
+}
+.hero-content h1 { color: #fff; margin-bottom: 10px; font-size: clamp(28px, 4vw, 48px); }
+.hero-content p  { color: rgba(255,255,255,0.88); font-weight: 300; font-size: 17px; max-width: 58ch; line-height: 1.65; }
+
+/* ── Layout ── */
+.gs-outer {
+  max-width: 1120px; margin: 0 auto; padding: 56px 48px 80px;
+  display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start;
+}
+.gs-intro {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+/* ── Overview block (unnumbered, above sidebar+steps) ── */
+.column-overview {
+  grid-column: 1 / -1;
+  background: var(--gray-100); border: 0.5px solid var(--gray-200);
+  padding: 28px 32px; margin-bottom: 40px;
+}
+.column-overview-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--gray-700); display: block; margin-bottom: 16px;
+}
+.column-overview .points-list { margin-bottom: 0; }
+
+/* ── Sidebar ── */
+.gs-sidebar {
+  position: sticky; top: 100px;
+}
+.sidebar-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--gray-400); display: block;
+  margin-bottom: 12px; padding-left: 16px;
+}
+.sidebar-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: border-color .15s, background .15s;
+  background: none; border-top: none; border-right: none; border-bottom: none;
+  width: 100%; text-align: left;
+}
+.sidebar-item:hover { background: var(--gray-100); }
+.sidebar-item.active { border-left-color: var(--step-color); background: var(--gray-50, #fafafa); }
+.sidebar-num {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid var(--gray-200);
+  font-size: 10px; font-weight: 700; color: var(--gray-500);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px; transition: background .15s, border-color .15s, color .15s;
+}
+.sidebar-item.active .sidebar-num {
+  background: var(--step-color); border-color: var(--step-color); color: #fff;
+}
+.sidebar-text { display: flex; flex-direction: column; gap: 2px; }
+.sidebar-title {
+  font-size: 13px; font-weight: 700; color: var(--gray-700); line-height: 1.3;
+  transition: color .15s;
+}
+.sidebar-item.active .sidebar-title { color: var(--step-color); }
+.sidebar-sub {
+  font-size: 11px; color: var(--gray-400); line-height: 1.3;
+}
+
+/* ── Step sections ── */
+.gs-content { min-width: 0; }
+.step-section {
+  padding: 36px 40px;
+  background: #fff;
+  border: 0.5px solid var(--gray-200);
+  border-left: 4px solid var(--step-color);
+  margin-bottom: 16px;
+  scroll-margin-top: 110px;
+}
+.step-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+.step-num-large {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--step-color);
+  font-size: 14px; font-weight: 700; color: #fff;
+  display: flex; align-items: center; justify-content: center; margin-top: 2px;
+}
+.step-header-text { display: flex; flex-direction: column; gap: 4px; }
+.step-title-large {
+  font-size: 20px; font-weight: 700; color: var(--gray-900); line-height: 1.2;
+  font-family: var(--font-display);
+}
+.step-sub {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--step-color);
+}
+
+/* ── Content ── */
+.step-body-text {
+  font-size: 14px; color: var(--gray-700); line-height: 1.7;
+  margin-bottom: 24px; max-width: 72ch;
+}
+.points-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+.point-row { display: flex; flex-direction: column; gap: 3px; }
+.point-title { font-size: 13px; font-weight: 700; color: var(--gray-900); }
+.point-body  { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+
+/* ── Phase-page link ── */
+.phase-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--step-color);
+  text-decoration: none; margin-top: 4px;
+}
+.phase-link:hover { text-decoration: underline; }
+
+/* ── Example journeys ── */
+.journey-examples {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+.journey-examples-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #1a4c81; display: block; margin-bottom: 16px;
+}
+.journey-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.journey-card {
+  background: #fff; border: 0.5px solid var(--gray-200); border-top: 3px solid #1a4c81;
+  padding: 22px 24px;
+}
+.journey-card h4 { font-size: 15px; font-family: var(--font-display); color: var(--gray-900); margin-bottom: 6px; }
+.journey-card p { font-size: 13px; color: var(--gray-700); line-height: 1.6; margin-bottom: 14px; }
+.journey-card a { font-size: 13px; font-weight: 700; color: #1a4c81; text-decoration: none; }
+.journey-card a:hover { text-decoration: underline; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .gs-outer { grid-template-columns: 1fr; padding: 32px 20px 60px; gap: 24px; }
+  .gs-sidebar {
+    position: static;
+    display: flex; flex-wrap: nowrap; overflow-x: auto;
+    gap: 0; border-bottom: 1px solid var(--gray-200); padding-bottom: 0;
+  }
+  .sidebar-label { display: none; }
+  .sidebar-item {
+    flex-direction: column; align-items: center; padding: 10px 14px;
+    border-left: none; border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .sidebar-item.active { border-left-color: transparent; border-bottom-color: var(--step-color); }
+  .sidebar-sub { display: none; }
+  .step-section { padding: 24px 20px; }
+  .journey-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ── NAV ── -->
+<nav class="site-nav" role="navigation" aria-label="Site navigation">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">
+      <img src="assets/revx-logo.png" alt="RevX logo" />
+      <span class="site-nav-brand-label">DEEDS</span>
+    </a>
+    <div class="site-nav-links">
+      <a href="index.html" class="site-nav-link">Home</a>
+      <a href="getting-started.html" class="site-nav-link">Getting Started</a>
+      <a href="crafting-your-learning-journey.html" class="site-nav-link active">Crafting Your Learning Journey</a>
+      <a href="discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+      <a href="examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+      <a href="engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+      <a href="do.html" class="site-nav-link"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+      <a href="share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero-banner">
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <h1>Crafting Your Learning Journey</h1>
+    <p>Map what students will learn, do, and produce across all five phases, and make sure each phase sets up the next.</p>
+  </div>
+</div>
+
+<main id="main-content">
+<div class="gs-outer">
+
+  <!-- Intro -->
+  <div class="gs-intro">
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#1a4c81;display:block;margin-bottom:8px;">Unit Design</span>
+    <p style="font-size:15px;color:var(--gray-700);line-height:1.7;max-width:80ch;">Use the Learning Journey section of the <a href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/edit?usp=sharing" target="_blank" style="color:#1a4c81;">DEEDS Unit Planning Template</a> to map what students will learn, do, and produce in each phase. For a full breakdown of each phase's purpose and pedagogy, visit the phase pages linked throughout.</p>
+  </div>
+
+  <!-- Overview: What Goes in Each Column -->
+  <div class="column-overview">
+    <span class="column-overview-label">Overview: What Goes in Each Column</span>
+    <div class="points-list">
+      <div class="point-row">
+        <span class="point-title">Learning Target(s)</span>
+        <span class="point-body">One or more "I can... so that..." statements naming the standards or skills students will master, framed within the challenge.</span>
+      </div>
+      <div class="point-row">
+        <span class="point-title">Key Learning Experiences</span>
+        <span class="point-body">The activities that build student knowledge and connection to the challenge in this phase. Some come from core DEEDS practices and protocols defined on the phase pages; others you'll design around your specific content and challenge. Choose experiences that are engaging, active, and rigorous. Facilitate the investigation and let students do the intellectual work.</span>
+      </div>
+      <div class="point-row">
+        <span class="point-title">Deliverable(s)</span>
+        <span class="point-body">What students produce to show their learning. A strong deliverable does two things: it demonstrates the phase's success criteria, and it feeds into the final solution. Rather than a stand-alone assignment, it becomes a component of the end product.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="gs-sidebar" aria-label="Phase navigation">
+    <span class="sidebar-label">Phases</span>
+    <button class="sidebar-item active" style="--step-color:#e69138;" onclick="scrollToStep('step1', this)">
+      <span class="sidebar-num">1</span>
+      <span class="sidebar-text">
+        <span class="sidebar-title">Discover</span>
+        <span class="sidebar-sub">Build the case</span>
+      </span>
+    </button>
+    <button class="sidebar-item" style="--step-color:#0a9b19;" onclick="scrollToStep('step2', this)">
+      <span class="sidebar-num">2</span>
+      <span class="sidebar-text">
+        <span class="sidebar-title">Examine</span>
+        <span class="sidebar-sub">Find a solution direction</span>
+      </span>
+    </button>
+    <button class="sidebar-item" style="--step-color:#003DA6;" onclick="scrollToStep('step3', this)">
+      <span class="sidebar-num">3</span>
+      <span class="sidebar-text">
+        <span class="sidebar-title">Engineer</span>
+        <span class="sidebar-sub">Design and build</span>
+      </span>
+    </button>
+    <button class="sidebar-item" style="--step-color:#FFB600;" onclick="scrollToStep('step4', this)">
+      <span class="sidebar-num">4</span>
+      <span class="sidebar-text">
+        <span class="sidebar-title">Do</span>
+        <span class="sidebar-sub">Take action</span>
+      </span>
+    </button>
+    <button class="sidebar-item" style="--step-color:#ab0a3d;" onclick="scrollToStep('step5', this)">
+      <span class="sidebar-num">5</span>
+      <span class="sidebar-text">
+        <span class="sidebar-title">Share</span>
+        <span class="sidebar-sub">Present and reflect</span>
+      </span>
+    </button>
+  </aside>
+
+  <!-- Content -->
+  <div class="gs-content">
+
+    <!-- Phase 1: Discover -->
+    <section id="step1" class="step-section" style="--step-color:#e69138;">
+      <div class="step-header">
+        <div class="step-num-large">1</div>
+        <div class="step-header-text">
+          <span class="step-title-large">Discover</span>
+          <span class="step-sub">Students encounter the challenge and build their case for why it matters.</span>
+        </div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Learning Target(s)</span>
+          <span class="point-body">Name what students will know or do by the end of Discover, framed as "I can... so that..."</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Key Learning Experiences</span>
+          <span class="point-body">How will students encounter the challenge firsthand and connect to it emotionally? Jot down initial ideas for simulations, field trips, client interviews, or compelling data that builds empathy and urgency.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Deliverable(s)</span>
+          <span class="point-body">What will students produce to show they understand the challenge and its impacts? When possible, this deliverable should form a component of the end product (for example, an introductory slide for students' Share presentations, an early draft of a problem definition for a policy proposal, etc.)</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Check the throughline</span>
+          <span class="point-body">How does Discover set students up to investigate the content and skills they will learn in Examine? What core experiences will create the "why" for the learning that follows?</span>
+        </div>
+      </div>
+      <a class="phase-link" href="discover.html">Full guidance on Discover →</a>
+    </section>
+
+    <!-- Phase 2: Examine -->
+    <section id="step2" class="step-section" style="--step-color:#0a9b19;">
+      <div class="step-header">
+        <div class="step-num-large">2</div>
+        <div class="step-header-text">
+          <span class="step-title-large">Examine</span>
+          <span class="step-sub">Students investigate and gather evidence to define a defensible solution direction.</span>
+        </div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Learning Target(s)</span>
+          <span class="point-body">These should be "I can" statements that include the standards and skills students need to learn, contextualized within the challenge.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Key Learning Experiences</span>
+          <span class="point-body">How will students lead their own learning as they investigate the challenge? Consider labs, research, text analysis, mini lessons, or station rotations. Build in formative checkpoints that can be used to gauge student mastery and growth.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Deliverable(s)</span>
+          <span class="point-body">What will students produce as they apply their learning to the challenge? This deliverable should require students to demonstrate the core content and skills while building toward the solution they will construct in Engineer (examples might include a CER-based argument for the strongest root cause, a research brief narrowing the solution space, an annotated diagram that becomes the starting point for a prototype).</span>
+        </div>
+      </div>
+      <a class="phase-link" href="examine.html">Full guidance on Examine →</a>
+    </section>
+
+    <!-- Phase 3: Engineer -->
+    <section id="step3" class="step-section" style="--step-color:#003DA6;">
+      <div class="step-header">
+        <div class="step-num-large">3</div>
+        <div class="step-header-text">
+          <span class="step-title-large">Engineer</span>
+          <span class="step-sub">Students design, build, and refine a response to the challenge.</span>
+        </div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Learning Target(s)</span>
+          <span class="point-body">"I can" statements naming the design skills and content students need to build a solution that addresses a root cause.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Key Learning Experiences</span>
+          <span class="point-body">How will students develop a plan, build with support from community partners, and exchange feedback across iterations?</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Deliverable(s)</span>
+          <span class="point-body">What will students build? This is the real solution students will carry into Do: a complete product, a finished proposal ready to bring to a partner, or a working system ready to deploy. The solution should demonstrate a high quality standard, something that students will be proud to put into action for clients beyond the classroom.</span>
+        </div>
+      </div>
+      <a class="phase-link" href="engineer.html">Full guidance on Engineer →</a>
+    </section>
+
+    <!-- Phase 4: Do -->
+    <section id="step4" class="step-section" style="--step-color:#FFB600;">
+      <div class="step-header">
+        <div class="step-num-large">4</div>
+        <div class="step-header-text">
+          <span class="step-title-large">Do</span>
+          <span class="step-sub">Students put their solution into action and evaluate its impact.</span>
+        </div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Learning Target(s)</span>
+          <span class="point-body">"I can" statements naming what students need to know and do to implement and evaluate their solution.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Key Learning Experiences</span>
+          <span class="point-body">How will students implement their solution, collect data, and reflect on its effectiveness?</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Deliverable(s)</span>
+          <span class="point-body">What evidence of impact will students collect and analyze? This evidence should give students something concrete to draw on in Share.</span>
+        </div>
+      </div>
+      <a class="phase-link" href="do.html">Full guidance on Do →</a>
+    </section>
+
+    <!-- Phase 5: Share -->
+    <section id="step5" class="step-section" style="--step-color:#ab0a3d;">
+      <div class="step-header">
+        <div class="step-num-large">5</div>
+        <div class="step-header-text">
+          <span class="step-title-large">Share</span>
+          <span class="step-sub">Students present their work to a real audience and reflect on their growth.</span>
+        </div>
+      </div>
+      <div class="points-list">
+        <div class="point-row">
+          <span class="point-title">Learning Target(s)</span>
+          <span class="point-body">"I can" statements naming the communication skills students need to present and defend their work.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Key Learning Experiences</span>
+          <span class="point-body">How will students share with a public audience? Decide whether a summative assessment fits your unit.</span>
+        </div>
+        <div class="point-row">
+          <span class="point-title">Deliverable(s)</span>
+          <span class="point-body">What will students present, and what does it show about their growth across the full journey, not just the final phase?</span>
+        </div>
+      </div>
+      <a class="phase-link" href="share.html">Full guidance on Share →</a>
+    </section>
+
+  </div><!-- end gs-content -->
+
+  <!-- Example Learning Journeys -->
+  <div class="journey-examples">
+    <span class="journey-examples-label">Example Learning Journeys</span>
+    <div class="journey-cards">
+      <div class="journey-card">
+        <h4>Peaceful Paws (K–2)</h4>
+        <p>Partnership with Muddy Paws Rescue.</p>
+        <a href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit" target="_blank">View Full Example →</a>
+      </div>
+      <div class="journey-card">
+        <h4>Safer Streets (Grades 3–5)</h4>
+        <p>Partnership with Transportation Alternatives.</p>
+        <a href="#" target="_blank">View Full Example →</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end gs-outer -->
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer-inner">
+    <div>
+      <a href="index.html" class="site-footer-brand">
+        <img src="assets/revx-logo.png" alt="RevX logo" />
+        <span class="site-footer-wordmark">DEEDS</span>
+      </a>
+      <p class="site-footer-tagline">A K–12 learning model that creates opportunities for young people to claim their power and transform the world.</p>
+    </div>
+    <nav class="site-footer-col" aria-label="Phase pages">
+      <h4>Phases</h4>
+      <div class="site-footer-links">
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer-credit">DEEDS Framework · RevX × Transcend</div>
+</footer>
+
+<script>
+const nav = document.querySelector('.site-nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+function scrollToStep(id, btn) {
+  document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+const steps = ['step1','step2','step3','step4','step5'];
+const sidebarBtns = document.querySelectorAll('.sidebar-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = steps.indexOf(e.target.id);
+      if (idx > -1) {
+        sidebarBtns.forEach(b => b.classList.remove('active'));
+        sidebarBtns[idx].classList.add('active');
+      }
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-100px 0px -40% 0px' });
+
+steps.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+</script>
+</body>
+</html>
