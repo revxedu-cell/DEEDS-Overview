@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Think, Feel, Act — DEEDS Discover Protocol</title>
+<title>Think, Feel, Act: DEEDS Discover Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -37,6 +37,7 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
   padding:5px 13px; border-radius:0;
 }
 .deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.deck-timer { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; color:var(--text-soft); }
 .topbar-logo { height:22px; width:auto; flex-shrink:0; }
 .nav-area { display:flex; align-items:center; gap:9px; }
 .nav-btn {
@@ -85,19 +86,7 @@ body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
 }
 body.vs .sc { display:flex; }
 
-/* slide meta: focus/routine badge + timer, now a light inline line on the slide itself */
-.slide-meta {
-  flex:0 0 auto;
-  display:flex; align-items:center; gap:12px;
-  padding:16px 24px 0;
-}
-.type-badge {
-  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
-  letter-spacing:.1em; padding:5px 12px; border-radius:0; text-transform:uppercase;
-}
-.badge-r { color:#92400E; background:var(--amber-light); border:1px solid #FDE68A; }
-.badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
-.timer { font-family:'Oswald',sans-serif; font-weight:700; font-size:14px; color:var(--text-mid); }
+/* slide body starts directly with the framing note; no separate meta bar */
 
 /* band variants — only active band visible */
 .bv { display:none; flex-direction:column; flex:1; min-height:0; }
@@ -355,6 +344,7 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
     <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
     <span class="phase-pill">DISCOVER</span>
     <span class="deck-label">Think, Feel, Act</span>
+    <span class="deck-timer" id="tmr0"></span>
   </div>
   <div class="ctrl-area">
     <div class="tg">
@@ -393,7 +383,7 @@ const P = [
   purpose: {
     k2:   'What did we see? How does it make us feel? What could we do?',
     '35': 'Write your thoughts and feelings about the challenge. Then share what you\u2019d do.',
-    '612':'Separate what you think from what you feel. Then decide what action that leads to.'
+    '612':'Separate what you think from what you feel. Then decide what to do about it.'
   },
   bands: {
     k2: [
@@ -423,7 +413,7 @@ const P = [
         prompt:'What do you think about this challenge, based on what you observed? Be specific.',
         starter:'' },
       { mode:'individual', time:'2\u20133 min', icon:'\u2764\uFE0F', label:'Feel',
-        prompt:'What is your emotional response \u2014 and why specifically? Push past the first word.',
+        prompt:'What is your emotional response, and why specifically? Push past the first word.',
         starter:'' },
       { mode:'small', time:'3\u20134 min', icon:'\u270a\uD83C\uDFFD', label:'Act',
         prompt:'What do you want to do, and why? What would be different if you took this action? Share your answers and push one another\u2019s thinking about what\u2019s possible.',
@@ -436,17 +426,17 @@ const P = [
     hattie: [
       { d:'1.33', n:'Student Expectations',     r:'When students connect personally to a problem and see themselves as capable of contributing, achievement increases significantly.' },
       { d:'0.60', n:'Metacognitive Strategies',  r:'Naming cognitive and emotional responses separately builds self-awareness that sustains motivation through harder work.' },
-      { d:'0.57', n:'Social-Emotional Learning', r:'Emotional regulation positively impacts academic performance and engagement in cognitively demanding tasks.' }
+      { d:'0.57', n:'Social-Emotional Learning', r:'Emotional regulation improves academic performance and engagement in cognitively demanding tasks.' }
     ],
     principal: null,
     grade: {
       k2:   'Use an emotions chart or emoji cards for the Feel step. Accept drawn responses. Whole-class works better than pairs at this age.',
-      '35': 'Model the Think and Feel steps yourself before students write. Students often conflate thinking and feeling \u2014 show the difference explicitly.',
+      '35': 'Model the Think and Feel steps yourself before students write. Students often conflate thinking and feeling. Show the difference explicitly.',
       '68': 'Press students past first-level emotional responses: \u201csad\u201d or \u201cangry\u201d is a starting point, not an ending point.',
-      '912':'In the Act step, push students past vague intentions — "I want to help" is a starting point. Press for specificity: what exactly would you do, and what would actually be different as a result?'
+      '912':'In the Act step, push students past vague intentions. Wanting to help is only the beginning. Press for specificity: what exactly would you do, and what would actually be different as a result?'
     },
     planning: null,
-    why: 'The Discover continuum requires students to articulate purpose and significance \u2014 why this problem matters and why they should act. That capacity is emotional before it is analytical. Push students: \u201cI feel sad\u201d needs to become \u201cI feel responsible because\u2026\u201d',
+    why: 'The Discover continuum requires students to articulate purpose and significance: why this problem matters and why they should act. That capacity is emotional before it is analytical. Push students: \u201cI feel sad\u201d needs to become \u201cI feel responsible because\u2026\u201d',
     std:'NGSS SEP 1 \u00b7 C3 D2.Civ \u00b7 CCSS SL.1, W.9'
   }
 }
@@ -510,7 +500,7 @@ function buildTeacher(proto) {
   return `<div class="tc2">
     <div class="t-hdr">
       <div class="t-hdr-l">
-        <div class="t-ey">Teacher Background \u2014 Discover</div>
+        <div class="t-ey">Teacher Background: Discover</div>
         <div class="t-ttl">${proto.name}</div>
       </div>
       <div class="t-meta">
@@ -541,21 +531,15 @@ function buildTeacher(proto) {
 }
 
 function buildAll() {
-  const ir = P[0].type === 'routine';
-  const bc = ir ? 'badge-r' : 'badge-f';
-  const bl = ir ? 'Daily Routine' : 'Focus Protocol';
   const allBands = ['k2','35','612'];
   const bvs = allBands.map(b => buildBand(P[0], b)).join('');
   document.getElementById('slide0').innerHTML = `
     <div class="sc">
-      <div class="slide-meta">
-        <span class="type-badge ${bc}">${bl}</span>
-        <span class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</span>
-      </div>
       ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
     </div>
     ${buildTeacher(P[0])}`;
+  document.getElementById('tmr0').textContent = '\u23F1\u202F' + P[0].timer['k2'];
 }
 
 buildAll();
