@@ -123,7 +123,7 @@ img { display: block; max-width: 100%; }
 .dropdown-caret { font-size: 10px; transition: transform 0.2s; }
 .site-nav-dropdown.open .dropdown-caret { transform: rotate(180deg); }
 .site-nav-dropdown-menu {
-  position: absolute; top: 100%; left: 0;
+  position: fixed;
   background: #fff; border: 1px solid var(--gray-200); box-shadow: 0 8px 20px rgba(0,0,0,0.12);
   min-width: 180px; padding: 6px; display: none; flex-direction: column; z-index: 210;
 }
@@ -135,10 +135,7 @@ img { display: block; max-width: 100%; }
 }
 .site-nav-dropdown-menu a:hover { color: var(--red); background: var(--gray-100); }
 .site-nav-dropdown-menu a.active { color: var(--red); }
-@media (min-width: 769px) {
-  .site-nav-dropdown:hover .site-nav-dropdown-menu { display: flex; }
-}
-.site-nav-dropdown.open .site-nav-dropdown-menu { display: flex; }
+
 
 /* ── Eyebrow ── */
 .eyebrow {

@@ -270,21 +270,56 @@
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
 
-// Five Phases dropdown: tap-to-open on touch/mobile
-document.querySelectorAll('.site-nav-dropdown-toggle').forEach(btn => {
+// Five Phases dropdown: fixed-position menu so it isn't clipped by the
+// scrollable nav row; hover opens on desktop, tap opens on mobile.
+document.querySelectorAll('.site-nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.site-nav-dropdown-toggle');
+  const menu = dd.querySelector('.site-nav-dropdown-menu');
+
+  function positionMenu() {
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  }
+  function openMenu() {
+    positionMenu();
+    menu.style.display = 'flex';
+    dd.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.style.display = 'none';
+    dd.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  dd.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) openMenu();
+  });
+  dd.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+  });
   btn.addEventListener('click', (e) => {
     e.preventDefault();
-    const dd = btn.closest('.site-nav-dropdown');
-    const isOpen = dd.classList.contains('open');
-    document.querySelectorAll('.site-nav-dropdown.open').forEach(o => o.classList.remove('open'));
-    if (!isOpen) dd.classList.add('open');
-    btn.setAttribute('aria-expanded', String(!isOpen));
+    dd.classList.contains('open') ? closeMenu() : openMenu();
   });
 });
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.site-nav-dropdown')) {
-    document.querySelectorAll('.site-nav-dropdown.open').forEach(o => o.classList.remove('open'));
+    document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+      dd.querySelector('.site-nav-dropdown-menu').style.display = 'none';
+      dd.classList.remove('open');
+    });
   }
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+    const btn = dd.querySelector('.site-nav-dropdown-toggle');
+    const menu = dd.querySelector('.site-nav-dropdown-menu');
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  });
 });
 
 // Sub-nav active state on scroll
