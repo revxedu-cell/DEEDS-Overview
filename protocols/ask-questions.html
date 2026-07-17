@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A.S.K. Questions: DEEDS Examine Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --phase:#0a9b19; --phase-light:#e7f5e3; --phase-mid:#b8e6bd; --phase-dark:#076b11;
+  --amber:#F59E0B; --amber-light:#FEF3C7;
+  --text:#333333; --text-mid:#44403C; --text-soft:#78716C;
+  --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
+  --t-bg:#1C1917; --t-s:rgba(255,255,255,.06); --t-l:rgba(255,255,255,.09);
+  --t-text:rgba(255,255,255,.88); --t-soft:rgba(255,255,255,.55);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position:sticky; top:0; z-index:50; background:white;
+  border-bottom:1px solid var(--border);
+  padding:9px 20px; display:flex; align-items:center;
+  justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.tl { display:flex; align-items:center; gap:9px; }
+.back-btn {
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px; letter-spacing:.06em;
+  color:var(--text-mid); text-decoration:none; padding:6px 10px; border:1.5px solid var(--border);
+  text-transform:uppercase;
+}
+.back-btn:hover { border-color:var(--phase); color:var(--phase); }
+.topbar-logo { height:22px; width:auto; flex-shrink:0; }
+.phase-pill {
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:13px;
+  letter-spacing:.15em; color:white; background:var(--phase);
+  padding:5px 13px; border-radius:0;
+}
+.deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.deck-timer { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; color:var(--text-soft); }
+.ctrl-area { display:flex; align-items:center; gap:8px; }
+.tg { display:flex; background:var(--bg); border-radius:0; padding:2px; gap:1px; }
+.tb {
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:11px;
+  padding:4px 10px; border:none; border-radius:0; cursor:pointer;
+  background:transparent; color:var(--text-soft); transition:all .15s;
+}
+.tb.active { background:var(--phase); color:white; }
+.print-btn {
+  display:flex; align-items:center; gap:6px;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:11px;
+  padding:5px 10px; border:1.5px solid var(--border); background:white;
+  color:var(--text-mid); cursor:pointer; transition:all .15s;
+}
+.print-btn:hover { border-color:var(--phase); color:var(--phase); }
+
+body.in-drawer .back-btn { display:none; }
+body.in-drawer .topbar-logo { display:none; }
+body.in-drawer .deck-label { display:none; }
+body.in-drawer .topbar { padding:7px 16px; gap:8px; }
+body.in-drawer .ctrl-area { gap:6px; }
+body.in-drawer .tb { padding:4px 8px; font-size:10px; }
+body.in-drawer .print-btn { padding:4px 8px; font-size:11px; }
+body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
+
+/* ── PAGE LAYOUT ── */
+.page { max-width:1400px; margin:24px auto; padding:0 20px 40px; }
+
+.sc {
+  display:none; flex-direction:column;
+  background:white; border-radius:0;
+  box-shadow:0 2px 20px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04);
+  min-height:560px; padding:22px 24px 20px;
+}
+body.vs .sc { display:flex; }
+.tc2 { display:none; background:var(--t-bg); border-radius:0; box-shadow:0 2px 20px rgba(0,0,0,.2); overflow:hidden; min-height:560px; }
+body.vt .tc2 { display:flex; flex-direction:column; }
+
+/* ── STUDENT: framing note ── */
+.student-when { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; background:rgba(0,0,0,.04); border:0.5px solid var(--border); margin-bottom:18px; flex-shrink:0; }
+.student-when-icon { font-size:14px; margin-top:1px; flex-shrink:0; }
+.student-when-text { font-size:13px; color:var(--phase-dark); line-height:1.45; font-weight:600; }
+
+/* ── STEP ROW: three steps, one box each ── */
+.phase-set { display:grid; gap:14px; flex:1; min-height:0; grid-template-columns:repeat(3, 1fr); }
+.phase-box {
+  background:#fff; border:0.5px solid var(--border);
+  display:flex; flex-direction:column; min-height:0;
+}
+.phase-box-hdr { border-top:3px solid var(--phase); padding:12px 14px 10px; border-bottom:0.5px solid var(--border); }
+.phase-box-num { font-family:'Oswald',sans-serif; font-weight:700; font-size:20px; color:var(--phase); letter-spacing:.03em; }
+.phase-box-name { font-family:'Oswald',sans-serif; font-weight:700; font-size:14px; color:var(--text); line-height:1.2; margin-top:2px; }
+.phase-box-body { padding:12px 14px; flex:1; display:flex; flex-direction:column; gap:8px; overflow-y:auto; }
+.phase-box-body p { font-size:13px; color:var(--text-mid); line-height:1.5; }
+.phase-box-body ul { padding-left:18px; display:flex; flex-direction:column; gap:5px; }
+.phase-box-body li { font-size:12.5px; color:var(--text-mid); line-height:1.45; }
+.phase-box-body li b { color:var(--text); }
+.phase-box-note { font-size:12px; color:var(--text-soft); font-style:italic; margin-top:2px; }
+
+.attribution { margin-top:16px; padding:8px 12px; border:0.5px solid var(--border); background:var(--bg); font-size:10.5px; color:var(--text-soft); line-height:1.5; flex-shrink:0; }
+
+/* ── TEACHER PANEL ── */
+.t-hdr { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:1px solid var(--t-l); flex-wrap:wrap; flex-shrink:0; }
+.t-ey { font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:.18em; color:var(--t-soft); text-transform:uppercase; }
+.t-ttl { font-family:'Oswald',sans-serif; font-weight:700; font-size:21px; color:white; margin-top:2px; }
+.t-meta { text-align:right; }
+.t-ml { font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:.12em; color:var(--t-soft); text-transform:uppercase; }
+.t-mv { font-family:'Oswald',sans-serif; font-weight:700; font-size:12px; color:white; }
+.t-body { padding:18px 24px; display:flex; flex-direction:column; gap:12px; flex:1; min-height:0; overflow-y:auto; }
+.why-box { border-left:3px solid var(--phase-mid); background:rgba(10,155,25,.1); padding:12px 16px; }
+.why-l { font-family:'Oswald',sans-serif; font-weight:700; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--phase-mid); margin-bottom:5px; }
+.why-t { font-size:13px; color:var(--t-text); line-height:1.55; }
+.t-sec { background:var(--t-s); padding:12px 14px; }
+.t-sec-title { font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase-mid); margin-bottom:8px; }
+.fac-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:6px; }
+.fac-list li { font-size:12.5px; color:var(--t-soft); line-height:1.5; padding-left:12px; position:relative; }
+.fac-list li::before { content:"–"; position:absolute; left:0; }
+.attribution-t { font-size:11px; color:var(--t-soft); line-height:1.5; border-top:1px solid var(--t-l); padding-top:10px; margin-top:2px; }
+.sold-row { display:flex; align-items:flex-start; gap:8px; padding:6px 0; border-bottom:1px solid var(--t-l); }
+.sold-row:last-of-type { border-bottom:none; padding-bottom:0; }
+.sold-badge { flex-shrink:0; background:rgba(10,155,25,.25); border:1px solid rgba(10,155,25,.4); border-radius:0; padding:4px 7px; text-align:center; min-width:64px; }
+.sold-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:8px; color:var(--phase-mid); letter-spacing:.05em; text-transform:uppercase; line-height:1.2; }
+.sold-name { font-family:'Oswald',sans-serif; font-weight:700; font-size:12px; color:var(--phase-mid); margin-bottom:2px; }
+.sold-rat { font-size:12px; color:var(--t-soft); line-height:1.35; }
+.std-row { display:flex; flex-direction:column; gap:4px; padding:10px 14px; background:var(--t-s); }
+.std-l { font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--t-soft); }
+.std-v { font-size:12.5px; color:var(--t-text); line-height:1.5; }
+
+@media (max-width:900px) {
+  .phase-set { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body class="vs">
+<script>
+if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
+</script>
+
+<div class="topbar">
+  <div class="tl">
+    <a class="back-btn" href="../examine.html">&#8592; Examine</a>
+    <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
+    <span class="phase-pill">EXAMINE</span>
+    <span class="deck-label">A.S.K. Questions</span>
+    <span class="deck-timer">&#9201;&#8239;15 min</span>
+  </div>
+  <div class="ctrl-area">
+    <div class="tg">
+      <button class="tb active" id="bvs" onclick="setView('s')">Student</button>
+      <button class="tb" id="bvt" onclick="setView('t')">Teacher</button>
+    </div>
+    <button class="print-btn" onclick="window.print()" title="Save as PDF">Save as PDF</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="sc">
+    <div class="student-when">
+      <span class="student-when-icon">💡</span>
+      <span class="student-when-text">Use this after you've explored the challenge to turn your curiosity into questions you can actually investigate in Examine.</span>
+    </div>
+
+    <div class="phase-set">
+      <div class="phase-box">
+        <div class="phase-box-hdr">
+          <div class="phase-box-num">A</div>
+          <div class="phase-box-name">Ask</div>
+        </div>
+        <div class="phase-box-body">
+          <p>With your group, write as many questions as you can about the challenge. Don't judge yet, just get your ideas down.</p>
+          <p style="margin-top:4px;"><b style="color:var(--text);">Helpful starters:</b></p>
+          <ul>
+            <li>How does ___ affect ___?</li>
+            <li>What makes ___ happen or change?</li>
+            <li>Why do people experience ___ differently?</li>
+            <li>What would happen if ___?</li>
+            <li>How could ___ be improved?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="phase-box-hdr">
+          <div class="phase-box-num">S</div>
+          <div class="phase-box-name">Sort</div>
+        </div>
+        <div class="phase-box-body">
+          <p>Group your questions by type:</p>
+          <ul>
+            <li><b>Cause:</b> Why does this happen?</li>
+            <li><b>Impact:</b> What would happen if?</li>
+            <li><b>System:</b> How is this set up or maintained?</li>
+            <li><b>Perspective:</b> Why do people see or experience this differently?</li>
+            <li><b>Solution:</b> How could this change?</li>
+            <li><b>Process:</b> How could we...?</li>
+          </ul>
+          <p class="phase-box-note">If a type is missing, add a new question.</p>
+        </div>
+      </div>
+      <div class="phase-box">
+        <div class="phase-box-hdr">
+          <div class="phase-box-num">K</div>
+          <div class="phase-box-name">Keep</div>
+        </div>
+        <div class="phase-box-body">
+          <p>Check each question against the criteria below. Choose the 3-5 best questions to keep.</p>
+          <ul>
+            <li><b>Relevant:</b> Connects clearly to the challenge</li>
+            <li><b>Investigable:</b> Can be explored with evidence (data, texts, interviews, observations)</li>
+            <li><b>Deep:</b> Goes beyond a quick fact or yes/no answer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution"><b style="color:var(--text-mid);">Standards alignment:</b> CCSS.ELA-Literacy.CCRA.W.7 (conduct research projects based on focused questions), NGSS Science and Engineering Practice: Asking Questions and Defining Problems.</div>
+  </div>
+
+  <div class="tc2">
+    <div class="t-hdr">
+      <div>
+        <div class="t-ey">Teacher Background: Examine</div>
+        <div class="t-ttl">A.S.K. Questions</div>
+      </div>
+      <div class="t-meta">
+        <div class="t-ml">When to use</div><div class="t-mv">Start of Examine</div>
+        <div class="t-ml" style="margin-top:4px">Type</div><div class="t-mv">Focus Protocol</div>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="why-box">
+        <div class="why-l">Why this, why now</div>
+        <div class="why-t">A.S.K. (Ask, Sort, Keep) helps students turn curiosity into purposeful inquiry after they've explored the challenge through experiences, perspectives, and data in Discover. It gives them practice asking investigable questions, prioritizing the ones that matter most, and preparing to seek answers to them across Examine.</div>
+      </div>
+      <div class="t-sec">
+        <div class="t-sec-title">Science of Learning and Development</div>
+        <div class="sold-row">
+          <div class="sold-badge"><div class="sold-lbl">Focused<br>Attention</div></div>
+          <div><div class="sold-name">Narrowing to what matters</div><div class="sold-rat">Sorting many questions down to a small set of priorities clarifies what matters most for learning.</div></div>
+        </div>
+        <div class="sold-row">
+          <div class="sold-badge"><div class="sold-lbl">Meaningful<br>Encoding</div></div>
+          <div><div class="sold-name">Organizing by type</div><div class="sold-rat">Sorting questions by cause, impact, system, and perspective organizes ideas around structures, not disconnected facts.</div></div>
+        </div>
+        <div class="sold-row">
+          <div class="sold-badge"><div class="sold-lbl">Value &amp;<br>Control</div></div>
+          <div><div class="sold-name">Students as decision-makers</div><div class="sold-rat">When students choose which questions to investigate and explain why, learning feels purposeful and motivating.</div></div>
+        </div>
+        <div class="sold-row">
+          <div class="sold-badge"><div class="sold-lbl">Metacognitive<br>Thinking</div></div>
+          <div><div class="sold-name">Evaluating their own questions</div><div class="sold-rat">The Keep step asks students to judge the quality of their own questions against explicit criteria.</div></div>
+        </div>
+      </div>
+      <div class="t-sec">
+        <div class="t-sec-title">Facilitation Notes</div>
+        <ul class="fac-list">
+          <li>Run this after students have already explored the challenge through an immersive experience, multiple perspectives, and data, not before. A.S.K. is a synthesis move, not an entry point.</li>
+          <li>In the Ask step, protect the no-judgment brainstorm. Redirecting or correcting a question too early will shrink the pool students have to sort from.</li>
+          <li>If a Sort category comes back empty, that's useful information. It may point to an angle the class hasn't considered yet, not just a gap to fill for its own sake.</li>
+          <li>The 3-5 questions students keep should carry directly into their Examine investigation. If a kept question doesn't connect to what they'll actually research, revisit it.</li>
+        </ul>
+      </div>
+      <div class="std-row">
+        <div class="std-l">Standards</div>
+        <div class="std-v">CCSS.ELA-Literacy.CCRA.W.7 · NGSS SEP: Asking Questions and Defining Problems</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setView(v) {
+  document.body.classList.toggle('vs', v === 's');
+  document.body.classList.toggle('vt', v === 't');
+  document.getElementById('bvs').classList.toggle('active', v === 's');
+  document.getElementById('bvt').classList.toggle('active', v === 't');
+}
+</script>
+</body>
+</html>
