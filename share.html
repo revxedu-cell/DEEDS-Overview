@@ -22,7 +22,6 @@
     </a>
     <div class="site-nav-links">
       <a href="index.html" class="site-nav-link">Home</a>
-      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <div class="site-nav-dropdown">
         <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
         <div class="site-nav-dropdown-menu">
@@ -33,8 +32,11 @@
           <a href="share.html" class="active" aria-current="page"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
         </div>
       </div>
+
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <a href="examples.html" class="site-nav-link">Examples</a>
       <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -192,25 +194,16 @@
         <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
         <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(171,10,61,0.1);border:0.5px solid rgba(171,10,61,0.35);color:#ab0a3d;border-radius:0;">End of Phase</span>
       </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Share when they can respond to the following prompts.</p>
-      <div class="grade-tabs" id="eol-tabs" style="margin-bottom:12px;">
-        <button class="grade-tab" onclick="switchEol('k2',this)">K–2</button>
-        <button class="grade-tab" onclick="switchEol('35',this)">3–5</button>
-        <button class="grade-tab" onclick="switchEol('68',this)">6–8</button>
-        <button class="grade-tab" onclick="switchEol('912',this)">9–12</button>
-      </div>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:14px;max-width:65ch;">These prompts identify the core thinking students should demonstrate before moving forward. Teachers may adapt the language, scaffolds, and response format while preserving the underlying thinking.</p>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Students are ready to complete the phase when they can respond to the following:</p>
       <div class="ticket-card" style="max-width:560px;">
-        <ol id="eol-prompts" style="padding-left:16px;display:flex;flex-direction:column;gap:8px;"><li style="font-size:13px;color:var(--gray-500);font-style:italic;list-style:none;margin-left:-16px;">← Select a grade band to view prompts</li></ol>
+        <ol style="padding-left:16px;display:flex;flex-direction:column;gap:8px;margin:0;">
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What did you learn, create, and do across the DEEDS process?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What evidence supports your key decisions and conclusions?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">How did you grow, what impact did the work have, and what questions remain?</li>
+        </ol>
       </div>
-    </div>
-
-    <div style="margin-top:28px;background:linear-gradient(135deg,#fce8ee,#fff0f4);border:1px solid rgba(140,8,48,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#ab0a3d;margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; style="font-size:18px;color:#ab0a3d;margin-bottom:7px"">Use the Developmental Continuum</h3>
-        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students develop in their ability to communicate learning publicly, reflect on identity and collaboration, and evaluate the impact of their work. Use it to assess summative learning and give evidence-based feedback during exhibitions, defenses, or public conversations.</p>
-      </div>
-      <a href="https://docs.google.com/document/d/1u9Sk10mW-NDB6mvV_GlUly4yOEUP0CdaQyGLVXrHq0o/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#ab0a3d;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#ab0a3d'">View Developmental Continuum →</a>
+      <p style="font-size:12px;color:var(--gray-500);font-style:italic;margin-top:12px;max-width:65ch;">Students may respond through discussion, writing, drawing, models, demonstrations, presentations, or other formats appropriate to their age, the learning goals, and the project context.</p>
     </div>
   </div>
 </section>
@@ -344,25 +337,7 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 // GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['What is the most important thing you want the audience to know about what you learned and did?','What are you most proud of? Why?','What would you tell the shelter about what you found out?'],
-    35:  ['What will you tell your audience about the challenge, what you learned, and what you did?','What evidence from the project will you share, and why does it matter?','What question do you most want your audience to ask you — and what will you say?'],
-    68:  ['What is the core message you want your audience to take away about the challenge, your solution, and its impact?','What evidence from across the project will you reference, and how does it support your claims?','What are you most uncertain about in your presentation — and how will you prepare for it?'],
-    912: ['What is your central claim about the challenge, solution, and impact? What evidence and reasoning will you use to defend it?','How has your thinking evolved across the project? What will you tell your audience about what you used to think — and what you think now?','What are the strongest critiques of your work, and how will you respond to them?']
-  },
-  pt: {
-    k2:  ['What did you share with your audience? What did they say?','How have you grown as a learner during this project?','What do you want to do next to keep helping with this challenge?'],
-    35:  ['What did you explain to your audience, and what did they think?','How have you grown as a learner and teammate? Give one specific example.','What would you do differently — in your project work or in your presentation?'],
-    68:  ['How well did you communicate your learning? What were you strongest at, and what would you improve?','How have you grown during this project — in your thinking, your skills, or your sense of what you can do?','What questions from your audience challenged your thinking, and how did you respond?'],
-    912: ['Reflect on your presentation: how effectively did you communicate your learning, support your claims with evidence, and engage your audience?','How have you grown as a thinker, collaborator, and changemaker across this project? Use specific examples.','What do you now believe about the challenge and your solution that you didn\'t believe at the start — and what does that tell you about what to do next?']
-  }
-};
 
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
 
 // EXPLORE EXAMPLES
 // TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
@@ -422,14 +397,7 @@ function switchExample(grade, btn) {
 switchExample('k2', document.querySelector('.gb.on'));
 
 
-function switchEol(band, btn) {
-  var data = TDATA.pt[band];
-  document.getElementById('eol-prompts').innerHTML = data.map(function(p) {
-    return '<li style="font-size:13px;color:var(--gray-700);line-height:1.6;">' + p + '</li>';
-  }).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
+
 </script>
 </body>
 </html>

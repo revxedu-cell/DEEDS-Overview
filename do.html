@@ -22,7 +22,6 @@
     </a>
     <div class="site-nav-links">
       <a href="index.html" class="site-nav-link">Home</a>
-      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <div class="site-nav-dropdown">
         <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
         <div class="site-nav-dropdown-menu">
@@ -33,8 +32,11 @@
           <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
         </div>
       </div>
+
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <a href="examples.html" class="site-nav-link">Examples</a>
       <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -154,25 +156,16 @@
         <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
         <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(184,120,0,0.1);border:0.5px solid rgba(184,120,0,0.35);color:#b87800;border-radius:0;">End of Phase</span>
       </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Do when they can respond to the following prompts.</p>
-      <div class="grade-tabs" id="eol-tabs" style="margin-bottom:12px;">
-        <button class="grade-tab" onclick="switchEol('k2',this)">K–2</button>
-        <button class="grade-tab" onclick="switchEol('35',this)">3–5</button>
-        <button class="grade-tab" onclick="switchEol('68',this)">6–8</button>
-        <button class="grade-tab" onclick="switchEol('912',this)">9–12</button>
-      </div>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:14px;max-width:65ch;">These prompts identify the core thinking students should demonstrate before moving forward. Teachers may adapt the language, scaffolds, and response format while preserving the underlying thinking.</p>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Students are ready to move forward when they can respond to the following:</p>
       <div class="ticket-card" style="max-width:560px;">
-        <ol id="eol-prompts" style="padding-left:16px;display:flex;flex-direction:column;gap:8px;"><li style="font-size:13px;color:var(--gray-500);font-style:italic;list-style:none;margin-left:-16px;">← Select a grade band to view prompts</li></ol>
+        <ol style="padding-left:16px;display:flex;flex-direction:column;gap:8px;margin:0;">
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What happened when the solution was put into action, and what evidence did you collect?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What worked, what did not, and what might explain the results?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What should be improved, continued, or tried next?</li>
+        </ol>
       </div>
-    </div>
-
-    <div style="margin-top:28px;background:linear-gradient(135deg,#fff8e0,#fffbf0);border:1px solid rgba(184,120,0,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#FFB600;margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; style="font-size:18px;color:#FFB600;margin-bottom:7px"">Use the Developmental Continuum</h3>
-        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students' capacity to enact solutions, collect real-world evidence, and evaluate impact develops over time and across projects. Use it to give targeted feedback and help students name what they are learning by doing.</p>
-      </div>
-      <a href="https://docs.google.com/document/d/1nYEjekpbynen5u4p3EpuEuUVpWvzOtsthPR1_vNw6j0/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#FFB600;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#FFB600'">View Developmental Continuum →</a>
+      <p style="font-size:12px;color:var(--gray-500);font-style:italic;margin-top:12px;max-width:65ch;">Students may respond through discussion, writing, drawing, models, demonstrations, presentations, or other formats appropriate to their age, the learning goals, and the project context.</p>
     </div>
   </div>
 </section>
@@ -306,25 +299,7 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 // GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['How will you try your solution? What will you do?','What do you want to find out? What do you hope will happen?','How will you know if your solution helped?'],
-    35:  ['How will you put your solution into action? Describe the steps.','What will you measure or observe to know if it worked?','Who are the users of your solution, and what do you think their experience will be?'],
-    68:  ['Describe your implementation plan: what will you do, with whom, and in what context?','How will you collect evidence? What tools or methods will you use?','What specific questions do you want your implementation to answer?'],
-    912: ['Outline your implementation approach: how will you enact the solution, and what are your methods for collecting evidence of impact?','What data will you collect, and how will you ensure it is reliable and useful?','What conditions, constraints, or user factors could affect your outcomes?']
-  },
-  pt: {
-    k2:  ['What happened when you tried your solution? Did it help?','What did you find out? What surprised you?','What would you change if you tried again?'],
-    35:  ['Did your solution work? What evidence shows it helped — or didn\'t?','What happened that you didn\'t expect? Why do you think that happened?','What would you improve or do differently next time?'],
-    68:  ['What did the evidence show about your solution\'s impact? Use data or observations to support your analysis.','What worked, what didn\'t, and why? Explain at least one limitation or unexpected result.','What improvements or next steps would make the solution more effective?'],
-    912: ['Evaluate your solution\'s impact: what does the evidence show about effectiveness, and how confident are you in these findings?','What tradeoffs, limitations, or unintended consequences did you encounter? How do they affect your conclusions?','What should happen next? Make an evidence-based recommendation for how the solution could be improved or scaled.']
-  }
-};
 
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
 
 // EXPLORE EXAMPLES
 // TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
@@ -384,14 +359,7 @@ function switchExample(grade, btn) {
 switchExample('k2', document.querySelector('.gb.on'));
 
 
-function switchEol(band, btn) {
-  var data = TDATA.pt[band];
-  document.getElementById('eol-prompts').innerHTML = data.map(function(p) {
-    return '<li style="font-size:13px;color:var(--gray-700);line-height:1.6;">' + p + '</li>';
-  }).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
+
 </script>
 </body>
 </html>

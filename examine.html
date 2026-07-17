@@ -22,7 +22,6 @@
     </a>
     <div class="site-nav-links">
       <a href="index.html" class="site-nav-link">Home</a>
-      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <div class="site-nav-dropdown">
         <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
         <div class="site-nav-dropdown-menu">
@@ -33,8 +32,11 @@
           <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
         </div>
       </div>
+
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <a href="examples.html" class="site-nav-link">Examples</a>
       <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -166,25 +168,16 @@
         <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
         <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(10,155,25,0.1);border:0.5px solid rgba(10,155,25,0.35);color:#0a7a14;border-radius:0;">End of Phase</span>
       </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Examine when they can respond to the following prompts.</p>
-      <div class="grade-tabs" id="eol-tabs" style="margin-bottom:12px;">
-        <button class="grade-tab" onclick="switchEol('k2',this)">K–2</button>
-        <button class="grade-tab" onclick="switchEol('35',this)">3–5</button>
-        <button class="grade-tab" onclick="switchEol('68',this)">6–8</button>
-        <button class="grade-tab" onclick="switchEol('912',this)">9–12</button>
-      </div>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:14px;max-width:65ch;">These prompts identify the core thinking students should demonstrate before moving forward. Teachers may adapt the language, scaffolds, and response format while preserving the underlying thinking.</p>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Students are ready to move forward when they can respond to the following:</p>
       <div class="ticket-card" style="max-width:560px;">
-        <ol id="eol-prompts" style="padding-left:16px;display:flex;flex-direction:column;gap:8px;"><li style="font-size:13px;color:var(--gray-500);font-style:italic;list-style:none;margin-left:-16px;">← Select a grade band to view prompts</li></ol>
+        <ol style="padding-left:16px;display:flex;flex-direction:column;gap:8px;margin:0;">
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What is causing the challenge, and what evidence supports your explanation?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">Which solution direction is most promising, and why?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What limitations, tradeoffs, or competing ideas should be considered?</li>
+        </ol>
       </div>
-    </div>
-
-    <div style="margin-top:28px;background:linear-gradient(135deg,#e8f7ea,#f0faf1);border:1px solid rgba(10,122,20,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#0a9b19;margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; style="font-size:18px;color:#0a9b19;margin-bottom:7px"">Use the Developmental Continuum</h3>
-        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students' disciplinary understanding, causal reasoning, solution evaluation, and evidence use develop over time. Because it spans multiple DEEDS projects, it helps teachers track growth, give targeted feedback, and see how students' reasoning deepens from one challenge to the next.</p>
-      </div>
-      <a href="https://docs.google.com/document/d/1PC-jQE7CiZqC0H6BEHJYXVXa5OCIupbnWshVUuj2VzE/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#0a9b19;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#0a9b19'">View Developmental Continuum →</a>
+      <p style="font-size:12px;color:var(--gray-500);font-style:italic;margin-top:12px;max-width:65ch;">Students may respond through discussion, writing, drawing, models, demonstrations, presentations, or other formats appropriate to their age, the learning goals, and the project context.</p>
     </div>
   </div>
 </section>
@@ -318,25 +311,7 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 // GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['What questions do you have about the challenge? What do you want to find out?','What do you already know about the problem? What does it make you wonder?','What might be causing this challenge? What would help you find out?'],
-    35:  ['What do you already know about the challenge, and what do you want to investigate?','What do you think is causing this problem, and what evidence would you look for?','What questions will guide your investigation this cycle?'],
-    68:  ['What disciplinary concepts will help you investigate this challenge, and what questions will guide your inquiry?','What do you think is causing the challenge, and what evidence would you need to support or challenge that claim?','What should an effective solution do? What would make it hard to achieve?'],
-    912: ['What root causes might explain this challenge, and what disciplinary methods will help you investigate them?','What evidence or data would most strengthen — or undermine — your current causal claim?','What tradeoffs or constraints will any solution face, and how will you account for them?']
-  },
-  pt: {
-    k2:  ['What did you learn about why this challenge is happening?','What solution do you think could help? Why?','What makes you think your solution is the right one?'],
-    35:  ['What causes the challenge, and what evidence supports that explanation?','What solution do you think would work best, and why is it better than other options?','What is one tradeoff or limitation of the solution you would choose?'],
-    68:  ['What is the root cause of this challenge? Support your claim with evidence from the investigation.','What solution direction would you defend, and what evidence justifies that choice?','What is the strongest argument against your solution, and how would you respond?'],
-    912: ['What is the most defensible solution direction, given the evidence and tradeoffs?','Which root cause most significantly drives the challenge, and what disciplinary reasoning supports that conclusion?','What counterarguments challenge your solution, and how does your evidence address them?']
-  }
-};
 
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
 
 // EXPLORE EXAMPLES
 // TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
@@ -397,14 +372,7 @@ function switchExample(grade, btn) {
 switchExample('k2', document.querySelector('.gb.on'));
 
 
-function switchEol(band, btn) {
-  var data = TDATA.pt[band];
-  document.getElementById('eol-prompts').innerHTML = data.map(function(p) {
-    return '<li style="font-size:13px;color:var(--gray-700);line-height:1.6;">' + p + '</li>';
-  }).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
+
 </script>
 </body>
 </html>

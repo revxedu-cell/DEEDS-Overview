@@ -22,7 +22,6 @@
     </a>
     <div class="site-nav-links">
       <a href="index.html" class="site-nav-link">Home</a>
-      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <div class="site-nav-dropdown">
         <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
         <div class="site-nav-dropdown-menu">
@@ -33,8 +32,11 @@
           <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
         </div>
       </div>
+
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
       <a href="examples.html" class="site-nav-link">Examples</a>
       <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -167,25 +169,16 @@
         <h3 style="font-size:20px;color:var(--gray-900);text-shadow:none;margin:0;">Evidence of Learning</h3>
         <span style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;background:rgba(0,61,166,0.1);border:0.5px solid rgba(0,61,166,0.35);color:#003da6;border-radius:0;">End of Phase</span>
       </div>
-      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Scholars are ready to move on from Engineer when they can respond to the following prompts.</p>
-      <div class="grade-tabs" id="eol-tabs" style="margin-bottom:12px;">
-        <button class="grade-tab" onclick="switchEol('k2',this)">K–2</button>
-        <button class="grade-tab" onclick="switchEol('35',this)">3–5</button>
-        <button class="grade-tab" onclick="switchEol('68',this)">6–8</button>
-        <button class="grade-tab" onclick="switchEol('912',this)">9–12</button>
-      </div>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:14px;max-width:65ch;">These prompts identify the core thinking students should demonstrate before moving forward. Teachers may adapt the language, scaffolds, and response format while preserving the underlying thinking.</p>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:16px;max-width:60ch;">Students are ready to move forward when they can respond to the following:</p>
       <div class="ticket-card" style="max-width:560px;">
-        <ol id="eol-prompts" style="padding-left:16px;display:flex;flex-direction:column;gap:8px;"><li style="font-size:13px;color:var(--gray-500);font-style:italic;list-style:none;margin-left:-16px;">← Select a grade band to view prompts</li></ol>
+        <ol style="padding-left:16px;display:flex;flex-direction:column;gap:8px;margin:0;">
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">How does your solution address the challenge and meet its criteria?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">What did you change during the design and development process, and why?</li>
+          <li style="font-size:13px;color:var(--gray-700);line-height:1.6;">How ready is the solution for real-world use, and what limitations remain?</li>
+        </ol>
       </div>
-    </div>
-
-    <div style="margin-top:28px;background:linear-gradient(135deg,#e8eeff,#f0f4ff);border:1px solid rgba(0,49,160,.12);border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#003da6;margin-bottom:5px">Assess Growth Over Time</div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; style="font-size:18px;color:#003da6;margin-bottom:7px"">Use the Developmental Continuum</h3>
-        <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students' design thinking, construction planning, professional tool use, and iterative refinement develop over time and across projects — not by grade level. Use it to track growth and give targeted feedback throughout the build.</p>
-      </div>
-      <a href="https://docs.google.com/document/d/1PSQoxV9i-ECNm7EB7Ox3nFF0dfpPYq3lZ1V7aKfLbd0/edit?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#003da6;color:#fff;padding:11px 20px;border-radius:0;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s" onmouseover="this.style.background='#1f2937'" onmouseout="this.style.background='#003da6'">View Developmental Continuum →</a>
+      <p style="font-size:12px;color:var(--gray-500);font-style:italic;margin-top:12px;max-width:65ch;">Students may respond through discussion, writing, drawing, models, demonstrations, presentations, or other formats appropriate to their age, the learning goals, and the project context.</p>
     </div>
   </div>
 </section>
@@ -319,25 +312,7 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 // GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['What will you make? What does it need to do?','What materials will you use? How will you put it together?','What will make your solution a good one?'],
-    35:  ['Describe your design: what will you make, what materials will you need, and what steps will you follow?','How does your design address the root cause of the challenge?','What criteria does your solution need to meet? How will you know if it works?'],
-    68:  ['Describe your design decision: what are you building, how does it address the root cause, and what criteria and constraints did you work within?','What is your construction plan? What might be difficult, and how will you handle it?','What does success look like at the end of Engineer? How will you measure it?'],
-    912: ['Justify your design choices: how does your solution address the root cause, what criteria are you meeting, and what tradeoffs did you accept?','What are the potential failure points in your build plan, and how have you anticipated them?','How does your design compare to alternatives? What makes it the most defensible choice?']
-  },
-  pt: {
-    k2:  ['Does your solution work? Show how it does what it needs to do.','Is your solution ready to use? What would you still want to fix or improve?','How does your solution help with the problem we were solving?'],
-    35:  ['Show how your solution works. Does it meet your criteria? What would you fix if you had more time?','What changes did you make while building? Why did you make them?','How well does your solution address the challenge? What is it missing?'],
-    68:  ['Demonstrate how your solution works and explain how it meets your defined criteria and constraints.','What did you change during construction and why? What does your Revision Log show?','How ready is your solution for real-world use? What limitations remain?'],
-    912: ['Demonstrate readiness: explain how your solution addresses the root cause, how it meets defined criteria and constraints, and how your revisions improved it.','What tradeoffs did you make during the build, and how do you justify them?','What would need to happen for this solution to have real impact? What are its limits?']
-  }
-};
 
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
 
 // EXPLORE EXAMPLES
 // TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
@@ -397,14 +372,7 @@ function switchExample(grade, btn) {
 switchExample('k2', document.querySelector('.gb.on'));
 
 
-function switchEol(band, btn) {
-  var data = TDATA.pt[band];
-  document.getElementById('eol-prompts').innerHTML = data.map(function(p) {
-    return '<li style="font-size:13px;color:var(--gray-700);line-height:1.6;">' + p + '</li>';
-  }).join('');
-  document.querySelectorAll('#eol-tabs .grade-tab').forEach(function(b) { b.classList.remove('on'); });
-  btn.classList.add('on');
-}
+
 </script>
 </body>
 </html>
