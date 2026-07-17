@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Evidence of Learning — Examine</title>
+<title>Evidence of Learning: Examine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --phase: #0a7a14;
-  --phase-light: rgba(10,122,20,0.07);
-  --phase-border: rgba(10,122,20,0.2);
-  --text: #1a1a1a;
+  --phase: #0a9b19;
+  --phase-light: rgba(10,155,25,0.07);
+  --phase-border: rgba(10,155,25,0.2);
+  --text: #333333;
   --text-mid: #555;
   --gray-100: #f5f5f5;
   --gray-200: #e8e8e8;
@@ -21,6 +21,9 @@ body { font-family: 'Nunito', sans-serif; background: #f5f4f2; min-height: 100vh
 .topbar { width: 100%; max-width: 680px; display: flex; align-items: center; justify-content: space-between; padding: 14px 0; margin-bottom: 8px; }
 .back-btn { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--phase); text-decoration: none; text-transform: uppercase; }
 .back-btn:hover { opacity: .75; }
+.topbar-logo { height:20px; width:auto; flex-shrink:0; margin-left:10px; }
+body.in-drawer .back-btn { display:none; }
+body.in-drawer .topbar-logo { display:none; }
 .band-toggle { display: flex; gap: 4px; }
 .tb { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; padding: 5px 12px; border: 1.5px solid var(--gray-200); background: white; color: var(--text-mid); cursor: pointer; border-radius: 0; transition: all .15s; }
 .tb.active { background: var(--phase); border-color: var(--phase); color: white; }
@@ -48,8 +51,12 @@ body { font-family: 'Nunito', sans-serif; background: #f5f4f2; min-height: 100vh
 </style>
 </head>
 <body>
+<script>
+if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
+</script>
 <div class="topbar">
   <a class="back-btn" href="../examine.html">← Examine</a>
+  <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
   <div class="band-toggle">
     <button class="tb active" onclick="setBand('k2',this)">K&ndash;2</button>
     <button class="tb" onclick="setBand('35',this)">3&ndash;5</button>
