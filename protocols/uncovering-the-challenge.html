@@ -4,14 +4,14 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Uncovering the Challenge — DEEDS Discover Protocol</title>
+<title>Uncovering the Challenge: DEEDS Discover Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
 :root {
-  --phase:#F97316; --phase-light:#FFF7ED; --phase-mid:#FED7AA; --phase-dark:#C2410C;
+  --phase:#e69138; --phase-light:#fdf1e2; --phase-mid:#f2cd9e; --phase-dark:#a4661f;
   --amber:#F59E0B; --amber-light:#FEF3C7;
-  --text:#1C1917; --text-mid:#44403C; --text-soft:#78716C;
+  --text:#333333; --text-mid:#44403C; --text-soft:#78716C;
   --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
   --m-ind-bg:#EFF6FF;  --m-ind-b:#BFDBFE;  --m-ind-t:#1D4ED8;
   --m-pair-bg:#F0FDF4; --m-pair-b:#BBF7D0; --m-pair-t:#15803D;
@@ -37,6 +37,20 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
   padding:5px 13px; border-radius:0;
 }
 .deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.deck-timer { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; color:var(--text-soft); }
+.topbar-logo { height:22px; width:auto; flex-shrink:0; }
+
+/* When embedded in the phase-page drawer: hide the back link (it would  */
+/* navigate the iframe, not the parent) and tighten spacing since the    */
+/* panel is narrower than the page's normal width                       */
+body.in-drawer .back-btn { display:none; }
+body.in-drawer .topbar-logo { display:none; }
+body.in-drawer .deck-label { display:none; }
+body.in-drawer .topbar { padding:7px 16px; gap:8px; }
+body.in-drawer .ctrl-area { gap:6px; }
+body.in-drawer .tb { padding:4px 8px; font-size:10px; }
+body.in-drawer .print-btn { padding:4px 8px; font-size:11px; }
+body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
 .nav-area { display:flex; align-items:center; gap:9px; }
 .nav-btn {
   width:32px; height:32px; border-radius:0; border:1.5px solid var(--border);
@@ -72,20 +86,7 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
 }
 body.vs .sc { display:flex; }
 
-/* slide header */
-.sh {
-  flex:0 0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:13px 24px; border-bottom:1px solid #F5F5F4;
-}
-.shl { display:flex; align-items:center; gap:9px; }
-.type-badge {
-  font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
-  letter-spacing:.1em; padding:5px 12px; border-radius:0; text-transform:uppercase;
-}
-.badge-r { color:#92400E; background:var(--amber-light); border:1px solid #FDE68A; }
-.badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
-.timer { font-family:'Oswald',sans-serif; font-weight:700; font-size:18px; color:var(--text-mid); }
+/* slide body starts directly with the framing note; no separate meta bar */
 
 /* band variants — only active band visible */
 .bv { display:none; flex-direction:column; flex:1; min-height:0; }
@@ -184,12 +185,17 @@ body.vt .tc2 { display:flex; }
 .t-body {
   flex:1; min-height:0;
   padding:14px 24px 18px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr auto auto;
-  gap:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 .t-sec { background:var(--t-s); border-radius:9px; padding:12px 13px; overflow:hidden; }
+.g-sec { padding:15px 17px; }
+.g-sec .t-sec-title { font-size:11px; margin-bottom:9px; }
+.g-sec .g-note { font-size:13.5px; line-height:1.5; }
+.h-sec { padding:8px 13px; }
+.h-sec .h-name { font-size:12px; }
+.h-sec .h-rat { font-size:11.5px; }
 .t-sec-title {
   font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px;
   letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:8px;
@@ -202,12 +208,12 @@ body.vt .tc2 { display:flex; }
 }
 .h-row:last-of-type { border-bottom:none; padding-bottom:0; }
 .h-badge {
-  flex-shrink:0; background:rgba(249,115,22,.18); border:1px solid rgba(249,115,22,.35);
+  flex-shrink:0; background:rgba(230,145,56,.18); border:1px solid rgba(230,145,56,.35);
   border-radius:0; padding:3px 6px; text-align:center; min-width:42px;
 }
-.h-d { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#FED7AA; line-height:1; }
-.h-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:8px; color:rgba(249,115,22,.7); letter-spacing:.05em; }
-.h-name { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#FED7AA; margin-bottom:2px; }
+.h-d { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#f2cd9e; line-height:1; }
+.h-lbl { font-family:'Oswald',sans-serif; font-weight:700; font-size:8px; color:rgba(230,145,56,.7); letter-spacing:.05em; }
+.h-name { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:#f2cd9e; margin-bottom:2px; }
 .h-rat { font-size:12px; color:var(--t-soft); line-height:1.35; }
 
 /* grade notes */
@@ -218,7 +224,7 @@ body.vt .tc2 { display:flex; }
 .g-row:last-child { border-bottom:none; padding-bottom:0; }
 .g-band {
   font-family:'Oswald',sans-serif; font-weight:700; font-size:9px; letter-spacing:.08em;
-  color:var(--phase); background:rgba(249,115,22,.12); border-radius:3px;
+  color:var(--phase); background:rgba(230,145,56,.12); border-radius:3px;
   padding:2px 6px; white-space:nowrap; flex-shrink:0; margin-top:1px;
 }
 .g-note { font-size:12px; color:var(--t-soft); line-height:1.4; }
@@ -234,7 +240,7 @@ body.vt .tc2 { display:flex; }
 /* why now — spans both columns */
 .why-box {
   grid-column:1/-1;
-  border-left:3px solid var(--phase); background:rgba(249,115,22,.09);
+  border-left:3px solid var(--phase); background:rgba(230,145,56,.09);
   border-radius:0 9px 9px 0; padding:10px 13px;
 }
 .why-l { font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:3px; }
@@ -329,12 +335,17 @@ body.vt .tc2 { display:flex; }
 </style>
 </head>
 <body class="vs bk2">
+<script>
+if (window.self !== window.top) { document.body.classList.add(\'in-drawer\'); }
+</script>
 
 <div class="topbar">
   <div class="tl">
     <a class="back-btn" href="../discover.html">&#8592; Discover</a>
+    <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
     <span class="phase-pill">DISCOVER</span>
     <span class="deck-label">Uncovering the Challenge</span>
+    <span class="deck-timer" id="tmr0"></span>
   </div>
   <div class="ctrl-area">
     <div class="tg">
@@ -389,10 +400,10 @@ const P = [
     ],
     '35': [
       { mode:'pair', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'Known',
-        prompt:'Write what you know \u2014 stick to what you\u2019ve seen evidence for.',
+        prompt:'Write what you know, sticking to what you\u2019ve seen evidence for.',
         starter:'We know that\u2026' },
       { mode:'pair', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
-        prompt:'What are you still unsure about? What questions do you still have? And \u2014 is there anything you\u2019ve been guessing at without real evidence?',
+        prompt:'What are you still unsure about? What questions do you still have? Is there anything you\u2019ve been guessing at without real evidence?',
         starter:'We\u2019re not sure about\u2026 / We might be guessing that\u2026' },
       { mode:'whole', time:'2 min', icon:'\u2699\uFE0F', label:'Next Steps',
         prompt:'Share: what would most help us learn more or take action?',
@@ -400,7 +411,7 @@ const P = [
     ],
     '612': [
       { mode:'pair', time:'1\u20132 min', icon:'\uD83D\uDCA1', label:'Known',
-        prompt:'Write what you know \u2014 stick to what you\u2019ve seen evidence for. Note anything you\u2019ve been assuming as if it were fact.',
+        prompt:'Write what you know, sticking to what you\u2019ve seen evidence for. Note anything you\u2019ve been assuming as if it were fact.',
         starter:'We know that\u2026' },
       { mode:'pair', time:'1\u20132 min', icon:'\u2753', label:'Unknown',
         prompt:'What are you still unsure about? What questions remain? What would you need to find out to move forward?',
@@ -425,8 +436,8 @@ const P = [
       '68': 'The Challenge Assumptions step is where the thinking sharpens. Push: \u201cWhich assumption, if wrong, would most change what you think the problem is?\u201d',
       '912':'Most students will need a modeled example of an \u201cassumed\u201d belief vs. an \u201cunknown\u201d before they can distinguish them reliably.'
     },
-    planning: 'Anchor chart structure: three columns \u2014 KNOW (What evidence do we have?) / DON\u2019T KNOW (What do we need to figure out?) / NEXT STEPS (How can we learn more or act on this?). Add a date or phase label to each round of contributions so students can trace how thinking shifted. By the end of Discover, a strong chart is the student\u2019s first draft of their performance task.',
-    why: 'This routine directly builds the \u201cFrame and Define the Challenge\u201d capacity. Track how the Known column grows and the Unknown column shifts \u2014 this progression IS the evidence of Discover learning.',
+    planning: 'Anchor chart structure: three columns: KNOW (What evidence do we have?) / DON\u2019T KNOW (What do we need to figure out?) / NEXT STEPS (How can we learn more or act on this?). Add a date or phase label to each round of contributions so students can trace how thinking shifted. By the end of Discover, a strong chart is the student\u2019s first draft of their performance task.',
+    why: 'This routine directly builds the \u201cFrame and Define the Challenge\u201d capacity. Track how the Known column grows and the Unknown column shifts. This progression is the evidence of Discover learning.',
     std:'NGSS SEP 1, SEP 8 \u00b7 C3 D1 \u00b7 CCSS W.7, SL.1'
   }
 }
@@ -490,7 +501,7 @@ function buildTeacher(proto) {
   return `<div class="tc2">
     <div class="t-hdr">
       <div class="t-hdr-l">
-        <div class="t-ey">Teacher Background \u2014 Discover</div>
+        <div class="t-ey">Teacher Background: Discover</div>
         <div class="t-ttl">${proto.name}</div>
       </div>
       <div class="t-meta">
@@ -499,18 +510,18 @@ function buildTeacher(proto) {
       </div>
     </div>
     <div class="t-body">
-      <div class="t-sec">
-        <div class="t-sec-title">Hattie Effect Sizes</div>
-        ${hattiRows}
+      <div class="why-box">
+        <div class="why-l">Why this, why now</div>
+        <div class="why-t">${t.why}</div>
       </div>
-      <div class="t-sec">
+      <div class="t-sec g-sec">
         <div class="t-sec-title">Grade Band Guidance</div>
         ${gradeRows}
         ${planNote}
       </div>
-      <div class="why-box">
-        <div class="why-l">Why this, why now</div>
-        <div class="why-t">${t.why}</div>
+      <div class="t-sec h-sec">
+        <div class="t-sec-title">Hattie Effect Sizes</div>
+        ${hattiRows}
       </div>
       <div class="std-row">
         <div class="std-l">Standards</div>
@@ -521,24 +532,15 @@ function buildTeacher(proto) {
 }
 
 function buildAll() {
-  const ir = P[0].type === 'routine';
-  const bc = ir ? 'badge-r' : 'badge-f';
-  const bl = ir ? 'Daily Routine' : 'Focus Protocol';
   const allBands = ['k2','35','612'];
   const bvs = allBands.map(b => buildBand(P[0], b)).join('');
   document.getElementById('slide0').innerHTML = `
     <div class="sc">
-      <div class="sh">
-        <div class="shl">
-          <span class="phase-pill">DISCOVER</span>
-          <span class="type-badge ${bc}">${bl}</span>
-        </div>
-        <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
-      </div>
       ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
     </div>
     ${buildTeacher(P[0])}`;
+  document.getElementById('tmr0').textContent = '\u23F1\u202F' + P[0].timer['k2'];
 }
 
 buildAll();
