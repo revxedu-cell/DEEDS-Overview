@@ -16,13 +16,26 @@
 
 <nav class="site-nav" role="navigation" aria-label="Site navigation">
   <div class="site-nav-inner">
-    <a href="../index.html" class="site-nav-brand">
+    <a href="index.html" class="site-nav-brand">
       <img src="assets/revx-logo.png" alt="RevX logo" />
       <span class="site-nav-brand-label">DEEDS</span>
     </a>
     <div class="site-nav-links">
-      <a href="../index.html" class="site-nav-link">Home</a>
-      <a href="../getting-started.html" class="site-nav-link">Getting Started</a><a href="../crafting-your-learning-journey.html" class="site-nav-link">Crafting Your Learning Journey</a><a href="../discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a><a href="../examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a><a href="../engineer.html" class="site-nav-link active" aria-current="page"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a><a href="../do.html" class="site-nav-link"><span class="phase-dot" style="background:var(--do)"></span>Do</a><a href="../share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      <a href="index.html" class="site-nav-link">Home</a>
+      <div class="site-nav-dropdown">
+        <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
+        <div class="site-nav-dropdown-menu">
+          <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+          <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+          <a href="engineer.html" class="active" aria-current="page"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+          <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+          <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        </div>
+      </div>
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
+      <a href="examples.html" class="site-nav-link">Examples</a>
+      <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -54,7 +67,6 @@
     <button class="snb on" data-t="how">Student Experience</button>
     <button class="snb" data-t="success">Success Criteria</button>
     <button class="snb" data-t="teacher-guidance">Teacher Guidance</button>
-    <button class="snb" data-t="try">Explore Examples</button>
   </div>
 </nav>
 
@@ -214,44 +226,20 @@
   </div>
 </section>
 
-<section class="full-section" id="try">
-  <div class="container">
-    <span class="eyebrow">In Practice</span>
-    <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:10px;">Explore Examples</h2>
-    <p style="color:var(--gray-700);max-width:60ch;margin-bottom:28px;">Each example below outlines a sample Engineer phase to spark inspiration for what this phase might look like in your own classroom.</p>
-    <div class="grade-tabs">
-      <button class="grade-tab on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
-      <button class="grade-tab" data-g="35" onclick="switchExample('35',this)">3–5</button>
-      <button class="grade-tab" data-g="68" onclick="switchExample('68',this)">6–8</button>
-      <button class="grade-tab" data-g="912" onclick="switchExample('912',this)">9–12</button>
-    </div>
-    <div class="example-grid" id="ex-overview">
-      <div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; id="gt2"">Grades K–2</h3>
-        <div class="example-cq" id="gq">Challenge question placeholder</div>
-        <p id="gb2">Example description placeholder. Update this in the JS switchExample data below.</p>
-        <div class="example-tags" id="gm2"></div>
-        <a id="ex-doc-link" href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.unjhtdk9ndjv" target="_blank" class="btn-secondary">View Full Example →</a>
-      </div>
-      <div class="example-img" id="gimg" style="background:linear-gradient(135deg,#e8eeff,#c0ccf7)">⚙️</div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
-  <a href="../examine.html" class="pns-back">← Examine</a>
+  <a href="examine.html" class="pns-back">← Examine</a>
   <div class="pns-phases">
     <span class="pns-current" style="background:#003da6;color:#fff;">3 · Engineer</span>
-    <a href="../do.html" class="pns-next">4 · Do →</a>
+    <a href="do.html" class="pns-next">4 · Do →</a>
   </div>
 </nav>
 
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
     <div>
-      <a href="../index.html" class="site-footer-brand">
+      <a href="index.html" class="site-footer-brand">
         <img src="assets/revx-logo.png" alt="RevX logo" />
         <span class="site-footer-wordmark">DEEDS</span>
       </a>
@@ -260,11 +248,11 @@
     <nav class="site-footer-col" aria-label="Phase pages">
       <h4>Phases</h4>
       <div class="site-footer-links">
-        <a href="../discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
-        <a href="../examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
-        <a href="../engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
-        <a href="../do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
-        <a href="../share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
       </div>
     </nav>
   </div>
@@ -274,6 +262,58 @@
 <script>
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+// Five Phases dropdown: fixed-position menu so it isn't clipped by the
+// scrollable nav row; hover opens on desktop, tap opens on mobile.
+document.querySelectorAll('.site-nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.site-nav-dropdown-toggle');
+  const menu = dd.querySelector('.site-nav-dropdown-menu');
+
+  function positionMenu() {
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  }
+  function openMenu() {
+    positionMenu();
+    menu.style.display = 'flex';
+    dd.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.style.display = 'none';
+    dd.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  dd.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) openMenu();
+  });
+  dd.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+  });
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    dd.classList.contains('open') ? closeMenu() : openMenu();
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.site-nav-dropdown')) {
+    document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+      dd.querySelector('.site-nav-dropdown-menu').style.display = 'none';
+      dd.classList.remove('open');
+    });
+  }
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+    const btn = dd.querySelector('.site-nav-dropdown-toggle');
+    const menu = dd.querySelector('.site-nav-dropdown-menu');
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  });
+});
 
 // Sub-nav scroll observer
 const NBS = document.querySelectorAll('.snb');
@@ -290,83 +330,6 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 
-// GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['What will you make? What does it need to do?','What materials will you use? How will you put it together?','What will make your solution a good one?'],
-    35:  ['Describe your design: what will you make, what materials will you need, and what steps will you follow?','How does your design address the root cause of the challenge?','What criteria does your solution need to meet? How will you know if it works?'],
-    68:  ['Describe your design decision: what are you building, how does it address the root cause, and what criteria and constraints did you work within?','What is your construction plan? What might be difficult, and how will you handle it?','What does success look like at the end of Engineer? How will you measure it?'],
-    912: ['Justify your design choices: how does your solution address the root cause, what criteria are you meeting, and what tradeoffs did you accept?','What are the potential failure points in your build plan, and how have you anticipated them?','How does your design compare to alternatives? What makes it the most defensible choice?']
-  },
-  pt: {
-    k2:  ['Does your solution work? Show how it does what it needs to do.','Is your solution ready to use? What would you still want to fix or improve?','How does your solution help with the problem we were solving?'],
-    35:  ['Show how your solution works. Does it meet your criteria? What would you fix if you had more time?','What changes did you make while building? Why did you make them?','How well does your solution address the challenge? What is it missing?'],
-    68:  ['Demonstrate how your solution works and explain how it meets your defined criteria and constraints.','What did you change during construction and why? What does your Revision Log show?','How ready is your solution for real-world use? What limitations remain?'],
-    912: ['Demonstrate readiness: explain how your solution addresses the root cause, how it meets defined criteria and constraints, and how your revisions improved it.','What tradeoffs did you make during the build, and how do you justify them?','What would need to happen for this solution to have real impact? What are its limits?']
-  }
-};
-
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
-
-// EXPLORE EXAMPLES
-// TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
-const OV = {
-  k2: {
-    t: 'Grades K–2: Peaceful Paws',
-    q: '"How can we make something that helps shelter dogs feel calm while they wait to be adopted?"',
-    d: 'Scholars draw and label a design, select materials based on tested properties, and build their calming toy across 5 sessions. They use TAG Feedback from peers to revise, test how a dog would interact with the toy, and finalize their build with a written explanation of how the design changed.',
-    tags: ['🤝 Muddy Paws Rescue', '5 sessions', 'Grade 2'],
-    e: '🐾',
-    bg: 'linear-gradient(135deg,#e8eeff,#c0ccf7)',
-    link: 'https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.unjhtdk9ndjv'
-  },
-  35: {
-    t: 'Grades 3–5: Safer Streets',
-    q: '"How can we design and promote effective ways to make intersections safer for pedestrians and the community?"',
-    d: 'With support from a Center for Architecture mentor, scholars select a redesign approach, build a 3D model of a Bronx intersection, and incorporate speed-reduction and APS features grounded in their science learning. They film a commercial explaining the science behind their design, then share models with Transportation Alternatives before Do.',
-    tags: ['🤝 Transportation Alternatives', '8 sessions', 'Grade 4'],
-    e: '🚦',
-    bg: 'linear-gradient(135deg,#c0ccf7,#99aef0)',
-    link: 'https://docs.google.com/document/d/1Afda0a34QbWdlXMYlAve0oBuby_LB0tyndJoNXS_w5k/edit?tab=t.0#bookmark=id.1wtuep3hxxsp'
-  },
-  68: {
-    t: 'Grades 6–8',
-    q: 'Challenge question coming soon',
-    d: 'A Grades 6–8 example is in development.',
-    tags: [],
-    e: '🔬',
-    bg: 'linear-gradient(135deg,#99aef0,#7090e8)',
-    link: '#'
-  },
-  912: {
-    t: 'Grades 9–12',
-    q: 'Challenge question coming soon',
-    d: 'A Grades 9–12 example is in development.',
-    tags: [],
-    e: '🏛️',
-    bg: 'linear-gradient(135deg,#7090e8,#4a6ed9)',
-    link: '#'
-  }
-};
-
-function switchExample(grade, btn) {
-  document.querySelectorAll('.gt .gb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const o = OV[grade];
-  const el_gt2 = document.getElementById('gt2'); if (el_gt2) el_gt2.textContent = o.t;
-  const el_gq = document.getElementById('gq'); if (el_gq) el_gq.textContent = o.q;
-  const el_gb2 = document.getElementById('gb2'); if (el_gb2) el_gb2.textContent = o.d;
-  const el_gm2 = document.getElementById('gm2'); if (el_gm2) el_gm2.innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
-  const gi = document.getElementById('gimg');
-  gi.style.background = o.bg;
-  gi.textContent = o.e;
-  document.getElementById('ex-doc-link').href = o.link;
-}
-
-const initBtn = document.querySelector('[data-g="k2"]'); if (initBtn) switchExample('k2', initBtn);
 
 
 </script>

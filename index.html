@@ -184,13 +184,20 @@
     </a>
     <div class="site-nav-links">
       <a href="index.html" class="site-nav-link active">Home</a>
-      <a href="getting-started.html" class="site-nav-link">Getting Started</a>
-      <a href="crafting-your-learning-journey.html" class="site-nav-link">Crafting Your Learning Journey</a>
-      <a href="discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
-      <a href="examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
-      <a href="engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
-      <a href="do.html" class="site-nav-link"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
-      <a href="share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      <div class="site-nav-dropdown">
+        <button class="site-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
+        <div class="site-nav-dropdown-menu">
+          <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+          <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+          <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+          <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+          <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        </div>
+      </div>
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
+      <a href="examples.html" class="site-nav-link">Examples</a>
+      <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -211,78 +218,7 @@
     <div style="max-width:1120px;margin:0 auto;padding:0 24px;">
       <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan,#5876a8);display:block;margin-bottom:10px;">About DEEDS</span>
       <h2 style="font-size:clamp(22px,3vw,32px);font-weight:700;color:#1a1f2e;margin-bottom:12px;line-height:1.25;">What is DEEDS?</h2>
-      <p style="font-size:16px;color:#4f5b6a;max-width:90ch;line-height:1.7;margin-bottom:40px;">DEEDS is a project based learning model that helps students become real-world problem solvers and changemakers. It guides them through a hands-on, community-connected process — from discovering significant issues to designing and sharing real solutions — while building core content knowledge and personal and professional skills.</p>
-
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
-
-        <a href="discover.html" style="text-decoration:none;display:flex;flex-direction:column;padding:18px 16px;border-top:3px solid #e69138;background:#fff;border:0.5px solid #e5e7eb;border-top:3px solid #e69138;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#e69138;margin-bottom:8px;">1 · Discover</span>
-          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;">Experience a real-world challenge, connect it to your community, and build a case for why solving it matters.</span>
-        </a>
-
-        <a href="examine.html" style="text-decoration:none;display:flex;flex-direction:column;padding:18px 16px;border:0.5px solid #e5e7eb;border-top:3px solid #0a9b19;background:#fff;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0a9b19;margin-bottom:8px;">2 · Examine</span>
-          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;">Investigate root causes through inquiry, research, and disciplinary learning to identify the most defensible solution direction.</span>
-        </a>
-
-        <a href="engineer.html" style="text-decoration:none;display:flex;flex-direction:column;padding:18px 16px;border:0.5px solid #e5e7eb;border-top:3px solid #003da6;background:#fff;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#003da6;margin-bottom:8px;">3 · Engineer</span>
-          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;">Design and build a solution that addresses at least one root cause, iterating until it's ready for the real world.</span>
-        </a>
-
-        <a href="do.html" style="text-decoration:none;display:flex;flex-direction:column;padding:18px 16px;border:0.5px solid #e5e7eb;border-top:3px solid #ffb600;background:#fff;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#b88a00;margin-bottom:8px;">4 · Do</span>
-          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;">Put the solution into action, collect evidence of impact, and evaluate what worked.</span>
-        </a>
-
-        <a href="share.html" style="text-decoration:none;display:flex;flex-direction:column;padding:18px 16px;border:0.5px solid #e5e7eb;border-top:3px solid #ab0a3d;background:#fff;transition:box-shadow .15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'">
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#ab0a3d;margin-bottom:8px;">5 · Share</span>
-          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;">Present learning to a real audience, defend decisions, and reflect on growth as a thinker and changemaker.</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── GETTING STARTED CALLOUT ── -->
-  <section style="padding:48px 0;background:var(--gray-100);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);">
-    <div style="max-width:1120px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-      <div>
-        <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#1a4c81;display:block;margin-bottom:8px;">Unit Planning</span>
-        <h2 style="font-size:clamp(18px,2.5vw,26px);font-weight:700;color:var(--gray-900);margin-bottom:8px;">Ready to design a unit?</h2>
-        <p style="font-size:14px;color:var(--gray-700);max-width:55ch;line-height:1.65;">Launch your DEEDS design process by defining a real-world challenge that will matter to students.</p>
-      </div>
-      <a href="getting-started.html" style="display:inline-flex;align-items:center;gap:8px;background:#1a4c81;color:#fff;padding:13px 24px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .2s;" onmouseover="this.style.background='#122f52'" onmouseout="this.style.background='#1a4c81'">Get Started →</a>
-    </div>
-  </section>
-
-
-  <!-- ── RESOURCES ── -->
-  <section class="resources-section" aria-labelledby="resources-heading" style="border-top:1px solid var(--gray-200);">
-    <span class="resources-eyebrow">Resources</span>
-    <h2 class="resources-heading" id="resources-heading">Key Documents</h2>
-    <p class="resources-subhead">Core planning and facilitation resources for getting started with DEEDS.</p>
-    <div class="docs-grid">
-      <a class="doc-card" href="https://docs.google.com/document/d/1PMbFEO_3tm7iSZcbb7N1aFF4snXP5cJ4-xQ-Gc1TH0o/edit?tab=t.0" target="_blank" rel="noopener">
-        <span class="doc-card-title">What is DEEDS?</span>
-        <span class="doc-card-desc">A one-page overview of the DEEDS framework — the five phases, what happens in each, and what facilitators and scholars do.</span>
-        <span class="doc-card-link">Open document →</span>
-      </a>
-      <a class="doc-card" href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/edit?usp=sharing" target="_blank" rel="noopener">
-        <span class="doc-card-title">DEEDS Planning Template</span>
-        <span class="doc-card-desc">A structured template for designing a DEEDS module — from clarifying learning goals and the community challenge through planning each phase.</span>
-        <span class="doc-card-link">Open document →</span>
-      </a>
-      <a class="doc-card" href="https://docs.google.com/document/d/1RTuRmnZKRBp4Ep54wPEoAivPqR24a83gz3cZAJspENg/edit?usp=sharing" target="_blank" rel="noopener">
-        <span class="doc-card-title">Unit Planning &amp; Preparation Checklist</span>
-        <span class="doc-card-desc">A facilitator checklist for developing and revising a DEEDS unit — covering authentic challenge design, assessment, differentiation, and phase-by-phase look-fors.</span>
-        <span class="doc-card-link">Open document →</span>
-      </a>
-      <a class="doc-card" href="https://docs.google.com/document/d/1jpS7RFMEbbW0-QUmtAlET1VQnSyrXjXkno1vT0tFvvo/edit?usp=sharing" target="_blank" rel="noopener">
-        <span class="doc-card-title">Classroom Walkthrough Observation Tool</span>
-        <span class="doc-card-desc">A structured observation guide for coaches and leaders visiting DEEDS classrooms — with low-inference look-fors by phase and space for glows and grows.</span>
-        <span class="doc-card-link">Open document →</span>
-      </a>
+      <p style="font-size:16px;color:#4f5b6a;max-width:90ch;line-height:1.7;">DEEDS is a project based learning model that helps students become real-world problem solvers and changemakers. It guides them through a hands-on, community-connected process — from discovering significant issues to designing and sharing real solutions — while building core content knowledge and personal and professional skills.</p>
     </div>
   </section>
 
@@ -321,6 +257,36 @@
     </div>
   </section>
 
+  <!-- ── SAMPLE DEEDS CHALLENGES ── -->
+  <section aria-label="Sample DEEDS challenges" style="padding:56px 0 64px;background:var(--gray-100);border-top:1px solid var(--gray-200);">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px;">
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan,#5876a8);display:block;margin-bottom:10px;">See It In Practice</span>
+      <h2 style="font-size:clamp(22px,3vw,32px);font-weight:700;color:#1a1f2e;margin-bottom:32px;line-height:1.25;">Sample DEEDS Challenges</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+        <div style="background:#fff;border:0.5px solid #e5e7eb;padding:20px 22px;">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#e69138;margin-bottom:8px;display:block;">Grade 4 · Transportation Alternatives</span>
+          <span style="font-size:16px;font-weight:700;color:#1a1f2e;margin-bottom:8px;display:block;">Creating Safer Intersections in the Bronx</span>
+          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;display:block;">How can we design and promote effective ways to make intersections safer for pedestrians and the community?</span>
+        </div>
+
+        <div style="background:#fff;border:0.5px solid #e5e7eb;padding:20px 22px;">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#0a9b19;margin-bottom:8px;display:block;">Grade 6 · FabScrap</span>
+          <span style="font-size:16px;font-weight:700;color:#1a1f2e;margin-bottom:8px;display:block;">The Future of Fashion Is Already in Your Closet</span>
+          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;display:block;">How can an upcycled fashion brand prove that style doesn't require buying new clothes?</span>
+        </div>
+
+        <div style="background:#fff;border:0.5px solid #e5e7eb;padding:20px 22px;">
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#ab0a3d;margin-bottom:8px;display:block;">Grade 11 · NAMI Mississippi</span>
+          <span style="font-size:16px;font-weight:700;color:#1a1f2e;margin-bottom:8px;display:block;">Mental Health for Everyone</span>
+          <span style="font-size:13px;color:#4f5b6a;line-height:1.55;display:block;">How might we design campaigns to increase mental health awareness in our community?</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ── FOOTER ── -->
@@ -351,6 +317,58 @@
 // Nav shadow on scroll
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+// Five Phases dropdown: fixed-position menu so it isn't clipped by the
+// scrollable nav row; hover opens on desktop, tap opens on mobile.
+document.querySelectorAll('.site-nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.site-nav-dropdown-toggle');
+  const menu = dd.querySelector('.site-nav-dropdown-menu');
+
+  function positionMenu() {
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  }
+  function openMenu() {
+    positionMenu();
+    menu.style.display = 'flex';
+    dd.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.style.display = 'none';
+    dd.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  dd.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) openMenu();
+  });
+  dd.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+  });
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    dd.classList.contains('open') ? closeMenu() : openMenu();
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.site-nav-dropdown')) {
+    document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+      dd.querySelector('.site-nav-dropdown-menu').style.display = 'none';
+      dd.classList.remove('open');
+    });
+  }
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+    const btn = dd.querySelector('.site-nav-dropdown-toggle');
+    const menu = dd.querySelector('.site-nav-dropdown-menu');
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  });
+});
 
 // Tab switching
 const tabBtns = document.querySelectorAll('.tab-btn');

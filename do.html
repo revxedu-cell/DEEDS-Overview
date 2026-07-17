@@ -16,13 +16,26 @@
 
 <nav class="site-nav" role="navigation" aria-label="Site navigation">
   <div class="site-nav-inner">
-    <a href="../index.html" class="site-nav-brand">
+    <a href="index.html" class="site-nav-brand">
       <img src="assets/revx-logo.png" alt="RevX logo" />
       <span class="site-nav-brand-label">DEEDS</span>
     </a>
     <div class="site-nav-links">
-      <a href="../index.html" class="site-nav-link">Home</a>
-      <a href="../getting-started.html" class="site-nav-link">Getting Started</a><a href="../crafting-your-learning-journey.html" class="site-nav-link">Crafting Your Learning Journey</a><a href="../discover.html" class="site-nav-link"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a><a href="../examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a><a href="../engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a><a href="../do.html" class="site-nav-link active" aria-current="page"><span class="phase-dot" style="background:var(--do)"></span>Do</a><a href="../share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      <a href="index.html" class="site-nav-link">Home</a>
+      <div class="site-nav-dropdown">
+        <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
+        <div class="site-nav-dropdown-menu">
+          <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+          <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+          <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+          <a href="do.html" class="active" aria-current="page"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+          <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        </div>
+      </div>
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
+      <a href="examples.html" class="site-nav-link">Examples</a>
+      <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -54,7 +67,6 @@
     <button class="snb on" data-t="how">Student Experience</button>
     <button class="snb" data-t="success">Success Criteria</button>
     <button class="snb" data-t="teacher-guidance">Teacher Guidance</button>
-    <button class="snb" data-t="try">Explore Examples</button>
   </div>
 </nav>
 
@@ -195,62 +207,23 @@
       </div>
     </div>
 
-    <div class="accordion-block" style="margin-top:12px;">
-      <button class="accordion-trigger" onclick="this.closest('.accordion-block').classList.toggle('open')" aria-expanded="false">
-        <span class="accordion-trigger-label">Assessing Growth in Do</span>
-        <span class="accordion-arrow">▾</span>
-      </button>
-      <div class="accordion-body">
-        <div style="background:linear-gradient(135deg,#fffbea,#fff3c0);border:1px solid rgba(184,120,0,.15);padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-          <div style="flex:1;min-width:220px">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#b87800;margin-bottom:5px">Assess Growth Over Time</div>
-            <h3 style="color:var(--gray-900);font-size:18px;margin-bottom:7px">Use the Developmental Continuum</h3>
-            <p style="font-size:13px;color:var(--gray-700);line-height:1.6">The continuum describes how students' ability to enact solutions, collect evidence, and evaluate impact develops over time. Use it to give targeted feedback during implementation and help students name what they are learning by doing.</p>
-          </div>
-          <a href="https://docs.google.com/document/d/1nYEjekpbynen5u4p3EpuEuUVpWvzOtsthPR1_vNw6j0/edit?usp=sharing" target="_blank" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">View Continuum →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-  <div class="container">
-    <span class="eyebrow">In Practice</span>
-    <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:10px;">Explore Examples</h2>
-    <p style="color:var(--gray-700);max-width:60ch;margin-bottom:28px;">Each example below outlines a sample Do phase to spark inspiration for what this phase might look like in your own classroom.</p>
-    <div class="grade-tabs">
-      <button class="grade-tab on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
-      <button class="grade-tab" data-g="35" onclick="switchExample('35',this)">3–5</button>
-      <button class="grade-tab" data-g="68" onclick="switchExample('68',this)">6–8</button>
-      <button class="grade-tab" data-g="912" onclick="switchExample('912',this)">9–12</button>
-    </div>
-    <div class="example-grid" id="ex-overview">
-      <div>
-        <h3 style="color:var(--gray-900);text-shadow:none;font-size:20px;margin-bottom:6px; id="gt2"">Grades K–2</h3>
-        <div class="example-cq" id="gq">Challenge question placeholder</div>
-        <p id="gb2">Example description placeholder. Update this in the JS switchExample data below.</p>
-        <div class="example-tags" id="gm2"></div>
-        <a id="ex-doc-link" href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.rvlwlp14n48c" target="_blank" class="btn-secondary">View Full Example →</a>
-      </div>
-      <div class="example-img" id="gimg" style="background:linear-gradient(135deg,#fff8e0,#ffe8a0)">🚀</div>
-    </div>
   </div>
 </section>
 
 </main>
 
 <nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
-  <a href="../engineer.html" class="pns-back">← Engineer</a>
+  <a href="engineer.html" class="pns-back">← Engineer</a>
   <div class="pns-phases">
     <span class="pns-current" style="background:#FFB600;color:#1f2937;">4 · Do</span>
-    <a href="../share.html" class="pns-next">5 · Share →</a>
+    <a href="share.html" class="pns-next">5 · Share →</a>
   </div>
 </nav>
 
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
     <div>
-      <a href="../index.html" class="site-footer-brand">
+      <a href="index.html" class="site-footer-brand">
         <img src="assets/revx-logo.png" alt="RevX logo" />
         <span class="site-footer-wordmark">DEEDS</span>
       </a>
@@ -259,11 +232,11 @@
     <nav class="site-footer-col" aria-label="Phase pages">
       <h4>Phases</h4>
       <div class="site-footer-links">
-        <a href="../discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
-        <a href="../examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
-        <a href="../engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
-        <a href="../do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
-        <a href="../share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
       </div>
     </nav>
   </div>
@@ -273,6 +246,58 @@
 <script>
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), {passive:true});
+
+// Five Phases dropdown: fixed-position menu so it isn't clipped by the
+// scrollable nav row; hover opens on desktop, tap opens on mobile.
+document.querySelectorAll('.site-nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.site-nav-dropdown-toggle');
+  const menu = dd.querySelector('.site-nav-dropdown-menu');
+
+  function positionMenu() {
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  }
+  function openMenu() {
+    positionMenu();
+    menu.style.display = 'flex';
+    dd.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.style.display = 'none';
+    dd.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  dd.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) openMenu();
+  });
+  dd.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+  });
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    dd.classList.contains('open') ? closeMenu() : openMenu();
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.site-nav-dropdown')) {
+    document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+      dd.querySelector('.site-nav-dropdown-menu').style.display = 'none';
+      dd.classList.remove('open');
+    });
+  }
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+    const btn = dd.querySelector('.site-nav-dropdown-toggle');
+    const menu = dd.querySelector('.site-nav-dropdown-menu');
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  });
+});
 
 // Sub-nav scroll observer
 const NBS = document.querySelectorAll('.snb');
@@ -289,83 +314,6 @@ const sectionObs = new IntersectionObserver(entries => {
 
 
 
-// GRADE-BAND TICKET PROMPTS
-const TDATA = {
-  lr: {
-    k2:  ['How will you try your solution? What will you do?','What do you want to find out? What do you hope will happen?','How will you know if your solution helped?'],
-    35:  ['How will you put your solution into action? Describe the steps.','What will you measure or observe to know if it worked?','Who are the users of your solution, and what do you think their experience will be?'],
-    68:  ['Describe your implementation plan: what will you do, with whom, and in what context?','How will you collect evidence? What tools or methods will you use?','What specific questions do you want your implementation to answer?'],
-    912: ['Outline your implementation approach: how will you enact the solution, and what are your methods for collecting evidence of impact?','What data will you collect, and how will you ensure it is reliable and useful?','What conditions, constraints, or user factors could affect your outcomes?']
-  },
-  pt: {
-    k2:  ['What happened when you tried your solution? Did it help?','What did you find out? What surprised you?','What would you change if you tried again?'],
-    35:  ['Did your solution work? What evidence shows it helped — or didn\'t?','What happened that you didn\'t expect? Why do you think that happened?','What would you improve or do differently next time?'],
-    68:  ['What did the evidence show about your solution\'s impact? Use data or observations to support your analysis.','What worked, what didn\'t, and why? Explain at least one limitation or unexpected result.','What improvements or next steps would make the solution more effective?'],
-    912: ['Evaluate your solution\'s impact: what does the evidence show about effectiveness, and how confident are you in these findings?','What tradeoffs, limitations, or unintended consequences did you encounter? How do they affect your conclusions?','What should happen next? Make an evidence-based recommendation for how the solution could be improved or scaled.']
-  }
-};
-
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .tkt').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
-
-// EXPLORE EXAMPLES
-// TODO: Update titles, challenge questions, descriptions, tags, emojis, and Google Doc links for each grade band
-const OV = {
-  k2: {
-    t: 'Grades K–2: Peaceful Paws',
-    q: '"Do our calming toys actually help shelter dogs feel better while they wait to be adopted?"',
-    d: 'Scholars define what "calm" looks like in a dog, plan their observation criteria, and test their toys at the shelter. They record observations across 3 sessions and use a Notice → Claim routine to evaluate what worked, what didn't, and what they'd change.',
-    tags: ['🤝 Muddy Paws Rescue', '3 sessions', 'Grade 2'],
-    e: '🐾',
-    bg: 'linear-gradient(135deg,#fff8e0,#ffe8a0)',
-    link: 'https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.rvlwlp14n48c'
-  },
-  35: {
-    t: 'Grades 3–5: Safer Streets',
-    q: '"How can we design and promote effective ways to make intersections safer for pedestrians and the community?"',
-    d: 'Scholars return to the intersection, share their website via QR codes, and collect petition signatures for the NYC Streets Plan. They analyze website traffic and petition data with Transportation Alternatives, then build their presentation for the Department of Transportation.',
-    tags: ['🤝 Transportation Alternatives', '3 sessions', 'Grade 4'],
-    e: '🚦',
-    bg: 'linear-gradient(135deg,#ffe8a0,#ffd060)',
-    link: 'https://docs.google.com/document/d/1Afda0a34QbWdlXMYlAve0oBuby_LB0tyndJoNXS_w5k/edit?tab=t.0#bookmark=id.ks261gmmgiii'
-  },
-  68: {
-    t: 'Grades 6–8',
-    q: 'Challenge question coming soon',
-    d: 'A Grades 6–8 example is in development.',
-    tags: [],
-    e: '🔬',
-    bg: 'linear-gradient(135deg,#ffd060,#ffb600)',
-    link: '#'
-  },
-  912: {
-    t: 'Grades 9–12',
-    q: 'Challenge question coming soon',
-    d: 'A Grades 9–12 example is in development.',
-    tags: [],
-    e: '🏛️',
-    bg: 'linear-gradient(135deg,#ffb600,#e09b00)',
-    link: '#'
-  }
-};
-
-function switchExample(grade, btn) {
-  document.querySelectorAll('.gt .gb').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const o = OV[grade];
-  const el_gt2 = document.getElementById('gt2'); if (el_gt2) el_gt2.textContent = o.t;
-  const el_gq = document.getElementById('gq'); if (el_gq) el_gq.textContent = o.q;
-  const el_gb2 = document.getElementById('gb2'); if (el_gb2) el_gb2.textContent = o.d;
-  const el_gm2 = document.getElementById('gm2'); if (el_gm2) el_gm2.innerHTML = o.tags.map(t => '<span>'+t+'</span>').join('');
-  const gi = document.getElementById('gimg');
-  gi.style.background = o.bg;
-  gi.textContent = o.e;
-  document.getElementById('ex-doc-link').href = o.link;
-}
-
-const initBtn = document.querySelector('[data-g="k2"]'); if (initBtn) switchExample('k2', initBtn);
 
 
 </script>

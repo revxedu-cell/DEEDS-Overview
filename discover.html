@@ -18,21 +18,26 @@
 <!-- ── SITE NAV ── -->
 <nav class="site-nav" role="navigation" aria-label="Site navigation">
   <div class="site-nav-inner">
-    <a href="../index.html" class="site-nav-brand">
+    <a href="index.html" class="site-nav-brand">
       <img src="assets/revx-logo.png" alt="RevX logo" />
       <span class="site-nav-brand-label">DEEDS</span>
     </a>
     <div class="site-nav-links">
-      <a href="../index.html" class="site-nav-link">Home</a>
-      <a href="../getting-started.html" class="site-nav-link">Getting Started</a>
-      <a href="../crafting-your-learning-journey.html" class="site-nav-link">Crafting Your Learning Journey</a>
-      <a href="../discover.html" class="site-nav-link active" aria-current="page">
-        <span class="phase-dot" style="background:var(--discover)"></span>Discover
-      </a>
-      <a href="../examine.html" class="site-nav-link"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
-      <a href="../engineer.html" class="site-nav-link"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
-      <a href="../do.html" class="site-nav-link"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
-      <a href="../share.html" class="site-nav-link"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+      <a href="index.html" class="site-nav-link">Home</a>
+      <div class="site-nav-dropdown">
+        <button class="site-nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">The Five Phases <span class="dropdown-caret">▾</span></button>
+        <div class="site-nav-dropdown-menu">
+          <a href="discover.html" class="active" aria-current="page"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+          <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+          <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+          <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+          <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        </div>
+      </div>
+      <a href="getting-started.html" class="site-nav-link">Map a DEEDS Unit</a>
+      <a href="examples.html" class="site-nav-link">Examples</a>
+      <a href="tools.html" class="site-nav-link">Tools</a>
+      <a href="assessment.html" class="site-nav-link">Assessment</a>
     </div>
   </div>
 </nav>
@@ -66,7 +71,6 @@
     <button class="snb on" data-t="how">Student Experience</button>
     <button class="snb" data-t="success">Success Criteria</button>
     <button class="snb" data-t="teacher-guidance">Teacher Guidance</button>
-    <button class="snb" data-t="try">Explore Examples</button>
   </div>
 </nav>
 
@@ -235,54 +239,6 @@
       </div>
     </div>
 
-    <!-- Assessing Growth accordion -->
-    <div class="accordion-block" style="margin-top:12px;">
-      <button class="accordion-trigger" onclick="this.closest('.accordion-block').classList.toggle('open')" aria-expanded="false">
-        <span class="accordion-trigger-label">Assessing Growth in Discover</span>
-        <span class="accordion-arrow">▾</span>
-      </button>
-      <div class="accordion-body">
-        <div class="continuum-cta">
-          <div>
-            <div class="continuum-cta-label">Assess Growth Over Time</div>
-            <h3>Use the Developmental Continuum</h3>
-            <p>The continuum describes how students' ability to understand a challenge and make evidence-based claims develops over time. Because it is used across multiple DEEDS challenges, it helps teachers track growth, give targeted feedback, and see how students' reasoning deepens from one project to the next.</p>
-          </div>
-          <a href="https://docs.google.com/document/d/1HDu2JdjjkYurgCNh-pFLkXuHD3UgZpjZyne8GEdgg3w/edit" target="_blank" class="btn-primary" style="white-space:nowrap;flex-shrink:0;">View Continuum →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="full-section" id="try">
-  <div class="container">
-    <span class="eyebrow">In Practice</span>
-    <h2 style="color:var(--gray-900);text-shadow:none;margin-bottom:10px;">Explore Examples</h2>
-    <p style="color:var(--gray-700);max-width:60ch;margin-bottom:20px;">Each example outlines a sample Discover phase to spark inspiration for what this phase might look like in your own classroom.</p>
-
-    <div class="grade-tabs">
-      <button class="grade-tab on" data-g="k2" onclick="switchExample('k2',this)">K–2</button>
-      <button class="grade-tab" data-g="35" onclick="switchExample('35',this)">3–5</button>
-      <button class="grade-tab" data-g="68" onclick="switchExample('68',this)">6–8</button>
-      <button class="grade-tab" data-g="912" onclick="switchExample('912',this)">9–12</button>
-    </div>
-
-    <div class="example-grid" id="ex-overview">
-      <div>
-        <h3 id="gt2">Grades K–2: Peaceful Paws</h3>
-        <div class="example-cq" id="gq">"How can we create calming toys that help pets feel calm while they wait to be adopted?"</div>
-        <p id="gb2">Students learn that shelter dogs often feel anxious, which can prevent them from getting adopted. Over 5 sessions, they experience the challenge firsthand, examine evidence, and make a case for why solving it matters.</p>
-        <a id="ex-doc-link" href="https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit" target="_blank" class="btn-secondary" style="margin-top:12px;">View Full Example →</a>
-        <div class="example-tags" id="gm2">
-          <span class="example-tag">Muddy Paws Rescue</span>
-          <span class="example-tag">5 sessions</span>
-          <span class="example-tag">Grade 2</span>
-        </div>
-      </div>
-      <div class="example-img" id="gimg" style="font-size:48px;">🐾</div>
-    </div>
   </div>
 </section>
 
@@ -290,10 +246,10 @@
 
 <!-- ── PHASE NAV STRIP ── -->
 <nav class="phase-nav-strip" aria-label="Continue your DEEDS journey">
-  <a href="../index.html" class="pns-back">← Overview</a>
+  <a href="index.html" class="pns-back">← Overview</a>
   <div class="pns-phases">
     <span class="pns-current">1 · Discover</span>
-    <a href="../examine.html" class="pns-next">2 · Examine →</a>
+    <a href="examine.html" class="pns-next">2 · Examine →</a>
   </div>
 </nav>
 
@@ -301,7 +257,7 @@
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer-inner">
     <div>
-      <a href="../index.html" class="site-footer-brand">
+      <a href="index.html" class="site-footer-brand">
         <img src="assets/revx-logo.png" alt="RevX logo" />
         <span class="site-footer-wordmark">DEEDS</span>
       </a>
@@ -310,11 +266,11 @@
     <nav class="site-footer-col" aria-label="Phase pages">
       <h4>Phases</h4>
       <div class="site-footer-links">
-        <a href="../discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
-        <a href="../examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
-        <a href="../engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
-        <a href="../do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
-        <a href="../share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
+        <a href="discover.html"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a>
+        <a href="examine.html"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a>
+        <a href="engineer.html"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a>
+        <a href="do.html"><span class="phase-dot" style="background:var(--do)"></span>Do</a>
+        <a href="share.html"><span class="phase-dot" style="background:var(--share)"></span>Share</a>
       </div>
     </nav>
   </div>
@@ -325,6 +281,58 @@
 // Nav scroll shadow
 const nav = document.querySelector('.site-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+
+// Five Phases dropdown: fixed-position menu so it isn't clipped by the
+// scrollable nav row; hover opens on desktop, tap opens on mobile.
+document.querySelectorAll('.site-nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.site-nav-dropdown-toggle');
+  const menu = dd.querySelector('.site-nav-dropdown-menu');
+
+  function positionMenu() {
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  }
+  function openMenu() {
+    positionMenu();
+    menu.style.display = 'flex';
+    dd.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.style.display = 'none';
+    dd.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  dd.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) openMenu();
+  });
+  dd.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+  });
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    dd.classList.contains('open') ? closeMenu() : openMenu();
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.site-nav-dropdown')) {
+    document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+      dd.querySelector('.site-nav-dropdown-menu').style.display = 'none';
+      dd.classList.remove('open');
+    });
+  }
+});
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.site-nav-dropdown.open').forEach(dd => {
+    const btn = dd.querySelector('.site-nav-dropdown-toggle');
+    const menu = dd.querySelector('.site-nav-dropdown-menu');
+    const r = btn.getBoundingClientRect();
+    menu.style.top = r.bottom + 'px';
+    menu.style.left = r.left + 'px';
+  });
+});
 
 // Sub-nav active state on scroll
 const sections = ['how','success','teacher-guidance','protocols','try'];
@@ -347,49 +355,6 @@ const revealObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.sr-hidden').forEach(el => revealObs.observe(el));
-
-// Grade band ticket data
-const TDATA = {
-  lr: {
-    k2:  ['Tell what you notice or what you already know about the problem.','Have you ever seen this problem before? Tell one way it connects to your life, school, or neighborhood.','Who might this problem affect? Name at least two people or groups and tell how they might feel.'],
-    35:  ['Describe the problem and share what you already know about it.','How might this problem connect to your life, school, or community? Give one example.','Who could be affected? Name at least two groups and explain how it might affect them.'],
-    68:  ['Explain the challenge and what you think might be causing it.','How might this problem connect to your experiences or community? Describe one connection.','Who might be affected? Identify at least two groups and explain how the impact might differ.'],
-    912: ['Explain the challenge and what you already know about its causes or impacts.','How might this challenge connect to your life or larger societal issues? Explain one meaningful connection.','Who might be affected? Identify at least two stakeholders and describe how impacts may differ across groups.']
-  },
-  pt: {
-    k2:  ['What is the problem we are learning about? Use something from Discover to explain it.','Who is affected? Name two people or groups and tell how it affects them.','Why is this problem important? Tell why it matters and what you think should change.'],
-    35:  ['What challenge are we investigating? Include at least one piece of evidence from Discover.','Who is affected and how? Identify at least two stakeholders and explain the impact on each.','Why does this problem matter? Explain its importance and what you think should change.'],
-    68:  ['What is the challenge? Define the problem with at least one piece of evidence from Discover.','Who is affected and how? Identify at least two stakeholders and explain how the problem impacts each.','Why does this problem matter? Make a claim and support it with evidence or reasoning.'],
-    912: ['What is the challenge? Define the problem and support your explanation with evidence from Discover.','Who is affected and how? Identify at least two stakeholders with evidence where possible.','Why does this challenge matter? Make a claim about significance and what should change.']
-  }
-};
-
-function switchGrade(grade, btn) {
-  document.querySelectorAll('#shared-tabs .grade-tab').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
-
-// Example switcher
-const EXAMPLES = {
-  k2:  { t:'Grades K–2: Peaceful Paws', q:'"How can we make something that helps shelter dogs feel calm while they wait to be adopted?"', d:'A shelter worker visits with dogs, and scholars observe the animals, document what they notice, and name who is affected. By the end of 5 sessions, they write a shared explanation of the challenge and hear the engineering ask from the shelter for the first time.', tags:['🤝 Muddy Paws Rescue','5 sessions','Grade 2'], e:'🐾', link:'https://docs.google.com/document/d/1YpDPaVtBLFnExdEGdgaYKbMCPEmCN4sTegIQoetPCbY/edit?tab=t.0#bookmark=id.7dhkhpg4wdly' },
-  35:  { t:'Grades 3–5: Safer Streets', q:'"How can we design and promote effective ways to make intersections safer for pedestrians and the community?"', d:'Scholars walk a Bronx intersection with Transportation Alternatives, photograph traffic flow and pedestrian risks, and review local accident data. They examine the challenge from multiple perspectives — pedestrian, driver, city planner — then write the challenge question and a Walk Audit Report.', tags:['🤝 Transportation Alternatives','4 sessions','Grade 4'], e:'🚦', link:'https://docs.google.com/document/d/1Afda0a34QbWdlXMYlAve0oBuby_LB0tyndJoNXS_w5k/edit?tab=t.0#bookmark=id.h5g2zsn44tb' },
-  68:  { t:'Grades 6–8', q:'Example coming soon', d:'A Grades 6–8 example is in development.', tags:[], e:'🔬', link: null },
-  912: { t:'Grades 9–12', q:'Example coming soon', d:'A Grades 9–12 example is in development.', tags:[], e:'🏛️', link: null }
-};
-
-function switchExample(grade, btn) {
-  document.querySelectorAll('.grade-tabs .grade-tab').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  const o = EXAMPLES[grade];
-  const el_gt2=document.getElementById('gt2'); if(el_gt2) el_gt2.textContent=o.t;
-  const el_gq=document.getElementById('gq'); if(el_gq) el_gq.textContent=o.q;
-  const el_gb2=document.getElementById('gb2'); if(el_gb2) el_gb2.textContent=o.d;
-  const el_gm2=document.getElementById('gm2'); if(el_gm2) el_gm2.innerHTML=o.tags.map(t=>'<span class="example-tag">'+t+'</span>').join('');
-  const el_gimg=document.getElementById('gimg'); if(el_gimg) el_gimg.textContent = o.e;
-  const lnk = document.getElementById('ex-doc-link');
-  lnk.style.display = o.link ? 'inline-flex' : 'none';
-  if (o.link) lnk.href = o.link;
-}
 
 </script>
 </body>

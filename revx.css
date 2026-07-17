@@ -110,6 +110,32 @@ img { display: block; max-width: 100%; }
   display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
 }
 
+/* ── Five Phases dropdown ── */
+.site-nav-dropdown { position: relative; }
+.site-nav-dropdown-toggle {
+  font-family: var(--font-display); font-weight: 400; font-size: 15px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--gray-900); padding: 8px 14px; border: none; background: none;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s; white-space: nowrap;
+}
+.site-nav-dropdown-toggle:hover, .site-nav-dropdown-toggle.active { color: var(--red); }
+.dropdown-caret { font-size: 10px; transition: transform 0.2s; }
+.site-nav-dropdown.open .dropdown-caret { transform: rotate(180deg); }
+.site-nav-dropdown-menu {
+  position: fixed;
+  background: #fff; border: 1px solid var(--gray-200); box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  min-width: 180px; padding: 6px; display: none; flex-direction: column; z-index: 210;
+}
+.site-nav-dropdown-menu a {
+  display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+  font-family: var(--font-display); font-weight: 400; font-size: 14px;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray-900);
+  text-decoration: none; white-space: nowrap;
+}
+.site-nav-dropdown-menu a:hover { color: var(--red); background: var(--gray-100); }
+.site-nav-dropdown-menu a.active { color: var(--red); }
+
 /* ── Eyebrow ── */
 .eyebrow {
   font-family: var(--font-display); font-weight: 400; font-size: 13px;
