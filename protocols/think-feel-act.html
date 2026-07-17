@@ -9,9 +9,9 @@
 <style>
 
 :root {
-  --phase:#F97316; --phase-light:#FFF7ED; --phase-mid:#FED7AA; --phase-dark:#C2410C;
+  --phase:#e69138; --phase-light:#fdf1e2; --phase-mid:#f2cd9e; --phase-dark:#a4661f;
   --amber:#F59E0B; --amber-light:#FEF3C7;
-  --text:#1C1917; --text-mid:#44403C; --text-soft:#78716C;
+  --text:#333333; --text-mid:#44403C; --text-soft:#78716C;
   --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
   --m-ind-bg:#EFF6FF;  --m-ind-b:#BFDBFE;  --m-ind-t:#1D4ED8;
   --m-pair-bg:#F0FDF4; --m-pair-b:#BBF7D0; --m-pair-t:#15803D;
@@ -37,6 +37,7 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
   padding:5px 13px; border-radius:0;
 }
 .deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
+.topbar-logo { height:22px; width:auto; flex-shrink:0; }
 .nav-area { display:flex; align-items:center; gap:9px; }
 .nav-btn {
   width:32px; height:32px; border-radius:0; border:1.5px solid var(--border);
@@ -61,6 +62,7 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
 body.in-drawer .back-btn { display:none; }
 body.in-drawer .topbar { padding:7px 16px; gap:8px; }
 body.in-drawer .deck-label { display:none; }
+body.in-drawer .topbar-logo { display:none; }
 body.in-drawer .ctrl-area { gap:6px; }
 body.in-drawer .tb { padding:4px 8px; font-size:10px; }
 body.in-drawer .print-btn { padding:4px 8px; font-size:11px; }
@@ -83,20 +85,19 @@ body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
 }
 body.vs .sc { display:flex; }
 
-/* slide header */
-.sh {
+/* slide meta: focus/routine badge + timer, now a light inline line on the slide itself */
+.slide-meta {
   flex:0 0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:13px 24px; border-bottom:1px solid #F5F5F4;
+  display:flex; align-items:center; gap:12px;
+  padding:16px 24px 0;
 }
-.shl { display:flex; align-items:center; gap:9px; }
 .type-badge {
   font-family:'Oswald',sans-serif; font-weight:700; font-size:12px;
   letter-spacing:.1em; padding:5px 12px; border-radius:0; text-transform:uppercase;
 }
 .badge-r { color:#92400E; background:var(--amber-light); border:1px solid #FDE68A; }
 .badge-f { color:var(--phase-dark); background:var(--phase-light); border:1px solid var(--phase-mid); }
-.timer { font-family:'Oswald',sans-serif; font-weight:700; font-size:18px; color:var(--text-mid); }
+.timer { font-family:'Oswald',sans-serif; font-weight:700; font-size:14px; color:var(--text-mid); }
 
 /* band variants — only active band visible */
 .bv { display:none; flex-direction:column; flex:1; min-height:0; }
@@ -351,6 +352,7 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
 <div class="topbar">
   <div class="tl">
     <a class="back-btn" href="../discover.html">&#8592; Discover</a>
+    <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
     <span class="phase-pill">DISCOVER</span>
     <span class="deck-label">Think, Feel, Act</span>
   </div>
@@ -430,7 +432,7 @@ const P = [
   },
   teacher: {
     when:'After the Immersive Experience', type:'Focus Protocol',
-    studentWhen:'Use this to capture your first honest reactions to a challenge — what you notice, how you feel, and what you want to do about it.',
+    studentWhen:'Use this protocol to make meaning of your initial encounter with a challenge.',
     hattie: [
       { d:'1.33', n:'Student Expectations',     r:'When students connect personally to a problem and see themselves as capable of contributing, achievement increases significantly.' },
       { d:'0.60', n:'Metacognitive Strategies',  r:'Naming cognitive and emotional responses separately builds self-awareness that sustains motivation through harder work.' },
@@ -546,12 +548,9 @@ function buildAll() {
   const bvs = allBands.map(b => buildBand(P[0], b)).join('');
   document.getElementById('slide0').innerHTML = `
     <div class="sc">
-      <div class="sh">
-        <div class="shl">
-          <span class="phase-pill">DISCOVER</span>
-          <span class="type-badge ${bc}">${bl}</span>
-        </div>
-        <div class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</div>
+      <div class="slide-meta">
+        <span class="type-badge ${bc}">${bl}</span>
+        <span class="timer" id="tmr0">\u23F1\u202F${P[0].timer['k2']}</span>
       </div>
       ${P[0].teacher.studentWhen ? `<div class="student-when"><span class="student-when-icon">💡</span><span class="student-when-text">${P[0].teacher.studentWhen}</span></div>` : ""}
       ${bvs}
