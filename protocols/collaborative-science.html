@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Collaborative Reading: DEEDS Examine Protocol</title>
+<title>Collaborative Science: DEEDS Examine Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -39,7 +39,6 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
   padding:5px 13px; border-radius:0;
 }
 .deck-label { font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--text-mid); }
-.deck-timer { font-family:'Oswald',sans-serif; font-weight:600; font-size:12px; color:var(--text-soft); }
 .ctrl-area { display:flex; align-items:center; gap:8px; }
 .tg { display:flex; background:var(--bg); border-radius:0; padding:2px; gap:1px; }
 .tb {
@@ -63,8 +62,8 @@ body.in-drawer .topbar { padding:7px 16px; gap:8px; }
 body.in-drawer .ctrl-area { gap:6px; }
 body.in-drawer .tb { padding:4px 8px; font-size:10px; }
 body.in-drawer .print-btn { padding:4px 8px; font-size:11px; }
-body.vt .ctrl-area .tg:nth-of-type(2) { display:none; }
 body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
+body.vt .ctrl-area .tg:nth-of-type(2) { display:none; }
 
 /* ── PAGE LAYOUT ── */
 .page { max-width:1500px; margin:24px auto; padding:0 20px 40px; }
@@ -103,7 +102,6 @@ body.vt .tc2 { display:flex; flex-direction:column; }
 .phase-box-std { padding:8px 12px; border-top:0.5px solid var(--border); background:var(--bg); font-size:9.5px; color:var(--text-soft); line-height:1.35; }
 .phase-box-std b { color:var(--text-mid); }
 
-/* ── Grade-set toggle note + attribution ── */
 .attribution { margin-top:14px; padding:8px 12px; border:0.5px dashed var(--border); font-size:10px; color:var(--text-soft); line-height:1.5; flex-shrink:0; }
 
 /* ── TEACHER PANEL ── */
@@ -132,8 +130,7 @@ body.vt .tc2 { display:flex; flex-direction:column; }
 .h-rat { font-size:12px; color:var(--t-soft); line-height:1.35; }
 
 @media (max-width:900px) {
-  .phase-set.active, .phase-row { flex-direction:column; }
-  .phase-box { min-width:0; }
+  .phase-set.active { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -147,7 +144,7 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
     <a class="back-btn" href="../examine.html">&#8592; Examine</a>
     <img src="../assets/revx-logo.png" alt="RevX logo" class="topbar-logo" />
     <span class="phase-pill">EXAMINE</span>
-    <span class="deck-label">Collaborative Reading</span>
+    <span class="deck-label">Collaborative Science</span>
   </div>
   <div class="ctrl-area">
     <div class="tg">
@@ -167,10 +164,9 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
   <div class="sc">
     <div class="student-when">
       <span class="student-when-icon">💡</span>
-      <span class="student-when-text">Use this daily routine to build fluency, comprehension, and disciplinary reading skill through a shared text, 10 minutes at a time.</span>
+      <span class="student-when-text">Use this daily routine to build fluency and disciplinary reading skill through a shared science text, 10 minutes at a time.</span>
     </div>
 
-    <!-- K-5 / K-8 set: 5 phases -->
     <div class="phase-set active" id="set-young">
       <div class="phase-box">
         <div class="phase-box-hdr">
@@ -180,132 +176,131 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
         </div>
         <div class="phase-box-body">
           <div class="step-item"><span class="step-time">2m</span>Read for the gist (teacher-led)</div>
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (students only)</div>
-          <div class="step-item"><span class="step-time">2m</span>Introduce bolded vocabulary words</div>
-          <div class="step-item"><span class="step-time">2m</span>Identify the genre</div>
+          <div class="step-item"><span class="step-time">2m</span>Read for fluency (all)</div>
+          <div class="step-item"><span class="step-time">2m</span>Discuss vocabulary</div>
+          <div class="step-item"><span class="step-time">2m</span>Identify the claim</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Reading Anchor Standard R.10 (read and comprehend complex texts)</div>
+        <div class="phase-box-std"><b>Aligns to</b> SEP 8 (Obtaining, Evaluating, and Communicating Information)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 2</div>
           <div class="phase-box-name">Annotate the Text</div>
+          <div class="phase-box-sub">Find evidence of the Crosscutting Concept</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (teacher-led)</div>
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (students only)</div>
-          <div class="step-item"><span class="step-time">2m</span>Annotate using markings for understanding</div>
-          <div class="step-item"><span class="step-time">2m</span>Discuss the annotations</div>
+          <div class="step-item"><span class="step-time">2m</span>Read text for fluency (all)</div>
+          <div class="step-item"><span class="step-time">1m</span>Teacher explains the CCC, if needed</div>
+          <div class="step-item"><span class="step-time">2m</span>Annotate for understanding, underline evidence of the CCC</div>
+          <div class="step-item"><span class="step-time">2m</span>Discuss annotations</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Reading Anchor Standard R.1 (cite evidence from the text)</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected CCC and SEP 8 (Obtaining, Evaluating, and Communicating Information)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 3</div>
-          <div class="phase-box-name">Key Details</div>
+          <div class="phase-box-name">Answer Questions</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (students only)</div>
+          <div class="step-item"><span class="step-time">2m</span>Read text for fluency (all)</div>
           <div class="step-item"><span class="step-time">1m</span>Annotate the question</div>
           <div class="step-item"><span class="step-time">2m</span>Find and cite your answer (if multiple choice)</div>
-          <div class="step-item"><span class="step-time">2m</span>Explain answers, one correct and one incorrect, with rationale</div>
+          <div class="step-item"><span class="step-time">2m</span>Explain answers, at least one correct and one incorrect. Describe rationale and show evidence.</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Reading Anchor Standards R.1, R.2 (key details and central ideas)</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected NGSS Performance Expectation</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 4</div>
-          <div class="phase-box-name">Craft and Structure</div>
+          <div class="phase-box-name">Engineering Case Study</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (students only)</div>
-          <div class="step-item"><span class="step-time">1m</span>Highlight the author's craft question type</div>
-          <div class="step-item"><span class="step-time">3m</span>Complete the question and explain answers</div>
+          <div class="step-item"><span class="step-time">2m</span>Read text for fluency (all)</div>
+          <div class="step-item"><span class="step-time">1m</span>Teacher models annotation of the question</div>
+          <div class="step-item"><span class="step-time">3m</span>Learners complete the task</div>
           <div class="step-item"><span class="step-time">2m</span>Discuss the correct answer and rationale</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Reading Anchor Standards R.4, R.5, R.6 (craft and structure)</div>
+        <div class="phase-box-std"><b>Aligns to</b> SEP 6 (Constructing Explanations and Designing Solutions)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 5</div>
-          <div class="phase-box-name">Synthesize</div>
+          <div class="phase-box-name">Discussion</div>
+          <div class="phase-box-sub">Integrate knowledge and extend thinking</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item"><span class="step-time">2m</span>Read for fluency (students only)</div>
-          <div class="step-item"><span class="step-time">1m</span>Prompt students to lead annotation</div>
-          <div class="step-item"><span class="step-time">5m</span>"Think time" with music to complete a response</div>
-          <div class="step-item"><span class="step-time">5m</span>Group share with TAG feedback (Tell, Ask, Give)</div>
+          <div class="step-item"><span class="step-time">2m</span>Read text for fluency (all)</div>
+          <div class="step-item"><span class="step-time">1m</span>Read the question</div>
+          <div class="step-item"><span class="step-time">2m</span>Triads discuss the question and generate an opinion</div>
+          <div class="step-item"><span class="step-time">2m</span>Group share</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Writing Anchor Standard W.9, Speaking &amp; Listening Anchor Standard SL.1</div>
+        <div class="phase-box-std"><b>Aligns to</b> SEP 7 (Engaging in Argument from Evidence), SEP 8 (Obtaining, Evaluating, and Communicating Information), and selected CCC</div>
       </div>
     </div>
 
-    <!-- 6-12 / 9-12 set: 4 phases -->
     <div class="phase-set" id="set-old">
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 1</div>
-          <div class="phase-box-name">Close Reading &amp; Annotation</div>
-          <div class="phase-box-sub">15–30 min, on your own</div>
+          <div class="phase-box-name">Close Reading &amp; Claim Analysis</div>
+          <div class="phase-box-sub">10 min, independent</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item">Identify the central idea and cite supporting evidence.</div>
-          <div class="step-item">Mark claims, evidence, key vocabulary, and confusing parts.</div>
-          <div class="step-item">Choose one unfamiliar word and define it using context clues.</div>
-          <div class="step-item">Complete the CTA Organizer to prepare for discussion.</div>
+          <div class="step-item">Read the text closely, once, on your own.</div>
+          <div class="step-item">Identify the author's central claim and annotate the evidence used to support it.</div>
+          <div class="step-item">Note where the text connects to the Crosscutting Concept your teacher has named.</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Reading Anchor Standards R.1, R.2, R.4</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected NGSS SEP (Obtaining, Evaluating, and Communicating Information)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 2</div>
-          <div class="phase-box-name">Discussion &amp; Analysis</div>
-          <div class="phase-box-sub">10 min, with your group</div>
+          <div class="phase-box-name">Data &amp; Evidence Evaluation</div>
+          <div class="phase-box-sub">10 min, independent or pairs</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item">Round-robin share: central idea, a limitation, and a question or challenge.</div>
-          <div class="step-item">As a group, agree on the author's purpose and perspective.</div>
-          <div class="step-item">Discuss key assumptions or limitations, and how the argument could be stronger.</div>
+          <div class="step-item">Analyze the data, model, or evidence the text presents.</div>
+          <div class="step-item">Evaluate whether it's sufficient to support the claim.</div>
+          <div class="step-item">Identify gaps, assumptions, or an alternative explanation the data could also support.</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Speaking &amp; Listening Anchor Standard SL.1, Reading Anchor Standards R.5, R.6</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected NGSS SEP (Analyzing and Interpreting Data)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 3</div>
-          <div class="phase-box-name">Written Response</div>
-          <div class="phase-box-sub">10 min, on your own</div>
+          <div class="phase-box-name">CER Written Response</div>
+          <div class="phase-box-sub">10 min, independent</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item">Write a 4–6 sentence response using specific textual evidence.</div>
-          <div class="step-item">Choose one lens: argument and evaluation, explanatory and criticality, identity and relevance, or comparative analysis.</div>
-          <div class="step-item">Explain how the evidence supports your reasoning, going beyond summary.</div>
+          <div class="step-item">Write a Claim, Evidence, Reasoning response to a prompt about the text.</div>
+          <div class="step-item">State your claim clearly, cite specific evidence, and explain the reasoning that connects them.</div>
+          <div class="step-item">Use the Crosscutting Concept to strengthen your reasoning, not just your claim.</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Writing Anchor Standards W.1, W.2, Reading Anchor Standard R.9</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected NGSS SEP (Constructing Explanations and Designing Solutions)</div>
       </div>
       <div class="phase-box">
         <div class="phase-box-hdr">
           <div class="phase-box-num">Phase 4</div>
-          <div class="phase-box-name">Real World Application</div>
+          <div class="phase-box-name">Argumentation &amp; Application</div>
           <div class="phase-box-sub">10 min, small group then whole class</div>
         </div>
         <div class="phase-box-body">
-          <div class="step-item">Connect: how does this text connect to your life, community, or a real-world issue?</div>
-          <div class="step-item">Extend: how does this text deepen or change your thinking?</div>
-          <div class="step-item">Challenge: how does this text push you to act, question, or take a stand?</div>
-          <div class="step-item">One group shares a takeaway. Classmates build on it as a class.</div>
+          <div class="step-item">Defend your CER response to a partner or small group.</div>
+          <div class="step-item">Respond to a counterargument or an alternative explanation from a peer.</div>
+          <div class="step-item">Connect the science to a real engineering or design problem, or to the DEEDS challenge.</div>
         </div>
-        <div class="phase-box-std"><b>Aligns to:</b> Speaking &amp; Listening Anchor Standard SL.1</div>
+        <div class="phase-box-std"><b>Aligns to</b> selected NGSS SEP (Engaging in Argument from Evidence)</div>
       </div>
     </div>
 
-    <div class="attribution">The Collaborative Reading Approach is copyrighted by Dr. Alexa Sorden (2001) and used here with her permission.</div>
+    <div class="attribution">Adapted from the Collaborative Reading Approach by Dr. Alexa Sorden (2013), used here with her permission.</div>
   </div>
 
   <div class="tc2">
     <div class="t-hdr">
       <div>
         <div class="t-ey">Teacher Background: Examine</div>
-        <div class="t-ttl">Collaborative Reading</div>
+        <div class="t-ttl">Collaborative Science</div>
       </div>
       <div class="t-meta">
         <div class="t-ml">When to use</div><div class="t-mv">Daily, 10 minutes</div>
@@ -315,45 +310,55 @@ if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
     <div class="t-body">
       <div class="why-box">
         <div class="why-l">Why this, why now</div>
-        <div class="why-t">Dr. Alexa Sorden developed the Collaborative Reading Approach in 2013 to build proficient readers through repeated choral reading, annotation, and evidence-based discussion. Reading research identifies five core skills every proficient reader needs: phonemic awareness, phonics, fluency, vocabulary, and comprehension. This routine gives students repeated, structured practice with all five in a single daily cycle.</div>
+        <div class="why-t">This routine builds scientific thinking: making a claim, weighing evidence, and reasoning through a Crosscutting Concept or Science and Engineering Practice. Younger students build these habits through a shared text and repeated reading; older students build them through independent close reading and a defensible Claim-Evidence-Reasoning argument. Reading skill develops alongside that thinking, not instead of it.</div>
       </div>
       <div class="t-sec">
         <div class="t-sec-title">Hattie Effect Sizes</div>
         <div class="h-row">
           <div class="h-badge"><div class="h-d">d=0.67</div><div class="h-lbl">Hattie</div></div>
-          <div><div class="h-name">Repeated Reading Programs</div><div class="h-rat">Rereading the same text builds fluency, which frees up attention for comprehension.</div></div>
+          <div><div class="h-name">Repeated Reading Programs</div><div class="h-rat">Rereading the same text builds fluency, which frees up attention for comprehension of the science content.</div></div>
+        </div>
+        <div class="h-row">
+          <div class="h-badge"><div class="h-d">d=0.61</div><div class="h-lbl">Hattie</div></div>
+          <div><div class="h-name">Problem-Solving Teaching</div><div class="h-rat">The Engineering Case Study phase (K-5) gives students a structured problem to reason through, not just information to receive.</div></div>
         </div>
         <div class="h-row">
           <div class="h-badge"><div class="h-d">d=0.82</div><div class="h-lbl">Hattie</div></div>
-          <div><div class="h-name">Classroom Discussion</div><div class="h-rat">Structured, evidence-based discussion ranks among the highest-impact practices in Hattie's research.</div></div>
+          <div><div class="h-name">Classroom Discussion</div><div class="h-rat">The Argumentation phase (6-12) asks students to defend a claim and respond to a counterargument. Structured discussion ranks among the highest-impact practices in Hattie's research.</div></div>
         </div>
       </div>
       <div class="t-sec">
-        <div class="t-sec-title">Text Selection &amp; Length</div>
+        <div class="t-sec-title">Selecting the CCC or SEP</div>
         <ul class="fac-list">
-          <li><b style="color:var(--phase-mid);">K&ndash;2:</b> up to 150 words &nbsp; <b style="color:var(--phase-mid);">3&ndash;8:</b> up to 250 words &nbsp; <b style="color:var(--phase-mid);">9&ndash;12:</b> up to 300 words</li>
-          <li>Determine the text's Lexile range using the Lexile and Quantile Hub: paste in the text or excerpt to generate its range and flag words critical to understanding it.</li>
-          <li>For nonfiction, you can adjust the Lexile range. Add context clues (definitions, appositives, synonyms) to support unfamiliar vocabulary, and shorten long or complex sentences to bring the range down.</li>
-          <li>For fiction, never alter the author's words. The only allowed change is using ellipses to cut an irrelevant section. Tell students when a part has been left out, and choose excerpts that highlight a conflict, a character trait, or the story's theme.</li>
+          <li>Choose the Crosscutting Concept before you select the text. The CCC should already fit the unit. This routine gives students a second, low-stakes chance to notice it in a new context.</li>
+          <li>The Science and Engineering Practice in each phase should match whatever your core curriculum is targeting that week.</li>
+          <li>Name the CCC or SEP explicitly to students before the phase that uses it. Students should know what they're looking for, not guess at it.</li>
         </ul>
       </div>
       <div class="t-sec">
         <div class="t-sec-title">Facilitation Notes: K&ndash;5</div>
         <ul class="fac-list">
-          <li>Don't cut the repeated reading, even under time pressure. The first pass builds comprehension, and the second builds fluency through repetition.</li>
-          <li>Model fluent reading aloud before asking K-3 students to read independently. Students need to hear proficient reading before they can produce it.</li>
-          <li>Treat the vocabulary step as instruction, not a formality. Vocabulary is one of the five core skills this routine is built to reinforce.</li>
+          <li>The repeated reading exists to make the claim or Crosscutting Concept visible to students, not just to build fluency. Don't cut it under time pressure.</li>
+          <li>Keep the claim in Phase 1 concrete. "The author says ___" is a fine claim at this age. Save nuance for 6-12.</li>
         </ul>
       </div>
       <div class="t-sec">
         <div class="t-sec-title">Facilitation Notes: 6&ndash;12</div>
         <ul class="fac-list">
-          <li>The repeated reading in Phase 1 still matters at this age. Fluency continues to affect comprehension well past elementary school, especially with unfamiliar or complex texts.</li>
-          <li>Keep Phase 2 discussion anchored to the text. Ask students to point to where an idea comes from, then explain how it supports their answer. That evidence-to-reasoning link is what builds comprehension.</li>
-          <li>Real World Application in Phase 4 is where this routine connects most directly to the DEEDS challenge. Don't skip it for time.</li>
+          <li>Independent close reading is what lets students build their own claim, not a shared one. Resist the urge to add repeated choral reading back in.</li>
+          <li>Phase 2 is where students most often default to summary instead of evaluation. Push them to name a specific gap or an alternative explanation, not just restate the data.</li>
+          <li>Phase 4's argumentation only works if students have genuinely different claims or reasoning to defend. If everyone reaches the same CER response, the discussion has nothing to argue about.</li>
         </ul>
       </div>
-      <div class="attribution-t">Adapted with permission from the Collaborative Reading Approach by Dr. Alexa Sorden (2013).</div>
+      <div class="t-sec">
+        <div class="t-sec-title">Text Selection &amp; Length</div>
+        <ul class="fac-list">
+          <li><b style="color:var(--phase-mid);">K&ndash;2:</b> up to 150 words &nbsp; <b style="color:var(--phase-mid);">3&ndash;8:</b> up to 250 words &nbsp; <b style="color:var(--phase-mid);">9&ndash;12:</b> up to 300 words</li>
+          <li>Choose texts with a clear claim and enough data or observation for students to evaluate the evidence behind it, not just a description of a phenomenon.</li>
+          <li>The Engineering Case Study in Phase 4 needs an actual design constraint or tradeoff for learners to reason through. A single correct answer with no tradeoff will not sustain the phase.</li>
+        </ul>
+      </div>
+      <div class="attribution-t">Adapted from the Collaborative Reading Approach by Dr. Alexa Sorden (2013).</div>
     </div>
   </div>
 
