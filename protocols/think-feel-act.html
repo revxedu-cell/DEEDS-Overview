@@ -55,6 +55,17 @@ body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--tex
 }
 .tb.active { background:var(--phase); color:white; }
 
+/* ── When embedded in the phase-page drawer: hide the back link   */
+/* (it would navigate the iframe, not the parent page) and tighten */
+/* spacing since the panel is narrower than the page's normal width */
+body.in-drawer .back-btn { display:none; }
+body.in-drawer .topbar { padding:7px 16px; gap:8px; }
+body.in-drawer .deck-label { display:none; }
+body.in-drawer .ctrl-area { gap:6px; }
+body.in-drawer .tb { padding:4px 8px; font-size:10px; }
+body.in-drawer .print-btn { padding:4px 8px; font-size:11px; }
+body.in-drawer .page { max-width:100%; margin:14px auto; padding:0 14px 24px; }
+
 /* ── PAGE LAYOUT ── */
 .page { max-width:1400px; margin:24px auto; padding:0 20px 40px; }
 .slide { display:none; }
@@ -162,6 +173,7 @@ body.b612 .bv[data-b="612"]{ display:flex; }
   flex-direction:column;
 }
 body.vt .tc2 { display:flex; }
+body.vt .ctrl-area .tg:nth-of-type(2) { display:none; }
 
 .t-hdr {
   flex:0 0 auto;
@@ -184,12 +196,17 @@ body.vt .tc2 { display:flex; }
 .t-body {
   flex:1; min-height:0;
   padding:14px 24px 18px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr auto auto;
-  gap:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 .t-sec { background:var(--t-s); border-radius:9px; padding:12px 13px; overflow:hidden; }
+.g-sec { padding:15px 17px; }
+.g-sec .t-sec-title { font-size:11px; margin-bottom:9px; }
+.g-sec .g-note { font-size:13.5px; line-height:1.5; }
+.h-sec { padding:8px 13px; }
+.h-sec .h-name { font-size:12px; }
+.h-sec .h-rat { font-size:11.5px; }
 .t-sec-title {
   font-family:'Oswald',sans-serif; font-weight:700; font-size:9.5px;
   letter-spacing:.14em; text-transform:uppercase; color:var(--phase); margin-bottom:8px;
@@ -233,7 +250,6 @@ body.vt .tc2 { display:flex; }
 
 /* why now — spans both columns */
 .why-box {
-  grid-column:1/-1;
   border-left:3px solid var(--phase); background:rgba(249,115,22,.09);
   border-radius:0 9px 9px 0; padding:10px 13px;
 }
@@ -242,7 +258,6 @@ body.vt .tc2 { display:flex; }
 
 /* standards row */
 .std-row {
-  grid-column:1/-1;
   display:flex; align-items:flex-start; gap:8px;
   padding-top:9px; border-top:1px solid var(--t-l);
 }
@@ -329,6 +344,9 @@ body.vt .tc2 { display:flex; }
 </style>
 </head>
 <body class="vs bk2">
+<script>
+if (window.self !== window.top) { document.body.classList.add('in-drawer'); }
+</script>
 
 <div class="topbar">
   <div class="tl">
@@ -499,18 +517,18 @@ function buildTeacher(proto) {
       </div>
     </div>
     <div class="t-body">
-      <div class="t-sec">
-        <div class="t-sec-title">Hattie Effect Sizes</div>
-        ${hattiRows}
+      <div class="why-box">
+        <div class="why-l">Why this, why now</div>
+        <div class="why-t">${t.why}</div>
       </div>
-      <div class="t-sec">
+      <div class="t-sec g-sec">
         <div class="t-sec-title">Grade Band Guidance</div>
         ${gradeRows}
         ${planNote}
       </div>
-      <div class="why-box">
-        <div class="why-l">Why this, why now</div>
-        <div class="why-t">${t.why}</div>
+      <div class="t-sec h-sec">
+        <div class="t-sec-title">Hattie Effect Sizes</div>
+        ${hattiRows}
       </div>
       <div class="std-row">
         <div class="std-l">Standards</div>
