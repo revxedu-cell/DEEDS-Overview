@@ -370,6 +370,20 @@ img { display: block; max-width: 100%; }
 .pns-next:hover { background: currentColor; }
 .pns-next:hover span { color: #fff; }
 
+/* Top-of-hero next-phase link (phases no longer live in top nav directly) */
+.phase-hero-topnav { display: flex; justify-content: flex-end; margin-bottom: 18px; }
+.phase-hero-next {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border: 1.5px solid rgba(255,255,255,0.55);
+  font-family: var(--font-display); font-size: 13px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.04em; color: #fff; text-decoration: none;
+  transition: all .18s; white-space: nowrap;
+}
+.phase-hero-next:hover { background: #fff; color: var(--phase-color-hex); border-color: #fff; }
+@media (max-width: 640px) {
+  .phase-hero-topnav { justify-content: flex-start; }
+}
+
 /* Scroll reveal */
 .sr-hidden { opacity: 0; transform: translateY(20px); }
 .sr-visible { opacity: 1; transform: translateY(0); transition: opacity 0.55s ease, transform 0.55s ease; }
