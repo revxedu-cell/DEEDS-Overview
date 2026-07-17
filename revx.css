@@ -122,6 +122,30 @@ img { display: block; max-width: 100%; }
 .site-nav-dropdown-toggle:hover, .site-nav-dropdown-toggle.active { color: var(--red); }
 .dropdown-caret { font-size: 10px; transition: transform 0.2s; }
 .site-nav-dropdown.open .dropdown-caret { transform: rotate(180deg); }
+
+/* ── At a Glance panel (phase pages) ── */
+.glance-panel {
+  background: #fff; border: 0.5px solid var(--gray-200);
+  display: grid; grid-template-columns: 190px 1fr;
+}
+.glance-row { display: contents; }
+.glance-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-700);
+  padding: 14px 16px; border-bottom: 0.5px solid var(--gray-200); border-right: 0.5px solid var(--gray-200);
+  background: var(--gray-100);
+}
+.glance-value {
+  font-size: 14px; color: var(--gray-900); line-height: 1.55;
+  padding: 14px 18px; border-bottom: 0.5px solid var(--gray-200);
+}
+.glance-panel .glance-row:last-child .glance-label,
+.glance-panel .glance-row:last-child .glance-value { border-bottom: none; }
+@media (max-width: 640px) {
+  .glance-panel { grid-template-columns: 1fr; }
+  .glance-label { border-right: none; padding-bottom: 2px; }
+  .glance-value { padding-top: 2px; }
+}
 .site-nav-dropdown-menu {
   position: fixed;
   background: #fff; border: 1px solid var(--gray-200); box-shadow: 0 8px 20px rgba(0,0,0,0.12);
