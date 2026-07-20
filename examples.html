@@ -52,6 +52,22 @@
   .ex-outer { padding: 32px 20px 60px; }
   .example-question-row { flex-direction: column; gap: 6px; }
 }
+
+.example-doc-row {
+  padding: 14px 24px; border-top: 0.5px solid var(--gray-200);
+}
+.example-doc-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; color: #1a4c81; text-decoration: none;
+}
+.example-doc-link:hover { text-decoration: underline; }
+
+.example-hero {
+  width: 100%; height: 240px; object-fit: cover; display: block;
+}
+@media (max-width: 600px) {
+  .example-hero { height: 180px; }
+}
 </style>
 </head>
 <body>
@@ -87,17 +103,60 @@
 <div class="hero-banner-ex">
   <div class="hero-content">
     <h1>Examples</h1>
-    <p>See complete DEEDS units from Discover through Share, with real challenge questions, standards, and student work.</p>
+    <p>Explore the flow of complete DEEDS units from our partner schools.</p>
   </div>
 </div>
 
 <main id="main-content">
 <div class="ex-outer">
 
-  <p class="ex-note">This page will grow with more examples across grade bands and content areas. Below are three complete units to start.</p>
+  <!-- Peaceful Paws -->
+  <div class="example-card">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A shelter dog" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Peaceful Paws</div>
+      <div class="example-sub">Second Grade DEEDS Unit · Sessions 1–25 · Muddy Paws Rescue Partnership</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we use materials to create toys that help pets feel calm while they wait to be adopted?</span>
+      <span class="example-standards">2-PS1-1 · 2-PS1-2 · 2-PS1-3 · K-2-ETS1-1 · K-2-ETS1-2 · K-2-ETS1-3</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <span class="example-phase-days">Sessions 1–5</span>
+        <p class="example-phase-body">Scholars meet anxious shelter dogs through a visit from a Muddy Paws Rescue worker and build a shared understanding of the challenge, who is affected, and why it matters.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <span class="example-phase-days">Sessions 6–13</span>
+        <p class="example-phase-body">Scholars investigate the science behind dog anxiety, observing and testing materials, classifying their properties, and analyzing shelter data to determine which materials are best suited for a calming toy.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <span class="example-phase-days">Sessions 14–18</span>
+        <p class="example-phase-body">Scholars design, build, and refine calming toys for shelter dogs, selecting materials based on evidence, planning their build, and making revisions based on testing and peer feedback.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <span class="example-phase-days">Sessions 19–21</span>
+        <p class="example-phase-body">Scholars bring their calming toys to the shelter, observe how dogs respond, and use their evidence to evaluate what worked, what didn't, and what they would do differently.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <span class="example-phase-days">Sessions 22–25</span>
+        <p class="example-phase-body">Scholars present their calming toys and learning to Muddy Paws Rescue and invited families, explaining what they discovered, how their solution was designed, and what the evidence showed.</p>
+      </div>
+    </div>
+    <div class="example-doc-row">
+      <a href="https://docs.google.com/document/d/1tGzeZ5BMGzfgHtsrJO12LG5LpGgteZWCVNzwCEFPdgM/edit?usp=sharing" target="_blank" class="example-doc-link">View Full Example →</a>
+    </div>
+  </div>
 
   <!-- Creating Safer Intersections in the Bronx -->
   <div class="example-card">
+    <img class="example-hero" src="assets/examples/bronx.jpg" alt="Aerial view of a Bronx neighborhood" loading="lazy">
     <div class="example-head">
       <div class="example-title">Creating Safer Intersections in the Bronx</div>
       <div class="example-sub">Fourth Grade Module · Days 1–30 · Co-designed with LEAD359 and RevX</div>
@@ -138,6 +197,7 @@
 
   <!-- The Future of Fashion is Already in Your Closet -->
   <div class="example-card">
+    <img class="example-hero" src="assets/examples/fashion.jpg" alt="Hands sewing an upcycled sequined garment" loading="lazy">
     <div class="example-head">
       <div class="example-title">The Future of Fashion is Already in Your Closet</div>
       <div class="example-sub">Fast Fashion &amp; Consumption · Grade 6 DEEDS Unit · Days 1–32</div>
@@ -178,6 +238,7 @@
 
   <!-- Mental Health for Everyone -->
   <div class="example-card">
+    <img class="example-hero" src="assets/examples/mental-health.jpg" alt="A student sitting thoughtfully" loading="lazy">
     <div class="example-head">
       <div class="example-title">Mental Health for Everyone</div>
       <div class="example-sub">Eleventh Grade Module · Days 1–30 · Co-designed with McComb School District (MS) and RevX</div>
