@@ -9,8 +9,12 @@
 <style>
 .hero-banner-tools {
   position: relative; min-height: 220px;
-  background: #1a4c81;
+  background: url('assets/THE-MODEL-1-scaled.jpg') center/cover no-repeat;
   display: flex; align-items: flex-end;
+}
+.hero-banner-tools .hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.1) 65%, transparent);
 }
 .hero-banner-tools .hero-content {
   position: relative; z-index: 1;
@@ -69,6 +73,7 @@
 </nav>
 
 <div class="hero-banner-tools">
+  <div class="hero-scrim"></div>
   <div class="hero-content">
     <h1>Resources</h1>
     <p>Core planning and facilitation resources for getting started with DEEDS.</p>
