@@ -26,7 +26,26 @@
   border: 0.5px solid var(--gray-200); padding: 10px 16px; margin-bottom: 32px; max-width: 70ch;
 }
 
-.example-card { border: 0.5px solid var(--gray-200); margin-bottom: 40px; background: #fff; scroll-margin-top: 96px; }
+.example-card { border: 0.5px solid var(--gray-200); margin-bottom: 12px; background: #fff; scroll-margin-top: 96px; overflow: hidden; }
+
+.example-toggle {
+  width: 100%; display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px; background: none; border: none; cursor: pointer; text-align: left;
+}
+.example-toggle:hover { background: var(--gray-50, #fafafa); }
+.example-thumb { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+.example-toggle-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.example-toggle-title { font-family: var(--font-display); font-size: 17px; color: var(--gray-900); }
+.example-toggle-sub { font-size: 11.5px; color: var(--gray-700); }
+.example-toggle-question { font-size: 13px; color: var(--gray-900); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.example-toggle-arrow { font-size: 13px; color: var(--gray-400); flex-shrink: 0; transition: transform 0.2s; }
+.example-card.open .example-toggle-arrow { transform: rotate(180deg); }
+
+.example-body { display: none; border-top: 0.5px solid var(--gray-200); }
+.example-card.open .example-body { display: block; }
+
+.example-standards-row { padding: 12px 24px 0; }
+
 .example-head { padding: 20px 24px 16px; border-bottom: 0.5px solid var(--gray-200); }
 .example-title { font-family: var(--font-display); font-size: clamp(19px, 2.4vw, 25px); color: var(--gray-900); margin-bottom: 4px; }
 .example-sub { font-size: 12.5px; color: var(--gray-700); }
@@ -51,6 +70,7 @@
   .example-phase-col:first-child { border-top: none; }
   .ex-outer { padding: 32px 20px 60px; }
   .example-question-row { flex-direction: column; gap: 6px; }
+  .example-toggle-question { white-space: normal; }
 }
 
 .example-doc-row {
@@ -110,7 +130,7 @@
 <main id="main-content">
 <div class="ex-outer">
 
-  <nav aria-label="Jump to an example" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
+  <nav class="ex-jump-nav" aria-label="Jump to an example" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
     <a href="#peaceful-paws" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
       <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Peaceful Paws</span>
       <span style="font-size:11px;color:var(--gray-700);">Grade 2</span>
@@ -151,17 +171,19 @@
 
   <!-- Peaceful Paws -->
   <div class="example-card" id="peaceful-paws">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A dog in foster care" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Peaceful Paws</div>
-      <div class="example-sub">Second Grade DEEDS Unit · Sessions 1–25 · Muddy Paws Rescue Partnership</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we design a safe and calming toy that helps dogs in foster care feel more comfortable while they wait to be adopted?</span>
-      <span class="example-standards">2-PS1-1 · 2-PS1-2 · 2-PS1-3 · K-2-ETS1-1 · K-2-ETS1-2 · K-2-ETS1-3</span>
-    </div>
-    <div class="example-phases-grid">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A dog in foster care" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Peaceful Paws</span>
+        <span class="example-toggle-sub">Second Grade DEEDS Unit · Sessions 1–25 · Muddy Paws Rescue Partnership</span>
+        <span class="example-toggle-question">How can we design a safe and calming toy that helps dogs in foster care feel more comfortable while they wait to be adopted?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A dog in foster care" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">2-PS1-1 · 2-PS1-2 · 2-PS1-3 · K-2-ETS1-1 · K-2-ETS1-2 · K-2-ETS1-3</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <span class="example-phase-days">Sessions 1–5</span>
@@ -188,24 +210,26 @@
         <p class="example-phase-body">Students present their calming toys and learning to Muddy Paws Rescue and invited families, explaining what they discovered, how their solution was designed, and what the evidence showed.</p>
       </div>
     </div>
-    <div class="example-doc-row">
+      <div class="example-doc-row">
       <a href="https://docs.google.com/document/d/1tGzeZ5BMGzfgHtsrJO12LG5LpGgteZWCVNzwCEFPdgM/edit?usp=sharing" target="_blank" class="example-doc-link">View Full Example →</a>
+    </div>
     </div>
   </div>
 
-  <!-- Creating Safer Intersections in the Bronx -->
-  <div class="example-card" id="safer-streets">
-    <img class="example-hero" src="assets/examples/bronx.jpg" alt="Aerial view of a Bronx neighborhood" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Creating Safer Intersections in the Bronx</div>
-      <div class="example-sub">Fourth Grade Module · Days 1–30 · Co-designed with LEAD359 and RevX</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we design and promote effective ways to make intersections safer for pedestrians and the community?</span>
-      <span class="example-standards">3-5-ETS1-1 · 4-PS3-1 · 4-PS3-3 · 4-PS4-1 · 4-PS4-3</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="safer-streets">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="assets/examples/bronx.jpg" alt="Aerial view of a Bronx neighborhood" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Creating Safer Intersections in the Bronx</span>
+        <span class="example-toggle-sub">Fourth Grade Module · Days 1–30 · Co-designed with LEAD359 and RevX</span>
+        <span class="example-toggle-question">How can we design and promote effective ways to make intersections safer for pedestrians and the community?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="assets/examples/bronx.jpg" alt="Aerial view of a Bronx neighborhood" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">3-5-ETS1-1 · 4-PS3-1 · 4-PS3-3 · 4-PS4-1 · 4-PS4-3</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <span class="example-phase-days">Days 1–3</span>
@@ -232,21 +256,23 @@
         <p class="example-phase-body">Students reflected on their roles as Transportation Engineers, sharing their growth and celebrating the connection between their science learning and real community change.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- The Future of Fashion is Already in Your Closet -->
-  <div class="example-card" id="future-of-fashion">
-    <img class="example-hero" src="assets/examples/fashion.jpg" alt="Hands sewing an upcycled sequined garment" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">The Future of Fashion is Already in Your Closet</div>
-      <div class="example-sub">Fast Fashion &amp; Consumption · Grade 6 DEEDS Unit · Days 1–32</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can an upcycled fashion brand prove that style doesn't require buying new clothes?</span>
-      <span class="example-standards">MS-PS1-1 · MS-PS1-2 · MS-PS1-3 · MS-ESS3-3 · MS-ESS3-4</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="future-of-fashion">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="assets/examples/fashion.jpg" alt="Hands sewing an upcycled sequined garment" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">The Future of Fashion is Already in Your Closet</span>
+        <span class="example-toggle-sub">Fast Fashion &amp; Consumption · Grade 6 DEEDS Unit · Days 1–32</span>
+        <span class="example-toggle-question">How can an upcycled fashion brand prove that style doesn't require buying new clothes?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="assets/examples/fashion.jpg" alt="Hands sewing an upcycled sequined garment" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">MS-PS1-1 · MS-PS1-2 · MS-PS1-3 · MS-ESS3-3 · MS-ESS3-4</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <span class="example-phase-days">Days 1–5</span>
@@ -273,21 +299,23 @@
         <p class="example-phase-body">Learners reflected on their identities as materials scientists and sustainable designers, completing a summative science assessment celebrating real-world impact.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Mental Health for Everyone -->
-  <div class="example-card" id="mental-health">
-    <img class="example-hero" src="assets/examples/mental-health.jpg" alt="A student sitting thoughtfully" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Mental Health for Everyone</div>
-      <div class="example-sub">Eleventh Grade Module · Days 1–30 · Co-designed with McComb School District (MS) and RevX</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How might we design campaigns to increase mental health awareness in our community?</span>
-      <span class="example-standards">RI 11.1 · RI 11.4 · RI 11.6</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="mental-health">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="assets/examples/mental-health.jpg" alt="A student sitting thoughtfully" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Mental Health for Everyone</span>
+        <span class="example-toggle-sub">Eleventh Grade Module · Days 1–30 · Co-designed with McComb School District (MS) and RevX</span>
+        <span class="example-toggle-question">How might we design campaigns to increase mental health awareness in our community?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="assets/examples/mental-health.jpg" alt="A student sitting thoughtfully" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">RI 11.1 · RI 11.4 · RI 11.6</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <span class="example-phase-days">Days 1–3</span>
@@ -314,20 +342,22 @@
         <p class="example-phase-body">Learners shared their work directly with school board members, an act of civic leadership that led to multiple district-sponsored mental health events across the community.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Comfort Kits -->
-  <div class="example-card" id="comfort-kits">
-    <img class="example-hero" src="assets/examples/comfort-kits.jpg" alt="Students display their Comfort Kits materials and prototypes in the classroom" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Comfort Kits</div>
-      <div class="example-sub">Kindergarten&ndash;Second Grade Module · Science, Literacy &amp; Design · Precious Dreams Foundation Partnership</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we create something that helps children feel safe and comfortable when they are going through a difficult time?</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="comfort-kits">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="assets/examples/comfort-kits.jpg" alt="Students display their Comfort Kits materials and prototypes in the classroom" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Comfort Kits</span>
+        <span class="example-toggle-sub">Kindergarten&ndash;Second Grade Module · Science, Literacy &amp; Design · Precious Dreams Foundation Partnership</span>
+        <span class="example-toggle-question">How can we create something that helps children feel safe and comfortable when they are going through a difficult time?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="assets/examples/comfort-kits.jpg" alt="Students display their Comfort Kits materials and prototypes in the classroom" loading="lazy">
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <p class="example-phase-body">Students meet representatives from Precious Dreams Foundation, explore what comfort means, and listen to age-appropriate stories about children entering shelters, foster care, or hospitals.</p>
@@ -349,21 +379,23 @@
         <p class="example-phase-body">Students explain their design choices to families and partners, reflect on how they showed care for others, and describe what they learned about materials and human needs.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Power Up -->
-  <div class="example-card" id="power-up">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1632713711046-fbdf0fc0a707?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A wind turbine in an open field" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Power Up</div>
-      <div class="example-sub">Fourth Grade Module · Physical Science &amp; Engineering</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we create a renewable energy device that helps power something our school community needs?</span>
-      <span class="example-standards">4-PS3-1 · 4-PS3-2 · 4-PS3-4 · 4-ESS3-1 · 3-5-ETS1-1 · 3-5-ETS1-2 · 3-5-ETS1-3</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="power-up">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="https://images.unsplash.com/photo-1632713711046-fbdf0fc0a707?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A wind turbine in an open field" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Power Up</span>
+        <span class="example-toggle-sub">Fourth Grade Module · Physical Science &amp; Engineering</span>
+        <span class="example-toggle-question">How can we create a renewable energy device that helps power something our school community needs?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="https://images.unsplash.com/photo-1632713711046-fbdf0fc0a707?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A wind turbine in an open field" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">4-PS3-1 · 4-PS3-2 · 4-PS3-4 · 4-ESS3-1 · 3-5-ETS1-1 · 3-5-ETS1-2 · 3-5-ETS1-3</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <p class="example-phase-body">Students complete a school energy walk, analyze how electricity is used, and meet sustainability professionals who challenge them to identify opportunities for cleaner energy.</p>
@@ -385,21 +417,23 @@
         <p class="example-phase-body">Students present their prototypes and performance data to engineers, school leaders, and families, explaining how their scientific understanding shaped each design decision.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Chill Out -->
-  <div class="example-card" id="chill-out">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1727101981835-50bade3c4eaf?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A line of delivery trucks parked on a city street" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Chill Out</div>
-      <div class="example-sub">Middle School Module · Physical Science, Engineering &amp; Environmental Justice</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we keep refrigerated goods cold while reducing the pollution created by delivery trucks?</span>
-      <span class="example-standards">MS-PS3-1 · MS-PS3-3 · MS-PS3-4 · MS-PS3-5 · MS-PS3-6</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="chill-out">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="https://images.unsplash.com/photo-1727101981835-50bade3c4eaf?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A line of delivery trucks parked on a city street" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Chill Out</span>
+        <span class="example-toggle-sub">Middle School Module · Physical Science, Engineering &amp; Environmental Justice</span>
+        <span class="example-toggle-question">How can we keep refrigerated goods cold while reducing the pollution created by delivery trucks?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="https://images.unsplash.com/photo-1727101981835-50bade3c4eaf?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A line of delivery trucks parked on a city street" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">MS-PS3-1 · MS-PS3-3 · MS-PS3-4 · MS-PS3-5 · MS-PS3-6</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <p class="example-phase-body">Students investigate refrigerated truck traffic and air-quality concerns, analyze local pollution data, and hear from community members and professionals affected by the challenge.</p>
@@ -421,21 +455,23 @@
         <p class="example-phase-body">Students present their findings to environmental or transportation professionals, defend their designs with scientific evidence, and recommend next steps for continued development.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Crowd Power -->
-  <div class="example-card" id="crowd-power">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1706677258631-43968c883b6d?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A large crowd of people walking down a busy street" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Crowd Power: The Physics of Protest</div>
-      <div class="example-sub">Ninth&ndash;Tenth Grade Module · Physics, Civic Action &amp; Engineering</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we use physics to help people participate in public demonstrations more safely and effectively?</span>
-      <span class="example-standards">HS-PS2-1 · HS-PS2-2 · HS-PS2-3</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="crowd-power">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="https://images.unsplash.com/photo-1706677258631-43968c883b6d?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A large crowd of people walking down a busy street" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Crowd Power: The Physics of Protest</span>
+        <span class="example-toggle-sub">Ninth&ndash;Tenth Grade Module · Physics, Civic Action &amp; Engineering</span>
+        <span class="example-toggle-question">How can we use physics to help people participate in public demonstrations more safely and effectively?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="https://images.unsplash.com/photo-1706677258631-43968c883b6d?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A large crowd of people walking down a busy street" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">HS-PS2-1 · HS-PS2-2 · HS-PS2-3</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <p class="example-phase-body">Students examine real protest environments and hear from organizers about challenges related to crowd movement, communication, visibility, accessibility, and safety.</p>
@@ -457,21 +493,23 @@
         <p class="example-phase-body">Students demonstrate their solutions to organizers or civil-rights partners, defend their design choices using physics, and reflect on the relationship between technical design and civic participation.</p>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Nobody's Listening -->
-  <div class="example-card" id="nobodys-listening">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1769117695165-6ecb44ff1150?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="People walking through a dimly lit exhibition hallway" loading="lazy">
-    <div class="example-head">
-      <div class="example-title">Nobody's Listening</div>
-      <div class="example-sub">Sixth Grade Module · Social Studies, ELA &amp; Immersive Media</div>
-    </div>
-    <div class="example-question-row">
-      <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we help people understand the human impact of conflict so that stories that are often overlooked are not forgotten?</span>
-      <span class="example-standards">6.2 · 6.3 · 6.4</span>
-    </div>
-    <div class="example-phases-grid">
+<div class="example-card" id="nobodys-listening">
+    <button class="example-toggle" onclick="toggleExample(this)" aria-expanded="false">
+      <img class="example-thumb" src="https://images.unsplash.com/photo-1769117695165-6ecb44ff1150?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="People walking through a dimly lit exhibition hallway" loading="lazy">
+      <div class="example-toggle-text">
+        <span class="example-toggle-title">Nobody's Listening</span>
+        <span class="example-toggle-sub">Sixth Grade Module · Social Studies, ELA &amp; Immersive Media</span>
+        <span class="example-toggle-question">How can we help people understand the human impact of conflict so that stories that are often overlooked are not forgotten?</span>
+      </div>
+      <span class="example-toggle-arrow">&#9662;</span>
+    </button>
+    <div class="example-body">
+      <img class="example-hero" src="https://images.unsplash.com/photo-1769117695165-6ecb44ff1150?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="People walking through a dimly lit exhibition hallway" loading="lazy">
+      <div class="example-standards-row"><span class="example-standards">6.2 · 6.3 · 6.4</span></div>
+      <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <p class="example-phase-body">Students experience an immersive exhibition about communities affected by conflict and examine how war is represented differently by witnesses, governments, journalists, and historians.</p>
@@ -492,6 +530,7 @@
         <span class="example-phase-name" style="background:var(--share)">Share</span>
         <p class="example-phase-body">Students defend their curatorial decisions, reflect on the responsibilities involved in representing other people's experiences, and explain how their historical thinking changed.</p>
       </div>
+    </div>
     </div>
   </div>
 
@@ -574,6 +613,39 @@ window.addEventListener('resize', () => {
     const r = btn.getBoundingClientRect();
     menu.style.top = r.bottom + 'px';
     menu.style.left = r.left + 'px';
+  });
+});
+
+// Example accordion: only one open at a time
+function toggleExample(btn) {
+  const card = btn.closest('.example-card');
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.example-card.open').forEach(c => {
+    c.classList.remove('open');
+    c.querySelector('.example-toggle').setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    card.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// Jump nav: open the target example and scroll to it
+function openExample(id) {
+  const card = document.getElementById(id);
+  if (!card) return;
+  document.querySelectorAll('.example-card.open').forEach(c => {
+    c.classList.remove('open');
+    c.querySelector('.example-toggle').setAttribute('aria-expanded', 'false');
+  });
+  card.classList.add('open');
+  card.querySelector('.example-toggle').setAttribute('aria-expanded', 'true');
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('.ex-jump-nav a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    openExample(a.getAttribute('href').slice(1));
   });
 });
 </script>
