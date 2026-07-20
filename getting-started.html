@@ -220,6 +220,70 @@
 @media (max-width: 860px) {
   .overview-cards { grid-template-columns: 1fr; }
 }
+
+/* ── Unit Map (visual overview) ── */
+.unit-map {
+  grid-column: 1 / -1;
+  margin-bottom: 32px;
+}
+.unit-map-track {
+  display: flex; align-items: stretch; gap: 0;
+  overflow-x: auto; padding-bottom: 4px;
+}
+.unit-map-step {
+  flex: 1 1 0; min-width: 148px;
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px 14px;
+  background: #fff; border: 0.5px solid var(--gray-200);
+  border-top: 3px solid var(--step-color);
+}
+.unit-map-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--step-color); color: #fff;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.unit-map-title {
+  font-size: 13px; font-weight: 700; color: var(--gray-900); line-height: 1.3;
+}
+.unit-map-choice {
+  font-size: 12px; color: var(--gray-700); line-height: 1.5;
+}
+.unit-map-arrow {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+  width: 20px; color: var(--gray-400); font-size: 16px;
+}
+.unit-map-note {
+  font-size: 12px; color: var(--gray-400); margin-top: 10px; font-style: italic;
+}
+@media (max-width: 860px) {
+  .unit-map-track { flex-direction: column; }
+  .unit-map-step { min-width: 0; }
+  .unit-map-arrow { width: auto; height: 16px; transform: rotate(90deg); }
+}
+
+/* ── Phase Flow (Step 6 visual) ── */
+.phase-flow-track {
+  display: flex; align-items: stretch; gap: 0;
+  overflow-x: auto; margin-bottom: 28px; padding-bottom: 4px;
+}
+.phase-flow-step {
+  flex: 1 1 0; min-width: 140px;
+  padding: 14px 14px 16px;
+  color: #fff; display: flex; flex-direction: column; gap: 6px;
+}
+.phase-flow-name { font-size: 13px; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.02em; }
+.phase-flow-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+.phase-flow-produces { font-size: 12px; line-height: 1.5; opacity: 0.95; }
+.phase-flow-arrow {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+  width: 18px; color: var(--gray-400); font-size: 15px;
+}
+@media (max-width: 860px) {
+  .phase-flow-track { flex-direction: column; }
+  .phase-flow-step { min-width: 0; }
+  .phase-flow-arrow { width: auto; height: 14px; transform: rotate(90deg); }
+}
 </style>
 </head>
 <body>
@@ -270,6 +334,48 @@
     <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#1a4c81;display:block;margin-bottom:8px;">Unit Design</span>
     <p style="font-size:15px;color:var(--gray-700);line-height:1.7;max-width:80ch;margin-bottom:20px;">Use the following steps and the provided template to plan your DEEDS unit.</p>
     <a href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/copy" target="_blank" class="template-cta-link">Copy the Unit Planning Template →</a>
+  </div>
+
+  <!-- Unit Map (visual overview) -->
+  <div class="unit-map">
+    <div class="unit-map-track">
+      <div class="unit-map-step" style="--step-color:#1a4c81;">
+        <span class="unit-map-num">1</span>
+        <span class="unit-map-title">Determine Learning Goals</span>
+        <span class="unit-map-choice">Design choice: the knowledge and skills students must learn</span>
+      </div>
+      <span class="unit-map-arrow">→</span>
+      <div class="unit-map-step" style="--step-color:#59C3B4;">
+        <span class="unit-map-num">2</span>
+        <span class="unit-map-title">Identify a Relevant Challenge</span>
+        <span class="unit-map-choice">Design choice: the real-world problem students will work to address</span>
+      </div>
+      <span class="unit-map-arrow">→</span>
+      <div class="unit-map-step" style="--step-color:#EF464B;">
+        <span class="unit-map-num">3</span>
+        <span class="unit-map-title">Connect with Community Partners</span>
+        <span class="unit-map-choice">Design choice: who informs, supports, or uses the work</span>
+      </div>
+      <span class="unit-map-arrow">→</span>
+      <div class="unit-map-step" style="--step-color:#7b5ea7;">
+        <span class="unit-map-num">4</span>
+        <span class="unit-map-title">Define the Solution Space</span>
+        <span class="unit-map-choice">Design choice: the level of choice students will have</span>
+      </div>
+      <span class="unit-map-arrow">→</span>
+      <div class="unit-map-step" style="--step-color:#5592b8;">
+        <span class="unit-map-num">5</span>
+        <span class="unit-map-title">Develop the Challenge Question</span>
+        <span class="unit-map-choice">Design choice: the question that will guide inquiry throughout the unit</span>
+      </div>
+      <span class="unit-map-arrow">→</span>
+      <div class="unit-map-step" style="--step-color:#1a4c81;">
+        <span class="unit-map-num">6</span>
+        <span class="unit-map-title">Map the Learning Journey</span>
+        <span class="unit-map-choice">Design choice: how students build toward action</span>
+      </div>
+    </div>
+    <p class="unit-map-note">Unit design moves back and forth. Revisit Steps 1–2 as your challenge, partners, and learning journey take shape.</p>
   </div>
 
   <!-- Sidebar -->
@@ -451,26 +557,26 @@
       </button>
       <div class="step-accordion-body" style="display:none;">
       <p class="step-body-text" style="max-width:none;margin-bottom:8px;">Decide how much of the solution students will define for themselves.</p>
-      <p class="step-body-text" style="max-width:none;margin-bottom:16px;">The solution space should become more open as students gain experience, knowledge, and independence.</p>
+      <p class="step-body-text" style="max-width:none;margin-bottom:16px;">Base the level on students' experience with DEEDS and their readiness for greater autonomy.</p>
       <div class="points-list" style="margin-bottom:20px;">
         <div class="point-row">
-          <span class="point-title">K–2 · Bounded choice</span>
-          <span class="point-body">Give students two or three clear options. The challenge remains real, but you define enough of the pathway to make the work manageable and help students build confidence.</span>
+          <span class="point-title">Structured</span>
+          <span class="point-body">You define the challenge, the product type, and the success criteria. Students make meaningful choices within a clear structure. Use this when students are new to DEEDS or the content demands close scaffolding.</span>
         </div>
         <div class="point-row">
-          <span class="point-title">Grades 3–8 · Guided inquiry</span>
-          <span class="point-body">Give students several possible directions with meaningful tradeoffs. Students compare ideas, apply criteria, and decide which approach offers the strongest response.</span>
+          <span class="point-title">Guided</span>
+          <span class="point-body">You define the challenge and the constraints. Students compare several solution directions and choose or adapt one. Use this when students have some DEEDS experience but still benefit from a bounded set of options.</span>
         </div>
         <div class="point-row">
-          <span class="point-title">Grades 9–12 · Open inquiry</span>
-          <span class="point-body">Students examine the challenge, define the specific problem they will address, and develop their own solution direction. They take on the full work of a disciplined problem-solver.</span>
+          <span class="point-title">Open</span>
+          <span class="point-body">Students narrow the problem themselves, define their own criteria, and develop a solution direction they can defend. Use this when students have built the independence, content knowledge, and metacognitive skill to manage that much choice.</span>
         </div>
       </div>
       <button class="sub-toggle" onclick="toggleSubDisclosure(this)" aria-expanded="false">
         <span class="sub-toggle-arrow">▾</span> Why this matters
       </button>
       <div class="sub-toggle-body" style="display:none;">
-        <p class="step-body-text" style="max-width:none;">You choose the level of openness on purpose. Younger or less experienced students need enough structure to succeed. As students build skills and judgment, they should take more responsibility for defining the problem, evaluating options, and shaping the solution.</p>
+        <p class="step-body-text" style="max-width:none;">You choose the level of openness on purpose. Students who are new to DEEDS or still building judgment need enough structure to succeed. As students build skills and independence, they should take more responsibility for defining the problem, evaluating options, and shaping the solution.</p>
         <div class="note-box">
           <span class="note-label">Design move</span>
           <span class="note-body">Set the work slightly beyond what students could complete alone. Provide enough structure to support success while leaving enough openness to require meaningful thinking and decision-making.</span>
@@ -539,14 +645,39 @@
       </button>
       <div class="step-accordion-body" style="display:none;">
       <p class="step-body-text">Use the Learning Journey section of the <a href="https://docs.google.com/document/d/12VJV2piHW0QxBPYvr2htckxUsp9OG6XIgUoQYiearrc/edit?usp=sharing" target="_blank" style="color:#1a4c81;">DEEDS Unit Planning Template</a> to map what students will learn, do, and produce in each phase.</p>
-      <p class="step-body-text" style="margin-bottom:8px;">Build a connected journey. Each phase should prepare students for the next:</p>
-      <ul style="font-size:14px;color:var(--gray-700);line-height:1.7;margin:0 0 24px;padding-left:20px;">
-        <li>Discover defines the challenge that Examine will investigate.</li>
-        <li>Examine produces a defensible solution direction for Engineer.</li>
-        <li>Engineer creates a solution that students can put into action during Do.</li>
-        <li>Do generates evidence that students can analyze and present during Share.</li>
-        <li>Share brings together learning and evidence from the full unit.</li>
-      </ul>
+      <p class="step-body-text" style="margin-bottom:12px;">Build a connected journey. Each phase should prepare students for the next:</p>
+
+      <div class="phase-flow-track">
+        <div class="phase-flow-step" style="background:#e69138;">
+          <span class="phase-flow-name">Discover</span>
+          <span class="phase-flow-label">Produces</span>
+          <span class="phase-flow-produces">An evidence-based challenge and challenge question</span>
+        </div>
+        <span class="phase-flow-arrow">→</span>
+        <div class="phase-flow-step" style="background:#0a9b19;">
+          <span class="phase-flow-name">Examine</span>
+          <span class="phase-flow-label">Produces</span>
+          <span class="phase-flow-produces">A defensible solution direction</span>
+        </div>
+        <span class="phase-flow-arrow">→</span>
+        <div class="phase-flow-step" style="background:#003da6;">
+          <span class="phase-flow-name">Engineer</span>
+          <span class="phase-flow-label">Produces</span>
+          <span class="phase-flow-produces">A tested, implementation-ready solution</span>
+        </div>
+        <span class="phase-flow-arrow">→</span>
+        <div class="phase-flow-step" style="background:#ffb600;color:#1f2937;">
+          <span class="phase-flow-name">Do</span>
+          <span class="phase-flow-label">Produces</span>
+          <span class="phase-flow-produces">Evidence of the solution's impact</span>
+        </div>
+        <span class="phase-flow-arrow">→</span>
+        <div class="phase-flow-step" style="background:#ab0a3d;">
+          <span class="phase-flow-name">Share</span>
+          <span class="phase-flow-label">Produces</span>
+          <span class="phase-flow-produces">A public explanation and reflection on growth</span>
+        </div>
+      </div>
 
       <span class="lj-section-label">What to Plan for Each Phase</span>
       <div class="overview-cards">
