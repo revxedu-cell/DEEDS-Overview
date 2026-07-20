@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>T.A.G. Feedback — DEEDS Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --engineer:#003DA6; --engineer-light:#eef3fc; --engineer-mid:#1a4c81; --engineer-dark:#002a73;
+  --share:#ab0a3d; --share-light:#fce8ee; --share-mid:#c41e56; --share-dark:#7a0729;
+  --text:#1C1917; --text-mid:#44403C; --text-soft:#78716C;
+  --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
+  --m-pair-bg:#F0FDF4; --m-pair-b:#BBF7D0; --m-pair-t:#15803D;
+  --t-s:rgba(255,255,255,.06); --t-l:rgba(255,255,255,.09);
+  --t-text:rgba(255,255,255,.88); --t-soft:rgba(255,255,255,.55);
+}
+body.pe { --phase:var(--engineer); --phase-light:var(--engineer-light); --phase-mid:var(--engineer-mid); --phase-dark:var(--engineer-dark); --t-bg:#001a3d; }
+body.ps { --phase:var(--share); --phase-light:var(--share-light); --phase-mid:var(--share-mid); --phase-dark:var(--share-dark); --t-bg:#3d0518; }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:50;background:white;border-bottom:1px solid var(--border);
+  padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.tl{display:flex;align-items:center;gap:9px;}
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:12px;color:var(--text-soft);text-decoration:none;padding:5px 10px 5px 6px;
+  border-radius:0;border:1.5px solid var(--border);background:white;transition:all .15s;}
+.back-btn:hover{border-color:var(--phase);color:var(--phase);}
+.phase-pill{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;
+  color:white;background:var(--phase);padding:4px 11px;border-radius:0;}
+.deck-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-mid);}
+.ctrl-area{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tg{display:flex;background:var(--bg);border-radius:0;padding:3px;gap:2px;}
+.tb{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;
+  border:none;border-radius:0;cursor:pointer;background:transparent;color:var(--text-soft);transition:all .15s;}
+.tb.active{background:var(--phase);color:white;}
+
+/* ── LAYOUT ── */
+.page{max-width:1400px;margin:24px auto;padding:0 20px 40px;}
+
+/* ── STUDENT CARD ── */
+.sc{background:white;border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
+  overflow:hidden;min-height:480px;display:none;flex-direction:column;}
+body.vs.pe .sc-e{display:flex;}
+body.vs.ps .sc-s{display:flex;}
+
+.sh{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 24px;border-bottom:1px solid #F5F5F4;}
+.shl{display:flex;align-items:center;gap:9px;}
+.type-badge{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.1em;padding:5px 12px;border-radius:0;text-transform:uppercase;}
+.badge-f{color:var(--phase-dark);background:var(--phase-light);border:1px solid var(--phase-mid);}
+.timer{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;color:var(--text-mid);}
+
+.sb{flex:1;min-height:0;display:flex;flex-direction:column;padding:18px 24px 22px;}
+.s-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;
+  color:var(--text);line-height:1.1;margin-bottom:6px;flex-shrink:0;}
+.s-sub{font-size:16px;color:var(--text-mid);margin-bottom:18px;flex-shrink:0;line-height:1.4;}
+.s-sub a{color:var(--phase);}
+
+.intro-step{border:2px dashed var(--phase);border-radius:12px;padding:16px 20px;margin-bottom:14px;}
+.intro-step-time{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;color:var(--text-soft);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.intro-step-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;color:var(--text);margin-bottom:6px;}
+.intro-step-body{font-size:14px;color:var(--text-mid);line-height:1.4;}
+.intro-arrow{text-align:center;color:var(--phase);font-size:20px;margin:-4px 0 10px;}
+
+.cr{flex:1;min-height:0;display:flex;align-items:stretch;}
+.cw{flex:1;display:flex;}
+.pc{flex:1;border-radius:10px;padding:16px 14px 14px;display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:8px;overflow:hidden;border:2px dashed var(--phase);}
+.card-arrow{flex:0 0 20px;display:flex;align-items:center;justify-content:center;
+  color:var(--phase);font-size:16px;font-weight:700;flex-shrink:0;}
+.cm{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.mode-pill{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:.05em;padding:3px 9px;border-radius:0;white-space:nowrap;}
+.m-pair{background:var(--m-pair-bg);border:1px solid var(--m-pair-b);color:var(--m-pair-t);}
+.c-time{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-soft);}
+.c-icon{font-size:32px;line-height:1;flex-shrink:0;}
+.c-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;color:var(--text);flex-shrink:0;}
+.c-prompt{font-size:14px;color:var(--text-mid);line-height:1.4;}
+.c-starter{font-size:13.5px;color:var(--text-soft);font-style:italic;line-height:1.4;text-align:left;}
+.c-starter li{margin-bottom:4px;list-style:none;}
+
+/* ── TEACHER CARD ── */
+.tc2{background:var(--t-bg);border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.2);
+  overflow:hidden;min-height:500px;display:none;flex-direction:column;}
+body.vt.pe .tc-e{display:flex;}
+body.vt.ps .tc-s{display:flex;}
+
+.t-hdr{flex:0 0 auto;background:var(--phase);padding:15px 24px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.t-hdr-l{display:flex;flex-direction:column;gap:3px;}
+.t-ey{font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;
+  letter-spacing:.18em;color:rgba(255,255,255,.75);text-transform:uppercase;}
+.t-ttl{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;color:white;}
+.t-meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;
+  background:rgba(0,0,0,.15);border-radius:0;padding:7px 12px;flex-shrink:0;}
+.t-ml{font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;
+  color:rgba(255,255,255,.6);text-transform:uppercase;}
+.t-mv{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:white;}
+
+.t-body{flex:1;min-height:0;padding:14px 24px 18px;display:grid;
+  grid-template-columns:1fr 1fr;grid-template-rows:1fr auto auto;gap:12px;}
+.t-sec{background:var(--t-s);border-radius:9px;padding:12px 13px;overflow:hidden;}
+.t-sec-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--t-text);margin-bottom:9px;}
+.h-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--t-l);}
+.h-row:last-of-type{border-bottom:none;padding-bottom:0;}
+.h-badge{flex-shrink:0;}
+.h-d{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;color:white;
+  background:var(--phase);padding:3px 8px;border-radius:0;white-space:nowrap;}
+.h-rat{font-size:12px;color:var(--t-soft);line-height:1.35;}
+
+.fac-list{list-style:none;display:flex;flex-direction:column;gap:5px;overflow:auto;}
+.fac-list li{font-size:12px;color:var(--t-soft);line-height:1.4;padding-left:12px;position:relative;}
+.fac-list li::before{content:'›';position:absolute;left:0;color:var(--phase);font-weight:700;}
+
+.why-box{grid-column:1/-1;border-left:3px solid var(--phase);background:rgba(255,255,255,.05);
+  border-radius:0 9px 9px 0;padding:10px 13px;}
+.why-l{font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--phase);margin-bottom:3px;}
+.why-t{font-size:13px;color:var(--t-text);line-height:1.55;}
+.std-row-t{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;
+  padding-top:9px;border-top:1px solid var(--t-l);}
+.std-l{font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--phase);white-space:nowrap;padding-top:1px;}
+.std-v{font-size:12px;color:var(--t-soft);line-height:1.45;}
+
+@media print{
+  .topbar{display:none;}
+  .page{margin:0;padding:0;max-width:100%;}
+  .sc,.tc2{display:flex !important;box-shadow:none;border-radius:0;}
+}
+
+.print-btn {
+  font-family:'Oswald',sans-serif; font-weight:500; font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border:1px solid var(--border);
+  background:white; color:var(--text-mid); cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px; transition:all .15s;
+  border-radius:0; white-space:nowrap;
+}
+.print-btn:hover { border-color:var(--phase); color:var(--phase); }
+.print-btn svg { flex-shrink:0; }
+
+@media (max-width:900px){
+  .cr{flex-direction:column;}
+  .card-arrow{transform:rotate(90deg);flex:0 0 auto;padding:4px 0;}
+  .t-body{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body class="vs pe">
+<div class="topbar">
+  <div class="tl">
+    <a class="back-btn" id="backBtn" href="../engineer.html">&#8592; Engineer</a>
+    <span class="phase-pill" id="phasePill">ENGINEER</span>
+    <span class="deck-label">T.A.G. Feedback</span>
+  </div>
+  <div class="ctrl-area">
+    <div class="tg">
+      <button class="tb active" id="bpe" onclick="setPhase('e')">Engineer</button>
+      <button class="tb"        id="bps" onclick="setPhase('s')">Share</button>
+    </div>
+    <div class="tg">
+      <button class="tb active" id="bvs" onclick="setView('s')">Student</button>
+      <button class="tb"        id="bvt" onclick="setView('t')">Teacher</button>
+    </div>
+    <button class="print-btn" onclick="window.print()" title="Save as PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+  </div>
+</div>
+<div class="page">
+
+  <!-- ENGINEER — Student -->
+  <div class="sc sc-e">
+    <div class="sh">
+      <div class="shl">
+        <span class="phase-pill">ENGINEER</span>
+        <span class="type-badge badge-f">Feedback Protocol</span>
+      </div>
+      <div class="timer">⏱ 15 min</div>
+    </div>
+    <div class="sb">
+      <div class="s-title">T.A.G. Feedback</div>
+      <div class="s-sub">Share your draft plan with another team and/or a professional mentor, then get feedback.</div>
+      <div class="cr">
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">🩷</div>
+          <div class="c-label">Tell Something That's Working</div>
+          <ul class="c-starter">
+            <li>One strength of this design is…</li>
+            <li>This part clearly meets the criteria because…</li>
+            <li>I can see that you considered ___ when you…</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">❓</div>
+          <div class="c-label">Ask a Question</div>
+          <ul class="c-starter">
+            <li>Is this realistic given the materials?</li>
+            <li>How will this function under the stated constraints?</li>
+            <li>What might fail first?</li>
+            <li>How will this work if…?</li>
+            <li>What happens if…?</li>
+            <li>Have you considered…?</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">💡</div>
+          <div class="c-label">Give a Suggestion</div>
+          <div class="c-prompt" style="margin-bottom:6px;">Offer a concrete improvement to strengthen <strong>feasibility, usability, safety, durability,</strong> or <strong>alignment</strong> with the criteria.</div>
+          <ul class="c-starter">
+            <li>You might improve this by…</li>
+            <li>Consider adjusting…</li>
+            <li>It may be stronger if…</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE — Student -->
+  <div class="sc sc-s">
+    <div class="sh">
+      <div class="shl">
+        <span class="phase-pill">SHARE</span>
+        <span class="type-badge badge-f">Feedback Protocol</span>
+      </div>
+      <div class="timer">⏱ 10–12 min/partner</div>
+    </div>
+    <div class="sb">
+      <div class="s-title">T.A.G. Feedback</div>
+      <div class="intro-step">
+        <div class="intro-step-time">⏳ 5 min</div>
+        <div class="intro-step-title">Rehearse Your Presentation With a Partner</div>
+        <div class="intro-step-body">Reviewers: listen for evidence of the items on the <a href="share-feedback-checklist.html">Share Feedback Checklist</a>.</div>
+      </div>
+      <div class="intro-arrow">⌄</div>
+      <div class="cr">
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">🩷</div>
+          <div class="c-label">Tell Something That's Working</div>
+          <ul class="c-starter">
+            <li>One thing you explained clearly was …</li>
+            <li>I noticed you used evidence when…</li>
+            <li>I learned something about you when….</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">❓</div>
+          <div class="c-label">Ask a Question</div>
+          <ul class="c-starter">
+            <li>Why did you choose…?</li>
+            <li>What evidence helped you decide…?</li>
+            <li>Who does this work matter to, and how?</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">💡</div>
+          <div class="c-label">Give a Suggestion</div>
+          <ul class="c-starter">
+            <li>You could make this stronger by explaining … more.</li>
+            <li>Consider adding…</li>
+            <li>Try explaining… in a simpler way.</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGINEER — Teacher -->
+  <div class="tc2 tc-e">
+    <div class="t-hdr">
+      <div class="t-hdr-l">
+        <div class="t-ey">Teacher Background — Engineer</div>
+        <div class="t-ttl">T.A.G. Feedback</div>
+      </div>
+      <div class="t-meta">
+        <div class="t-ml">When to use</div><div class="t-mv">After a draft design or plan — before building or finalizing</div>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-sec">
+        <div class="t-sec-title">Standards Alignment</div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">MS-ETS1-2</div></div><div><div class="h-rat">Evaluating competing design solutions — the T.A.G. structure gives students a concrete process for critiquing a peer team's design against shared criteria.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">MS-ETS1-3</div></div><div><div class="h-rat">Analyzing data to improve a design — the Give a Suggestion step pushes reviewers toward specific, testable improvements rather than vague praise.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.1</div></div><div><div class="h-rat">Collaborative discussion — students engage in structured, evidence-based dialogue about a peer's design.</div></div></div>
+      </div>
+      <div class="t-sec">
+        <div class="t-sec-title">Facilitation Notes</div>
+        <ul class="fac-list">
+          <li>Post the five criteria categories (feasibility, usability, safety, durability, alignment) visibly so Give a Suggestion stays concrete instead of generic.</li>
+          <li>Model one full round yourself first — reviewers often default to only praise or only critique without a demonstration.</li>
+          <li>Circulate during Ask a Question; this is where teams most often surface a real flaw in their plan before building.</li>
+          <li>Set a visible timer per round — 5 minutes goes fast, and Give a Suggestion is the round most likely to get rushed.</li>
+          <li>If a professional mentor is present, brief them on the protocol beforehand so their feedback follows the same T.A.G. structure as peer feedback.</li>
+        </ul>
+      </div>
+      <div class="why-box">
+        <div class="why-l">Why this, why now</div>
+        <div class="why-t">Ownership: Teams hear specific, criteria-based feedback on their own design before committing materials and time to building it. Catching a feasibility problem here is far cheaper than catching it mid-build.</div>
+      </div>
+      <div class="std-row-t"><div class="std-l">Standards</div><div class="std-v">MS-ETS1-2 · MS-ETS1-3 · CCSS SL.1</div></div>
+    </div>
+  </div>
+
+  <!-- SHARE — Teacher -->
+  <div class="tc2 tc-s">
+    <div class="t-hdr">
+      <div class="t-hdr-l">
+        <div class="t-ey">Teacher Background — Share</div>
+        <div class="t-ttl">T.A.G. Feedback</div>
+      </div>
+      <div class="t-meta">
+        <div class="t-ml">When to use</div><div class="t-mv">During rehearsal — before the final presentation</div>
+      </div>
+    </div>
+    <div class="t-body">
+      <div class="t-sec">
+        <div class="t-sec-title">Standards Alignment</div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.1</div></div><div><div class="h-rat">Collaborative discussion — partners engage in structured, evidence-based dialogue about a rehearsed presentation.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.4</div></div><div><div class="h-rat">Presenting claims and findings — the protocol gives students language to evaluate whether a partner's presentation is clear and well-supported.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">NGSS SEP 7</div></div><div><div class="h-rat">Engaging in argument from evidence — the Ask a Question round pushes presenters to defend their evidence and reasoning aloud before the real audience does.</div></div></div>
+      </div>
+      <div class="t-sec">
+        <div class="t-sec-title">Facilitation Notes</div>
+        <ul class="fac-list">
+          <li>Pair students who haven't rehearsed together yet — a partner who's heard the presentation before will give thinner feedback.</li>
+          <li>Reference the Share Feedback Checklist explicitly before starting, so reviewers know what to listen for during the 5-minute rehearsal.</li>
+          <li>Keep the three feedback rounds tight — 2 minutes each. The value is in the immediate, specific reaction, not a long discussion.</li>
+          <li>Circulate and listen in during Ask a Question; the questions partners raise here often predict what a real audience will ask.</li>
+          <li>Have students jot down one piece of feedback to act on before their final presentation — the protocol should change something, not just be a rehearsal formality.</li>
+        </ul>
+      </div>
+      <div class="why-box">
+        <div class="why-l">Why this, why now</div>
+        <div class="why-t">Ownership: Students get low-stakes, specific feedback on their presentation from a peer before facing the real audience, so revisions happen before it counts.</div>
+      </div>
+      <div class="std-row-t"><div class="std-l">Standards</div><div class="std-v">CCSS SL.1 · CCSS SL.4 · NGSS SEP 7</div></div>
+    </div>
+  </div>
+
+</div>
+<script>
+function setView(v){
+  document.body.classList.toggle('vs',v==='s');
+  document.body.classList.toggle('vt',v==='t');
+  document.getElementById('bvs').classList.toggle('active',v==='s');
+  document.getElementById('bvt').classList.toggle('active',v==='t');
+}
+function setPhase(p){
+  document.body.classList.toggle('pe',p==='e');
+  document.body.classList.toggle('ps',p==='s');
+  document.getElementById('bpe').classList.toggle('active',p==='e');
+  document.getElementById('bps').classList.toggle('active',p==='s');
+  const back = document.getElementById('backBtn');
+  const pill = document.getElementById('phasePill');
+  if(p==='e'){ back.href='../engineer.html'; back.textContent='← Engineer'; pill.textContent='ENGINEER'; }
+  else { back.href='../share.html'; back.textContent='← Share'; pill.textContent='SHARE'; }
+}
+</script>
+</body>
+</html>
