@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Share Feedback Checklist — DEEDS Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --phase:#ab0a3d; --phase-light:#fce8ee; --phase-mid:#c41e56; --phase-dark:#7a0729;
+  --text:#1C1917; --text-mid:#44403C; --text-soft:#78716C;
+  --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+
+.topbar{position:sticky;top:0;z-index:50;background:white;border-bottom:1px solid var(--border);
+  padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.tl{display:flex;align-items:center;gap:9px;}
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:12px;color:var(--text-soft);text-decoration:none;padding:5px 10px 5px 6px;
+  border:1.5px solid var(--border);background:white;transition:all .15s;}
+.back-btn:hover{border-color:var(--phase);color:var(--phase);}
+.phase-pill{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;
+  color:white;background:var(--phase);padding:4px 11px;}
+.deck-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-mid);}
+.ctrl-area{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tg{display:flex;background:var(--bg);padding:3px;gap:2px;}
+.tb{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;
+  border:none;cursor:pointer;background:transparent;color:var(--text-soft);transition:all .15s;}
+.tb.active{background:var(--phase);color:white;}
+.print-btn {
+  font-family:'Oswald',sans-serif; font-weight:500; font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border:1px solid var(--border);
+  background:white; color:var(--text-mid); cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px; transition:all .15s; white-space:nowrap;
+}
+.print-btn:hover { border-color:var(--phase); color:var(--phase); }
+
+.page{max-width:1000px;margin:24px auto;padding:0 20px 60px;}
+.card{background:white;border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);overflow:hidden;}
+.hdr{display:flex;}
+.hdr-pill{background:var(--phase);color:white;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.1em;padding:16px 28px;display:flex;align-items:center;}
+.hdr-title{background:var(--phase-light);color:var(--text);font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:22px;padding:16px 24px;display:flex;align-items:center;flex:1;}
+.intro{padding:20px 28px 4px;font-size:15px;color:var(--text-mid);}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;padding:16px 28px 32px;}
+.grid.single-col{grid-template-columns:1fr;}
+.item{display:flex;align-items:center;gap:12px;}
+.box{width:28px;height:28px;border:2px solid var(--phase);border-radius:4px;flex-shrink:0;background:white;}
+.label{background:var(--phase);color:white;font-size:14px;font-weight:600;padding:11px 16px;border-radius:6px;flex:1;line-height:1.35;}
+
+.band-content{display:none;}
+body.bk2 .c-k2{display:block;} body.bk2 #bbk2{background:var(--phase);color:white;}
+body.b35 .c-35{display:block;} body.b35 #bb35{background:var(--phase);color:white;}
+body.b68 .c-68{display:block;} body.b68 #bb68{background:var(--phase);color:white;}
+body.b912 .c-912{display:block;} body.b912 #bb912{background:var(--phase);color:white;}
+
+@media print { .topbar{display:none;} .page{margin:0;padding:0;max-width:100%;} .card{box-shadow:none;border-radius:0;} }
+@media (max-width:700px){ .grid{grid-template-columns:1fr;} .hdr{flex-direction:column;} }
+</style>
+</head>
+<body class="b68">
+<div class="topbar">
+  <div class="tl">
+    <a class="back-btn" href="../share.html">&#8592; Share</a>
+    <span class="phase-pill">SHARE</span>
+    <span class="deck-label">Share Feedback Checklist</span>
+  </div>
+  <div class="ctrl-area">
+    <div class="tg">
+      <button class="tb" id="bbk2" onclick="setBand('k2')">K&ndash;2</button>
+      <button class="tb" id="bb35" onclick="setBand('35')">3&ndash;5</button>
+      <button class="tb active" id="bb68" onclick="setBand('68')">6&ndash;8</button>
+      <button class="tb" id="bb912" onclick="setBand('912')">9&ndash;12</button>
+    </div>
+    <button class="print-btn" onclick="window.print()" title="Save as PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+  </div>
+</div>
+
+<div class="page">
+  <div class="card">
+    <div class="hdr">
+      <div class="hdr-pill">SHARE</div>
+      <div class="hdr-title">Share Feedback Checklist</div>
+    </div>
+
+    <!-- K-2 -->
+    <div class="band-content c-k2">
+      <div class="intro">As you listen to your partner, check off what you notice...</div>
+      <div class="grid single-col">
+        <div class="item"><div class="box"></div><div class="label">I know what they worked on</div></div>
+        <div class="item"><div class="box"></div><div class="label">They showed or told me what they made</div></div>
+        <div class="item"><div class="box"></div><div class="label">They used a picture, object, or drawing to help explain</div></div>
+        <div class="item"><div class="box"></div><div class="label">They told me who this could help</div></div>
+        <div class="item"><div class="box"></div><div class="label">They said one thing that was easy or hard</div></div>
+        <div class="item"><div class="box"></div><div class="label">I could understand what they said</div></div>
+      </div>
+    </div>
+
+    <!-- 3-5 -->
+    <div class="band-content c-35">
+      <div class="intro">As you listen to your partner, make notes about the following...</div>
+      <div class="grid">
+        <div class="item"><div class="box"></div><div class="label">I understand what the project was about</div></div>
+        <div class="item"><div class="box"></div><div class="label">They said who this work is for</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained what they made or found out</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained how it could help</div></div>
+        <div class="item"><div class="box"></div><div class="label">They used evidence (notes, data, drafts, testing)</div></div>
+        <div class="item"><div class="box"></div><div class="label">I could follow the explanation</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained their role or contribution</div></div>
+        <div class="item"><div class="box"></div><div class="label">They responded clearly to questions</div></div>
+      </div>
+    </div>
+
+    <!-- 6-8 -->
+    <div class="band-content c-68">
+      <div class="intro">As you listen to your partner, make notes about the following...</div>
+      <div class="grid">
+        <div class="item"><div class="box"></div><div class="label">I understand what the project was about</div></div>
+        <div class="item"><div class="box"></div><div class="label">They said who this work is for</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained how their thinking changed</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained how it could help</div></div>
+        <div class="item"><div class="box"></div><div class="label">They used evidence (notes, data, drafts, testing)</div></div>
+        <div class="item"><div class="box"></div><div class="label">They shared a limit, tradeoff, or next step</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained their role or contribution</div></div>
+        <div class="item"><div class="box"></div><div class="label">I could follow the explanation</div></div>
+        <div class="item"><div class="box"></div><div class="label">They shared what it was like working with others</div></div>
+        <div class="item"><div class="box"></div><div class="label">Visuals or notes helped me understand</div></div>
+        <div class="item"><div class="box"></div><div class="label">They named a choice, challenge, or responsibility</div></div>
+        <div class="item"><div class="box"></div><div class="label">They responded clearly to questions</div></div>
+      </div>
+    </div>
+
+    <!-- 9-12 -->
+    <div class="band-content c-912">
+      <div class="intro">As you listen to your partner, make notes about the following...</div>
+      <div class="grid">
+        <div class="item"><div class="box"></div><div class="label">I understand the challenge and why it matters</div></div>
+        <div class="item"><div class="box"></div><div class="label">They named who is affected and why</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained how their thinking or position changed</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained the real-world impact of their work</div></div>
+        <div class="item"><div class="box"></div><div class="label">They cited specific, credible evidence</div></div>
+        <div class="item"><div class="box"></div><div class="label">They responded to challenge with reasoning, not just repetition</div></div>
+        <div class="item"><div class="box"></div><div class="label">They explained their individual role or contribution</div></div>
+        <div class="item"><div class="box"></div><div class="label">I could follow their reasoning, not just their conclusion</div></div>
+        <div class="item"><div class="box"></div><div class="label">They acknowledged a limit, tradeoff, or counterargument</div></div>
+        <div class="item"><div class="box"></div><div class="label">Evidence or visuals strengthened their argument</div></div>
+        <div class="item"><div class="box"></div><div class="label">They connected their work to a broader system or context</div></div>
+        <div class="item"><div class="box"></div><div class="label">They distinguished what their evidence supports from what it doesn't</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setBand(b){
+  document.body.className = document.body.className.replace(/\bb(k2|35|68|912)\b/g,'').trim() + ' b' + b;
+  ['bbk2','bb35','bb68','bb912'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('bb'+b).classList.add('active');
+}
+</script>
+</body>
+</html>

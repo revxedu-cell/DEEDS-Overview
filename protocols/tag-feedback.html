@@ -9,16 +9,13 @@
 <style>
 
 :root {
-  --engineer:#003DA6; --engineer-light:#eef3fc; --engineer-mid:#1a4c81; --engineer-dark:#002a73;
-  --share:#ab0a3d; --share-light:#fce8ee; --share-mid:#c41e56; --share-dark:#7a0729;
+  --phase:#1A4C81; --phase-light:#eef3fa; --phase-mid:#2d5f96; --phase-dark:#0f3054;
   --text:#1C1917; --text-mid:#44403C; --text-soft:#78716C;
   --border:#E7E5E4; --bg:#F5F4F2; --white:#fff;
   --m-pair-bg:#F0FDF4; --m-pair-b:#BBF7D0; --m-pair-t:#15803D;
-  --t-s:rgba(255,255,255,.06); --t-l:rgba(255,255,255,.09);
+  --t-bg:#0f2038; --t-s:rgba(255,255,255,.06); --t-l:rgba(255,255,255,.09);
   --t-text:rgba(255,255,255,.88); --t-soft:rgba(255,255,255,.55);
 }
-body.pe { --phase:var(--engineer); --phase-light:var(--engineer-light); --phase-mid:var(--engineer-mid); --phase-dark:var(--engineer-dark); --t-bg:#001a3d; }
-body.ps { --phase:var(--share); --phase-light:var(--share-light); --phase-mid:var(--share-mid); --phase-dark:var(--share-dark); --t-bg:#3d0518; }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
@@ -26,19 +23,27 @@ body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);-
 /* ── TOPBAR ── */
 .topbar{position:sticky;top:0;z-index:50;background:white;border-bottom:1px solid var(--border);
   padding:9px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.tl{display:flex;align-items:center;gap:9px;}
+.tl{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
 .back-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-weight:700;
   font-size:12px;color:var(--text-soft);text-decoration:none;padding:5px 10px 5px 6px;
-  border-radius:0;border:1.5px solid var(--border);background:white;transition:all .15s;}
+  border:1.5px solid var(--border);background:white;transition:all .15s;}
 .back-btn:hover{border-color:var(--phase);color:var(--phase);}
 .phase-pill{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;
-  color:white;background:var(--phase);padding:4px 11px;border-radius:0;}
+  color:white;background:var(--phase);padding:4px 11px;}
 .deck-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-mid);}
 .ctrl-area{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.tg{display:flex;background:var(--bg);border-radius:0;padding:3px;gap:2px;}
+.tg{display:flex;background:var(--bg);padding:3px;gap:2px;}
 .tb{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;padding:4px 10px;
-  border:none;border-radius:0;cursor:pointer;background:transparent;color:var(--text-soft);transition:all .15s;}
+  border:none;cursor:pointer;background:transparent;color:var(--text-soft);transition:all .15s;}
 .tb.active{background:var(--phase);color:white;}
+.print-btn {
+  font-family:'Oswald',sans-serif; font-weight:500; font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border:1px solid var(--border);
+  background:white; color:var(--text-mid); cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px; transition:all .15s; white-space:nowrap;
+}
+.print-btn:hover { border-color:var(--phase); color:var(--phase); }
 
 /* ── LAYOUT ── */
 .page{max-width:1400px;margin:24px auto;padding:0 20px 40px;}
@@ -46,28 +51,26 @@ body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);-
 /* ── STUDENT CARD ── */
 .sc{background:white;border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
   overflow:hidden;min-height:480px;display:none;flex-direction:column;}
-body.vs.pe .sc-e{display:flex;}
-body.vs.ps .sc-s{display:flex;}
+body.vs .sc{display:flex;}
 
 .sh{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
   padding:13px 24px;border-bottom:1px solid #F5F5F4;}
 .shl{display:flex;align-items:center;gap:9px;}
 .type-badge{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;
-  letter-spacing:.1em;padding:5px 12px;border-radius:0;text-transform:uppercase;}
-.badge-f{color:var(--phase-dark);background:var(--phase-light);border:1px solid var(--phase-mid);}
+  letter-spacing:.1em;padding:5px 12px;text-transform:uppercase;
+  color:var(--phase-dark);background:var(--phase-light);border:1px solid var(--phase-mid);}
 .timer{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;color:var(--text-mid);}
 
 .sb{flex:1;min-height:0;display:flex;flex-direction:column;padding:18px 24px 22px;}
 .s-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;
   color:var(--text);line-height:1.1;margin-bottom:6px;flex-shrink:0;}
 .s-sub{font-size:16px;color:var(--text-mid);margin-bottom:18px;flex-shrink:0;line-height:1.4;}
-.s-sub a{color:var(--phase);}
 
-.intro-step{border:2px dashed var(--phase);border-radius:12px;padding:16px 20px;margin-bottom:14px;}
-.intro-step-time{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;color:var(--text-soft);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
-.intro-step-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;color:var(--text);margin-bottom:6px;}
-.intro-step-body{font-size:14px;color:var(--text-mid);line-height:1.4;}
-.intro-arrow{text-align:center;color:var(--phase);font-size:20px;margin:-4px 0 10px;}
+.band-content{display:none;}
+body.bk2 .c-k2{display:flex;} body.bk2 #bbk2{background:var(--phase);color:white;}
+body.b35 .c-35{display:flex;} body.b35 #bb35{background:var(--phase);color:white;}
+body.b68 .c-68{display:flex;} body.b68 #bb68{background:var(--phase);color:white;}
+body.b912 .c-912{display:flex;} body.b912 #bb912{background:var(--phase);color:white;}
 
 .cr{flex:1;min-height:0;display:flex;align-items:stretch;}
 .cw{flex:1;display:flex;}
@@ -77,20 +80,19 @@ body.vs.ps .sc-s{display:flex;}
   color:var(--phase);font-size:16px;font-weight:700;flex-shrink:0;}
 .cm{display:flex;align-items:center;justify-content:space-between;width:100%;}
 .mode-pill{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;
-  letter-spacing:.05em;padding:3px 9px;border-radius:0;white-space:nowrap;}
-.m-pair{background:var(--m-pair-bg);border:1px solid var(--m-pair-b);color:var(--m-pair-t);}
+  letter-spacing:.05em;padding:3px 9px;white-space:nowrap;
+  background:var(--m-pair-bg);border:1px solid var(--m-pair-b);color:var(--m-pair-t);}
 .c-time{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-soft);}
 .c-icon{font-size:32px;line-height:1;flex-shrink:0;}
 .c-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;color:var(--text);flex-shrink:0;}
 .c-prompt{font-size:14px;color:var(--text-mid);line-height:1.4;}
-.c-starter{font-size:13.5px;color:var(--text-soft);font-style:italic;line-height:1.4;text-align:left;}
-.c-starter li{margin-bottom:4px;list-style:none;}
+.c-starter{font-size:13.5px;color:var(--text-soft);font-style:italic;line-height:1.4;text-align:left;list-style:none;}
+.c-starter li{margin-bottom:4px;}
 
 /* ── TEACHER CARD ── */
 .tc2{background:var(--t-bg);border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.2);
   overflow:hidden;min-height:500px;display:none;flex-direction:column;}
-body.vt.pe .tc-e{display:flex;}
-body.vt.ps .tc-s{display:flex;}
+body.vt .tc2{display:flex;}
 
 .t-hdr{flex:0 0 auto;background:var(--phase);padding:15px 24px;
   display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
@@ -99,36 +101,43 @@ body.vt.ps .tc-s{display:flex;}
   letter-spacing:.18em;color:rgba(255,255,255,.75);text-transform:uppercase;}
 .t-ttl{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;color:white;}
 .t-meta{display:flex;flex-direction:column;align-items:flex-end;gap:2px;
-  background:rgba(0,0,0,.15);border-radius:0;padding:7px 12px;flex-shrink:0;}
+  background:rgba(0,0,0,.15);padding:7px 12px;flex-shrink:0;}
 .t-ml{font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;
   color:rgba(255,255,255,.6);text-transform:uppercase;}
 .t-mv{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:white;}
 
 .t-body{flex:1;min-height:0;padding:14px 24px 18px;display:grid;
-  grid-template-columns:1fr 1fr;grid-template-rows:1fr auto auto;gap:12px;}
+  grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:12px;}
 .t-sec{background:var(--t-s);border-radius:9px;padding:12px 13px;overflow:hidden;}
+.t-sec-full{grid-column:1/-1;}
 .t-sec-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--t-text);margin-bottom:9px;}
 .h-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--t-l);}
 .h-row:last-of-type{border-bottom:none;padding-bottom:0;}
 .h-badge{flex-shrink:0;}
 .h-d{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;color:white;
-  background:var(--phase);padding:3px 8px;border-radius:0;white-space:nowrap;}
+  background:var(--phase);padding:3px 8px;white-space:nowrap;}
 .h-rat{font-size:12px;color:var(--t-soft);line-height:1.35;}
 
 .fac-list{list-style:none;display:flex;flex-direction:column;gap:5px;overflow:auto;}
 .fac-list li{font-size:12px;color:var(--t-soft);line-height:1.4;padding-left:12px;position:relative;}
 .fac-list li::before{content:'›';position:absolute;left:0;color:var(--phase);font-weight:700;}
 
+.phase-use-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.phase-use-card{background:rgba(255,255,255,.04);border-left:3px solid var(--phase);border-radius:0 8px 8px 0;padding:9px 12px;}
+.phase-use-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:white;margin-bottom:4px;}
+.phase-use-text{font-size:12px;color:var(--t-soft);line-height:1.4;}
+
 .why-box{grid-column:1/-1;border-left:3px solid var(--phase);background:rgba(255,255,255,.05);
   border-radius:0 9px 9px 0;padding:10px 13px;}
 .why-l{font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--phase);margin-bottom:3px;}
+  text-transform:uppercase;color:var(--phase-mid);margin-bottom:3px;}
 .why-t{font-size:13px;color:var(--t-text);line-height:1.55;}
 .std-row-t{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;
   padding-top:9px;border-top:1px solid var(--t-l);}
 .std-l{font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--phase);white-space:nowrap;padding-top:1px;}
+  text-transform:uppercase;color:var(--phase-mid);white-space:nowrap;padding-top:1px;}
 .std-v{font-size:12px;color:var(--t-soft);line-height:1.45;}
 
 @media print{
@@ -137,35 +146,28 @@ body.vt.ps .tc-s{display:flex;}
   .sc,.tc2{display:flex !important;box-shadow:none;border-radius:0;}
 }
 
-.print-btn {
-  font-family:'Oswald',sans-serif; font-weight:500; font-size:11px;
-  letter-spacing:.1em; text-transform:uppercase;
-  padding:5px 12px; border:1px solid var(--border);
-  background:white; color:var(--text-mid); cursor:pointer;
-  display:inline-flex; align-items:center; gap:6px; transition:all .15s;
-  border-radius:0; white-space:nowrap;
-}
-.print-btn:hover { border-color:var(--phase); color:var(--phase); }
-.print-btn svg { flex-shrink:0; }
-
 @media (max-width:900px){
   .cr{flex-direction:column;}
   .card-arrow{transform:rotate(90deg);flex:0 0 auto;padding:4px 0;}
   .t-body{grid-template-columns:1fr;}
+  .phase-use-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
-<body class="vs pe">
+<body class="vs b68">
 <div class="topbar">
   <div class="tl">
-    <a class="back-btn" id="backBtn" href="../engineer.html">&#8592; Engineer</a>
-    <span class="phase-pill" id="phasePill">ENGINEER</span>
+    <a class="back-btn" href="../engineer.html">&#8592; Engineer</a>
+    <a class="back-btn" href="../share.html">&#8592; Share</a>
+    <span class="phase-pill">CROSS-PHASE</span>
     <span class="deck-label">T.A.G. Feedback</span>
   </div>
   <div class="ctrl-area">
     <div class="tg">
-      <button class="tb active" id="bpe" onclick="setPhase('e')">Engineer</button>
-      <button class="tb"        id="bps" onclick="setPhase('s')">Share</button>
+      <button class="tb" id="bbk2" onclick="setBand('k2')">K&ndash;2</button>
+      <button class="tb" id="bb35" onclick="setBand('35')">3&ndash;5</button>
+      <button class="tb active" id="bb68" onclick="setBand('68')">6&ndash;8</button>
+      <button class="tb" id="bb912" onclick="setBand('912')">9&ndash;12</button>
     </div>
     <div class="tg">
       <button class="tb active" id="bvs" onclick="setView('s')">Student</button>
@@ -179,79 +181,56 @@ body.vt.ps .tc-s{display:flex;}
 </div>
 <div class="page">
 
-  <!-- ENGINEER — Student -->
-  <div class="sc sc-e">
+  <!-- STUDENT -->
+  <div class="sc">
     <div class="sh">
       <div class="shl">
-        <span class="phase-pill">ENGINEER</span>
-        <span class="type-badge badge-f">Feedback Protocol</span>
+        <span class="phase-pill">CROSS-PHASE</span>
+        <span class="type-badge">Feedback Protocol</span>
       </div>
-      <div class="timer">⏱ 15 min</div>
+      <div class="timer">⏱ ~10–15 min</div>
     </div>
     <div class="sb">
       <div class="s-title">T.A.G. Feedback</div>
-      <div class="s-sub">Share your draft plan with another team and/or a professional mentor, then get feedback.</div>
-      <div class="cr">
-        <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
-          <div class="c-icon">🩷</div>
-          <div class="c-label">Tell Something That's Working</div>
-          <ul class="c-starter">
-            <li>One strength of this design is…</li>
-            <li>This part clearly meets the criteria because…</li>
-            <li>I can see that you considered ___ when you…</li>
-          </ul>
-        </div></div>
-        <div class="card-arrow">›</div>
-        <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
-          <div class="c-icon">❓</div>
-          <div class="c-label">Ask a Question</div>
-          <ul class="c-starter">
-            <li>Is this realistic given the materials?</li>
-            <li>How will this function under the stated constraints?</li>
-            <li>What might fail first?</li>
-            <li>How will this work if…?</li>
-            <li>What happens if…?</li>
-            <li>Have you considered…?</li>
-          </ul>
-        </div></div>
-        <div class="card-arrow">›</div>
-        <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
-          <div class="c-icon">💡</div>
-          <div class="c-label">Give a Suggestion</div>
-          <div class="c-prompt" style="margin-bottom:6px;">Offer a concrete improvement to strengthen <strong>feasibility, usability, safety, durability,</strong> or <strong>alignment</strong> with the criteria.</div>
-          <ul class="c-starter">
-            <li>You might improve this by…</li>
-            <li>Consider adjusting…</li>
-            <li>It may be stronger if…</li>
-          </ul>
-        </div></div>
-      </div>
-    </div>
-  </div>
+      <div class="s-sub">Trade work with a partner or team. Use these three moves to give feedback that's specific and useful.</div>
 
-  <!-- SHARE — Student -->
-  <div class="sc sc-s">
-    <div class="sh">
-      <div class="shl">
-        <span class="phase-pill">SHARE</span>
-        <span class="type-badge badge-f">Feedback Protocol</span>
-      </div>
-      <div class="timer">⏱ 10–12 min/partner</div>
-    </div>
-    <div class="sb">
-      <div class="s-title">T.A.G. Feedback</div>
-      <div class="intro-step">
-        <div class="intro-step-time">⏳ 5 min</div>
-        <div class="intro-step-title">Rehearse Your Presentation With a Partner</div>
-        <div class="intro-step-body">Reviewers: listen for evidence of the items on the <a href="share-feedback-checklist.html">Share Feedback Checklist</a>.</div>
-      </div>
-      <div class="intro-arrow">⌄</div>
-      <div class="cr">
+      <!-- K-2 -->
+      <div class="cr band-content c-k2">
         <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">🩷</div>
+          <div class="c-label">Tell</div>
+          <ul class="c-starter">
+            <li>One thing I liked was…</li>
+            <li>You worked hard on…</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">❓</div>
+          <div class="c-label">Ask</div>
+          <ul class="c-starter">
+            <li>What did you make or figure out?</li>
+            <li>Who is this for?</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="c-icon">💡</div>
+          <div class="c-label">Give</div>
+          <ul class="c-starter">
+            <li>You could try…</li>
+            <li>Maybe add…</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- 3-5 -->
+      <div class="cr band-content c-35">
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
           <div class="c-icon">🩷</div>
           <div class="c-label">Tell Something That's Working</div>
           <ul class="c-starter">
@@ -262,7 +241,7 @@ body.vt.ps .tc-s{display:flex;}
         </div></div>
         <div class="card-arrow">›</div>
         <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
           <div class="c-icon">❓</div>
           <div class="c-label">Ask a Question</div>
           <ul class="c-starter">
@@ -273,7 +252,7 @@ body.vt.ps .tc-s{display:flex;}
         </div></div>
         <div class="card-arrow">›</div>
         <div class="cw"><div class="pc">
-          <div class="cm"><span class="mode-pill m-pair">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 2 min</span></div>
           <div class="c-icon">💡</div>
           <div class="c-label">Give a Suggestion</div>
           <ul class="c-starter">
@@ -283,78 +262,139 @@ body.vt.ps .tc-s{display:flex;}
           </ul>
         </div></div>
       </div>
+
+      <!-- 6-8 -->
+      <div class="cr band-content c-68">
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">🩷</div>
+          <div class="c-label">Tell Something That's Working</div>
+          <ul class="c-starter">
+            <li>One strength of this work is…</li>
+            <li>This part clearly meets the criteria because…</li>
+            <li>I can see that you considered ___ when you…</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">❓</div>
+          <div class="c-label">Ask a Question</div>
+          <ul class="c-starter">
+            <li>Is this realistic given the evidence or materials?</li>
+            <li>How will this hold up under questions or constraints?</li>
+            <li>What might not work, or what happens if…?</li>
+            <li>Have you considered…?</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">💡</div>
+          <div class="c-label">Give a Suggestion</div>
+          <div class="c-prompt" style="margin-bottom:6px;">Offer a concrete improvement to strengthen clarity, evidence, feasibility, or alignment with the criteria.</div>
+          <ul class="c-starter">
+            <li>You might improve this by…</li>
+            <li>Consider adjusting…</li>
+            <li>It may be stronger if…</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- 9-12 -->
+      <div class="cr band-content c-912">
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">🩷</div>
+          <div class="c-label">Tell Something That's Working</div>
+          <ul class="c-starter">
+            <li>One strength of your reasoning or design is…</li>
+            <li>You effectively grounded ___ in evidence when you…</li>
+            <li>This part holds up because…</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">❓</div>
+          <div class="c-label">Ask a Question</div>
+          <ul class="c-starter">
+            <li>What's the strongest counterargument or failure case here, and how would you respond?</li>
+            <li>What assumption is this resting on?</li>
+            <li>How does this hold up against a real-world constraint?</li>
+          </ul>
+        </div></div>
+        <div class="card-arrow">›</div>
+        <div class="cw"><div class="pc">
+          <div class="cm"><span class="mode-pill">👥 Partner</span><span class="c-time">⏳ 5 min</span></div>
+          <div class="c-icon">💡</div>
+          <div class="c-label">Give a Suggestion</div>
+          <div class="c-prompt" style="margin-bottom:6px;">Offer a specific improvement that would strengthen the rigor, feasibility, or persuasiveness of this work.</div>
+          <ul class="c-starter">
+            <li>Consider addressing…</li>
+            <li>This would be stronger if you accounted for…</li>
+            <li>It may be stronger if…</li>
+          </ul>
+        </div></div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ENGINEER — Teacher -->
-  <div class="tc2 tc-e">
+  <!-- TEACHER -->
+  <div class="tc2">
     <div class="t-hdr">
       <div class="t-hdr-l">
-        <div class="t-ey">Teacher Background — Engineer</div>
+        <div class="t-ey">Teacher Background — Cross-Phase</div>
         <div class="t-ttl">T.A.G. Feedback</div>
       </div>
       <div class="t-meta">
-        <div class="t-ml">When to use</div><div class="t-mv">After a draft design or plan — before building or finalizing</div>
+        <div class="t-ml">When to use</div><div class="t-mv">Any point where students exchange work for peer feedback</div>
       </div>
     </div>
     <div class="t-body">
+      <div class="t-sec t-sec-full">
+        <div class="t-sec-title">Using This Protocol Across Phases</div>
+        <div class="phase-use-grid">
+          <div class="phase-use-card">
+            <div class="phase-use-label">Engineer</div>
+            <div class="phase-use-text">Partners or a mentor review a draft design, plan, or prototype. Point Ask and Give toward the criteria and constraints: feasibility, usability, safety, durability, alignment.</div>
+          </div>
+          <div class="phase-use-card">
+            <div class="phase-use-label">Share</div>
+            <div class="phase-use-text">Partners review a rehearsed presentation before the real audience sees it. Point Ask and Give toward clarity, evidence, and audience-readiness.</div>
+          </div>
+          <div class="phase-use-card">
+            <div class="phase-use-label">Examine</div>
+            <div class="phase-use-text">Partners review a claim or root-cause analysis before it's finalized. Point Ask toward whether the evidence actually supports the claim.</div>
+          </div>
+          <div class="phase-use-card">
+            <div class="phase-use-label">Do</div>
+            <div class="phase-use-text">Partners review a draft write-up of evidence or impact. Point Give toward naming limits, tradeoffs, or what the data doesn't show.</div>
+          </div>
+        </div>
+      </div>
       <div class="t-sec">
         <div class="t-sec-title">Standards Alignment</div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">MS-ETS1-2</div></div><div><div class="h-rat">Evaluating competing design solutions — the T.A.G. structure gives students a concrete process for critiquing a peer team's design against shared criteria.</div></div></div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">MS-ETS1-3</div></div><div><div class="h-rat">Analyzing data to improve a design — the Give a Suggestion step pushes reviewers toward specific, testable improvements rather than vague praise.</div></div></div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.1</div></div><div><div class="h-rat">Collaborative discussion — students engage in structured, evidence-based dialogue about a peer's design.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.1</div></div><div><div class="h-rat">Collaborative discussion — students engage in structured, evidence-based dialogue about a peer's work.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">MS-ETS1-2</div></div><div><div class="h-rat">Evaluating competing design solutions — applies when used in Engineer to critique a design against shared criteria.</div></div></div>
+        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.4</div></div><div><div class="h-rat">Presenting claims and findings — applies when used in Share to evaluate clarity and evidence in a presentation.</div></div></div>
       </div>
       <div class="t-sec">
         <div class="t-sec-title">Facilitation Notes</div>
         <ul class="fac-list">
-          <li>Post the five criteria categories (feasibility, usability, safety, durability, alignment) visibly so Give a Suggestion stays concrete instead of generic.</li>
           <li>Model one full round yourself first — reviewers often default to only praise or only critique without a demonstration.</li>
-          <li>Circulate during Ask a Question; this is where teams most often surface a real flaw in their plan before building.</li>
-          <li>Set a visible timer per round — 5 minutes goes fast, and Give a Suggestion is the round most likely to get rushed.</li>
-          <li>If a professional mentor is present, brief them on the protocol beforehand so their feedback follows the same T.A.G. structure as peer feedback.</li>
+          <li>Post the three moves (Tell, Ask, Give) visibly, and swap in the phase-specific focus from the box above before students start.</li>
+          <li>Set a visible timer per round so Give a Suggestion doesn't get rushed — it's the round most likely to run short.</li>
+          <li>Circulate during Ask a Question; the questions partners raise here often predict what a real audience, mentor, or test will ask.</li>
+          <li>Have students name one piece of feedback they'll act on before moving forward — the protocol should change something, not just be a formality.</li>
         </ul>
       </div>
       <div class="why-box">
         <div class="why-l">Why this, why now</div>
-        <div class="why-t">Ownership: Teams hear specific, criteria-based feedback on their own design before committing materials and time to building it. Catching a feasibility problem here is far cheaper than catching it mid-build.</div>
+        <div class="why-t">Ownership: Students get specific, criteria-based feedback on their own work from a peer before it counts — whether that's before building, before presenting, or before finalizing a claim. Catching a problem here is cheaper than catching it later.</div>
       </div>
-      <div class="std-row-t"><div class="std-l">Standards</div><div class="std-v">MS-ETS1-2 · MS-ETS1-3 · CCSS SL.1</div></div>
-    </div>
-  </div>
-
-  <!-- SHARE — Teacher -->
-  <div class="tc2 tc-s">
-    <div class="t-hdr">
-      <div class="t-hdr-l">
-        <div class="t-ey">Teacher Background — Share</div>
-        <div class="t-ttl">T.A.G. Feedback</div>
-      </div>
-      <div class="t-meta">
-        <div class="t-ml">When to use</div><div class="t-mv">During rehearsal — before the final presentation</div>
-      </div>
-    </div>
-    <div class="t-body">
-      <div class="t-sec">
-        <div class="t-sec-title">Standards Alignment</div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.1</div></div><div><div class="h-rat">Collaborative discussion — partners engage in structured, evidence-based dialogue about a rehearsed presentation.</div></div></div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">CCSS SL.4</div></div><div><div class="h-rat">Presenting claims and findings — the protocol gives students language to evaluate whether a partner's presentation is clear and well-supported.</div></div></div>
-        <div class="h-row"><div class="h-badge"><div class="h-d">NGSS SEP 7</div></div><div><div class="h-rat">Engaging in argument from evidence — the Ask a Question round pushes presenters to defend their evidence and reasoning aloud before the real audience does.</div></div></div>
-      </div>
-      <div class="t-sec">
-        <div class="t-sec-title">Facilitation Notes</div>
-        <ul class="fac-list">
-          <li>Pair students who haven't rehearsed together yet — a partner who's heard the presentation before will give thinner feedback.</li>
-          <li>Reference the Share Feedback Checklist explicitly before starting, so reviewers know what to listen for during the 5-minute rehearsal.</li>
-          <li>Keep the three feedback rounds tight — 2 minutes each. The value is in the immediate, specific reaction, not a long discussion.</li>
-          <li>Circulate and listen in during Ask a Question; the questions partners raise here often predict what a real audience will ask.</li>
-          <li>Have students jot down one piece of feedback to act on before their final presentation — the protocol should change something, not just be a rehearsal formality.</li>
-        </ul>
-      </div>
-      <div class="why-box">
-        <div class="why-l">Why this, why now</div>
-        <div class="why-t">Ownership: Students get low-stakes, specific feedback on their presentation from a peer before facing the real audience, so revisions happen before it counts.</div>
-      </div>
-      <div class="std-row-t"><div class="std-l">Standards</div><div class="std-v">CCSS SL.1 · CCSS SL.4 · NGSS SEP 7</div></div>
+      <div class="std-row-t"><div class="std-l">Standards</div><div class="std-v">CCSS SL.1 · CCSS SL.4 · MS-ETS1-2 (when used in Engineer)</div></div>
     </div>
   </div>
 
@@ -366,15 +406,10 @@ function setView(v){
   document.getElementById('bvs').classList.toggle('active',v==='s');
   document.getElementById('bvt').classList.toggle('active',v==='t');
 }
-function setPhase(p){
-  document.body.classList.toggle('pe',p==='e');
-  document.body.classList.toggle('ps',p==='s');
-  document.getElementById('bpe').classList.toggle('active',p==='e');
-  document.getElementById('bps').classList.toggle('active',p==='s');
-  const back = document.getElementById('backBtn');
-  const pill = document.getElementById('phasePill');
-  if(p==='e'){ back.href='../engineer.html'; back.textContent='← Engineer'; pill.textContent='ENGINEER'; }
-  else { back.href='../share.html'; back.textContent='← Share'; pill.textContent='SHARE'; }
+function setBand(b){
+  document.body.className = document.body.className.replace(/\bb(k2|35|68|912)\b/g,'').trim() + ' b' + b;
+  ['bbk2','bb35','bb68','bb912'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('bb'+b).classList.add('active');
 }
 </script>
 </body>
