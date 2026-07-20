@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Guidance on assessing scholar learning across DEEDS.">
+<meta name="description" content="Guidance on assessing student learning across DEEDS.">
 <title>Assessment: DEEDS</title>
 <link rel="stylesheet" href="revx.css">
 <style>
@@ -24,6 +24,42 @@
 .as-framing {
   font-size: 15px; color: var(--gray-700); line-height: 1.7; max-width: 75ch; margin-bottom: 12px;
 }
+
+.as-section { margin-top: 56px; }
+.as-section:first-of-type { margin-top: 32px; }
+.as-section h2 { color: var(--gray-900); font-size: clamp(22px, 3vw, 30px); margin-bottom: 14px; }
+.as-section > p { font-size: 15px; color: var(--gray-700); line-height: 1.7; max-width: 75ch; margin-bottom: 16px; }
+
+.as-evidence-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.as-evidence-list li {
+  background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px;
+  padding: 10px 16px; font-size: 14px; color: var(--gray-900); font-weight: 400;
+}
+
+.as-steps { display: flex; flex-direction: column; gap: 14px; }
+.as-step { display: flex; gap: 16px; border: 1px solid var(--gray-200); border-radius: 10px; padding: 16px 18px; background: #fff; }
+.as-step-num {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--blue-dark); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px;
+}
+.as-step-body h4 { font-size: 15px; color: var(--gray-900); margin-bottom: 4px; }
+.as-step-body p { font-size: 14px; color: var(--gray-700); line-height: 1.6; margin: 0; }
+
+.as-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.as-table th { text-align: left; font-family: var(--font-display); font-weight: 500; font-size: 13px; letter-spacing: .02em; color: var(--gray-900); border-bottom: 2px solid var(--gray-200); padding: 10px 12px; }
+.as-table td { text-align: left; color: var(--gray-700); line-height: 1.6; border-bottom: 1px solid var(--gray-200); padding: 12px; vertical-align: top; }
+.as-table td:first-child { font-weight: 600; color: var(--gray-900); white-space: nowrap; }
+.as-table-wrap { overflow-x: auto; }
+
+.as-tools { display: flex; flex-direction: column; gap: 16px; }
+.as-tool-card { border: 1px solid var(--gray-200); border-radius: 10px; padding: 18px 20px; background: #fff; }
+.as-tool-card h4 { font-size: 15px; color: var(--gray-900); margin-bottom: 6px; }
+.as-tool-card p { font-size: 14px; color: var(--gray-700); line-height: 1.6; margin: 0 0 10px; }
+.as-tool-card ol { margin: 0; padding-left: 18px; }
+.as-tool-card ol li { font-size: 14px; color: var(--gray-700); line-height: 1.6; margin-bottom: 4px; }
+
+.as-closing-list { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; padding: 0; margin: 12px 0 0; }
+.as-closing-list li { font-size: 14px; color: var(--gray-900); background: var(--gray-100); border-radius: 6px; padding: 6px 12px; }
 </style>
 </head>
 <body>
@@ -59,14 +95,160 @@
 <div class="hero-banner-as">
   <div class="hero-content">
     <h1>Assessment</h1>
-    <p>Guidance on assessing scholar learning across DEEDS.</p>
+    <p>Guidance on assessing student learning across DEEDS.</p>
   </div>
 </div>
 
 <main id="main-content">
 <div class="as-outer">
 
-  <p class="as-framing">This page is being rebuilt. Check back soon for assessment guidance.</p>
+  <p class="as-framing">Assessment shows you what students understand, what they can do, and what they need next.</p>
+  <p class="as-framing">Collect evidence of three things throughout a unit:</p>
+
+  <ul class="as-evidence-list">
+    <li>standards mastery</li>
+    <li>application of learning</li>
+    <li>growth across the DEEDS process</li>
+  </ul>
+
+  <section class="as-section">
+    <h2>Plan Assessment for Your Unit</h2>
+    <p>Think through the following assessment components as you plan the unit.</p>
+
+    <div class="as-steps">
+      <div class="as-step">
+        <div class="as-step-num">1</div>
+        <div class="as-step-body">
+          <h4>Identify priority standards</h4>
+          <p>Choose the knowledge and skills every student must master.</p>
+        </div>
+      </div>
+      <div class="as-step">
+        <div class="as-step-num">2</div>
+        <div class="as-step-body">
+          <h4>Define individual evidence</h4>
+          <p>Decide how each student will independently demonstrate mastery. Team products show collaboration, but they don't always show what each student understands on their own.</p>
+        </div>
+      </div>
+      <div class="as-step">
+        <div class="as-step-num">3</div>
+        <div class="as-step-body">
+          <h4>Plan the final assessment and rubric</h4>
+          <p>Decide how you'll assess the final solution, individual standards mastery, and student reflection on their learning. Design your standards-based rubric now, before you plan the phases &mdash; it defines what quality looks like from the start and becomes the tool students use throughout the project to self-reflect, guide their revisions, and give peer feedback.</p>
+        </div>
+      </div>
+      <div class="as-step">
+        <div class="as-step-num">4</div>
+        <div class="as-step-body">
+          <h4>Plan phase deliverables</h4>
+          <p>Identify the major evidence students will produce in each phase.</p>
+        </div>
+      </div>
+      <div class="as-step">
+        <div class="as-step-num">5</div>
+        <div class="as-step-body">
+          <h4>Plan checks for understanding</h4>
+          <p>Decide when you'll pause to assess learning, catch misconceptions, and adjust instruction.</p>
+        </div>
+      </div>
+      <div class="as-step">
+        <div class="as-step-num">6</div>
+        <div class="as-step-body">
+          <h4>Build in feedback and revision</h4>
+          <p>Plan when students get feedback and how they'll use it to improve their work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="as-section">
+    <h2>Assessment Across the Five Phases</h2>
+    <div class="as-table-wrap">
+      <table class="as-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>What to assess</th>
+            <th>What to do with the evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Discover</td>
+            <td>Can students define the challenge, explain who it affects, and show why it matters?</td>
+            <td>Use gaps and questions to plan Examine.</td>
+          </tr>
+          <tr>
+            <td>Examine</td>
+            <td>Do students deeply understand the content and skills at the level of rigor required by the standards? Can they analyze root causes and defend a solution direction?</td>
+            <td>Reteach, give practice, adjust groups, or move forward.</td>
+          </tr>
+          <tr>
+            <td>Engineer</td>
+            <td>Can students design, build, justify, test, and revise a solution?</td>
+            <td>Give feedback on reasoning, functionality, craftsmanship, and readiness.</td>
+          </tr>
+          <tr>
+            <td>Do</td>
+            <td>Can students implement the solution, analyze evidence, and evaluate its effectiveness?</td>
+            <td>Help students sharpen their conclusions and identify responsible next steps.</td>
+          </tr>
+          <tr>
+            <td>Share</td>
+            <td>Can students explain their learning, use evidence, respond to questions, and reflect on growth and impact?</td>
+            <td>Assess learning and find patterns to inform the next unit.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="as-section">
+    <h2>Core Assessment Tools</h2>
+
+    <div class="as-tools">
+      <div class="as-tool-card">
+        <h4>Standards-Based Rubric</h4>
+        <p>Design one rubric per project, tied to the priority standards and the quality of the final solution. Share it with students at the start of the project so it sets the standard for quality work from day one. Students use the same rubric throughout the project to self-reflect on their progress, guide their own revisions, and give each other peer feedback.</p>
+      </div>
+
+      <div class="as-tool-card">
+        <h4>Standards Mastery Tracker</h4>
+        <p>Track what each student can independently demonstrate on each priority standard. Log every assessment with a date, so reassessing a standard adds new evidence instead of overwriting the record &mdash; and see current status by student or by standard at a glance. Keep standards mastery separate from the quality of the team product.</p>
+      </div>
+
+      <div class="as-tool-card">
+        <h4>Checks for Understanding</h4>
+        <p>Use short, individual assessments during Examine and whenever students learn important content or skills: exit tickets, short quizzes, written responses, worked problems, diagrams, oral explanations, brief application tasks. Use the results to make an immediate instructional decision.</p>
+      </div>
+
+      <div class="as-tool-card">
+        <h4>End-of-Phase Performance Tasks</h4>
+        <p>Use one performance task at the end of each phase to decide if students are ready to move forward. Each task needs clear directions, required evidence, success criteria, and an individual reflection.</p>
+      </div>
+
+      <div class="as-tool-card">
+        <h4>Feedback and Revision Log</h4>
+        <p>Use one shared log across the unit. Students record the feedback they received, who gave it, what they changed, why they changed it, and how the revision improved their work.</p>
+      </div>
+
+      <div class="as-tool-card">
+        <h4>Summative Assessment (Share)</h4>
+        <p>At the end of the unit, assess three things separately:</p>
+        <ol>
+          <li><strong>Final solution</strong> &mdash; Is it thoughtful, evidence-based, and responsive to the challenge?</li>
+          <li><strong>Individual mastery</strong> &mdash; Can each student independently demonstrate the priority standards?</li>
+          <li><strong>Learning and growth</strong> &mdash; Can students explain their reasoning, development, and impact?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="as-section">
+    <h2>Use Evidence to Decide What Happens Next</h2>
+    <p>Assessment should drive action. Use the evidence to reteach a concept, add practice, adjust groups or scaffolds, give feedback, require revision, offer extension, reassess, or improve the next unit.</p>
+    <p>The goal isn't more grades. It's making learning visible and responding to what students need.</p>
+  </section>
 
 </div>
 </main>
