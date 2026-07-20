@@ -48,15 +48,15 @@
 .as-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .as-table th { text-align: left; font-family: var(--font-display); font-weight: 500; font-size: 13px; letter-spacing: .02em; color: var(--gray-900); border-bottom: 2px solid var(--gray-200); padding: 10px 12px; }
 .as-table td { text-align: left; color: var(--gray-700); line-height: 1.6; border-bottom: 1px solid var(--gray-200); padding: 12px; vertical-align: top; }
-.as-table td:first-child { font-weight: 600; color: var(--gray-900); white-space: nowrap; }
+.as-table td:first-child { font-weight: 600; color: var(--gray-900); width: 18%; }
 .as-table-wrap { overflow-x: auto; }
 
-.as-tools { display: flex; flex-direction: column; gap: 16px; }
-.as-tool-card { border: 1px solid var(--gray-200); border-radius: 10px; padding: 18px 20px; background: #fff; }
-.as-tool-card h4 { font-size: 15px; color: var(--gray-900); margin-bottom: 6px; }
-.as-tool-card p { font-size: 14px; color: var(--gray-700); line-height: 1.6; margin: 0 0 10px; }
-.as-tool-card ol { margin: 0; padding-left: 18px; }
-.as-tool-card ol li { font-size: 14px; color: var(--gray-700); line-height: 1.6; margin-bottom: 4px; }
+.as-continuum-links { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; padding: 0; margin: 10px 0 0; }
+.as-continuum-links li a {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600;
+  color: var(--gray-900); text-decoration: none; border-bottom: 1px solid var(--gray-200); padding-bottom: 1px;
+}
+.as-continuum-links li a:hover { border-bottom-color: var(--gray-700); }
 
 .as-closing-list { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; padding: 0; margin: 12px 0 0; }
 .as-closing-list li { font-size: 14px; color: var(--gray-900); background: var(--gray-100); border-radius: 6px; padding: 6px 12px; }
@@ -148,7 +148,7 @@
         <div class="as-step-num">5</div>
         <div class="as-step-body">
           <h4>Plan checks for understanding</h4>
-          <p>Decide when you'll pause to assess learning, catch misconceptions, and adjust instruction.</p>
+          <p>Decide when you'll pause to assess learning, catch misconceptions, and adjust instruction. Use what you find to reteach a concept, add practice, adjust groups or scaffolds, give feedback, require revision, offer extension, or reassess &mdash; the goal isn't more grades, it's making learning visible and responding to what students need.</p>
         </div>
       </div>
       <div class="as-step">
@@ -162,92 +162,55 @@
   </section>
 
   <section class="as-section">
-    <h2>Assessment Across the Five Phases</h2>
+    <h2>Core Assessment Tools</h2>
+
     <div class="as-table-wrap">
       <table class="as-table">
         <thead>
           <tr>
-            <th>Phase</th>
+            <th>Tool</th>
             <th>What to assess</th>
-            <th>What to do with the evidence</th>
+            <th>How to assess it</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Discover</td>
-            <td>Can students define the challenge, explain who it affects, and show why it matters?</td>
-            <td>Use gaps and questions to plan Examine.</td>
+            <td>Standards-Based Rubric</td>
+            <td>Quality of the final solution against the priority standards.</td>
+            <td>Share it with students at the start of the project. Have them use the same rubric throughout to self-reflect, guide revisions, and give peer feedback.</td>
           </tr>
           <tr>
-            <td>Examine</td>
-            <td>Do students deeply understand the content and skills at the level of rigor required by the standards? Can they analyze root causes and defend a solution direction?</td>
-            <td>Reteach, give practice, adjust groups, or move forward.</td>
+            <td>Standards Mastery Tracker</td>
+            <td>Each student's independent mastery of every priority standard.</td>
+            <td>Log every assessment with a date. Reassessing a standard adds new evidence instead of overwriting the record &mdash; see current status by student or by standard.</td>
           </tr>
           <tr>
-            <td>Engineer</td>
-            <td>Can students design, build, justify, test, and revise a solution?</td>
-            <td>Give feedback on reasoning, functionality, craftsmanship, and readiness.</td>
+            <td>Checks for Understanding</td>
+            <td>In-the-moment understanding of content and skills, especially during Examine.</td>
+            <td>Use exit tickets, short quizzes, written responses, worked problems, diagrams, oral explanations, or brief application tasks. Use results to make an immediate instructional decision.</td>
           </tr>
           <tr>
-            <td>Do</td>
-            <td>Can students implement the solution, analyze evidence, and evaluate its effectiveness?</td>
-            <td>Help students sharpen their conclusions and identify responsible next steps.</td>
+            <td>End-of-Phase Performance Tasks</td>
+            <td>Whether students are ready to move to the next phase.</td>
+            <td>Give one task per phase with clear directions, required evidence, success criteria, and an individual reflection.</td>
           </tr>
           <tr>
-            <td>Share</td>
-            <td>Can students explain their learning, use evidence, respond to questions, and reflect on growth and impact?</td>
-            <td>Assess learning and find patterns to inform the next unit.</td>
+            <td>Developmental Continuums</td>
+            <td>Growth in reasoning and skill across multiple DEEDS units &mdash; not a single project. Not a grade-level rubric.</td>
+            <td>
+              Name current strengths, give specific feedback, and make next steps visible.
+              <ul class="as-continuum-links">
+                <li><a href="https://docs.google.com/document/d/1HDu2JdjjkYurgCNh-pFLkXuHD3UgZpjZyne8GEdgg3w/edit?tab=t.0" target="_blank" rel="noopener"><span class="phase-dot" style="background:var(--discover)"></span>Discover</a></li>
+                <li><a href="https://docs.google.com/document/d/1PC-jQE7CiZqC0H6BEHJYXVXa5OCIupbnWshVUuj2VzE/edit?tab=t.0" target="_blank" rel="noopener"><span class="phase-dot" style="background:var(--examine)"></span>Examine</a></li>
+                <li><a href="https://docs.google.com/document/d/1PSQoxV9i-ECNm7EB7Ox3nFF0dfpPYq3lZ1V7aKfLbd0/edit?tab=t.0" target="_blank" rel="noopener"><span class="phase-dot" style="background:var(--engineer)"></span>Engineer</a></li>
+                <li><a href="https://docs.google.com/document/d/1nYEjekpbynen5u4p3EpuEuUVpWvzOtsthPR1_vNw6j0/edit?tab=t.0" target="_blank" rel="noopener"><span class="phase-dot" style="background:var(--do)"></span>Do</a></li>
+                <li><a href="https://docs.google.com/document/d/1u9Sk10mW-NDB6mvV_GlUly4yOEUP0CdaQyGLVXrHq0o/edit?tab=t.0" target="_blank" rel="noopener"><span class="phase-dot" style="background:var(--share)"></span>Share</a></li>
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </section>
-
-  <section class="as-section">
-    <h2>Core Assessment Tools</h2>
-
-    <div class="as-tools">
-      <div class="as-tool-card">
-        <h4>Standards-Based Rubric</h4>
-        <p>Design one rubric per project, tied to the priority standards and the quality of the final solution. Share it with students at the start of the project so it sets the standard for quality work from day one. Students use the same rubric throughout the project to self-reflect on their progress, guide their own revisions, and give each other peer feedback.</p>
-      </div>
-
-      <div class="as-tool-card">
-        <h4>Standards Mastery Tracker</h4>
-        <p>Track what each student can independently demonstrate on each priority standard. Log every assessment with a date, so reassessing a standard adds new evidence instead of overwriting the record &mdash; and see current status by student or by standard at a glance. Keep standards mastery separate from the quality of the team product.</p>
-      </div>
-
-      <div class="as-tool-card">
-        <h4>Checks for Understanding</h4>
-        <p>Use short, individual assessments during Examine and whenever students learn important content or skills: exit tickets, short quizzes, written responses, worked problems, diagrams, oral explanations, brief application tasks. Use the results to make an immediate instructional decision.</p>
-      </div>
-
-      <div class="as-tool-card">
-        <h4>End-of-Phase Performance Tasks</h4>
-        <p>Use one performance task at the end of each phase to decide if students are ready to move forward. Each task needs clear directions, required evidence, success criteria, and an individual reflection.</p>
-      </div>
-
-      <div class="as-tool-card">
-        <h4>Feedback and Revision Log</h4>
-        <p>Use one shared log across the unit. Students record the feedback they received, who gave it, what they changed, why they changed it, and how the revision improved their work.</p>
-      </div>
-
-      <div class="as-tool-card">
-        <h4>Summative Assessment (Share)</h4>
-        <p>At the end of the unit, assess three things separately:</p>
-        <ol>
-          <li><strong>Final solution</strong> &mdash; Is it thoughtful, evidence-based, and responsive to the challenge?</li>
-          <li><strong>Individual mastery</strong> &mdash; Can each student independently demonstrate the priority standards?</li>
-          <li><strong>Learning and growth</strong> &mdash; Can students explain their reasoning, development, and impact?</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="as-section">
-    <h2>Use Evidence to Decide What Happens Next</h2>
-    <p>Assessment should drive action. Use the evidence to reteach a concept, add practice, adjust groups or scaffolds, give feedback, require revision, offer extension, reassess, or improve the next unit.</p>
-    <p>The goal isn't more grades. It's making learning visible and responding to what students need.</p>
   </section>
 
 </div>
