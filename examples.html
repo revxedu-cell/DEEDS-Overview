@@ -26,7 +26,7 @@
   border: 0.5px solid var(--gray-200); padding: 10px 16px; margin-bottom: 32px; max-width: 70ch;
 }
 
-.example-card { border: 0.5px solid var(--gray-200); margin-bottom: 40px; background: #fff; }
+.example-card { border: 0.5px solid var(--gray-200); margin-bottom: 40px; background: #fff; scroll-margin-top: 96px; }
 .example-head { padding: 20px 24px 16px; border-bottom: 0.5px solid var(--gray-200); }
 .example-title { font-family: var(--font-display); font-size: clamp(19px, 2.4vw, 25px); color: var(--gray-900); margin-bottom: 4px; }
 .example-sub { font-size: 12.5px; color: var(--gray-700); }
@@ -110,38 +110,77 @@
 <main id="main-content">
 <div class="ex-outer">
 
+  <nav aria-label="Jump to an example" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
+    <a href="#peaceful-paws" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Peaceful Paws</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 2</span>
+    </a>
+    <a href="#safer-streets" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Safer Intersections in the Bronx</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 4</span>
+    </a>
+    <a href="#future-of-fashion" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">The Future of Fashion</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 6</span>
+    </a>
+    <a href="#mental-health" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Mental Health for Everyone</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 11</span>
+    </a>
+    <a href="#comfort-kits" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Comfort Kits</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade K&ndash;2</span>
+    </a>
+    <a href="#power-up" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Power Up</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 4</span>
+    </a>
+    <a href="#chill-out" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Chill Out</span>
+      <span style="font-size:11px;color:var(--gray-700);">Middle School</span>
+    </a>
+    <a href="#crowd-power" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Crowd Power</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 9&ndash;10</span>
+    </a>
+    <a href="#nobodys-listening" style="display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:10px 16px;text-decoration:none;flex:1;min-width:180px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-900);">Nobody's Listening</span>
+      <span style="font-size:11px;color:var(--gray-700);">Grade 6</span>
+    </a>
+  </nav>
+
   <!-- Peaceful Paws -->
-  <div class="example-card">
-    <img class="example-hero" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A shelter dog" loading="lazy">
+  <div class="example-card" id="peaceful-paws">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1604606363386-dd3f2357ad87?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A dog in foster care" loading="lazy">
     <div class="example-head">
       <div class="example-title">Peaceful Paws</div>
       <div class="example-sub">Second Grade DEEDS Unit · Sessions 1–25 · Muddy Paws Rescue Partnership</div>
     </div>
     <div class="example-question-row">
       <span class="example-question-label">Challenge Question</span>
-      <span class="example-question-text">How can we use materials to create toys that help pets feel calm while they wait to be adopted?</span>
+      <span class="example-question-text">How can we design a safe and calming toy that helps dogs in foster care feel more comfortable while they wait to be adopted?</span>
       <span class="example-standards">2-PS1-1 · 2-PS1-2 · 2-PS1-3 · K-2-ETS1-1 · K-2-ETS1-2 · K-2-ETS1-3</span>
     </div>
     <div class="example-phases-grid">
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--discover)">Discover</span>
         <span class="example-phase-days">Sessions 1–5</span>
-        <p class="example-phase-body">Students meet anxious shelter dogs through a visit from a Muddy Paws Rescue worker and build a shared understanding of the challenge, who is affected, and why it matters.</p>
+        <p class="example-phase-body">Students meet anxious dogs in foster care through a visit from a Muddy Paws Rescue worker and build a shared understanding of the challenge, who is affected, and why it matters.</p>
       </div>
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--examine)">Examine</span>
         <span class="example-phase-days">Sessions 6–13</span>
-        <p class="example-phase-body">Students investigate the science behind dog anxiety, observing and testing materials, classifying their properties, and analyzing shelter data to determine which materials are best suited for a calming toy.</p>
+        <p class="example-phase-body">Students investigate the science behind dog anxiety, observing and testing materials, classifying their properties, and analyzing foster care data to determine which materials are best suited for a calming toy.</p>
       </div>
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
         <span class="example-phase-days">Sessions 14–18</span>
-        <p class="example-phase-body">Students design, build, and refine calming toys for shelter dogs, selecting materials based on evidence, planning their build, and making revisions based on testing and peer feedback.</p>
+        <p class="example-phase-body">Students design, build, and refine calming toys for dogs in foster care, selecting materials based on evidence, planning their build, and making revisions based on testing and peer feedback.</p>
       </div>
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--do)">Do</span>
         <span class="example-phase-days">Sessions 19–21</span>
-        <p class="example-phase-body">Students bring their calming toys to the shelter, observe how dogs respond, and use their evidence to evaluate what worked, what didn't, and what they would do differently.</p>
+        <p class="example-phase-body">Students bring their calming toys to dogs in foster care, observe how the dogs respond, and use their evidence to evaluate what worked, what didn't, and what they would do differently.</p>
       </div>
       <div class="example-phase-col">
         <span class="example-phase-name" style="background:var(--share)">Share</span>
@@ -155,7 +194,7 @@
   </div>
 
   <!-- Creating Safer Intersections in the Bronx -->
-  <div class="example-card">
+  <div class="example-card" id="safer-streets">
     <img class="example-hero" src="assets/examples/bronx.jpg" alt="Aerial view of a Bronx neighborhood" loading="lazy">
     <div class="example-head">
       <div class="example-title">Creating Safer Intersections in the Bronx</div>
@@ -196,7 +235,7 @@
   </div>
 
   <!-- The Future of Fashion is Already in Your Closet -->
-  <div class="example-card">
+  <div class="example-card" id="future-of-fashion">
     <img class="example-hero" src="assets/examples/fashion.jpg" alt="Hands sewing an upcycled sequined garment" loading="lazy">
     <div class="example-head">
       <div class="example-title">The Future of Fashion is Already in Your Closet</div>
@@ -237,7 +276,7 @@
   </div>
 
   <!-- Mental Health for Everyone -->
-  <div class="example-card">
+  <div class="example-card" id="mental-health">
     <img class="example-hero" src="assets/examples/mental-health.jpg" alt="A student sitting thoughtfully" loading="lazy">
     <div class="example-head">
       <div class="example-title">Mental Health for Everyone</div>
@@ -273,6 +312,185 @@
         <span class="example-phase-name" style="background:var(--share)">Share</span>
         <span class="example-phase-days">Days 28–30</span>
         <p class="example-phase-body">Learners shared their work directly with school board members, an act of civic leadership that led to multiple district-sponsored mental health events across the community.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comfort Kits -->
+  <div class="example-card" id="comfort-kits">
+    <img class="example-hero" src="assets/examples/comfort-kits.jpg" alt="Students display their Comfort Kits materials and prototypes in the classroom" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Comfort Kits</div>
+      <div class="example-sub">Kindergarten&ndash;Second Grade Module · Science, Literacy &amp; Design · Precious Dreams Foundation Partnership</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we create something that helps children feel safe and comfortable when they are going through a difficult time?</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <p class="example-phase-body">Students meet representatives from Precious Dreams Foundation, explore what comfort means, and listen to age-appropriate stories about children entering shelters, foster care, or hospitals.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <p class="example-phase-body">Students investigate how light, sound, texture, temperature, and familiar routines can affect how people feel, then compare materials and existing comfort objects.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <p class="example-phase-body">Students design and build comfort items or kits, selecting materials based on safety, sensory properties, durability, and the needs of the children who will use them.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <p class="example-phase-body">Students provide their completed kits to the partner organization and gather feedback about which items are most useful, comforting, and appropriate.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <p class="example-phase-body">Students explain their design choices to families and partners, reflect on how they showed care for others, and describe what they learned about materials and human needs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Power Up -->
+  <div class="example-card" id="power-up">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1632713711046-fbdf0fc0a707?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A wind turbine in an open field" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Power Up</div>
+      <div class="example-sub">Fourth Grade Module · Physical Science &amp; Engineering</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we create a renewable energy device that helps power something our school community needs?</span>
+      <span class="example-standards">4-PS3-1 · 4-PS3-2 · 4-PS3-4 · 4-ESS3-1 · 3-5-ETS1-1 · 3-5-ETS1-2 · 3-5-ETS1-3</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <p class="example-phase-body">Students complete a school energy walk, analyze how electricity is used, and meet sustainability professionals who challenge them to identify opportunities for cleaner energy.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <p class="example-phase-body">Students investigate energy transfer, circuits, motion, and renewable energy systems through hands-on experiments, data analysis, and scientific modeling.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <p class="example-phase-body">Teams design and construct working devices, such as kinetic floor tiles or bicycle-powered generators, using evidence to justify their materials, mechanisms, and intended uses.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <p class="example-phase-body">Students install or demonstrate their devices in a realistic school setting and collect measurements to determine how much energy they produce under different conditions.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <p class="example-phase-body">Students present their prototypes and performance data to engineers, school leaders, and families, explaining how their scientific understanding shaped each design decision.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chill Out -->
+  <div class="example-card" id="chill-out">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1727101981835-50bade3c4eaf?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A line of delivery trucks parked on a city street" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Chill Out</div>
+      <div class="example-sub">Middle School Module · Physical Science, Engineering &amp; Environmental Justice</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we keep refrigerated goods cold while reducing the pollution created by delivery trucks?</span>
+      <span class="example-standards">MS-PS3-1 · MS-PS3-3 · MS-PS3-4 · MS-PS3-5 · MS-PS3-6</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <p class="example-phase-body">Students investigate refrigerated truck traffic and air-quality concerns, analyze local pollution data, and hear from community members and professionals affected by the challenge.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <p class="example-phase-body">Students study thermal energy transfer, insulation, energy systems, emissions, and the constraints involved in transporting temperature-sensitive goods.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <p class="example-phase-body">Teams design and construct low-emission refrigeration prototypes, selecting materials and energy sources based on performance, cost, safety, and environmental impact.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <p class="example-phase-body">Students test their prototypes under controlled conditions, measure temperature changes over time, and compare their results with existing approaches.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <p class="example-phase-body">Students present their findings to environmental or transportation professionals, defend their designs with scientific evidence, and recommend next steps for continued development.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crowd Power -->
+  <div class="example-card" id="crowd-power">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1706677258631-43968c883b6d?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A large crowd of people walking down a busy street" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Crowd Power: The Physics of Protest</div>
+      <div class="example-sub">Ninth&ndash;Tenth Grade Module · Physics, Civic Action &amp; Engineering</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we use physics to help people participate in public demonstrations more safely and effectively?</span>
+      <span class="example-standards">HS-PS2-1 · HS-PS2-2 · HS-PS2-3</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <p class="example-phase-body">Students examine real protest environments and hear from organizers about challenges related to crowd movement, communication, visibility, accessibility, and safety.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <p class="example-phase-body">Students investigate forces, motion, momentum, energy, and wave behavior through laboratory investigations connected to specific problems encountered during public demonstrations.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <p class="example-phase-body">Teams design and build tools such as portable communication systems, safer crowd barriers, visibility devices, or accessibility supports that apply physics to a documented user need.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <p class="example-phase-body">Students test their designs in realistic crowd scenarios, collect performance data and user feedback, and analyze how conditions affect safety and effectiveness.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <p class="example-phase-body">Students demonstrate their solutions to organizers or civil-rights partners, defend their design choices using physics, and reflect on the relationship between technical design and civic participation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nobody's Listening -->
+  <div class="example-card" id="nobodys-listening">
+    <img class="example-hero" src="https://images.unsplash.com/photo-1769117695165-6ecb44ff1150?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="People walking through a dimly lit exhibition hallway" loading="lazy">
+    <div class="example-head">
+      <div class="example-title">Nobody's Listening</div>
+      <div class="example-sub">Sixth Grade Module · Social Studies, ELA &amp; Immersive Media</div>
+    </div>
+    <div class="example-question-row">
+      <span class="example-question-label">Challenge Question</span>
+      <span class="example-question-text">How can we help people understand the human impact of conflict so that stories that are often overlooked are not forgotten?</span>
+      <span class="example-standards">6.2 · 6.3 · 6.4</span>
+    </div>
+    <div class="example-phases-grid">
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--discover)">Discover</span>
+        <p class="example-phase-body">Students experience an immersive exhibition about communities affected by conflict and examine how war is represented differently by witnesses, governments, journalists, and historians.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--examine)">Examine</span>
+        <p class="example-phase-body">Students study historical context, primary sources, oral histories, and media accounts to analyze causes, consequences, perspective, and the reliability of evidence.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--engineer)">Engineer</span>
+        <p class="example-phase-body">Working as historians and experience designers, students create virtual or multimedia exhibits that combine accurate historical evidence with carefully chosen stories and artifacts.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--do)">Do</span>
+        <p class="example-phase-body">Students invite peers and community members to experience the exhibits and collect feedback about what audiences learned, felt, questioned, or reconsidered.</p>
+      </div>
+      <div class="example-phase-col">
+        <span class="example-phase-name" style="background:var(--share)">Share</span>
+        <p class="example-phase-body">Students defend their curatorial decisions, reflect on the responsibilities involved in representing other people's experiences, and explain how their historical thinking changed.</p>
       </div>
     </div>
   </div>
