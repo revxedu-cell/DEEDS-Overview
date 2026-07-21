@@ -9,8 +9,12 @@
 <style>
 .hero-banner-ex {
   position: relative; min-height: 220px;
-  background: #ab0a3d;
+  background: url('assets/THE-MODEL-1-scaled.jpg') center/cover no-repeat;
   display: flex; align-items: flex-end;
+}
+.hero-banner-ex .hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.1) 65%, transparent);
 }
 .hero-banner-ex .hero-content {
   position: relative; z-index: 1;
@@ -121,6 +125,7 @@
 </nav>
 
 <div class="hero-banner-ex">
+  <div class="hero-scrim"></div>
   <div class="hero-content">
     <h1>Examples</h1>
     <p>Explore the flow of complete DEEDS units from our partner schools.</p>
